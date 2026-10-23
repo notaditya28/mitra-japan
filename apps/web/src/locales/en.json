@@ -1,0 +1,86 @@
+{
+  "nav": {
+    "why": "Why Japan",
+    "roots": "Indian roots",
+    "numbers": "The numbers",
+    "cta": "Build my trip",
+    "home": "Mitra Japan home"
+  },
+  "hero": {
+    "eyebrow": "Namaste from the land of the rising sun",
+    "title": "Mitra Japan",
+    "tagline": "Japan, made for you.",
+    "body": "Veg-safe food you can trust, phrases in your language, a visa that is simpler than you think, and a trip planned around the people you travel with.",
+    "cta": "Start the journey",
+    "scroll": "Scroll to travel"
+  },
+  "persona": {
+    "eyebrow": "Step 1 · Who is travelling?",
+    "title": "Tell us who you are, we will shape Japan around you.",
+    "body": "Pick one. Your choice tints the journey and seeds your trip plan.",
+    "selected": "Selected",
+    "options": {
+      "family": {
+        "label": "Family with parents",
+        "hint": "Gentle pace, lifts and rest stops, pure-veg comfort"
+      },
+      "honeymoon": {
+        "label": "Honeymoon",
+        "hint": "Ryokan nights, onsen, Kyoto lanes at golden hour"
+      },
+      "student": {
+        "label": "Student",
+        "hint": "Rail passes, hostels, smart budgets, anime streets"
+      },
+      "foodie": { "label": "Foodie", "hint": "Shojin ryori, depachika halls, veg ramen hunts" },
+      "spiritual": {
+        "label": "Spiritual",
+        "hint": "Koyasan temple stays, Nara, quiet mountain shrines"
+      }
+    }
+  },
+  "fears": {
+    "eyebrow": "Step 2 · Walk through the gates",
+    "title": "Every worry has an answer.",
+    "body": "Each torii gate is one reason people hesitate. Pass through it and see what Mitra does about it.",
+    "items": {
+      "food": {
+        "q": "Will I find veg food?",
+        "a": "Point your camera at a menu. We flag hidden fish stock (dashi), bonito, lard and gelatin before you order, matched to your diet."
+      },
+      "language": {
+        "q": "What about language?",
+        "a": "Show a card written in Japanese from your own Hindi or Gujarati. Staff read it, nod, and cook accordingly."
+      },
+      "visa": {
+        "q": "Is the visa hard?",
+        "a": "Five clear steps and a checklist you can tick off at home. We tell you what to keep ready before you apply."
+      },
+      "foreign": {
+        "q": "Will it feel foreign?",
+        "a": "Japan already prays to Saraswati, Ganesha and Lakshmi, under Japanese names. Keep walking."
+      }
+    }
+  },
+  "roots": {
+    "eyebrow": "Step 3 · Japan has Indian roots",
+    "title": "You have met these gods before.",
+    "body": "Buddhism carried Indian deities to Japan more than a thousand years ago. They are still worshipped there today."
+  },
+  "numbers": {
+    "eyebrow": "Step 4 · The numbers",
+    "title": "The gap is not price. It is confidence.",
+    "source": "Source",
+    "pending": "Figure pending verification"
+  },
+  "cta": {
+    "eyebrow": "Your turn",
+    "title": "Japan is ready for you.",
+    "body": "Tell our guide who is travelling and what you eat. Get a day-by-day route with trains, stays and a daily Food Confidence Score.",
+    "button": "Build my trip"
+  },
+  "footer": {
+    "demo": "Restaurant and food-spot data shown in this demo is illustrative and not verified.",
+    "made": "Made with care for Indian travellers."
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "_note": "Never invent statistics. Every figure must be filled from a real source and flipped to verified: true by a human.",
+  "stats": [
+    {
+      "id": "indianArrivals",
+      "value": null,
+      "suffix": "",
+      "label": "Indian visitors to Japan last year, out of all international arrivals",
+      "source": "TODO: verify with JNTO",
+      "sourceUrl": "https://statistics.jnto.go.jp/en/",
+      "verified": false
+    },
+    {
+      "id": "outboundGrowth",
+      "value": null,
+      "suffix": "%",
+      "label": "Growth in Indian outbound travel",
+      "source": "TODO: verify with Ministry of Tourism, Govt. of India",
+      "sourceUrl": "",
+      "verified": false
+    },
+    {
+      "id": "vegShare",
+      "value": null,
+      "suffix": "%",
+      "label": "Share of Indians who are vegetarian",
+      "source": "TODO: verify with a national survey (e.g. NFHS)",
+      "sourceUrl": "",
+      "verified": false
+    },
+    {
+      "id": "surveyFoodWorry",
+      "value": null,
+      "suffix": "%",
+      "label": "Respondents in our survey who named food as their top worry about Japan",
+      "source": "TODO: Mitra Japan survey result",
+      "sourceUrl": "",
+      "verified": false
+    }
+  ]
+}

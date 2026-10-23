@@ -1,0 +1,113 @@
+@import '@fontsource/plus-jakarta-sans/400.css';
+@import '@fontsource/plus-jakarta-sans/500.css';
+@import '@fontsource/plus-jakarta-sans/600.css';
+@import '@fontsource/plus-jakarta-sans/700.css';
+@import '@fontsource/shippori-mincho/500.css';
+@import '@fontsource/shippori-mincho/700.css';
+@import '@fontsource/noto-sans-devanagari/400.css';
+@import '@fontsource/noto-sans-devanagari/600.css';
+@import '@fontsource/noto-sans-gujarati/400.css';
+@import '@fontsource/noto-sans-gujarati/600.css';
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-paper font-sans text-ink;
+    line-height: 1.6;
+  }
+  ::selection {
+    @apply bg-petal text-plum;
+  }
+  :focus-visible {
+    outline: 3px solid rgb(var(--sakura));
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-card border border-blush bg-white/80 shadow-soft backdrop-blur-sm;
+  }
+  .card-dark {
+    @apply rounded-card border border-white/10 bg-plum/70 text-paper shadow-lift backdrop-blur-md;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-petal/70 bg-blush px-3 py-1 text-sm font-medium text-plum;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-rose px-7 py-3.5 font-semibold text-white shadow-soft transition duration-300 ease-calm hover:-translate-y-0.5 hover:shadow-lift active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-current px-6 py-3 font-semibold transition duration-300 ease-calm hover:bg-white/10;
+  }
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.22em];
+  }
+  .display {
+    @apply font-display font-medium leading-[1.05] tracking-tight;
+  }
+  .seigaiha-bg {
+    background-image: var(--seigaiha);
+    background-size: 64px 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hero first-paint motion. Reduced-motion users get the final frame. */
+@keyframes sun-rise {
+  from {
+    transform: translate(-50%, 35%);
+    opacity: 0.4;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+@keyframes cue {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    transform-origin: top;
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+.hero-sun {
+  animation: sun-rise 3.2s var(--ease-calm) both;
+}
+.scroll-cue {
+  animation: cue 2.4s ease-in-out infinite;
+}

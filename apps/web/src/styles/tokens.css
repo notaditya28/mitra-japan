@@ -1,0 +1,23 @@
+/*
+ * Mitra Japan design tokens. Single source of truth for colour.
+ * Stored as RGB triplets so Tailwind can apply opacity (bg-plum/80).
+ * Hex values are mirrored in src/styles/tokens.ts for three.js materials.
+ */
+:root {
+  --plum: 74 34 56; /* #4A2238 deep panels, hero bg, text on light */
+  --sakura: 217 87 127; /* #D9577F primary accent */
+  --blush: 251 227 234; /* #FBE3EA soft surfaces, chips */
+  --petal: 247 198 208; /* #F7C6D0 decorative petals */
+  --rose: 194 69 110; /* #C2456E deeper sakura: small text and button fills (AA on paper, AA with white) */
+  --paper: 255 248 250; /* #FFF8FA page background */
+  --ink: 58 36 48; /* #3A2430 body text */
+  --mist: 138 107 119; /* #8A6B77 secondary text */
+  --gold: 240 194 123; /* #F0C27B route, sun, heritage */
+  --matcha: 143 209 158; /* #8FD19E veg-safe only */
+  --torii: 192 57 75; /* #C0394B gates, sparingly */
+
+  /* Persona tint, overwritten at runtime by the persona store. */
+  --tint: var(--sakura);
+
+  --ease-calm: cubic-bezier(0.33, 1, 0.68, 1);
+}
