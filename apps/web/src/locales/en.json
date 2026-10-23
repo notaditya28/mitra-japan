@@ -186,21 +186,80 @@
   },
   "planner": {
     "greeting": "Namaste, {{name}}",
-    "subtitle": "Here is your Japan so far.",
-    "travelling": "Travelling as",
-    "eating": "Eating",
     "edit": "Edit",
     "mapTitle": "Your map of Japan",
-    "mapNote": "Gold pins mark the Indian-roots temples you met on the journey.",
-    "nextTitle": "Coming next",
-    "next": [
-      "A 3D map you can spin, with Veg-Safe, heritage, anime and regional layers",
-      "Your AI guide: say “5 days, parents, Jain” and watch the route draw itself",
-      "A daily Food Confidence Score, then a demo booking checkout"
-    ],
     "signOut": "Sign out",
     "demo": "Demo account on this device",
-    "notChosen": "Not chosen yet"
+    "notChosen": "Not chosen yet",
+    "demoData": "Demo data",
+    "mapHint": "Drag to orbit · scroll to zoom · click a city",
+    "sampleRoute": "Sample route",
+    "day": "Day {{n}}",
+    "layersTitle": "Map layers",
+    "layers": {
+      "vegSafe": {
+        "name": "Veg-Safe food",
+        "hint": "Places that suit your diet (demo)"
+      },
+      "heritage": {
+        "name": "Indian heritage",
+        "hint": "Temples of Saraswati, Ganesha and more"
+      },
+      "anime": {
+        "name": "Anime & pop culture",
+        "hint": "Fan favourites and pilgrimage spots"
+      },
+      "regional": {
+        "name": "Regional towns",
+        "hint": "Beyond the Golden Route"
+      }
+    },
+    "fromTokyo": "From Tokyo",
+    "close": "Close city",
+    "season": "When to go",
+    "food": "Food for you",
+    "vegLevel": {
+      "high": "Easy for veg",
+      "medium": "Plan ahead",
+      "low": "Take care"
+    },
+    "kinds": {
+      "shojin": "Temple cuisine",
+      "indian": "Indian",
+      "vegan-ramen": "Vegan ramen",
+      "depachika": "Food hall",
+      "ryokan": "Ryokan",
+      "tofu": "Tofu & yuba",
+      "local": "Local dish",
+      "market": "Market",
+      "sweets": "Sweets"
+    },
+    "suits": "Usually suits {{diet}}",
+    "askFirst": "Ask staff first for your diet",
+    "check": "Double-check",
+    "risks": {
+      "dashi": "dashi",
+      "alcohol": "mirin or sake",
+      "egg": "egg",
+      "fish": "fish",
+      "pork": "pork",
+      "root-veg": "root vegetables",
+      "shared-grill": "shared griddle",
+      "advance-request": "request in advance",
+      "meat-stock": "meat stock"
+    },
+    "nearby": "Also near here",
+    "timesNote": "Travel times are approximate; check current timetables.",
+    "pickCity": "Pick a city",
+    "pickCityHint": "Or click a lantern on the map.",
+    "routeTitle": "Your route",
+    "routeBody": "Your AI guide will draw your own route here. Preview how it looks with the classic Golden Route.",
+    "showSample": "Show a sample route",
+    "hideSample": "Hide the sample route",
+    "sampleNote": "Sample only: Tokyo, Hakone, Kyoto, Nara, Osaka.",
+    "tripPanel": "Your trip",
+    "cityPanel": "City details",
+    "sheet": "Trip and city details"
   },
   "a11y": {
     "skip": "Skip to content"

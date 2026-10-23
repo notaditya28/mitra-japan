@@ -24,8 +24,8 @@ const JourneyCanvas = lazy(() => import('./scenes/JourneyCanvas'));
 const DemoLogin = lazy(() =>
   import('./features/auth/DemoLogin').then((m) => ({ default: m.DemoLogin })),
 );
-const PlannerHome = lazy(() =>
-  import('./features/planner/PlannerHome').then((m) => ({ default: m.PlannerHome })),
+const PlannerPage = lazy(() =>
+  import('./features/planner/PlannerPage').then((m) => ({ default: m.PlannerPage })),
 );
 
 // Static dawn sky shown while the 3D chunk loads, or if it fails.
@@ -86,7 +86,7 @@ export default function App() {
       {immersive && onJourney ? <ChapterRail /> : null}
       <Suspense fallback={<div className="min-h-[100svh] bg-paper" />}>
         {view === 'login' ? <DemoLogin /> : null}
-        {view === 'plan' && user ? <PlannerHome /> : null}
+        {view === 'plan' && user ? <PlannerPage /> : null}
       </Suspense>
       {onJourney ? (
         <main id="main">
@@ -107,7 +107,7 @@ export default function App() {
           <CtaSection />
         </main>
       ) : null}
-      <Footer />
+      {view !== 'plan' ? <Footer /> : null}
       <PortalTransition />
     </>
   );

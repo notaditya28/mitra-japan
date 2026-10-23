@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { buildJapanMap, toMapLngLat } from './japanMap';
+import { buildJapanMap, prefectureAt, toMapLngLat } from './japanMap';
 
 describe('japanMap', () => {
   const map = buildJapanMap([
@@ -44,5 +44,16 @@ describe('japanMap', () => {
       expect(y).toBeGreaterThanOrEqual(0);
       expect(y).toBeLessThanOrEqual(800);
     }
+  });
+
+  it('finds the prefecture a city sits in', () => {
+    expect(prefectureAt(135.768, 35.011)).toBe('JP-26'); // Kyoto
+    expect(prefectureAt(139.767, 35.681)).toBe('JP-13'); // Tokyo
+    expect(prefectureAt(127.681, 26.212)).toBe('JP-47'); // Naha, Okinawa
+  });
+
+  it('exposes projected polygons for 3D extrusion', () => {
+    expect(map.prefectures).toHaveLength(47);
+    expect(map.prefectures[0]?.polygons[0]?.[0]?.length).toBeGreaterThan(3);
   });
 });

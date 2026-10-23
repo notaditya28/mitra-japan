@@ -1,0 +1,87 @@
+{
+  "_note": "Real, well-known places for the anime and regional layers. Coordinates are approximate.",
+  "anime": [
+    {
+      "id": "akihabara",
+      "cityId": "tokyo",
+      "name": "Akihabara Electric Town",
+      "lat": 35.698,
+      "lng": 139.771,
+      "note": "Anime, manga, figure and game shops across whole buildings."
+    },
+    {
+      "id": "ghibli",
+      "cityId": "tokyo",
+      "name": "Ghibli Museum, Mitaka",
+      "lat": 35.696,
+      "lng": 139.57,
+      "note": "Studio Ghibli's museum. Tickets sell out, so book weeks ahead."
+    },
+    {
+      "id": "nakano",
+      "cityId": "tokyo",
+      "name": "Nakano Broadway",
+      "lat": 35.709,
+      "lng": 139.666,
+      "note": "A vintage mall full of collectors' shops."
+    },
+    {
+      "id": "kamakurakokomae",
+      "cityId": "kamakura",
+      "name": "Kamakura-Kōkōmae crossing",
+      "lat": 35.306,
+      "lng": 139.5,
+      "note": "The seaside railway crossing fans know from Slam Dunk."
+    },
+    {
+      "id": "manga-museum",
+      "cityId": "kyoto",
+      "name": "Kyoto International Manga Museum",
+      "lat": 35.012,
+      "lng": 135.759,
+      "note": "A former school with walls of manga you can read."
+    },
+    {
+      "id": "denden",
+      "cityId": "osaka",
+      "name": "Den Den Town, Nipponbashi",
+      "lat": 34.659,
+      "lng": 135.506,
+      "note": "Osaka's answer to Akihabara."
+    },
+    {
+      "id": "hida-furukawa",
+      "cityId": "takayama",
+      "name": "Hida-Furukawa",
+      "lat": 36.238,
+      "lng": 137.187,
+      "note": "A quiet town fans visit for scenes from the film Your Name."
+    }
+  ],
+  "regional": [
+    {
+      "id": "shirakawa-go",
+      "cityId": "takayama",
+      "name": "Shirakawa-go",
+      "lat": 36.257,
+      "lng": 136.906,
+      "note": "UNESCO village of thatched gassho-style farmhouses."
+    },
+    {
+      "id": "kinosaki",
+      "cityId": "kyoto",
+      "name": "Kinosaki Onsen",
+      "lat": 35.625,
+      "lng": 134.807,
+      "note": "Stroll between seven public bathhouses in a yukata."
+    },
+    {
+      "id": "naoshima",
+      "cityId": "hiroshima",
+      "name": "Naoshima",
+      "lat": 34.459,
+      "lng": 133.995,
+      "note": "An island of art museums and outdoor sculptures."
+    }
+  ]
+}

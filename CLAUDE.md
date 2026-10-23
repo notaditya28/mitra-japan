@@ -72,6 +72,16 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 - Counters (`components/Counter.tsx`) count up only for non-null values from `stats.json`; never fill a value without a source.
 - Keep first paint lean: map data, sign-in, planner and the roots reveal are lazy chunks.
 
+## Planner map (M4)
+
+- Data: `cities.json` (15 cities), `foodSpots.json` (DEMO, generic kinds of places, `certified:false`, `verified:false`), `layers.json` (real anime/regional spots), `heritage.json`. Typed access in `features/planner/data.ts`; rules enforced by `data.test.ts` (never certified/verified, valid city refs, coordinates in Japan).
+- 3D map lives in `features/planner/map/` (lazy `MapCanvas`). World space comes from `mapSpace.ts`: the same projection as the 2D maps, 1 unit = 40 px, north = -z. Always place things with `lngLatToWorld`.
+- Prefectures are extruded per prefecture (`JapanLand`), hover lifts/tints, click selects the first city in that prefecture. City labels are drei `<Html>`; minor-city labels hide when zoomed out (`MAJOR`, `NUDGE` in `CityMarkers`).
+- Layers (`LayerPins`) spring in/out with stagger and scale with zoom; colours in `layerColors.ts` (three-free so the side panel stays light).
+- `RouteLine` takes `RouteStop[]` (`features/planner/route.ts`). M4 shows `SAMPLE_ROUTE` only behind an explicit "Show a sample route" toggle; M5 feeds the AI itinerary into the same component.
+- Selection state (`selectedCityId`, `showSampleRoute`) is in the store, not persisted. Camera fly-to is in `MapCameraRig`; user drag cancels it.
+- Layout: ≥1024 px three panels; below, full-screen map + `BottomSheet`. No WebGL → `JapanMapSvg` + city list.
+
 ## Motion and performance
 
 - Slow eases (power2/power3, `ease-calm`). Nothing jittery.

@@ -23,11 +23,16 @@ interface AppState {
   layers: Record<MapLayer, boolean>;
   itinerary: Itinerary | null;
   user: DemoUser | null;
+  /** Planner UI state (not persisted). */
+  selectedCityId: string | null;
+  showSampleRoute: boolean;
   setPersona: (p: Persona) => void;
   setDiet: (d: Diet) => void;
   setLanguage: (l: Language) => void;
   toggleLayer: (l: MapLayer) => void;
   setItinerary: (i: Itinerary | null) => void;
+  selectCity: (id: string | null) => void;
+  setShowSampleRoute: (v: boolean) => void;
   signIn: (u: DemoUser) => void;
   signOut: () => void;
 }
@@ -58,11 +63,15 @@ export const useAppStore = create<AppState>()(
       layers: { vegSafe: true, heritage: false, anime: false, regional: false },
       itinerary: null,
       user: null,
+      selectedCityId: null,
+      showSampleRoute: false,
       setPersona: (persona) => set({ persona }),
       setDiet: (diet) => set({ diet }),
       setLanguage: (language) => set({ language }),
       toggleLayer: (l) => set((s) => ({ layers: { ...s.layers, [l]: !s.layers[l] } })),
       setItinerary: (itinerary) => set({ itinerary }),
+      selectCity: (selectedCityId) => set({ selectedCityId }),
+      setShowSampleRoute: (showSampleRoute) => set({ showSampleRoute }),
       signIn: (user) => set({ user }),
       signOut: () => set({ user: null, itinerary: null }),
     }),

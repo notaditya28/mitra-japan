@@ -6,12 +6,15 @@
 - [x] **M2** Stage 1 hero (3D) + persona + torii tunnel with flipping fear cards, HI/GU Stage 1 copy, language switch, ingredient matcher
 - [x] **M2b** Multi-place journey (Fuji → Tokyo → Shinkansen → Kyoto → Matsuri), Petal Portal transitions, stretched place titles, chapter rail
 - [x] **M3** Indian-roots mosaic→map reveal, count-up counters (real values only), CTA torii-portal transition, demo sign-in, planner home (2D map; 3D arrives in M4)
-- [ ] **M4** 3D Japan map with layers, pins and city cards
+- [x] **M4** 3D Japan map (extruded prefectures, seigaiha sea, mini Fuji), 4 animated layers, city cards, sample route with Shinkansen marker, desktop 3-panel + mobile bottom sheet, 2D fallback
 - [ ] **M5** FastAPI + Claude planner, JSON validation, animated route, Food Confidence rings
 - [ ] **M6** Food scanner (live OCR + demo fallback) and phrase cards
 - [ ] **M7** i18n (HI/GU), export (WhatsApp/PDF), polish, performance, deploy
 
 ## Needs owner input
+
+- [ ] **City facts**: review `apps/web/src/data/cities.json` (travel times, veg notes) and `layers.json` (anime/regional spots).
+- [ ] **Food spots**: `foodSpots.json` is generic demo data (kinds of places, not named restaurants). Replace with real, sourced spots if you have them; keep `verified: false` until checked.
 
 - [ ] **Stage 1 revisit**: owner is not fully happy with the multi-place journey (2026-10-23) and will come back with changed requirements. Keep scene code modular (one file per place) so it is easy to rework.
 
@@ -36,6 +39,9 @@
 | API                      | Skeleton only (`/health`), planner endpoints arrive in M5                               |
 
 ## Known notes
+
+- City notes, food-spot text and layer notes are English only (UI chrome is translated).
+- Vite `optimizeDeps.include` pre-bundles heavy deps; without it, adding a new import mid-session can load two Reacts ("Invalid hook call") until the dev server restarts.
 
 - Counters animate only when a stat has a `value`; all four are still `null`, so they show “—” until real figures are added.
 - Deity stories in `heritage.json` are English only; translate in M7.

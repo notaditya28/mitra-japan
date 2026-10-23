@@ -49,7 +49,7 @@ export function Fuji({
   scale = 1,
 }: {
   position: [number, number, number];
-  scale?: number;
+  scale?: number | [number, number, number];
 }) {
   return (
     <mesh geometry={fujiGeometry()} position={position} scale={scale}>
