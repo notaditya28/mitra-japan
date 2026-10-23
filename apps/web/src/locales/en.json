@@ -4,7 +4,8 @@
     "roots": "Indian roots",
     "numbers": "The numbers",
     "cta": "Build my trip",
-    "home": "Mitra Japan home"
+    "home": "Mitra Japan home",
+    "language": "Language"
   },
   "hero": {
     "eyebrow": "Namaste from the land of the rising sun",
@@ -43,6 +44,8 @@
     "eyebrow": "Step 2 · Walk through the gates",
     "title": "Every worry has an answer.",
     "body": "Each torii gate is one reason people hesitate. Pass through it and see what Mitra does about it.",
+    "gate": "Gate {{n}}",
+    "passHint": "Keep scrolling to pass through",
     "items": {
       "food": {
         "q": "Will I find veg food?",
@@ -62,6 +65,46 @@
       }
     }
   },
+  "diets": {
+    "label": "Your diet",
+    "jain": "Jain",
+    "vegetarian": "Vegetarian",
+    "vegan": "Vegan",
+    "halal": "Halal",
+    "no-beef": "No beef",
+    "eggless": "Eggless",
+    "none": "No restriction"
+  },
+  "scanner": {
+    "demoLabel": "Demo scan",
+    "dish": "Dish",
+    "verdict": {
+      "safe": "Safe",
+      "ask": "Ask first",
+      "avoid": "Avoid"
+    },
+    "explain": {
+      "safe": "Nothing in this dish breaks your diet.",
+      "ask": "Probably fine, but confirm with staff before ordering.",
+      "avoid": "Contains ingredients that break your diet.",
+      "hidden": "Looks safe on the menu, but the stock or fat gives it away."
+    },
+    "noneFound": "No flagged ingredients found."
+  },
+  "phrase": {
+    "show": "Show this to staff",
+    "say": "Say it"
+  },
+  "visa": {
+    "steps": [
+      "Passport valid for your whole trip, with blank pages",
+      "Visa application form and a recent passport photo",
+      "Day-by-day itinerary and hotel bookings",
+      "Recent bank statements and income tax returns",
+      "Apply via Japan eVISA or an authorised visa centre"
+    ],
+    "note": "Rules change. Always confirm on the Embassy of Japan in India website before applying."
+  },
   "roots": {
     "eyebrow": "Step 3 · Japan has Indian roots",
     "title": "You have met these gods before.",
@@ -77,10 +120,14 @@
     "eyebrow": "Your turn",
     "title": "Japan is ready for you.",
     "body": "Tell our guide who is travelling and what you eat. Get a day-by-day route with trains, stays and a daily Food Confidence Score.",
-    "button": "Build my trip"
+    "button": "Build my trip",
+    "soon": "The planner opens here from milestone 4."
   },
   "footer": {
     "demo": "Restaurant and food-spot data shown in this demo is illustrative and not verified.",
     "made": "Made with care for Indian travellers."
+  },
+  "a11y": {
+    "skip": "Skip to content"
   }
 }

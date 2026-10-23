@@ -48,6 +48,16 @@ Type: Plus Jakarta Sans (UI/body), Shippori Mincho (`.display`, large headings),
 Utility classes in `styles/index.css`: `.card`, `.card-dark`, `.chip`, `.btn-primary`, `.btn-ghost`, `.eyebrow`, `.display`.
 Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, plum-tinted shadows. No photoreal models, no stock photos. Use `flat` on R3F canvases so palette colours are not tone-mapped.
 
+## Stage 1 journey architecture
+
+- One fixed, lazy-loaded R3F canvas (`src/scenes/JourneyCanvas.tsx`) sits behind the Hero, Persona and Tunnel HTML sections (`#journey`). It renders only while `#journey` is on screen and the tab is visible.
+- `src/scenes/journeyState.ts` holds a mutable `journey` object (intro, hero, persona, tunnel progress, pointer). ScrollTriggers write it (`useJourneyTriggers`, `TunnelSection`); `CameraRig` reads it every frame. Never put scroll progress in React state.
+- Fear gate z positions are derived from the tunnel scroll segments (`FEAR_GATE_Z`), so each card flips exactly as the camera passes its gate. Change `FEAR_IDS` or `TUNNEL_*_Z` there, not in the scene.
+- Tunnel uses CSS `position: sticky` plus a scrubbed GSAP timeline (no GSAP pin), which plays well with Lenis.
+- `immersive = webgl && tier !== 'low' && !reducedMotion`. Otherwise the static M1 sections render (SVG hero, `FearsSection` grid).
+- Dev builds expose R3F state as `window.__journey` for console debugging.
+- Hindi/Gujarati: never letter-space Devanagari/Gujarati (`.eyebrow` resets tracking under `:lang(hi|gu)`).
+
 ## Motion and performance
 
 - Slow eases (power2/power3, `ease-calm`). Nothing jittery.

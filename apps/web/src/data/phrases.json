@@ -1,0 +1,105 @@
+{
+  "_note": "Show-to-staff and emergency phrases. Hindi and Gujarati are drafts pending native-speaker review (see TODO.md). Phrasing avoids gendered verb forms where possible.",
+  "phrases": [
+    {
+      "id": "no-fish-stock",
+      "kind": "food",
+      "diets": ["vegetarian"],
+      "ja": "魚のだし（かつお節など）を使わないでください。",
+      "romaji": "Sakana no dashi (katsuobushi nado) o tsukawanaide kudasai.",
+      "en": "Please do not use fish stock (like bonito flakes).",
+      "hi": "कृपया इसमें मछली का शोरबा (जैसे बोनिटो) न डालें।",
+      "gu": "કૃપા કરીને આમાં માછલીનો સૂપ (જેમ કે બોનિટો) ન નાખશો."
+    },
+    {
+      "id": "vegetarian",
+      "kind": "food",
+      "diets": ["vegan"],
+      "ja": "私はベジタリアンです。肉、魚、卵は食べません。",
+      "romaji": "Watashi wa bejitarian desu. Niku, sakana, tamago wa tabemasen.",
+      "en": "I am vegetarian. I do not eat meat, fish or eggs.",
+      "hi": "मैं शाकाहारी हूँ। मांस, मछली और अंडा नहीं चलेगा।",
+      "gu": "હું શાકાહારી છું. માંસ, માછલી અને ઈંડા નહીં ચાલે."
+    },
+    {
+      "id": "jain",
+      "kind": "food",
+      "diets": ["jain"],
+      "ja": "ジャイナ教の食事制限があります。肉・魚・卵・玉ねぎ・にんにく・根菜は食べられません。",
+      "romaji": "Jaina-kyō no shokuji seigen ga arimasu. Niku, sakana, tamago, tamanegi, ninniku, konsai wa taberaremasen.",
+      "en": "I follow a Jain diet: no meat, fish, egg, onion, garlic or root vegetables.",
+      "hi": "मेरा भोजन जैन है: मांस, मछली, अंडा, प्याज़, लहसुन और कंदमूल नहीं चलेंगे।",
+      "gu": "મારું ભોજન જૈન છે: માંસ, માછલી, ઈંડા, ડુંગળી, લસણ અને કંદમૂળ નહીં ચાલે."
+    },
+    {
+      "id": "halal",
+      "kind": "food",
+      "diets": ["halal"],
+      "ja": "豚肉、ラード、お酒（みりんを含む）は食べられません。",
+      "romaji": "Butaniku, rādo, osake (mirin o fukumu) wa taberaremasen.",
+      "en": "I cannot eat pork, lard or alcohol (including mirin).",
+      "hi": "सूअर का मांस, लार्ड और शराब (मिरिन भी) मेरे लिए मना है।",
+      "gu": "ડુક્કરનું માંસ, લાર્ડ અને દારૂ (મિરિન પણ) મારા માટે મનાઈ છે."
+    },
+    {
+      "id": "no-beef",
+      "kind": "food",
+      "diets": ["no-beef"],
+      "ja": "牛肉は食べられません。",
+      "romaji": "Gyūniku wa taberaremasen.",
+      "en": "I do not eat beef.",
+      "hi": "बीफ़ (गोमांस) मेरे लिए मना है।",
+      "gu": "બીફ (ગૌમાંસ) મારા માટે મનાઈ છે."
+    },
+    {
+      "id": "no-egg",
+      "kind": "food",
+      "diets": ["eggless"],
+      "ja": "卵を抜いてください。",
+      "romaji": "Tamago o nuite kudasai.",
+      "en": "No egg, please.",
+      "hi": "कृपया अंडा मत डालिए।",
+      "gu": "કૃપા કરીને ઈંડું ન નાખશો."
+    },
+    {
+      "id": "ask-ingredients",
+      "kind": "food",
+      "diets": [],
+      "ja": "これに肉、魚、または魚のだしは入っていますか？",
+      "romaji": "Kore ni niku, sakana, mata wa sakana no dashi wa haitte imasu ka?",
+      "en": "Does this contain meat, fish or fish stock?",
+      "hi": "क्या इसमें मांस, मछली या मछली का शोरबा है?",
+      "gu": "શું આમાં માંસ, માછલી કે માછલીનો સૂપ છે?"
+    },
+    {
+      "id": "ambulance",
+      "kind": "emergency",
+      "diets": [],
+      "ja": "救急車を呼んでください。",
+      "romaji": "Kyūkyūsha o yonde kudasai.",
+      "en": "Please call an ambulance.",
+      "hi": "कृपया एम्बुलेंस बुलाइए।",
+      "gu": "કૃપા કરીને એમ્બ્યુલન્સ બોલાવો."
+    },
+    {
+      "id": "hospital",
+      "kind": "emergency",
+      "diets": [],
+      "ja": "一番近い病院はどこですか？",
+      "romaji": "Ichiban chikai byōin wa doko desu ka?",
+      "en": "Where is the nearest hospital?",
+      "hi": "सबसे नज़दीकी अस्पताल कहाँ है?",
+      "gu": "સૌથી નજીકની હોસ્પિટલ ક્યાં છે?"
+    },
+    {
+      "id": "lost",
+      "kind": "emergency",
+      "diets": [],
+      "ja": "道に迷いました。この住所まで行く方法を教えてください。",
+      "romaji": "Michi ni mayoimashita. Kono jūsho made iku hōhō o oshiete kudasai.",
+      "en": "I am lost. Please help me get to this address.",
+      "hi": "मुझे रास्ता नहीं मिल रहा। कृपया इस पते तक पहुँचने में मदद करें।",
+      "gu": "મને રસ્તો નથી મળતો. કૃપા કરીને આ સરનામે પહોંચવામાં મદદ કરો."
+    }
+  ]
+}

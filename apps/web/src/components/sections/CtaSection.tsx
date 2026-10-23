@@ -36,7 +36,7 @@ export function CtaSection() {
               exit={{ opacity: 0 }}
               className="mx-auto mt-4 max-w-sm text-sm text-mist"
             >
-              The planner opens here from milestone 4.
+              {t('cta.soon')}
             </motion.p>
           ) : null}
         </AnimatePresence>

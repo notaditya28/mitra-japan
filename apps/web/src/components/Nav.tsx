@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { scrollToId } from '../lib/smoothScroll';
+import { LanguageSwitch } from './LanguageSwitch';
 
 const LINKS = [
   { id: 'fears', key: 'nav.why' },
@@ -46,10 +47,11 @@ export function Nav() {
               {t(l.key)}
             </button>
           ))}
+          <LanguageSwitch solid={solid} />
           <button
             type="button"
             onClick={() => scrollToId('cta')}
-            className="btn-primary !px-5 !py-2 text-sm"
+            className="btn-primary hidden !px-5 !py-2 text-sm sm:inline-flex"
           >
             {t('nav.cta')}
           </button>

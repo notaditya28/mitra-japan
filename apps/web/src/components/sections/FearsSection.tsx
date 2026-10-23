@@ -6,8 +6,7 @@ import { PhrasePreview } from '../../features/fears/PhrasePreview';
 import { VisaChecklist } from '../../features/fears/VisaChecklist';
 import { RootsTeaser } from '../../features/fears/RootsTeaser';
 import { SectionHeader } from './SectionHeader';
-
-type FearId = 'food' | 'language' | 'visa' | 'foreign';
+import type { FearId } from '../../scenes/journeyState';
 
 const FEARS: { id: FearId; preview: ReactNode }[] = [
   { id: 'food', preview: <FoodScanPreview /> },
@@ -37,7 +36,7 @@ export function FearsSection() {
               <div className="flex items-center gap-4">
                 <ToriiGate className="h-11 w-12 shrink-0" />
                 <div>
-                  <p className="eyebrow text-mist">Gate {i + 1}</p>
+                  <p className="eyebrow text-mist">{t('fears.gate', { n: i + 1 })}</p>
                   <h3 className="font-display text-2xl text-plum">{t(`fears.items.${id}.q`)}</h3>
                 </div>
               </div>

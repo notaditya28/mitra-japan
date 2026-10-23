@@ -63,6 +63,10 @@
   .eyebrow {
     @apply text-xs font-semibold uppercase tracking-[0.22em];
   }
+  /* Letter-spacing breaks Devanagari and Gujarati conjuncts; keep it Latin-only. */
+  :is(:lang(hi), :lang(gu)) .eyebrow {
+    @apply tracking-normal;
+  }
   .display {
     @apply font-display font-medium leading-[1.05] tracking-tight;
   }

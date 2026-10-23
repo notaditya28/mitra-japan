@@ -1,0 +1,212 @@
+{
+  "_note": "Starter dictionary for the Veg-Safe scanner. Terms are matched longest-first so 昆布だし (kombu stock) is not read as fish dashi and 牛乳 (milk) is not read as beef. Per-diet rules: 'avoid' breaks the diet, 'ask' needs staff confirmation, missing means fine.",
+  "ingredients": [
+    {
+      "id": "kombu-dashi",
+      "terms": ["昆布だし", "昆布出汁", "こんぶだし", "昆布"],
+      "en": "Kombu (kelp) stock",
+      "category": "plant",
+      "rules": { "jain": "ask" },
+      "note": "Plant-based stock. Usually safe, but some kitchens blend it with bonito."
+    },
+    {
+      "id": "shiitake-dashi",
+      "terms": ["椎茸だし", "しいたけだし", "椎茸出汁", "椎茸", "しいたけ"],
+      "en": "Shiitake mushroom",
+      "category": "plant",
+      "rules": { "jain": "avoid" },
+      "note": "Mushrooms are avoided by many Jains."
+    },
+    {
+      "id": "bonito",
+      "terms": [
+        "かつお出汁",
+        "鰹出汁",
+        "かつおだし",
+        "鰹節",
+        "かつお節",
+        "かつおぶし",
+        "鰹",
+        "かつお",
+        "カツオ"
+      ],
+      "en": "Bonito (fish) flakes or stock",
+      "category": "fish",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid" },
+      "note": "Smoked fish. The most common hidden non-veg ingredient in Japanese food."
+    },
+    {
+      "id": "dashi",
+      "terms": ["出汁", "だし", "ダシ"],
+      "en": "Dashi stock (usually fish)",
+      "category": "fish",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid" },
+      "note": "Unless it says kombu or shiitake, dashi is almost always made with bonito."
+    },
+    {
+      "id": "niboshi",
+      "terms": ["煮干し", "煮干", "にぼし", "いりこ"],
+      "en": "Dried sardines",
+      "category": "fish",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid" },
+      "note": "Used for ramen and miso soup stock."
+    },
+    {
+      "id": "fish",
+      "terms": ["魚介", "魚", "さかな", "ぎょかい"],
+      "en": "Fish / seafood",
+      "category": "fish",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid" },
+      "note": ""
+    },
+    {
+      "id": "fish-sauce",
+      "terms": ["オイスターソース", "魚醤", "ナンプラー"],
+      "en": "Oyster or fish sauce",
+      "category": "fish",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid" },
+      "note": ""
+    },
+    {
+      "id": "shrimp",
+      "terms": ["海老", "エビ", "えび", "桜えび"],
+      "en": "Shrimp",
+      "category": "shellfish",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid", "halal": "ask" },
+      "note": "Some halal schools avoid shellfish."
+    },
+    {
+      "id": "milk",
+      "terms": ["牛乳", "ミルク", "乳製品", "生クリーム", "クリーム", "バター", "チーズ"],
+      "en": "Milk or dairy",
+      "category": "dairy",
+      "rules": { "vegan": "avoid" },
+      "note": ""
+    },
+    {
+      "id": "pork",
+      "terms": [
+        "豚骨",
+        "とんこつ",
+        "豚肉",
+        "豚",
+        "ポーク",
+        "チャーシュー",
+        "ベーコン",
+        "ハム",
+        "ソーセージ"
+      ],
+      "en": "Pork",
+      "category": "meat",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid", "halal": "avoid" },
+      "note": "Tonkotsu ramen broth is made from pork bones."
+    },
+    {
+      "id": "lard",
+      "terms": ["ラード", "背脂"],
+      "en": "Lard (pork fat)",
+      "category": "meat",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid", "halal": "avoid" },
+      "note": "Often in ramen, fried rice and gyoza even when the dish looks vegetarian."
+    },
+    {
+      "id": "beef",
+      "terms": ["牛肉", "牛", "ビーフ", "和牛"],
+      "en": "Beef",
+      "category": "meat",
+      "rules": {
+        "jain": "avoid",
+        "vegetarian": "avoid",
+        "vegan": "avoid",
+        "halal": "ask",
+        "no-beef": "avoid"
+      },
+      "note": "Halal only if slaughtered accordingly."
+    },
+    {
+      "id": "chicken",
+      "terms": ["鶏肉", "鶏", "チキン", "鶏ガラ"],
+      "en": "Chicken",
+      "category": "meat",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid", "halal": "ask" },
+      "note": "Torigara (chicken bone) stock is common in soups."
+    },
+    {
+      "id": "consomme",
+      "terms": ["コンソメ", "ブイヨン", "エキス"],
+      "en": "Meat or seafood extract / stock",
+      "category": "meat",
+      "rules": { "jain": "avoid", "vegetarian": "ask", "vegan": "ask", "halal": "ask" },
+      "note": "Usually chicken or beef based. Ask for the source."
+    },
+    {
+      "id": "gelatin",
+      "terms": ["ゼラチン"],
+      "en": "Gelatin",
+      "category": "animal",
+      "rules": { "jain": "avoid", "vegetarian": "avoid", "vegan": "avoid", "halal": "ask" },
+      "note": "Usually made from pork or beef."
+    },
+    {
+      "id": "egg",
+      "terms": ["玉子", "卵", "たまご", "タマゴ", "マヨネーズ"],
+      "en": "Egg",
+      "category": "egg",
+      "rules": { "jain": "avoid", "vegan": "avoid", "eggless": "avoid", "vegetarian": "ask" },
+      "note": "Many Indian vegetarians avoid egg. Mayonnaise contains egg."
+    },
+    {
+      "id": "honey",
+      "terms": ["はちみつ", "蜂蜜", "ハチミツ"],
+      "en": "Honey",
+      "category": "animal",
+      "rules": { "jain": "avoid", "vegan": "avoid" },
+      "note": ""
+    },
+    {
+      "id": "alcohol",
+      "terms": ["みりん", "味醂", "料理酒", "日本酒", "酒"],
+      "en": "Alcohol (sake or mirin)",
+      "category": "alcohol",
+      "rules": { "halal": "avoid", "jain": "avoid" },
+      "note": "Mirin and sake are common in sauces and glazes."
+    },
+    {
+      "id": "onion",
+      "terms": ["玉ねぎ", "たまねぎ", "玉葱", "長ねぎ", "ねぎ", "ネギ", "葱"],
+      "en": "Onion / spring onion",
+      "category": "root",
+      "rules": { "jain": "avoid" },
+      "note": "Avoided in Jain food."
+    },
+    {
+      "id": "garlic",
+      "terms": ["にんにく", "ニンニク", "大蒜", "ガーリック"],
+      "en": "Garlic",
+      "category": "root",
+      "rules": { "jain": "avoid" },
+      "note": "Avoided in Jain food."
+    },
+    {
+      "id": "root-veg",
+      "terms": [
+        "さつまいも",
+        "じゃがいも",
+        "ジャガイモ",
+        "ポテト",
+        "芋",
+        "いも",
+        "人参",
+        "にんじん",
+        "大根",
+        "だいこん",
+        "生姜",
+        "しょうが"
+      ],
+      "en": "Root vegetable (potato, carrot, radish, ginger)",
+      "category": "root",
+      "rules": { "jain": "avoid" },
+      "note": "Root vegetables are avoided in Jain food."
+    }
+  ]
+}
