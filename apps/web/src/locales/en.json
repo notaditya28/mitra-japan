@@ -264,9 +264,6 @@
     "cityPanel": "City details",
     "sheet": "Trip and city details"
   },
-  "a11y": {
-    "skip": "Skip to content"
-  },
   "status": {
     "needsReview": "Needs review",
     "needsReviewNote": "Draft content: being checked against references.",
@@ -274,5 +271,136 @@
     "estimate": "Estimate",
     "verified": "Verified",
     "references": "References"
+  },
+  "guide": {
+    "title": "Your trip guide",
+    "label": "Tell your guide about your trip",
+    "placeholder": "e.g. 5 days, parents, Jain",
+    "changeLabel": "Ask for a change",
+    "changePlaceholder": "e.g. make day 3 lighter, or swap Osaka for Kanazawa",
+    "suggestions": [
+      "5 days, parents, Jain",
+      "7-day honeymoon, vegetarian",
+      "4 days as a student, halal, anime"
+    ],
+    "submit": "Plan my trip",
+    "submitChange": "Update the plan",
+    "planningStart": "Reading your request…",
+    "planning": "Planning day {{n}} of {{total}}…",
+    "retrying": "Double-checking the plan…",
+    "newTrip": "Start a new trip",
+    "mode": {
+      "live": "Live AI",
+      "demo": "Demo data",
+      "offline": "Offline · sample data"
+    },
+    "modeExplain": {
+      "live": "Plans are written by the AI guide and checked against our city data.",
+      "demo": "No AI key is configured, so plans come from our sample data.",
+      "offline": "The planner service is not reachable, so you will see the built-in sample itinerary."
+    },
+    "errors": {
+      "rate_limited": "Too many plans in a short time. Try again in {{s}} seconds.",
+      "bad_request": "Please check your request and try again.",
+      "payload_too_large": "That request is too long.",
+      "offline": "The planner service is not reachable. Showing the built-in sample itinerary.",
+      "invalid_response": "The planner sent something we could not validate. Please try again.",
+      "ai_unavailable": "AI planner unavailable, showing the sample itinerary.",
+      "ai_busy": "The AI planner is busy right now. Try again in a minute.",
+      "ai_invalid": "The AI planner returned a plan we could not validate.",
+      "ai_declined": "The AI planner could not help with this request.",
+      "demo_mode": "Regenerating a single day needs the AI planner, which is off in Demo mode.",
+      "unknown": "Something went wrong. Please try again."
+    }
+  },
+  "trip": {
+    "title": "Your itinerary",
+    "sampleBadge": "Sample itinerary",
+    "liveBadge": "Planned by AI",
+    "day": "Day {{n}}",
+    "inOurData": "In our data",
+    "suggestion": "Suggestion",
+    "modes": {
+      "walk": "Walk",
+      "local-train": "Local train",
+      "shinkansen": "Shinkansen",
+      "limited-express": "Limited express",
+      "bus": "Bus",
+      "ferry": "Ferry",
+      "flight": "Flight",
+      "none": "Local travel"
+    },
+    "from": "From {{city}}",
+    "estimate": "about {{h}} h · {{km}} km",
+    "stay": "Stay",
+    "stayTypes": {
+      "hotel": "Hotel",
+      "ryokan": "Ryokan",
+      "temple-lodging": "Temple lodging",
+      "hostel": "Hostel",
+      "none": "Stay"
+    },
+    "food": "Food",
+    "guideNotes": "Guide notes",
+    "why": "Why this score",
+    "regenerate": "Regenerate this day",
+    "regeneratePlaceholder": "What should change? (optional)",
+    "regenerateGo": "Regenerate",
+    "regenerating": "Rewriting day {{n}}…",
+    "cancel": "Cancel",
+    "cityInfo": "City info",
+    "flags": {
+      "overpacked": "Busy day",
+      "long-transfer": "Long transfer",
+      "spread-out": "Spread out",
+      "unknown-place": "Place removed",
+      "dropped-day": "Day removed"
+    },
+    "tips": "Tips",
+    "summary": "Summary",
+    "seasonTitle": "Best season",
+    "etiquetteTitle": "Etiquette",
+    "visaTitle": "Visa preparation",
+    "visaNote": "Preparation help, not immigration advice. Confirm every item with official sources.",
+    "visaMofa": "Ministry of Foreign Affairs of Japan: visas",
+    "visaEmbassy": "Embassy of Japan in India",
+    "empty": "Your day-by-day plan will appear here.",
+    "emptyHint": "Tell your guide who is travelling and what you eat.",
+    "tabItinerary": "Itinerary",
+    "tabCity": "City",
+    "notices": "Notes about this plan"
+  },
+  "confidence": {
+    "title": "Food Confidence",
+    "outOf": "out of 100",
+    "levels": {
+      "high": "Good options",
+      "medium": "Plan ahead",
+      "low": "Take care"
+    },
+    "reasons": {
+      "city": {
+        "high": "{{city}} is easy for veg travellers",
+        "medium": "{{city}} needs some planning",
+        "low": "{{city}} is hard for veg travellers"
+      },
+      "strict": {
+        "jain": "Jain needs extra checks: onion, garlic and root vegetables",
+        "vegan": "Vegan also rules out dairy and egg",
+        "halal": "Halal rules out pork and alcohol, including mirin"
+      },
+      "plannedSuits": "{{count}} planned food stop(s) usually suit your diet",
+      "plannedClash": "{{count}} planned food stop(s) may not suit your diet",
+      "nearbySuits": "{{count}} more sample place(s) nearby usually suit you",
+      "noSuitablePlaces": "No sample places in {{city}} match your diet yet",
+      "risks": "Double-check: {{items}}",
+      "cap": "Capped at {{cap}}: none of our places are independently verified",
+      "unverified": "Sample data only: always show the staff card",
+      "noRestriction": "No dietary restriction set",
+      "unknownCity": "No food data for this city"
+    }
+  },
+  "a11y": {
+    "skip": "Skip to content"
   }
 }

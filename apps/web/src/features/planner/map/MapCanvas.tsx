@@ -8,6 +8,7 @@ import { Fuji } from '../../../scenes/journey/SunAndFuji';
 import { useAppStore } from '../../../store/useAppStore';
 import { ANIME_SPOTS, CITIES, FOOD_SPOTS, HERITAGE_SPOTS, REGIONAL_SPOTS } from '../data';
 import { SAMPLE_ROUTE } from '../route';
+import { usePlannerStore, visibleDays } from '../usePlannerStore';
 import { CityMarkers } from './CityMarkers';
 import { JapanLand } from './JapanLand';
 import { LayerPins, type Pin } from './LayerPins';
@@ -25,8 +26,15 @@ export default function MapCanvas() {
   const visible = usePageVisible();
   const layers = useAppStore((s) => s.layers);
   const selectedCityId = useAppStore((s) => s.selectedCityId);
-  const selectCity = useAppStore((s) => s.selectCity);
+  const focusCity = usePlannerStore((s) => s.focusCity);
+  const focusDay = usePlannerStore((s) => s.focusDay);
+  const selectedDay = usePlannerStore((s) => s.selectedDay);
+  const planDays = usePlannerStore((s) => visibleDays(s));
   const showSampleRoute = useAppStore((s) => s.showSampleRoute);
+  const planRoute = useMemo(
+    () => planDays.map((d) => ({ cityId: d.cityId, day: d.day })),
+    [planDays],
+  );
   const hoverChip = useRef<HTMLDivElement>(null);
 
   const selectedPrefecture = useMemo(() => {
@@ -70,7 +78,7 @@ export default function MapCanvas() {
 
   const onSelectPrefecture = (prefId: string) => {
     const city = CITIES.find((c) => prefectureAt(c.lng, c.lat) === prefId);
-    if (city) selectCity(city.id);
+    if (city) focusCity(city.id);
   };
 
   return (
@@ -81,7 +89,7 @@ export default function MapCanvas() {
         frameloop={visible ? 'always' : 'never'}
         gl={{ antialias: tier !== 'low' }}
         camera={{ position: [1, 21, 18.5], fov: 40, near: 0.1, far: 300 }}
-        onPointerMissed={() => selectCity(null)}
+        onPointerMissed={() => focusCity(null)}
         onCreated={(state) => {
           // Dev-only handle for inspecting the map scene from the console.
           if (import.meta.env.DEV) Object.assign(window, { __map: state });
@@ -106,12 +114,20 @@ export default function MapCanvas() {
         <group position={[FUJI[0], LAND_HEIGHT, FUJI[1]]}>
           <Fuji position={[0, 0, 0]} scale={[0.011, 0.028, 0.011]} />
         </group>
-        <CityMarkers selectedId={selectedCityId} onSelect={selectCity} />
+        <CityMarkers selectedId={selectedCityId} onSelect={focusCity} />
         <LayerPins layer="vegSafe" pins={pins.vegSafe} visible={layers.vegSafe} />
         <LayerPins layer="heritage" pins={pins.heritage} visible={layers.heritage} />
         <LayerPins layer="anime" pins={pins.anime} visible={layers.anime} />
         <LayerPins layer="regional" pins={pins.regional} visible={layers.regional} />
-        {showSampleRoute ? (
+        {planRoute.length > 0 ? (
+          <RouteLine
+            stops={planRoute}
+            label={t('planner.routeTitle')}
+            dayLabel={(n) => t('planner.day', { n })}
+            selectedDay={selectedDay}
+            onSelectDay={focusDay}
+          />
+        ) : showSampleRoute ? (
           <RouteLine
             stops={SAMPLE_ROUTE}
             label={t('planner.sampleRoute')}

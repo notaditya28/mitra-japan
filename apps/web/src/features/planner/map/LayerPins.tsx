@@ -24,12 +24,12 @@ function PinShape({ layer }: { layer: MapLayer }) {
     case 'vegSafe':
       return (
         <group>
-          <mesh position={[0, 0.2, 0]}>
-            <cylinderGeometry args={[0.012, 0.012, 0.4, 4]} />
+          <mesh position={[0, 0.14, 0]}>
+            <cylinderGeometry args={[0.01, 0.01, 0.28, 4]} />
             <meshStandardMaterial color="#4A6B50" />
           </mesh>
-          <mesh position={[0, 0.44, 0]} scale={[1, 0.65, 1]}>
-            <sphereGeometry args={[0.1, 10, 8]} />
+          <mesh position={[0, 0.31, 0]} scale={[1, 0.65, 1]}>
+            <sphereGeometry args={[0.075, 10, 8]} />
             <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.35} />
           </mesh>
         </group>
@@ -98,8 +98,6 @@ export function LayerPins({ layer, pins, visible }: LayerPinsProps) {
   const wasVisible = useRef(visible);
 
   useFrame(({ clock, camera }, dt) => {
-    // Pins grow when zoomed out so they stay readable in the overview.
-    const zoom = THREE.MathUtils.clamp(camera.position.y / 9, 1, 2.3);
     if (wasVisible.current !== visible) {
       wasVisible.current = visible;
       start.current = clock.elapsedTime;
@@ -113,6 +111,12 @@ export function LayerPins({ layer, pins, visible }: LayerPinsProps) {
       // Slightly underdamped so pins pop.
       const next = cur + (target - cur) * (1 - Math.exp(-dt * 9));
       shown.current[i] = next;
+      // Roughly constant on-screen size: grow with distance from the camera, within limits.
+      const zoom = THREE.MathUtils.clamp(
+        camera.position.distanceTo(positions[i] ?? g.position) / 13,
+        0.5,
+        2.1,
+      );
       const s = next < 0.001 ? 0.0001 : next * (1 + Math.sin(next * Math.PI) * 0.25) * zoom;
       g.scale.setScalar(s);
       g.visible = next > 0.01;

@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
-import { useAppStore } from '../../store/useAppStore';
 import { CITIES } from './data';
+import { usePlannerStore } from './usePlannerStore';
 
 /** Keyboard-friendly list of every city on the map (also the no-WebGL way in). */
 export function CityList() {
   const { t } = useTranslation();
-  const selectCity = useAppStore((s) => s.selectCity);
+  const selectCity = usePlannerStore((s) => s.focusCity);
   return (
     <nav aria-labelledby="city-list-title">
       <h2 id="city-list-title" className="font-display text-2xl text-plum">

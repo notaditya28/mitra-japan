@@ -2,7 +2,7 @@
 
 Updated at the end of every milestone. Three lists: what works, what is demo-only, and what needs an external service or the owner's verification.
 
-_Last updated: 2026-10-24, start of milestone 5._
+_Last updated: 2026-10-24, end of milestone 5._
 
 ## Fully working
 
@@ -13,7 +13,12 @@ _Last updated: 2026-10-24, start of milestone 5._
 - Count-up counters (only animate real values; all are currently empty).
 - Page transitions (torii portal), hash routes, demo sign-in (name + Indian mobile, browser only).
 - 3D Japan planner map: extruded prefectures, hover/click, orbit limits, camera fly-to, four animated layers, city cards, flat SVG fallback without WebGL, mobile bottom sheet.
-- Ingredient matcher (longest-match dictionary, per-diet rules).
+- Ingredient matcher (longest-match dictionary, per-diet rules) with three results: no listed conflicts / potential conflict / unable to verify. Ambiguous broths and unreadable text always give "unable to verify"; custom restrictions supported.
+- Planner API (FastAPI): `/health`, `/api/plan` (streamed), `/api/plan/day`; strict schema, one retry, visible fallback, grounding against `cities.json`, feasibility flags, 400/413/429/502 errors, CORS from env, rate limit. 27 pytest tests.
+- Trip guide UI: prompt composer with suggestions, days stream in live, day cards with stops, transport estimate, stay, tips, flags and per-day regenerate; Itinerary/City tabs; cards and map markers select each other; animated route line with day badges.
+- Food Confidence ring per day with a "Why this score" breakdown; capped at 85 because no spot is verified.
+- Status badges (Verified / Sample / Needs review / Estimate) on seeded records.
+- Demo mode: no key → labelled sample itinerary; API down → "Offline · sample data" with a visible notice.
 
 ## Demo-only (works, but on sample or seeded data)
 
@@ -24,7 +29,7 @@ _Last updated: 2026-10-24, start of milestone 5._
 
 ## Needs an external service or the owner's verification
 
-- **AI planner** (milestone 5): needs `ANTHROPIC_API_KEY` in `.env`; without it the planner runs in labelled Demo mode.
+- **AI planner (live)**: built, but untested against the real API until the owner adds `ANTHROPIC_API_KEY` to `.env`. Without it the planner runs in labelled Demo mode, and day regeneration is unavailable.
 - **Heritage entries** (`heritage.json`): `needs-review` until the owner checks wording, sites and links.
 - **Visa checklist**: `needs-review` until checked against official sources.
 - **City facts** (`cities.json`): travel times are estimates; veg notes need review.
@@ -34,6 +39,5 @@ _Last updated: 2026-10-24, start of milestone 5._
 
 ## Planned (by milestone)
 
-- **M5**: FastAPI + Claude planner, validated itinerary, grounding and feasibility checks, editable/regenerable day cards in sync with the map, Food Confidence rings, Demo mode.
 - **M6**: OCR scanner behind a provider interface + 20–30 sample scans, three-state results, restaurant directory with filters, interactive visa checklist.
 - **M7**: saved trips, PDF export, WhatsApp share link, i18n polish, performance, deploy.

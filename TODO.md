@@ -7,11 +7,13 @@
 - [x] **M2b** Multi-place journey (Fuji → Tokyo → Shinkansen → Kyoto → Matsuri), Petal Portal transitions, stretched place titles, chapter rail
 - [x] **M3** Indian-roots mosaic→map reveal, count-up counters (real values only), CTA torii-portal transition, demo sign-in, planner home (2D map; 3D arrives in M4)
 - [x] **M4** 3D Japan map (extruded prefectures, seigaiha sea, mini Fuji), 4 animated layers, city cards, sample route with Shinkansen marker, desktop 3-panel + mobile bottom sheet, 2D fallback
-- [ ] **M5** FastAPI + Claude planner, JSON validation, animated route, Food Confidence rings
+- [x] **M5** FastAPI + Claude planner (streamed, schema-constrained, validated, retry + visible fallback), grounding/feasibility flags, day cards ↔ map sync, per-day regenerate, animated route, Food Confidence rings with reasons, Demo/Offline modes
 - [ ] **M6** Food scanner (live OCR + demo fallback) and phrase cards
 - [ ] **M7** i18n (HI/GU), export (WhatsApp/PDF), polish, performance, deploy
 
 ## Needs owner input
+
+- [ ] **API key**: add `ANTHROPIC_API_KEY=` to `.env` (repo root) yourself, then restart the API. Live Claude mode has not been tested yet.
 
 - [ ] **City facts**: review `apps/web/src/data/cities.json` (travel times, veg notes) and `layers.json` (anime/regional spots).
 - [ ] **Food spots**: `foodSpots.json` is generic demo data (kinds of places, not named restaurants). Replace with real, sourced spots if you have them; keep `verified: false` until checked.
@@ -34,9 +36,12 @@
 | Phrase card              | Real data (`phrases.json`), follows diet + language                                     |
 | Language switch EN/HI/GU | Real; HI/GU cover Stage 1, other strings fall back to EN                                |
 | Stats counters           | Placeholders (`value: null`), pending real sources                                      |
-| CTA "Build my trip"      | Shows a notice until the planner exists (M4)                                            |
+| CTA "Build my trip"      | Real: portal to sign-in → planner                                                       |
 | Persona choice           | Real, persisted in localStorage via Zustand                                             |
-| API                      | Skeleton only (`/health`), planner endpoints arrive in M5                               |
+| AI planner               | Real code; Demo mode (sample itinerary) until a key is set; live mode untested          |
+| Offline fallback         | `sampleItinerary.json` exported from the API sample planner                             |
+| Food Confidence          | Real formula on unverified demo data, capped at 85                                      |
+| Travel times             | Estimates from straight-line distance and mode speed                                    |
 
 ## Known notes
 

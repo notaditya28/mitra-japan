@@ -16,6 +16,10 @@ const CITY_OFFSET = new THREE.Vector3(0, 7, 6);
 export function MapCameraRig({ selectedCityId }: { selectedCityId: string | null }) {
   const controls = useRef<ElementRef<typeof OrbitControls>>(null);
   const camera = useThree((s) => s.camera);
+  const size = useThree((s) => s.size);
+  // On portrait screens the bottom sheet covers the lower half: aim south of the
+  // city so it lands in the visible top half.
+  const portraitShift = size.width < size.height ? 2.6 : 0;
   const fly = useRef<{ target: THREE.Vector3; position: THREE.Vector3; t: number } | null>(null);
   const fromTarget = useMemo(() => new THREE.Vector3(), []);
   const fromPos = useMemo(() => new THREE.Vector3(), []);
@@ -28,7 +32,7 @@ export function MapCameraRig({ selectedCityId }: { selectedCityId: string | null
     let position: THREE.Vector3;
     if (city) {
       const [x, z] = lngLatToWorld(city.lng, city.lat);
-      target = new THREE.Vector3(x, 0, z);
+      target = new THREE.Vector3(x, 0, z + portraitShift);
       position = target.clone().add(CITY_OFFSET);
     } else {
       target = HOME_TARGET.clone();
@@ -37,7 +41,7 @@ export function MapCameraRig({ selectedCityId }: { selectedCityId: string | null
     fromTarget.copy(ctl.target);
     fromPos.copy(camera.position);
     fly.current = { target, position, t: 0 };
-  }, [selectedCityId, camera, fromTarget, fromPos]);
+  }, [selectedCityId, camera, fromTarget, fromPos, portraitShift]);
 
   useFrame((_, dt) => {
     const ctl = controls.current;

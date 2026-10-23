@@ -90,7 +90,14 @@ export function CityMarkers({ selectedId, onSelect }: CityMarkersProps) {
                   labels.current[c.id] = el;
                 }}
                 type="button"
-                onClick={() => onSelect(c.id)}
+                // Labels sit in the canvas wrapper; keep their clicks away from R3F's
+                // raycaster, which would otherwise read them as "clicked empty map".
+                onPointerDown={(e) => e.stopPropagation()}
+                onPointerUp={(e) => e.stopPropagation()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelect(c.id);
+                }}
                 aria-pressed={on}
                 className={`whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold shadow-soft transition duration-300 ${
                   on

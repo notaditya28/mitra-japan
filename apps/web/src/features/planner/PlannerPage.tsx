@@ -10,7 +10,10 @@ import { PersonaIcon } from '../persona/PersonaIcon';
 import { CityCard } from './CityCard';
 import { CityList } from './CityList';
 import { cityById } from './data';
+import { GuidePanel } from './GuidePanel';
+import { ItineraryPanel } from './ItineraryPanel';
 import { LayerToggles } from './LayerToggles';
+import { usePlannerStore, visibleDays } from './usePlannerStore';
 
 const MapCanvas = lazy(() => import('./map/MapCanvas'));
 
@@ -34,7 +37,7 @@ function MapFallback({ title }: { title: string }) {
   );
 }
 
-/** Left panel: who is travelling, map layers, and the sample route preview. */
+/** Left panel: who is travelling, the AI guide, map layers, and the sample route preview. */
 function TripPanel() {
   const { t } = useTranslation();
   const user = useAppStore((s) => s.user);
@@ -43,12 +46,13 @@ function TripPanel() {
   const showSampleRoute = useAppStore((s) => s.showSampleRoute);
   const setShowSampleRoute = useAppStore((s) => s.setShowSampleRoute);
   const signOut = useAppStore((s) => s.signOut);
+  const hasPlan = usePlannerStore((s) => s.itinerary !== null || s.previews.length > 0);
 
   return (
     <div className="flex flex-col gap-6">
       <div>
         <p className="eyebrow text-rose">{t('planner.demo')}</p>
-        <h1 className="display mt-2 text-4xl text-plum">
+        <h1 className="display mt-2 text-3xl text-plum">
           {t('planner.greeting', { name: user?.name.split(' ')[0] ?? '' })}
         </h1>
         <div className="mt-3 flex flex-wrap items-center gap-2 text-sm">
@@ -67,23 +71,27 @@ function TripPanel() {
         </div>
       </div>
 
+      <GuidePanel />
+
       <LayerToggles />
 
-      <div className="card-dark p-5">
-        <p className="eyebrow text-gold">{t('planner.routeTitle')}</p>
-        <p className="mt-2 text-sm text-blush">{t('planner.routeBody')}</p>
-        <button
-          type="button"
-          aria-pressed={showSampleRoute}
-          onClick={() => setShowSampleRoute(!showSampleRoute)}
-          className="btn-primary mt-4 w-full !py-2.5 text-sm"
-        >
-          {showSampleRoute ? t('planner.hideSample') : t('planner.showSample')}
-        </button>
-        {showSampleRoute ? (
-          <p className="mt-2 text-xs text-blush/80">{t('planner.sampleNote')}</p>
-        ) : null}
-      </div>
+      {hasPlan ? null : (
+        <div className="card-dark p-5">
+          <p className="eyebrow text-gold">{t('planner.routeTitle')}</p>
+          <p className="mt-2 text-sm text-blush">{t('planner.routeBody')}</p>
+          <button
+            type="button"
+            aria-pressed={showSampleRoute}
+            onClick={() => setShowSampleRoute(!showSampleRoute)}
+            className="btn-primary mt-4 w-full !py-2.5 text-sm"
+          >
+            {showSampleRoute ? t('planner.hideSample') : t('planner.showSample')}
+          </button>
+          {showSampleRoute ? (
+            <p className="mt-2 text-xs text-blush/80">{t('planner.sampleNote')}</p>
+          ) : null}
+        </div>
+      )}
 
       <div className="space-y-2 text-xs text-mist">
         <p>{t('footer.demo')}</p>
@@ -102,12 +110,65 @@ function TripPanel() {
   );
 }
 
-/** Right panel (or sheet body): the selected city, or the list of cities. */
-function CityPanel() {
+type Tab = 'itinerary' | 'city';
+
+/** Right panel (or sheet body): the itinerary, or details for the selected city. */
+function RightPanel() {
+  const { t } = useTranslation();
   const selectedCityId = useAppStore((s) => s.selectedCityId);
   const selectCity = useAppStore((s) => s.selectCity);
+  const selectedDay = usePlannerStore((s) => s.selectedDay);
+  const days = usePlannerStore((s) => visibleDays(s));
+  const focusCity = usePlannerStore((s) => s.focusCity);
+  const hasPlan = days.length > 0;
+  const [tab, setTab] = useState<Tab>(hasPlan ? 'itinerary' : 'city');
   const city = selectedCityId ? cityById(selectedCityId) : undefined;
-  return city ? <CityCard city={city} onClose={() => selectCity(null)} /> : <CityList />;
+
+  // A city that is part of the plan highlights its day; any other city opens its details.
+  useEffect(() => {
+    if (!hasPlan) return setTab('city');
+    if (selectedCityId && !days.some((d) => d.cityId === selectedCityId)) setTab('city');
+    else if (selectedDay !== null) setTab('itinerary');
+  }, [selectedCityId, selectedDay, hasPlan, days]);
+
+  const showCity = (cityId: string) => {
+    focusCity(cityId);
+    setTab('city');
+  };
+
+  return (
+    <div className="flex flex-col gap-4">
+      {hasPlan ? (
+        <div
+          role="tablist"
+          aria-label={t('planner.cityPanel')}
+          className="flex gap-1 rounded-full bg-blush p-1"
+        >
+          {(['itinerary', 'city'] as const).map((k) => (
+            <button
+              key={k}
+              type="button"
+              role="tab"
+              aria-selected={tab === k}
+              onClick={() => setTab(k)}
+              className={`flex-1 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors ${
+                tab === k ? 'bg-paper text-plum shadow-soft' : 'text-mist hover:text-plum'
+              }`}
+            >
+              {t(k === 'itinerary' ? 'trip.tabItinerary' : 'trip.tabCity')}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      {tab === 'itinerary' && hasPlan ? (
+        <ItineraryPanel onShowCity={showCity} />
+      ) : city ? (
+        <CityCard city={city} onClose={() => selectCity(null)} />
+      ) : (
+        <CityList />
+      )}
+    </div>
+  );
 }
 
 /**
@@ -120,6 +181,7 @@ export function PlannerPage() {
   const { webgl } = getDeviceProfile();
   const selectedCityId = useAppStore((s) => s.selectedCityId);
   const user = useAppStore((s) => s.user);
+  const hasPlan = usePlannerStore((s) => s.itinerary !== null || s.previews.length > 0);
   if (!user) return null;
 
   const map = webgl ? (
@@ -136,11 +198,11 @@ export function PlannerPage() {
     return (
       <main
         id="main"
-        className="grid h-[100svh] grid-cols-[340px_minmax(0,1fr)_380px] overflow-hidden pt-[61px]"
+        className="grid h-[100svh] grid-cols-[290px_minmax(0,1fr)_330px] xl:grid-cols-[340px_minmax(0,1fr)_400px] overflow-hidden pt-[61px]"
       >
         <aside
           aria-label={t('planner.tripPanel')}
-          className="overflow-y-auto border-r border-blush bg-paper p-6"
+          className="overflow-y-auto border-r border-blush bg-paper p-5 xl:p-6"
         >
           <TripPanel />
         </aside>
@@ -149,9 +211,9 @@ export function PlannerPage() {
         </section>
         <aside
           aria-label={t('planner.cityPanel')}
-          className="overflow-y-auto border-l border-blush bg-paper p-6"
+          className="overflow-y-auto border-l border-blush bg-paper p-4 xl:p-6"
         >
-          <CityPanel />
+          <RightPanel />
         </aside>
       </main>
     );
@@ -162,11 +224,11 @@ export function PlannerPage() {
       <section aria-label={t('planner.mapTitle')} className="relative h-full bg-plum">
         {map}
       </section>
-      <BottomSheet label={t('planner.sheet')} open={selectedCityId ? 'half' : 'peek'}>
+      <BottomSheet label={t('planner.sheet')} open={selectedCityId || hasPlan ? 'half' : 'peek'}>
         <div className="space-y-8 pt-2">
-          {selectedCityId ? <CityPanel /> : null}
+          {selectedCityId || hasPlan ? <RightPanel /> : null}
           <TripPanel />
-          {selectedCityId ? null : <CityPanel />}
+          {selectedCityId || hasPlan ? null : <RightPanel />}
         </div>
       </BottomSheet>
     </main>

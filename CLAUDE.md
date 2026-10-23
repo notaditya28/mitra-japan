@@ -98,6 +98,17 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 - `RouteLine` takes `RouteStop[]` (`features/planner/route.ts`). M4 shows `SAMPLE_ROUTE` only behind an explicit "Show a sample route" toggle; M5 feeds the AI itinerary into the same component.
 - Selection state (`selectedCityId`, `showSampleRoute`) is in the store, not persisted. Camera fly-to is in `MapCameraRig`; user drag cancels it.
 - Layout: ≥1024 px three panels; below, full-screen map + `BottomSheet`. No WebGL → `JapanMapSvg` + city list.
+- Layer pins scale with each pin's distance to the camera (`LayerPins`), so they stay a similar size on screen.
+
+## AI trip guide (M5)
+
+- API layout (`apps/api/app/`): `config` (env, `live` vs demo), `data` (reads the web's JSON files, so there is one source of truth), `schema` (strict `Raw*` models for Claude output plus the JSON schema with id enums built from data, and response models), `prompts` (rules + cached catalogue), `planner` (streaming, retry once, notices, fallback), `validate` (grounding + feasibility flags), `sample` (deterministic Demo planner), `stream_parse` (completed days out of a partial JSON stream), `ratelimit`, `main` (routes, error shapes).
+- Error shape is always `{"error":{"code","message"}}`; a 502 on `/api/plan` also carries `fallback`. Notice codes in `planner.NOTICES` are shown verbatim in the UI; never swap a failed live plan for the sample without one.
+- Tests use `FakeClient` (`tests/conftest.py`) and force `MITRA_DEMO_MODE=1`; never hit the real API in tests.
+- Web: the response is validated again at the boundary (`itinerary.ts`); state lives in `usePlannerStore` (not persisted); `visibleDays` = final plan or streaming previews. Day ↔ city sync goes through `focusDay` / `focusCity` (`selection.ts`), never by setting `selectedCityId` directly from planner UI.
+- Food Confidence (`foodConfidence.ts`) is deterministic and capped at `UNVERIFIED_CAP` (85) while no spot is verified; every score shows its reasons.
+- `sampleItinerary.json` is exported from `sample.sample_plan` (family, vegetarian, 5 days). Regenerate it from the API when data changes.
+- drei `<Html>` buttons on the map must stop pointer propagation, or R3F's `onPointerMissed` clears the selection.
 
 ## Motion and performance
 

@@ -1,0 +1,271 @@
+{
+  "summary": "A 5-day sample route built from our city data. It is not an AI plan.",
+  "days": [
+    {
+      "day": 1,
+      "cityId": "tokyo",
+      "title": "Tokyo",
+      "stops": [
+        {
+          "name": "Explore Tokyo",
+          "kind": "culture",
+          "foodSpotId": null,
+          "heritageId": null,
+          "note": "Shrines tucked between skyscrapers, Asakusa's old streets and Akihabara's pop culture in one city.",
+          "inOurData": false
+        },
+        {
+          "name": "Enoshima, Kanagawa",
+          "kind": "heritage",
+          "foodSpotId": null,
+          "heritageId": "benzaiten",
+          "note": "Developed from the Indian river goddess Saraswati. Associated with music, eloquence and water, and often shown playing a biwa lute.",
+          "inOurData": true
+        },
+        {
+          "name": "Vegan ramen counter",
+          "kind": "food",
+          "foodSpotId": "tokyo-vegan-ramen",
+          "heritageId": null,
+          "note": "Plant-based broth; ask if mirin is used in the tare.",
+          "inOurData": true
+        }
+      ],
+      "transport": {
+        "mode": "local-train",
+        "fromCityId": null,
+        "note": "Get around by local train and walking.",
+        "estimatedHours": null,
+        "distanceKm": null
+      },
+      "stay": {
+        "area": "Tokyo",
+        "type": "hotel",
+        "note": "Sample suggestion; book what suits you."
+      },
+      "foodNotes": "The widest choice in Japan: vegan ramen, Indian restaurants and plant-based cafés. Still ask about dashi in Japanese dishes.",
+      "foodReasons": [
+        "Tokyo: The widest choice in Japan: vegan ramen, Indian restaurants and plant-based cafés. Still ask about dashi in Japanese dishes.",
+        "Double-check: alcohol, dashi, egg."
+      ],
+      "tips": ["Cherry blossom late March to early April; autumn colour in late November."],
+      "flags": []
+    },
+    {
+      "day": 2,
+      "cityId": "hakone",
+      "title": "Hakone",
+      "stops": [
+        {
+          "name": "Explore Hakone",
+          "kind": "culture",
+          "foodSpotId": null,
+          "heritageId": null,
+          "note": "Hot-spring inns, volcanic valleys and lake views of Mount Fuji.",
+          "inOurData": false
+        },
+        {
+          "name": "Enoshima, Kanagawa",
+          "kind": "heritage",
+          "foodSpotId": null,
+          "heritageId": "benzaiten",
+          "note": "Developed from the Indian river goddess Saraswati. Associated with music, eloquence and water, and often shown playing a biwa lute.",
+          "inOurData": true
+        },
+        {
+          "name": "Ryokan vegetarian kaiseki (on request)",
+          "kind": "food",
+          "foodSpotId": "hakone-ryokan-veg",
+          "heritageId": null,
+          "note": "Request at booking, ideally a week ahead.",
+          "inOurData": true
+        }
+      ],
+      "transport": {
+        "mode": "limited-express",
+        "fromCityId": "tokyo",
+        "note": "From Tokyo; check current timetables.",
+        "estimatedHours": 1.0,
+        "distanceKm": 78.0
+      },
+      "stay": {
+        "area": "Hakone",
+        "type": "ryokan",
+        "note": "Sample suggestion; book what suits you."
+      },
+      "foodNotes": "Ryokan dinners are fish-heavy by default; most can prepare a vegetarian kaiseki if asked several days ahead.",
+      "foodReasons": [
+        "Hakone: Ryokan dinners are fish-heavy by default; most can prepare a vegetarian kaiseki if asked several days ahead.",
+        "Double-check: advance-request, dashi."
+      ],
+      "tips": ["Clear Fuji views most often in winter mornings."],
+      "flags": []
+    },
+    {
+      "day": 3,
+      "cityId": "kyoto",
+      "title": "Kyoto",
+      "stops": [
+        {
+          "name": "Explore Kyoto",
+          "kind": "culture",
+          "foodSpotId": null,
+          "heritageId": null,
+          "note": "Over a thousand temples, Fushimi Inari's torii and three of the Indian-roots temples nearby.",
+          "inOurData": false
+        },
+        {
+          "name": "Joruri-ji, Kyoto",
+          "kind": "heritage",
+          "foodSpotId": null,
+          "heritageId": "kichijoten",
+          "note": "Developed from Lakshmi (Shri). Associated with good fortune, beauty and prosperity.",
+          "inOurData": true
+        },
+        {
+          "name": "Temple shojin ryori lunch",
+          "kind": "food",
+          "foodSpotId": "kyoto-shojin",
+          "heritageId": null,
+          "note": "Traditionally no meat, fish, onion or garlic; ask about potatoes and carrots if you are Jain.",
+          "inOurData": true
+        }
+      ],
+      "transport": {
+        "mode": "shinkansen",
+        "fromCityId": "hakone",
+        "note": "From Hakone; check current timetables.",
+        "estimatedHours": 1.5,
+        "distanceKm": 305.0
+      },
+      "stay": {
+        "area": "Kyoto",
+        "type": "hotel",
+        "note": "Sample suggestion; book what suits you."
+      },
+      "foodNotes": "Home of shojin ryori (Buddhist temple cuisine), which is traditionally plant-based, and of tofu restaurants near temples.",
+      "foodReasons": [
+        "Kyoto: Home of shojin ryori (Buddhist temple cuisine), which is traditionally plant-based, and of tofu restaurants near temples.",
+        "Double-check: dashi, egg, fish, root-veg."
+      ],
+      "tips": ["Busiest during cherry blossom and autumn leaves; go early in the morning."],
+      "flags": []
+    },
+    {
+      "day": 4,
+      "cityId": "nara",
+      "title": "Nara",
+      "stops": [
+        {
+          "name": "Explore Nara",
+          "kind": "culture",
+          "foodSpotId": null,
+          "heritageId": null,
+          "note": "Japan's first capital: the giant Buddha of Todai-ji and friendly bowing deer.",
+          "inOurData": false
+        },
+        {
+          "name": "Joruri-ji, Kyoto",
+          "kind": "heritage",
+          "foodSpotId": null,
+          "heritageId": "kichijoten",
+          "note": "Developed from Lakshmi (Shri). Associated with good fortune, beauty and prosperity.",
+          "inOurData": true
+        },
+        {
+          "name": "Temple-town vegetarian set",
+          "kind": "food",
+          "foodSpotId": "nara-shojin",
+          "heritageId": null,
+          "note": "Ask before ordering broth-based dishes.",
+          "inOurData": true
+        }
+      ],
+      "transport": {
+        "mode": "limited-express",
+        "fromCityId": "kyoto",
+        "note": "From Kyoto; check current timetables.",
+        "estimatedHours": 0.5,
+        "distanceKm": 36.0
+      },
+      "stay": {
+        "area": "Nara",
+        "type": "hotel",
+        "note": "Sample suggestion; book what suits you."
+      },
+      "foodNotes": "Temple towns offer shojin-style meals; kakinoha-zushi (a local favourite) contains fish.",
+      "foodReasons": [
+        "Nara: Temple towns offer shojin-style meals; kakinoha-zushi (a local favourite) contains fish.",
+        "Double-check: dashi."
+      ],
+      "tips": ["Easy day trip from Kyoto or Osaka all year."],
+      "flags": []
+    },
+    {
+      "day": 5,
+      "cityId": "osaka",
+      "title": "Osaka",
+      "stops": [
+        {
+          "name": "Explore Osaka",
+          "kind": "culture",
+          "foodSpotId": null,
+          "heritageId": null,
+          "note": "Japan's kitchen: street food, comedy and a friendly, loud crowd.",
+          "inOurData": false
+        },
+        {
+          "name": "Joruri-ji, Kyoto",
+          "kind": "heritage",
+          "foodSpotId": null,
+          "heritageId": "kichijoten",
+          "note": "Developed from Lakshmi (Shri). Associated with good fortune, beauty and prosperity.",
+          "inOurData": true
+        },
+        {
+          "name": "North Indian restaurant",
+          "kind": "food",
+          "foodSpotId": "osaka-indian",
+          "heritageId": null,
+          "note": "Easy, familiar meal between street-food stops.",
+          "inOurData": true
+        }
+      ],
+      "transport": {
+        "mode": "limited-express",
+        "fromCityId": "nara",
+        "note": "From Nara; check current timetables.",
+        "estimatedHours": 0.3,
+        "distanceKm": 28.0
+      },
+      "stay": {
+        "area": "Osaka",
+        "type": "hotel",
+        "note": "Sample suggestion; book what suits you."
+      },
+      "foodNotes": "Indian restaurants are easy to find, but classic street food uses octopus, pork or dashi (takoyaki, okonomiyaki).",
+      "foodReasons": [
+        "Osaka: Indian restaurants are easy to find, but classic street food uses octopus, pork or dashi (takoyaki, okonomiyaki).",
+        "Double-check: dashi, egg, shared-grill."
+      ],
+      "tips": ["Lively all year; neon Dotonbori is best at night."],
+      "flags": []
+    }
+  ],
+  "visaChecklist": [
+    "Passport valid for your whole trip (confirm with official source).",
+    "Visa application form and recent photo (confirm with official source).",
+    "Day-by-day itinerary and hotel bookings (confirm with official source).",
+    "Recent bank statements and income tax returns (confirm with official source)."
+  ],
+  "bestSeason": "Spring (late March to April) and autumn (November) are popular; summer is hot and humid.",
+  "etiquetteTips": [
+    "Carry a small towel and a bag for your rubbish; public bins are rare.",
+    "Take your shoes off where you see a step up or slippers at the entrance.",
+    "Show the staff card before ordering so the kitchen can check stocks and sauces."
+  ],
+  "source": "sample",
+  "model": null,
+  "notices": ["The planner service is not reachable, so this is the built-in sample itinerary."],
+  "_note": "Generated by apps/api sample planner. Shown only when the API is unreachable; always labelled as sample."
+}
