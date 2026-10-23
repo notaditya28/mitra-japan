@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBadge } from '../../components/StatusBadge';
+import { useTools } from '../tools/useTools';
 import { DayCard } from './DayCard';
 import { usePlannerStore, visibleDays } from './usePlannerStore';
 
@@ -10,6 +11,7 @@ const EMBASSY_INDIA = 'https://www.in.emb-japan.go.jp/';
 /** The day-by-day plan. Streams in day cards as the guide writes them. */
 export function ItineraryPanel({ onShowCity }: { onShowCity: (cityId: string) => void }) {
   const { t } = useTranslation();
+  const openTool = useTools((s) => s.open);
   const itinerary = usePlannerStore((s) => s.itinerary);
   const previews = usePlannerStore((s) => s.previews);
   const selectedDay = usePlannerStore((s) => s.selectedDay);
@@ -128,6 +130,13 @@ export function ItineraryPanel({ onShowCity }: { onShowCity: (cityId: string) =>
                   {t('trip.visaEmbassy')}
                 </a>
               </p>
+              <button
+                type="button"
+                onClick={() => openTool('visa')}
+                className="mt-3 rounded-full bg-blush px-3 py-1.5 text-xs font-semibold text-plum hover:bg-petal"
+              >
+                {t('tools.visa.open')}
+              </button>
             </section>
           ) : null}
         </div>

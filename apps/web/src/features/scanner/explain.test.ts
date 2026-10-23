@@ -20,6 +20,12 @@ describe('explainScan', () => {
     expect(explainScan(matchIngredients('', 'jain'), t)).toBe('scanner.explain.unreadable');
   });
 
+  it('names words it does not recognise', () => {
+    const r = matchIngredients('なす焼き：なす、まぼろし', 'vegan');
+    expect(r.verdict).toBe('unverified');
+    expect(explainScan(r, t)).toBe('scanner.explain.unknown:「まぼろし」');
+  });
+
   it('never says "safe" for a clear result', () => {
     expect(explainScan(matchIngredients('枝豆', 'vegan'), t)).toBe('scanner.explain.clear');
   });

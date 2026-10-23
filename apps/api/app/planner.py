@@ -72,13 +72,16 @@ async def _stream_json(
     schema: dict[str, Any],
     user: str,
     on_text: Any = None,
+    *,
+    system: list[dict[str, Any]] | None = None,
+    max_tokens: int = MAX_TOKENS,
 ) -> str:
     """One streamed, schema-constrained call. Returns the JSON text or raises UpstreamError."""
     try:
         async with client.beta.messages.stream(
             model=settings.model,
-            max_tokens=MAX_TOKENS,
-            system=system_blocks(data),
+            max_tokens=max_tokens,
+            system=system if system is not None else system_blocks(data),
             messages=[{"role": "user", "content": user}],
             output_config={"effort": EFFORT, "format": {"type": "json_schema", "schema": schema}},
             betas=[FALLBACK_BETA],

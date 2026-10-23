@@ -32,3 +32,12 @@ def test_sample_never_claims_certification_or_exact_schedules():
 def test_family_pace_is_gentle():
     it = sample_plan(load(), persona="family", diet="vegetarian", days=5)
     assert all(len(d.stops) <= 3 for d in it.days)
+
+
+def test_catalogue_separates_sample_places_from_real_unconfirmed_ones():
+    from app.prompts import catalogue
+
+    places = json.loads(catalogue(load()))["foodPlaces"]
+    statuses = {p["status"] for p in places}
+    assert statuses == {"sample", "needs-review"}
+    assert not any("certified" in json.dumps(p).lower() for p in places)

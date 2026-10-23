@@ -7,7 +7,8 @@ export type Rule = 'avoid' | 'ask';
  * The only three scanner outcomes (owner rule): we never say "safe".
  * - clear: no listed conflicts detected (in the text we could read)
  * - conflict: a listed ingredient conflicts with the diet
- * - unverified: unreadable text, or an ambiguous broth/sauce/stock
+ * - unverified: unreadable text, an ambiguous broth/sauce/stock, or words
+ *   we don't recognise (unknown never counts as clear)
  */
 export type Verdict = 'clear' | 'conflict' | 'unverified';
 
@@ -38,11 +39,14 @@ export interface CustomRestriction {
 export interface ScanResult {
   matches: Match[];
   verdict: Verdict;
+  /** Words in the ingredient text that are not in our dictionary. */
+  unknown: string[];
   /** Why the verdict is "unverified" when nothing ambiguous was matched. */
-  reason?: 'unreadable';
+  reason?: 'unreadable' | 'unknown';
 }
 
 const INGREDIENTS: Ingredient[] = dictionary.ingredients as Ingredient[];
+const MENU_WORDS = [...dictionary.menuWords.terms].sort((a, b) => b.length - a.length);
 
 // Longest terms first so 昆布だし beats だし and 牛乳 beats 牛.
 const TERMS = INGREDIENTS.flatMap((ingredient) =>
@@ -51,6 +55,9 @@ const TERMS = INGREDIENTS.flatMap((ingredient) =>
 
 /** Any kana or kanji at all: without them there is nothing we can check. */
 const JAPANESE = /[぀-ヿ㐀-鿿]/;
+const JAPANESE_CHAR = /^[぀-ヿ㐀-鿿]$/u;
+/** Separators between ingredients on a menu or label. */
+const SEPARATOR = /[、，,・／/\s()（）「」『』【】［］[\]。.:：;；]/;
 
 function customIngredient(c: CustomRestriction): Ingredient {
   return {
@@ -76,7 +83,8 @@ export function matchIngredients(
   diet: Diet,
   custom: CustomRestriction[] = [],
 ): ScanResult {
-  if (!JAPANESE.test(text)) return { matches: [], verdict: 'unverified', reason: 'unreadable' };
+  if (!JAPANESE.test(text))
+    return { matches: [], verdict: 'unverified', unknown: [], reason: 'unreadable' };
 
   const taken = new Array<boolean>(text.length).fill(false);
   const matches: Match[] = [];
@@ -101,7 +109,50 @@ export function matchIngredients(
   }
 
   matches.sort((a, b) => a.index - b.index);
-  return { matches: dedupe(matches), verdict: verdictFor(matches) };
+  const unknown = unknownWords(text, taken);
+  const verdict = verdictFor(matches);
+  if (verdict === 'clear' && unknown.length > 0)
+    return { matches: dedupe(matches), verdict: 'unverified', unknown, reason: 'unknown' };
+  return { matches: dedupe(matches), verdict, unknown };
+}
+
+/**
+ * Words we could not account for. A dish title before a colon
+ * ("野菜カレー：…") is skipped: the list after it is what we judge, though
+ * ingredients named in the title still count. Known menu words (定食, 円 …)
+ * are ignored. Whatever Japanese text is left is unknown.
+ */
+function unknownWords(text: string, taken: boolean[]): string[] {
+  const covered = [...taken];
+  const skip = new Array<boolean>(text.length).fill(false);
+  let lineStart = 0;
+  for (const line of text.split('\n')) {
+    const colon = line.search(/[：:]/);
+    if (colon > 0) skip.fill(true, lineStart, lineStart + colon);
+    lineStart += line.length + 1;
+  }
+  for (const word of MENU_WORDS) {
+    let from = 0;
+    for (;;) {
+      const i = text.indexOf(word, from);
+      if (i === -1) break;
+      from = i + word.length;
+      if (!covered.slice(i, i + word.length).some(Boolean)) covered.fill(true, i, i + word.length);
+    }
+  }
+  const words: string[] = [];
+  let current = '';
+  const flush = () => {
+    if (current) words.push(current);
+    current = '';
+  };
+  for (let i = 0; i < text.length; i++) {
+    const ch = text.charAt(i);
+    if (SEPARATOR.test(ch) || covered[i] || skip[i] || !JAPANESE_CHAR.test(ch)) flush();
+    else current += ch;
+  }
+  flush();
+  return [...new Set(words)];
 }
 
 function dedupe(matches: Match[]): Match[] {

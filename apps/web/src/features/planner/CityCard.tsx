@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { StatusBadge } from '../../components/StatusBadge';
 import { useAppStore } from '../../store/useAppStore';
 import { PhrasePreview } from '../fears/PhrasePreview';
+import { useTools } from '../tools/useTools';
 import { animeForCity, heritageNear, regionalForCity, spotsForCity, type City } from './data';
 import { LAYER_COLORS } from './map/layerColors';
 
@@ -14,6 +15,7 @@ const VEG_STYLE = {
 /** Everything a traveller needs about one city: culture, food, phrases and nearby highlights. */
 export function CityCard({ city, onClose }: { city: City; onClose: () => void }) {
   const { t } = useTranslation();
+  const openTool = useTools((s) => s.open);
   const diet = useAppStore((s) => s.diet);
   const spots = spotsForCity(city.id);
   const heritage = heritageNear(city);
@@ -101,6 +103,13 @@ export function CityCard({ city, onClose }: { city: City; onClose: () => void })
             })}
           </ul>
         ) : null}
+        <button
+          type="button"
+          onClick={() => openTool('eat', { city: city.id })}
+          className="mt-3 text-sm font-semibold text-rose underline-offset-4 hover:underline"
+        >
+          {t('tools.eat.openCity', { city: city.name })}
+        </button>
       </section>
 
       <section aria-label={t('phrase.show')}>

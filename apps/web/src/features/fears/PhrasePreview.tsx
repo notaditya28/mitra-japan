@@ -1,15 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import phrases from '../../data/phrases.json';
-import { useAppStore, type Diet, type Language } from '../../store/useAppStore';
-
-type Phrase = (typeof phrases.phrases)[number];
-
-function phraseForDiet(diet: Diet): Phrase | undefined {
-  return (
-    phrases.phrases.find((p) => (p.diets as string[]).includes(diet)) ??
-    phrases.phrases.find((p) => p.id === 'ask-ingredients')
-  );
-}
+import { phraseForDiet } from './phrases';
+import { useAppStore, type Language } from '../../store/useAppStore';
 
 const ORDER: Record<Language, Language[]> = {
   en: ['hi', 'gu', 'en'],

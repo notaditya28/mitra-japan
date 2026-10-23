@@ -17,6 +17,7 @@ from .config import settings
 from .data import load
 from .planner import UpstreamError, plan_events, regenerate_day
 from .ratelimit import RateLimiter
+from .scan import ScanExplainRequest, explain_scan
 from .schema import DayRequest, PlanRequest
 
 logging.basicConfig(level=logging.INFO)
@@ -127,6 +128,19 @@ async def plan_day(req: DayRequest, request: Request):
         status = 503 if e.code == "demo_mode" else 502
         return error(status, e.code, e.message)
     return JSONResponse(day.model_dump(mode="json"))
+
+
+@app.post("/api/scan-explain")
+async def scan_explain(req: ScanExplainRequest, request: Request):
+    limited = _rate_limited(request)
+    if limited:
+        return limited
+    try:
+        out = await explain_scan(req, load(), client_override)
+    except UpstreamError as e:
+        status = 503 if e.code == "demo_mode" else 502
+        return error(status, e.code, e.message)
+    return JSONResponse(out.model_dump(mode="json"))
 
 
 # Re-exported for tests that need the notice texts.

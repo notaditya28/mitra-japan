@@ -1,5 +1,5 @@
 import citiesJson from '../../data/cities.json';
-import foodJson from '../../data/foodSpots.json';
+import restaurantsJson from '../../data/restaurants.json';
 import layersJson from '../../data/layers.json';
 import heritageJson from '../../data/heritage.json';
 import type { Diet } from '../../store/useAppStore';
@@ -23,21 +23,46 @@ export interface City {
   lastChecked: string | null;
 }
 
-/** Demo data only: never certified, never verified (enforced by data.test.ts). */
-export interface FoodSpot {
+/** How we know a restaurant suits a diet (owner rule: never "certified" without evidence). */
+export type DietBasis = 'self-reported' | 'third-party' | 'independently-verified' | 'unconfirmed';
+
+export interface DietOption {
+  diet: Diet;
+  basis: DietBasis;
+  evidence: string | null;
+}
+
+/**
+ * One directory entry. `sample` entries are illustrative kinds of places;
+ * `needs-review` entries are real places from public sources, unconfirmed.
+ * Rules enforced by data.test.ts.
+ */
+export interface Restaurant {
   id: string;
   cityId: string;
-  title: string;
+  name: string;
+  nameJa: string | null;
   kind: string;
+  cuisine: string;
+  address: string | null;
   area: string;
   lat: number;
   lng: number;
-  diets: Diet[];
+  coordinatePrecision: 'area' | 'approximate' | 'exact';
+  dietOptions: DietOption[];
   risks: string[];
   note: string;
-  certified: false;
-  verified: false;
-  status: 'sample';
+  link: string | null;
+  certification: { body: string; evidence: string; checked: string } | null;
+  source: string;
+  lastChecked: string | null;
+  status: DataStatus;
+}
+
+/** The planner's view of a restaurant: which diets it is listed for. */
+export interface FoodSpot extends Restaurant {
+  title: string;
+  diets: Diet[];
 }
 
 export interface LayerSpot {
@@ -65,7 +90,12 @@ export interface HeritageSpot {
 }
 
 export const CITIES = citiesJson.cities as City[];
-export const FOOD_SPOTS = foodJson.spots as FoodSpot[];
+export const RESTAURANTS = restaurantsJson.restaurants as Restaurant[];
+export const FOOD_SPOTS: FoodSpot[] = RESTAURANTS.map((r) => ({
+  ...r,
+  title: r.name,
+  diets: r.dietOptions.map((o) => o.diet),
+}));
 export const ANIME_SPOTS = layersJson.anime as LayerSpot[];
 export const REGIONAL_SPOTS = layersJson.regional as LayerSpot[];
 export const HERITAGE_SPOTS = heritageJson.deities as HeritageSpot[];

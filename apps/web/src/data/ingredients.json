@@ -79,7 +79,20 @@
     },
     {
       "id": "fish",
-      "terms": ["魚介", "魚", "さかな", "ぎょかい"],
+      "terms": [
+        "魚介",
+        "魚",
+        "さかな",
+        "ぎょかい",
+        "ツナ",
+        "まぐろ",
+        "マグロ",
+        "鮪",
+        "サーモン",
+        "鮭",
+        "しらす",
+        "ちりめん"
+      ],
       "en": "Fish / seafood",
       "category": "fish",
       "rules": {
@@ -276,7 +289,7 @@
     },
     {
       "id": "onion",
-      "terms": ["玉ねぎ", "たまねぎ", "玉葱", "長ねぎ", "ねぎ", "ネギ", "葱"],
+      "terms": ["玉ねぎ", "たまねぎ", "玉葱", "長ねぎ", "ねぎ", "ネギ", "葱", "にら", "ニラ", "韮"],
       "en": "Onion / spring onion",
       "category": "root",
       "rules": {
@@ -367,7 +380,464 @@
       },
       "note": "The base is not stated.",
       "ambiguity": "Ramen and curry soups are often pork, chicken or seafood based."
+    },
+    {
+      "id": "tofu",
+      "terms": ["湯豆腐", "豆腐", "とうふ", "油揚げ", "厚揚げ", "湯葉", "ゆば"],
+      "reading": "tofu",
+      "en": "Tofu / yuba",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "soy",
+      "terms": ["枝豆", "えだまめ", "大豆", "納豆"],
+      "reading": "daizu",
+      "en": "Soybeans",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "rice",
+      "terms": ["ご飯", "ごはん", "白飯", "ライス", "米", "おにぎり", "餅", "もち"],
+      "reading": "gohan",
+      "en": "Rice",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "seaweed",
+      "terms": ["わかめ", "ワカメ", "海藻", "海苔", "のり", "ひじき", "もずく"],
+      "reading": "wakame",
+      "en": "Seaweed",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "vegetables",
+      "terms": [
+        "野菜",
+        "やさい",
+        "キャベツ",
+        "もやし",
+        "なす",
+        "茄子",
+        "ナス",
+        "かぼちゃ",
+        "南瓜",
+        "ほうれん草",
+        "トマト",
+        "きゅうり",
+        "ピーマン",
+        "白菜",
+        "小松菜",
+        "ブロッコリー",
+        "レタス",
+        "コーン",
+        "とうもろこし",
+        "オクラ",
+        "春菊",
+        "水菜",
+        "青菜"
+      ],
+      "reading": "yasai",
+      "en": "Vegetables",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "mushroom",
+      "terms": [
+        "きのこ",
+        "キノコ",
+        "しめじ",
+        "えのき",
+        "舞茸",
+        "まいたけ",
+        "エリンギ",
+        "マッシュルーム"
+      ],
+      "reading": "kinoko",
+      "en": "Mushrooms",
+      "category": "plant",
+      "rules": {
+        "jain": "avoid"
+      },
+      "note": "Many Jains avoid mushrooms and fungi.",
+      "ambiguity": ""
+    },
+    {
+      "id": "konnyaku",
+      "terms": ["こんにゃく", "蒟蒻", "しらたき"],
+      "reading": "konnyaku",
+      "en": "Konjac",
+      "category": "root",
+      "rules": {
+        "jain": "avoid"
+      },
+      "note": "Made from a root (konjac corm).",
+      "ambiguity": ""
+    },
+    {
+      "id": "sesame",
+      "terms": ["ごま", "胡麻", "ゴマ"],
+      "reading": "goma",
+      "en": "Sesame",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "bean-paste",
+      "terms": ["あんこ", "餡", "小豆", "あずき"],
+      "reading": "anko",
+      "en": "Sweet red bean",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "matcha",
+      "terms": ["抹茶", "緑茶", "お茶"],
+      "reading": "matcha",
+      "en": "Green tea",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "fu",
+      "terms": ["麩"],
+      "reading": "fu",
+      "en": "Wheat gluten (fu)",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "agar",
+      "terms": ["寒天"],
+      "reading": "kanten",
+      "en": "Agar (seaweed gelatin)",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "umeboshi",
+      "terms": ["梅干し", "梅"],
+      "reading": "umeboshi",
+      "en": "Pickled plum",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "pickles",
+      "terms": ["漬物", "つけもの", "お新香"],
+      "reading": "tsukemono",
+      "en": "Pickles",
+      "category": "plant",
+      "rules": {
+        "jain": "ask"
+      },
+      "note": "",
+      "ambiguity": "Pickles can include root vegetables, dashi or alcohol lees."
+    },
+    {
+      "id": "seasoning",
+      "terms": [
+        "塩",
+        "砂糖",
+        "胡椒",
+        "こしょう",
+        "唐辛子",
+        "七味",
+        "わさび",
+        "山椒",
+        "柚子",
+        "ゆず",
+        "レモン"
+      ],
+      "reading": "chomiryo",
+      "en": "Seasoning",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "oil",
+      "terms": ["植物油", "ごま油", "サラダ油", "オリーブオイル"],
+      "reading": "abura",
+      "en": "Vegetable oil",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "vinegar",
+      "terms": ["酢", "ポン酢", "ぽん酢"],
+      "reading": "su",
+      "en": "Vinegar / ponzu",
+      "category": "sauce",
+      "rules": {
+        "jain": "ask",
+        "vegetarian": "ask",
+        "vegan": "ask"
+      },
+      "note": "",
+      "ambiguity": "Ponzu is often made with bonito dashi; plain vinegar is fine."
+    },
+    {
+      "id": "soy-sauce",
+      "terms": ["醤油", "しょうゆ", "しょう油", "醬油"],
+      "reading": "shoyu",
+      "en": "Soy sauce",
+      "category": "sauce",
+      "rules": {
+        "halal": "ask"
+      },
+      "note": "",
+      "ambiguity": "Brewed soy sauce can contain a little alcohol."
+    },
+    {
+      "id": "miso",
+      "terms": ["味噌", "みそ", "ミソ"],
+      "reading": "miso",
+      "en": "Miso",
+      "category": "sauce",
+      "rules": {
+        "halal": "ask"
+      },
+      "note": "",
+      "ambiguity": "Some miso contains added alcohol, and 'dashi-iri' miso contains fish stock."
+    },
+    {
+      "id": "curry",
+      "terms": ["カレー", "カレールー"],
+      "reading": "karee",
+      "en": "Curry roux",
+      "category": "sauce",
+      "rules": {
+        "jain": "ask",
+        "vegetarian": "ask",
+        "vegan": "ask",
+        "halal": "ask"
+      },
+      "note": "",
+      "ambiguity": "Japanese curry roux usually contains meat extract or lard."
+    },
+    {
+      "id": "tempura",
+      "terms": ["天ぷら", "てんぷら", "天麩羅", "フライ", "唐揚げ", "からあげ", "天かす", "揚げ玉"],
+      "reading": "tenpura",
+      "en": "Fried batter",
+      "category": "sauce",
+      "rules": {
+        "jain": "ask",
+        "vegan": "ask",
+        "eggless": "ask",
+        "vegetarian": "ask",
+        "halal": "ask"
+      },
+      "note": "",
+      "ambiguity": "Batter often contains egg, and oil is shared with meat and fish."
+    },
+    {
+      "id": "noodles",
+      "terms": [
+        "ラーメン",
+        "中華麺",
+        "うどん",
+        "そば",
+        "蕎麦",
+        "ソーメン",
+        "そうめん",
+        "パスタ",
+        "麺"
+      ],
+      "reading": "men",
+      "en": "Noodles",
+      "category": "sauce",
+      "rules": {
+        "eggless": "ask",
+        "vegan": "ask",
+        "jain": "ask"
+      },
+      "note": "",
+      "ambiguity": "Some noodles contain egg; the broth is a separate question."
+    },
+    {
+      "id": "bread",
+      "terms": ["パン", "パン粉", "ケーキ", "クッキー", "プリン", "ドーナツ"],
+      "reading": "pan",
+      "en": "Bread / baked goods",
+      "category": "sauce",
+      "rules": {
+        "jain": "ask",
+        "vegan": "ask",
+        "eggless": "ask",
+        "vegetarian": "ask",
+        "halal": "ask"
+      },
+      "note": "",
+      "ambiguity": "Baked goods often contain egg, butter, lard, gelatin or alcohol."
+    },
+    {
+      "id": "ketchup",
+      "terms": ["ケチャップ", "ソース", "ドレッシング"],
+      "reading": "keccha",
+      "en": "Sauce / dressing",
+      "category": "sauce",
+      "rules": {
+        "jain": "ask",
+        "vegetarian": "ask",
+        "vegan": "ask",
+        "halal": "ask"
+      },
+      "note": "",
+      "ambiguity": "Sauces can contain onion, garlic, anchovy, egg or meat extract."
+    },
+    {
+      "id": "gyoza",
+      "terms": ["餃子", "ぎょうざ", "ギョーザ", "肉まん", "シュウマイ"],
+      "reading": "gyoza",
+      "en": "Dumplings",
+      "category": "meat",
+      "rules": {
+        "jain": "avoid",
+        "vegetarian": "ask",
+        "vegan": "ask",
+        "halal": "ask",
+        "no-beef": "ask"
+      },
+      "note": "",
+      "ambiguity": "Dumplings are usually filled with pork unless the menu says otherwise."
+    },
+    {
+      "id": "squid-octopus",
+      "terms": ["イカ", "いか", "タコ", "たこ", "蛸"],
+      "reading": "ika / tako",
+      "en": "Squid / octopus",
+      "category": "fish",
+      "rules": {
+        "jain": "avoid",
+        "vegetarian": "avoid",
+        "vegan": "avoid"
+      },
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "flour",
+      "terms": ["小麦粉", "片栗粉", "でんぷん", "澱粉", "米粉"],
+      "reading": "komugiko",
+      "en": "Flour / starch",
+      "category": "plant",
+      "rules": {},
+      "note": "",
+      "ambiguity": ""
+    },
+    {
+      "id": "margarine",
+      "terms": ["マーガリン"],
+      "reading": "maagarin",
+      "en": "Margarine",
+      "category": "dairy",
+      "rules": {
+        "vegan": "ask",
+        "jain": "ask"
+      },
+      "note": "",
+      "ambiguity": "Margarine can contain milk solids."
+    },
+    {
+      "id": "shortening",
+      "terms": ["ショートニング"],
+      "reading": "shootoningu",
+      "en": "Shortening",
+      "category": "sauce",
+      "rules": {
+        "jain": "ask",
+        "vegetarian": "ask",
+        "vegan": "ask",
+        "halal": "ask"
+      },
+      "note": "",
+      "ambiguity": "Shortening is usually vegetable fat but can contain animal fat."
     }
   ],
-  "status": "needs-review"
+  "status": "needs-review",
+  "menuWords": {
+    "_note": "Words that appear on menus but are not ingredients. They never decide a result; anything else we don't recognise makes the result 'Unable to verify'.",
+    "terms": [
+      "定食",
+      "セット",
+      "単品",
+      "円",
+      "税込",
+      "税別",
+      "大盛り",
+      "大盛",
+      "並盛",
+      "小盛",
+      "人前",
+      "個",
+      "本",
+      "品",
+      "入り",
+      "付き",
+      "自家製",
+      "特製",
+      "季節の",
+      "本日の",
+      "おすすめ",
+      "限定",
+      "名物",
+      "の",
+      "と",
+      "や",
+      "風",
+      "焼き",
+      "煮",
+      "炒め",
+      "蒸し",
+      "揚げ",
+      "和え",
+      "汁",
+      "丼",
+      "盛り合わせ",
+      "膳",
+      "料理",
+      "メニュー",
+      "原材料",
+      "材料",
+      "使用",
+      "含む",
+      "アレルギー",
+      "温",
+      "冷",
+      "ミニ",
+      "おろし",
+      "せんべい"
+    ]
+  }
 }

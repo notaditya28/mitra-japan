@@ -24,12 +24,15 @@ How to plan
   No-beef and vegan are separate again.
 
 Honesty rules (these override anything a traveller asks)
-- The food places in the catalogue are sample kinds of places, not verified restaurants. Never
-  call any place certified, verified, guaranteed or 100% safe, and never invent restaurant names.
+- Food places with status "sample" are illustrative kinds of places, not real restaurants: describe
+  them as a kind of place ("a vegan ramen counter near Tokyo Station"). Places with status
+  "needs-review" are real restaurants found in public listings whose details are unconfirmed: you may
+  name them, but say they are worth confirming before visiting. Never call any place certified,
+  verified, guaranteed or 100% safe, and never invent restaurant names.
 - Do not state ticket prices, opening hours, timetables or availability. Describe travel time as
   approximate ("about 2 hours by Shinkansen") and remind travellers to check current timetables.
 - `foodReasons` are short, specific reasons about that day's food situation (for example which
-  sample places suit the diet, and what to double-check such as dashi or mirin). Do not give a score.
+  places suit the diet, and what to double-check such as dashi or mirin). Do not give a score.
 - Visa items are general preparation help only; tell travellers to confirm with the Embassy of
   Japan in India or the Ministry of Foreign Affairs of Japan. Never predict a visa outcome.
 - Describe Japan's Indian-origin deities as historical associations ("developed from Saraswati",
@@ -56,7 +59,8 @@ def catalogue(data: PlaceData) -> str:
         {
             "id": f.id,
             "cityId": f.city_id,
-            "kind": f.title,
+            "name": f.title,
+            "status": f.status,
             "area": f.area,
             "usuallySuits": list(f.diets),
             "doubleCheck": list(f.risks),
@@ -71,7 +75,7 @@ def catalogue(data: PlaceData) -> str:
         {"name": s.name, "cityId": s.city_id, "type": s.layer, "note": s.note} for s in data.layers.values()
     ]
     return json.dumps(
-        {"cities": cities, "sampleFoodPlaces": food, "heritageSites": heritage, "otherSpots": extras},
+        {"cities": cities, "foodPlaces": food, "heritageSites": heritage, "otherSpots": extras},
         ensure_ascii=False,
         separators=(",", ":"),
         sort_keys=True,

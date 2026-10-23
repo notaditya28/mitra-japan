@@ -2,14 +2,14 @@ import { useLayoutEffect, useMemo, useRef, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 import { ToriiGate } from '../motifs/ToriiGate';
-import { FoodScanPreview } from '../../features/fears/FoodScanPreview';
+import { LazyFoodScanPreview } from '../../features/fears/LazyFoodScanPreview';
 import { PhrasePreview } from '../../features/fears/PhrasePreview';
 import { VisaChecklist } from '../../features/fears/VisaChecklist';
 import { RootsTeaser } from '../../features/fears/RootsTeaser';
 import { journey, PLACES, type FearId } from '../../scenes/journeyState';
 
 const PREVIEWS: Record<FearId, ReactNode> = {
-  food: <FoodScanPreview />,
+  food: <LazyFoodScanPreview />,
   language: <PhrasePreview />,
   visa: <VisaChecklist />,
   foreign: <RootsTeaser />,

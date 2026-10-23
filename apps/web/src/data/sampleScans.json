@@ -1,0 +1,198 @@
+{
+  "_note": "SAMPLE SCANS: menu lines and package labels written for the demo, so the scanner works without a camera or OCR. Ingredient lists are typical of common recipes, not of any specific restaurant or product. Always shown with a 'Sample scan' label.",
+  "status": "sample",
+  "scans": [
+    {
+      "id": "yasai-ramen",
+      "kind": "menu",
+      "ja": "野菜ラーメン",
+      "en": "Vegetable ramen",
+      "menuText": "野菜ラーメン：かつお出汁、味噌、ラード、ねぎ、もやし",
+      "looksVeg": true
+    },
+    {
+      "id": "yudofu",
+      "kind": "menu",
+      "ja": "湯豆腐",
+      "en": "Simmered tofu",
+      "menuText": "湯豆腐：昆布だし、豆腐、ねぎ、醤油",
+      "looksVeg": true
+    },
+    {
+      "id": "miso-shiru",
+      "kind": "menu",
+      "ja": "味噌汁",
+      "en": "Miso soup",
+      "menuText": "味噌汁：出汁、味噌、豆腐、わかめ、ねぎ",
+      "looksVeg": true
+    },
+    {
+      "id": "yasai-tempura",
+      "kind": "menu",
+      "ja": "野菜天ぷら",
+      "en": "Vegetable tempura",
+      "menuText": "野菜天ぷら：さつまいも、なす、かぼちゃ、天つゆ（かつお出汁、みりん）",
+      "looksVeg": true
+    },
+    {
+      "id": "omurice",
+      "kind": "menu",
+      "ja": "オムライス",
+      "en": "Omelette rice",
+      "menuText": "オムライス：卵、ご飯、玉ねぎ、ケチャップ、バター、チキン",
+      "looksVeg": false
+    },
+    {
+      "id": "edamame",
+      "kind": "menu",
+      "ja": "枝豆",
+      "en": "Edamame",
+      "menuText": "枝豆：枝豆、塩",
+      "looksVeg": true
+    },
+    {
+      "id": "hiyayakko",
+      "kind": "menu",
+      "ja": "冷奴",
+      "en": "Chilled tofu",
+      "menuText": "冷奴：豆腐、ねぎ、生姜、醤油",
+      "looksVeg": true
+    },
+    {
+      "id": "kitsune-udon",
+      "kind": "menu",
+      "ja": "きつねうどん",
+      "en": "Udon with fried tofu",
+      "menuText": "きつねうどん：うどん、油揚げ、ねぎ、つゆ（かつお出汁、醤油、みりん）",
+      "looksVeg": true
+    },
+    {
+      "id": "zaru-soba",
+      "kind": "menu",
+      "ja": "ざるそば",
+      "en": "Cold soba",
+      "menuText": "ざるそば：そば、海苔、わさび、ねぎ、めんつゆ",
+      "looksVeg": true
+    },
+    {
+      "id": "shojin-zen",
+      "kind": "menu",
+      "ja": "精進膳",
+      "en": "Temple vegetable set",
+      "menuText": "精進膳：昆布だし、豆腐、湯葉、麩、椎茸、ごま、ご飯",
+      "looksVeg": true
+    },
+    {
+      "id": "yasai-curry",
+      "kind": "menu",
+      "ja": "野菜カレー",
+      "en": "Vegetable curry",
+      "menuText": "野菜カレー：カレールー、じゃがいも、人参、玉ねぎ、ご飯",
+      "looksVeg": true
+    },
+    {
+      "id": "gyoza",
+      "kind": "menu",
+      "ja": "焼き餃子",
+      "en": "Pan-fried dumplings",
+      "menuText": "焼き餃子：豚肉、キャベツ、にら、にんにく、ごま油",
+      "looksVeg": false
+    },
+    {
+      "id": "tonkotsu",
+      "kind": "menu",
+      "ja": "とんこつラーメン",
+      "en": "Pork-bone ramen",
+      "menuText": "とんこつラーメン：豚骨スープ、チャーシュー、ねぎ、もやし",
+      "looksVeg": false
+    },
+    {
+      "id": "okonomiyaki",
+      "kind": "menu",
+      "ja": "お好み焼き",
+      "en": "Savoury pancake",
+      "menuText": "お好み焼き：小麦粉、キャベツ、卵、天かす、豚肉、ソース、マヨネーズ",
+      "looksVeg": false
+    },
+    {
+      "id": "nasu-dengaku",
+      "kind": "menu",
+      "ja": "なす田楽",
+      "en": "Miso-glazed aubergine",
+      "menuText": "なす田楽：なす、味噌、砂糖、みりん、ごま",
+      "looksVeg": true
+    },
+    {
+      "id": "agedashi",
+      "kind": "menu",
+      "ja": "揚げ出し豆腐",
+      "en": "Fried tofu in broth",
+      "menuText": "揚げ出し豆腐：豆腐、片栗粉、天つゆ、大根おろし、ねぎ",
+      "looksVeg": true
+    },
+    {
+      "id": "onigiri-ume",
+      "kind": "label",
+      "ja": "梅おにぎり",
+      "en": "Plum rice ball (shop label)",
+      "menuText": "原材料：ご飯、梅干し、海苔、塩",
+      "looksVeg": true
+    },
+    {
+      "id": "onigiri-tuna",
+      "kind": "label",
+      "ja": "ツナマヨおにぎり",
+      "en": "Tuna-mayo rice ball (shop label)",
+      "menuText": "原材料：ご飯、ツナ、マヨネーズ、海苔、醤油",
+      "looksVeg": false
+    },
+    {
+      "id": "melon-pan",
+      "kind": "label",
+      "ja": "メロンパン",
+      "en": "Melon bread (shop label)",
+      "menuText": "原材料：小麦粉、砂糖、卵、バター、ショートニング",
+      "looksVeg": true
+    },
+    {
+      "id": "mochi",
+      "kind": "label",
+      "ja": "大福",
+      "en": "Daifuku sweet (shop label)",
+      "menuText": "原材料：もち、あずき、砂糖、塩",
+      "looksVeg": true
+    },
+    {
+      "id": "matcha-pudding",
+      "kind": "label",
+      "ja": "抹茶プリン",
+      "en": "Matcha pudding (shop label)",
+      "menuText": "原材料：牛乳、砂糖、抹茶、生クリーム、ゼラチン",
+      "looksVeg": true
+    },
+    {
+      "id": "senbei",
+      "kind": "label",
+      "ja": "醤油せんべい",
+      "en": "Soy rice crackers (shop label)",
+      "menuText": "原材料：米、醤油、砂糖、エキス",
+      "looksVeg": true
+    },
+    {
+      "id": "potato-chips",
+      "kind": "label",
+      "ja": "ポテトチップス",
+      "en": "Potato crisps (shop label)",
+      "menuText": "原材料：じゃがいも、植物油、塩",
+      "looksVeg": true
+    },
+    {
+      "id": "blurred",
+      "kind": "menu",
+      "ja": "（読み取れない写真）",
+      "en": "Blurry photo",
+      "menuText": "??? ¥800 ...",
+      "looksVeg": false
+    }
+  ]
+}

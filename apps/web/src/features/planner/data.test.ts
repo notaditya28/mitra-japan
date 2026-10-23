@@ -3,6 +3,7 @@ import {
   ANIME_SPOTS,
   CITIES,
   FOOD_SPOTS,
+  RESTAURANTS,
   HERITAGE_SPOTS,
   REGIONAL_SPOTS,
   cityById,
@@ -14,13 +15,38 @@ const inJapan = (p: { lat: number; lng: number }) =>
   p.lat > 24 && p.lat < 46 && p.lng > 122 && p.lng < 146;
 
 describe('planner data rules', () => {
-  it('never marks a demo food spot as certified or verified', () => {
-    expect(FOOD_SPOTS.length).toBeGreaterThan(0);
-    for (const s of FOOD_SPOTS) {
-      expect(s.certified, s.id).toBe(false);
-      expect(s.verified, s.id).toBe(false);
-      expect(s.status, s.id).toBe('sample');
+  it('keeps the restaurant directory honest', () => {
+    expect(RESTAURANTS.length).toBeGreaterThanOrEqual(20);
+    const ids = RESTAURANTS.map((r) => r.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    for (const r of RESTAURANTS) {
+      // Nothing is verified or certified until the owner records evidence.
+      expect(r.status, r.id).not.toBe('verified');
+      expect(r.certification, r.id).toBeNull();
+      expect(JSON.stringify(r), r.id).not.toMatch(/certified/i);
+      expect(r.dietOptions.length, r.id).toBeGreaterThan(0);
+      for (const o of r.dietOptions) {
+        expect(o.basis, r.id).not.toBe('independently-verified');
+        // A claimed basis needs recorded evidence; no evidence means unconfirmed.
+        if (o.basis === 'unconfirmed') expect(o.evidence, r.id).toBeNull();
+        else expect(o.evidence?.length ?? 0, r.id).toBeGreaterThan(10);
+      }
+      if (r.status === 'sample') {
+        expect(r.address, r.id).toBeNull();
+        expect(
+          r.dietOptions.every((o) => o.basis === 'unconfirmed'),
+          r.id,
+        ).toBe(true);
+      } else {
+        expect(r.address, r.id).toBeTruthy();
+        expect(r.source, r.id).toBeTruthy();
+        expect(r.lastChecked, r.id).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+        expect(r.link ?? '', r.id).toMatch(/^https:\/\//);
+      }
     }
+    // The directory mixes illustrative and researched places.
+    expect(RESTAURANTS.some((r) => r.status === 'sample')).toBe(true);
+    expect(RESTAURANTS.some((r) => r.status === 'needs-review')).toBe(true);
   });
 
   it('marks every unverified record with a visible status', () => {

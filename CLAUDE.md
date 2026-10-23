@@ -9,7 +9,7 @@ Pitch: "Indians don't need Japan to be cheaper, they need it to feel safe, famil
 ## Non-negotiable data rules
 
 - **Never invent statistics.** All figures live in `apps/web/src/data/stats.json` with `value`, `label`, `source`, `sourceUrl`, `verified`. Unverified values stay `null` and show a source footnote plus "pending verification". Only a human flips `verified: true`.
-- **Never present a restaurant as real or certified unless the data says so.** `foodSpots.json` is demo data, every entry `verified: false`, and the UI shows a visible "demo data" note. The Claude system prompt must forbid claiming certification not present in the data.
+- **Never present a restaurant as real or certified unless the data says so.** `restaurants.json` holds illustrative `sample` entries and researched `needs-review` places; nothing is `verified` until the owner checks it, and the UI shows each entry's status. The Claude system prompt must forbid claiming certification not present in the data.
 - Hindi/Gujarati strings are drafts until a native speaker reviews them (tracked in `TODO.md`).
 - Visa content is general guidance; always point to the Embassy of Japan in India for current rules.
 
@@ -91,7 +91,7 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 
 ## Planner map (M4)
 
-- Data: `cities.json` (15 cities), `foodSpots.json` (DEMO, generic kinds of places, `certified:false`, `verified:false`), `layers.json` (real anime/regional spots), `heritage.json`. Typed access in `features/planner/data.ts`; rules enforced by `data.test.ts` (never certified/verified, valid city refs, coordinates in Japan).
+- Data: `cities.json` (15 cities), `restaurants.json` (see M6), `layers.json` (real anime/regional spots), `heritage.json`. Typed access in `features/planner/data.ts`; rules enforced by `data.test.ts` (never certified/verified, valid city refs, coordinates in Japan).
 - 3D map lives in `features/planner/map/` (lazy `MapCanvas`). World space comes from `mapSpace.ts`: the same projection as the 2D maps, 1 unit = 40 px, north = -z. Always place things with `lngLatToWorld`.
 - Prefectures are extruded per prefecture (`JapanLand`), hover lifts/tints, click selects the first city in that prefecture. City labels are drei `<Html>`; minor-city labels hide when zoomed out (`MAJOR`, `NUDGE` in `CityMarkers`).
 - Layers (`LayerPins`) spring in/out with stagger and scale with zoom; colours in `layerColors.ts` (three-free so the side panel stays light).
@@ -109,6 +109,15 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 - Food Confidence (`foodConfidence.ts`) is deterministic and capped at `UNVERIFIED_CAP` (85) while no spot is verified; every score shows its reasons.
 - `sampleItinerary.json` is exported from `sample.sample_plan` (family, vegetarian, 5 days). Regenerate it from the API when data changes.
 - drei `<Html>` buttons on the map must stop pointer propagation, or R3F's `onPointerMissed` clears the selection.
+
+## Scanner, restaurants and visa (M6)
+
+- Planner tools open as native `<dialog>`s (`components/Dialog.tsx`) from `ToolLauncher`; which one is open lives in `features/tools/useTools.ts`. Each panel (`ScannerPanel`, `RestaurantDirectory`, `VisaPanel`) is a lazy chunk.
+- Matcher (`features/scanner/matchIngredients.ts`): longest-match over `ingredients.json`, then `unknownWords` makes anything unrecognised `unverified` (reason `unknown`). A dish title before a colon is skipped for the unknown check only; `menuWords` are ignored. Never let unknown or ambiguous map to `clear`. New dictionary terms: check `sampleScans.test.ts` still finds no unknowns.
+- OCR goes through `features/scanner/ocr` (`OcrProvider`, `loadOcrProvider`). Tesseract is lazy-loaded on the first photo; low confidence (< `LOW_CONFIDENCE`) forces "Unable to verify" until the traveller edits the text.
+- `/api/scan-explain` (`apps/api/app/scan.py`) only explains the browser's verdict; it rejects overclaiming answers. Custom restrictions and visa ticks persist in `useAppStore` (localStorage).
+- Restaurants: `restaurants.json` replaced `foodSpots.json`; `FOOD_SPOTS` is a derived view for the planner. Diet `basis`: self-reported / third-party / independently-verified / unconfirmed (evidence required unless unconfirmed). `data.test.ts` forbids `verified`, certification and the word "certified".
+- Visa: `visa.json` (`needs-review`, `lastReviewed`), items filtered only by purpose and traveller type, links only to official `.go.jp` sites (`visa.test.ts`).
 
 ## Motion and performance
 

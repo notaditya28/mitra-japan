@@ -1,27 +1,31 @@
 import { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AnimatePresence, motion } from 'framer-motion';
-import samples from '../../data/sampleDishes.json';
+import samples from '../../data/sampleScans.json';
 import { DietChips } from '../../components/DietChips';
 import { VerdictPill } from '../../components/VerdictPill';
 import { explainScan } from '../scanner/explain';
 import { matchIngredients } from '../scanner/matchIngredients';
 import { useAppStore } from '../../store/useAppStore';
 
+const DISHES = samples.scans.filter((s) =>
+  ['yasai-ramen', 'yudofu', 'miso-shiru', 'yasai-tempura', 'omurice'].includes(s.id),
+);
+
 /**
  * Mini menu-scanner for the "Will I find veg food?" gate.
- * DEMO PATH: curated menu text from sampleDishes.json run through the real
- * ingredient matcher. No OCR here; the live camera scanner is milestone 6.
+ * DEMO PATH: a few sample scans run through the real ingredient matcher.
+ * The full scanner (photo + OCR) lives in the planner.
  */
 export function FoodScanPreview() {
   const { t } = useTranslation();
   const diet = useAppStore((s) => s.diet);
-  const [dishId, setDishId] = useState(samples.dishes[0]?.id ?? '');
-  const dish = samples.dishes.find((d) => d.id === dishId) ?? samples.dishes[0];
+  const [dishId, setDishId] = useState(DISHES[0]?.id ?? '');
+  const dish = DISHES.find((d) => d.id === dishId) ?? DISHES[0];
   const result = useMemo(() => matchIngredients(dish?.menuText ?? '', diet), [dish, diet]);
 
   if (!dish) return null;
-  const hidden = dish.looksSafe && result.verdict === 'conflict';
+  const hidden = dish.looksVeg && result.verdict === 'conflict';
 
   return (
     <div className="rounded-2xl border border-blush bg-paper p-4 text-sm">
@@ -29,7 +33,7 @@ export function FoodScanPreview() {
         {t('scanner.demoLabel')}
       </p>
       <div className="mb-3 flex flex-wrap gap-1.5" role="group" aria-label={t('scanner.dish')}>
-        {samples.dishes.map((d) => (
+        {DISHES.map((d) => (
           <button
             key={d.id}
             type="button"

@@ -1,0 +1,125 @@
+{
+  "_note": "Visa PREPARATION checklist: general items that official and travel sources commonly list for short-term visas to Japan from India. Not immigration advice, never a prediction of an outcome. Every item must be confirmed with the official sources below. Owner to review and set lastReviewed.",
+  "status": "needs-review",
+  "lastReviewed": null,
+  "researched": "2026-10-24",
+  "links": [
+    {
+      "id": "embassy",
+      "label": "Embassy of Japan in India",
+      "url": "https://www.in.emb-japan.go.jp/"
+    },
+    {
+      "id": "mofa-visa",
+      "label": "Ministry of Foreign Affairs of Japan: Visa",
+      "url": "https://www.mofa.go.jp/j_info/visit/visa/index.html"
+    },
+    {
+      "id": "mofa-evisa",
+      "label": "Ministry of Foreign Affairs of Japan: JAPAN eVISA",
+      "url": "https://www.mofa.go.jp/j_info/visit/visa/visaonline.html"
+    }
+  ],
+  "purposes": ["tourism", "business", "visiting"],
+  "travellers": ["employed", "self-employed", "student", "retired"],
+  "items": [
+    {
+      "id": "route-evisa",
+      "text": "Check whether JAPAN eVISA covers your trip (it is for single-entry tourism)",
+      "purposes": ["tourism"],
+      "travellers": "all",
+      "link": "mofa-evisa"
+    },
+    {
+      "id": "route-paper",
+      "text": "Check where to apply: purposes other than tourism are applied for through the Embassy, a Consulate or an accredited agency",
+      "purposes": ["business", "visiting"],
+      "travellers": "all",
+      "link": "mofa-visa"
+    },
+    {
+      "id": "passport",
+      "text": "Passport valid for your whole stay, with blank pages",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy"
+    },
+    {
+      "id": "form",
+      "text": "Visa application form, completed and signed",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy"
+    },
+    {
+      "id": "photo",
+      "text": "Recent passport-size photo (check the current size rules)",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy"
+    },
+    {
+      "id": "schedule",
+      "text": "Day-by-day schedule of your stay",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy"
+    },
+    {
+      "id": "tickets",
+      "text": "Flight reservation (return or onward)",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy"
+    },
+    {
+      "id": "hotel",
+      "text": "Hotel or accommodation bookings",
+      "purposes": ["tourism", "business"],
+      "travellers": "all",
+      "link": "embassy"
+    },
+    {
+      "id": "funds",
+      "text": "Proof you can pay for the trip, such as recent bank statements",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy"
+    },
+    {
+      "id": "income",
+      "text": "Income proof, such as income tax returns",
+      "purposes": "all",
+      "travellers": ["employed", "self-employed"],
+      "link": "embassy"
+    },
+    {
+      "id": "student-proof",
+      "text": "Proof that you are a student, such as a student ID or a letter from your institution",
+      "purposes": "all",
+      "travellers": ["student"],
+      "link": "embassy"
+    },
+    {
+      "id": "sponsor",
+      "text": "If someone else is paying, their financial documents and your relationship to them",
+      "purposes": "all",
+      "travellers": ["student", "retired"],
+      "link": "embassy"
+    },
+    {
+      "id": "business-letter",
+      "text": "Documents about the business visit, such as a letter from the company in Japan and from your own company",
+      "purposes": ["business"],
+      "travellers": "all",
+      "link": "mofa-visa"
+    },
+    {
+      "id": "invitation",
+      "text": "Documents from the person you are visiting in Japan, such as an invitation letter and proof of your relationship",
+      "purposes": ["visiting"],
+      "travellers": "all",
+      "link": "mofa-visa"
+    }
+  ]
+}

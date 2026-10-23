@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ToriiGate } from '../motifs/ToriiGate';
-import { FoodScanPreview } from '../../features/fears/FoodScanPreview';
+import { LazyFoodScanPreview } from '../../features/fears/LazyFoodScanPreview';
 import { PhrasePreview } from '../../features/fears/PhrasePreview';
 import { VisaChecklist } from '../../features/fears/VisaChecklist';
 import { RootsTeaser } from '../../features/fears/RootsTeaser';
@@ -9,7 +9,7 @@ import { SectionHeader } from './SectionHeader';
 import type { FearId } from '../../scenes/journeyState';
 
 const FEARS: { id: FearId; preview: ReactNode }[] = [
-  { id: 'food', preview: <FoodScanPreview /> },
+  { id: 'food', preview: <LazyFoodScanPreview /> },
   { id: 'language', preview: <PhrasePreview /> },
   { id: 'visa', preview: <VisaChecklist /> },
   { id: 'foreign', preview: <RootsTeaser /> },

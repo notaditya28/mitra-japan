@@ -2,7 +2,7 @@ import sampleItinerary from '../../data/sampleItinerary.json';
 import type { Diet, Language, Persona } from '../../store/useAppStore';
 import { parseDay, parseItinerary, type Day, type Itinerary } from './itinerary';
 
-const API =
+export const API =
   (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ??
   'http://localhost:8000';
 

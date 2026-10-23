@@ -38,6 +38,9 @@ class FoodSpot:
     diets: tuple[str, ...]
     risks: tuple[str, ...]
     note: str
+    # sample = illustrative kind of place; needs-review = real place from public sources, unconfirmed.
+    status: str = "sample"
+    name_ja: str | None = None
 
 
 @dataclass(frozen=True)
@@ -105,10 +108,11 @@ def load(directory: Path | None = None) -> PlaceData:
     }
     food = {
         s["id"]: FoodSpot(
-            id=s["id"], city_id=s["cityId"], title=s["title"], kind=s["kind"], area=s["area"],
-            lat=s["lat"], lng=s["lng"], diets=tuple(s["diets"]), risks=tuple(s["risks"]), note=s["note"],
+            id=s["id"], city_id=s["cityId"], title=s["name"], kind=s["kind"], area=s["area"],
+            lat=s["lat"], lng=s["lng"], diets=tuple(o["diet"] for o in s["dietOptions"]),
+            risks=tuple(s["risks"]), note=s["note"], status=s["status"], name_ja=s["nameJa"],
         )
-        for s in _read(d, "foodSpots.json")["spots"]
+        for s in _read(d, "restaurants.json")["restaurants"]
     }
     heritage = {
         h["id"]: Heritage(

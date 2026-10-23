@@ -14,6 +14,8 @@ import { GuidePanel } from './GuidePanel';
 import { ItineraryPanel } from './ItineraryPanel';
 import { LayerToggles } from './LayerToggles';
 import { usePlannerStore, visibleDays } from './usePlannerStore';
+import { ToolDialogs } from '../tools/ToolDialogs';
+import { ToolLauncher } from '../tools/ToolLauncher';
 
 const MapCanvas = lazy(() => import('./map/MapCanvas'));
 
@@ -72,6 +74,8 @@ function TripPanel() {
       </div>
 
       <GuidePanel />
+
+      <ToolLauncher />
 
       <LayerToggles />
 
@@ -215,6 +219,7 @@ export function PlannerPage() {
         >
           <RightPanel />
         </aside>
+        <ToolDialogs />
       </main>
     );
   }
@@ -231,6 +236,7 @@ export function PlannerPage() {
           {selectedCityId || hasPlan ? null : <RightPanel />}
         </div>
       </BottomSheet>
+      <ToolDialogs />
     </main>
   );
 }

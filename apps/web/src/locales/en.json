@@ -115,10 +115,78 @@
       "conflict": "Potential dietary conflict detected: {{items}}.",
       "unverified": "Unable to verify: {{items}} can hide ingredients. Ask staff.",
       "unreadable": "Unable to verify: we could not read any Japanese text.",
-      "hidden": "Looks fine on the menu, but the stock or fat tells a different story."
+      "hidden": "Looks fine on the menu, but the stock or fat tells a different story.",
+      "unknown": "Unable to verify: we don't recognise {{items}}. Ask staff.",
+      "lowConfidence": "Unable to verify: the photo was hard to read. Check the text above against your photo, fix it, and the result will update."
     },
     "noneFound": "No flagged ingredients found.",
-    "caveat": "Text recognition can miss words, broths and sauces can hide ingredients, and recipes change. Show the staff card to be sure."
+    "caveat": "Text recognition can miss words, broths and sauces can hide ingredients, and recipes change. Show the staff card to be sure.",
+    "dietTitle": "Check for",
+    "inputTitle": "What should we read?",
+    "photo": "Take or upload a photo",
+    "photoAlt": "Your photo of the menu or label",
+    "samplesTitle": "Or try a sample scan",
+    "textLabel": "Text we're checking",
+    "textPlaceholder": "Paste or type Japanese menu text, e.g. 野菜カレー：じゃがいも、人参",
+    "textHint": "You can edit this text. The result updates as you type.",
+    "textHintPhoto": "Check this against your photo and fix anything we misread. The result updates as you type.",
+    "empty": "Pick a sample scan, take a photo, or type some Japanese text to see a result.",
+    "resultTitle": "Result",
+    "found": "Ingredients we found",
+    "unknownTitle": "Words we don't recognise",
+    "rule": {
+      "avoid": "Conflict",
+      "ask": "Ask staff",
+      "none": "No listed conflict"
+    },
+    "ocr": {
+      "privacy": "Text is read on your device. The first scan downloads the Japanese reading engine (a few MB).",
+      "loading": "Getting the reader ready…",
+      "reading": "Reading your photo…",
+      "notImage": "That file isn't an image. Try a JPG or PNG photo.",
+      "tooBig": "That photo is too large (over 15 MB).",
+      "failed": "We couldn't read that photo. Try a sharper, well-lit photo, or type the text instead."
+    },
+    "custom": {
+      "title": "Your own restrictions",
+      "hint": "Add any ingredient you avoid. We look for this exact Japanese word and always treat it as a conflict.",
+      "list": "Your restrictions",
+      "remove": "Remove {{label}}",
+      "term": "Japanese word",
+      "label": "What it is",
+      "labelPlaceholder": "e.g. Mushrooms",
+      "add": "Add",
+      "examples": "Quick add",
+      "errorTermEmpty": "Enter the Japanese word.",
+      "errorTermJa": "Use the Japanese word as menus write it (kana or kanji, up to 20 characters), e.g. きのこ.",
+      "errorLabel": "Say what it is, so you recognise it in results.",
+      "errorLabelLong": "Keep this under 40 characters.",
+      "errorMax": "You can keep up to 10 restrictions. Remove one first."
+    },
+    "staff": {
+      "title": "Show this to staff",
+      "hint": "Turn your screen towards the staff member. The English below is for you.",
+      "open": "Show staff card",
+      "openPlain": "Open the staff card without scanning",
+      "containsEn": "Does this dish contain: {{items}}?",
+      "customEn": "I can't eat: {{items}}.",
+      "aiDrafted": "Question drafted by the AI guide."
+    },
+    "ai": {
+      "button": "Explain with the AI guide",
+      "loading": "Asking the guide…",
+      "label": "AI guide (explains the result, does not change it)",
+      "errors": {
+        "demo_mode": "AI explanations need the AI guide, which is off in Demo mode. The result above is complete without it.",
+        "offline": "The guide service isn't reachable right now. The result above still stands.",
+        "rate_limited": "Too many requests. Please wait a moment and try again.",
+        "ai_unavailable": "The AI guide is unavailable right now.",
+        "ai_busy": "The AI guide is busy. Try again in a minute.",
+        "ai_invalid": "The AI guide's answer couldn't be checked, so we're not showing it.",
+        "ai_declined": "The AI guide couldn't help with this one.",
+        "unknown": "Something went wrong asking the guide."
+      }
+    }
   },
   "phrase": {
     "show": "Show this to staff",
@@ -235,7 +303,9 @@
       "tofu": "Tofu & yuba",
       "local": "Local dish",
       "market": "Market",
-      "sweets": "Sweets"
+      "sweets": "Sweets",
+      "vegan": "Vegan",
+      "temple-lodging": "Temple lodging"
     },
     "suits": "Usually suits {{diet}}",
     "askFirst": "Ask staff first for your diet",
@@ -402,5 +472,87 @@
   },
   "a11y": {
     "skip": "Skip to content"
+  },
+  "restaurants": {
+    "intro": "{{listed}} real places found in public guides (details unconfirmed: check before you go) and {{samples}} illustrative sample entries. Nothing here is certified.",
+    "search": "Search",
+    "searchPlaceholder": "Name, cuisine, area or city",
+    "city": "City",
+    "allCities": "All cities",
+    "anyDiet": "Any diet",
+    "show": "Show",
+    "showOptions": {
+      "all": "All",
+      "listed": "Real places",
+      "sample": "Samples"
+    },
+    "evidenceOnly": "Only places with recorded evidence for this diet",
+    "count_one": "{{count}} place",
+    "count_other": "{{count}} places",
+    "empty": "No places match these filters.",
+    "reset": "Clear filters",
+    "footer": "Know a place, or spotted something out of date? Entries live in one data file; the README explains how to add or correct them.",
+    "sampleAddress": "Illustrative entry: a kind of place, not a specific restaurant.",
+    "dietOptions": "Diet options",
+    "basis": {
+      "self-reported": "restaurant says so",
+      "third-party": "listed by a guide",
+      "independently-verified": "checked by us",
+      "unconfirmed": "not confirmed"
+    },
+    "evidence": "Evidence and sources",
+    "source": "Source",
+    "lastChecked": "Sources checked {{date}}",
+    "precision": {
+      "area": "Map pin shows the general area only.",
+      "approximate": "Map pin position is approximate."
+    },
+    "showOnMap": "Show on map",
+    "openSource": "Open source",
+    "newTab": "opens in a new tab"
+  },
+  "visaTool": {
+    "disclaimer": "Preparation help, not immigration advice. We can't tell you whether a visa will be granted. Confirm every item with the official sources.",
+    "lastReviewed": "Last reviewed {{date}}.",
+    "notReviewed": "Not yet reviewed by our team (sources gathered {{date}}).",
+    "purpose": "Why are you going?",
+    "purposes": {
+      "tourism": "Tourism",
+      "business": "Business",
+      "visiting": "Visiting family or friends"
+    },
+    "traveller": "Who is applying?",
+    "travellers": {
+      "employed": "Salaried",
+      "self-employed": "Self-employed",
+      "student": "Student",
+      "retired": "Retired or homemaker"
+    },
+    "listTitle": "Your checklist",
+    "progress": "{{done}} of {{total}} ready",
+    "confirm": "Confirm with the official source",
+    "officialTitle": "Official sources",
+    "storage": "Your ticks are saved only in this browser."
+  },
+  "tools": {
+    "title": "Travel tools",
+    "loading": "Loading…",
+    "scan": {
+      "eyebrow": "Veg-Safe",
+      "title": "Menu scanner",
+      "hint": "Photo a menu or label, check it for your diet"
+    },
+    "eat": {
+      "eyebrow": "Food",
+      "title": "Veg-friendly places",
+      "hint": "Search real and sample places by city and diet",
+      "openCity": "All places in {{city}}"
+    },
+    "visa": {
+      "eyebrow": "Preparation",
+      "title": "Visa checklist",
+      "hint": "What to prepare, with official links",
+      "open": "Open the visa checklist"
+    }
   }
 }
