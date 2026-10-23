@@ -17,4 +17,9 @@ export default tseslint.config(
       '@typescript-eslint/no-explicit-any': 'error',
     },
   },
+  {
+    // Scene modules deliberately export their camera path next to the component.
+    files: ['src/scenes/**/*.{ts,tsx}'],
+    rules: { 'react-refresh/only-export-components': 'off' },
+  },
 );

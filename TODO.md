@@ -4,7 +4,8 @@
 
 - [x] **M1 Foundation**: monorepo, tooling, tokens, fonts, motifs (seigaiha, Fuji, sun, torii, lantern, 2D/3D petals), store, smooth scroll, styled landing shell
 - [x] **M2** Stage 1 hero (3D) + persona + torii tunnel with flipping fear cards, HI/GU Stage 1 copy, language switch, ingredient matcher
-- [ ] **M3** Indian-roots reveal, animated counters, CTA transition into the map
+- [x] **M2b** Multi-place journey (Fuji → Tokyo → Shinkansen → Kyoto → Matsuri), Petal Portal transitions, stretched place titles, chapter rail
+- [ ] **M3** Indian-roots reveal (idea: Mathilde-style diamond mosaic of deity tiles re-flowing into map pins), ticking counters (verified figures only), CTA transition into the map
 - [ ] **M4** 3D Japan map with layers, pins and city cards
 - [ ] **M5** FastAPI + Claude planner, JSON validation, animated route, Food Confidence rings
 - [ ] **M6** Food scanner (live OCR + demo fallback) and phrase cards
@@ -33,6 +34,10 @@
 | API                      | Skeleton only (`/health`), planner endpoints arrive in M5                               |
 
 ## Known notes
+
+- Shinkansen livery is stylised (white + rose stripe) to stay in palette; real N700 is white + blue.
+- Optional polish: Mathias-style sakura preloader counter while the 3D chunk loads.
+- Place taglines in HI/GU (`places.*`) need native review along with the rest.
 
 - Scanner ingredient names (`ingredient.en`) are English only; translate in M6.
 - Stage 1 Roots/Numbers/CTA are still the static M1 layout; M3 turns them into the 3D roots reveal and counters.

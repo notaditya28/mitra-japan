@@ -33,7 +33,10 @@
         "label": "Student",
         "hint": "Rail passes, hostels, smart budgets, anime streets"
       },
-      "foodie": { "label": "Foodie", "hint": "Shojin ryori, depachika halls, veg ramen hunts" },
+      "foodie": {
+        "label": "Foodie",
+        "hint": "Shojin ryori, depachika halls, veg ramen hunts"
+      },
       "spiritual": {
         "label": "Spiritual",
         "hint": "Koyasan temple stays, Nara, quiet mountain shrines"
@@ -64,6 +67,29 @@
         "a": "Japan already prays to Saraswati, Ganesha and Lakshmi, under Japanese names. Keep walking."
       }
     }
+  },
+  "places": {
+    "fuji": {
+      "name": "Fuji",
+      "tagline": "Dawn over the sacred mountain"
+    },
+    "tokyo": {
+      "name": "Tokyo",
+      "tagline": "Neon streets and late-night ramen"
+    },
+    "shinkansen": {
+      "name": "Shinkansen",
+      "tagline": "Tokyo to Kyoto in about 2 hours 15 minutes"
+    },
+    "kyoto": {
+      "name": "Kyoto",
+      "tagline": "Thousands of torii and quiet temples"
+    },
+    "matsuri": {
+      "name": "Matsuri",
+      "tagline": "Summer festival nights, lanterns and fireworks"
+    },
+    "rail": "Journey chapters"
   },
   "diets": {
     "label": "Your diet",

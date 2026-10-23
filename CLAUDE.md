@@ -50,13 +50,17 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 
 ## Stage 1 journey architecture
 
-- One fixed, lazy-loaded R3F canvas (`src/scenes/JourneyCanvas.tsx`) sits behind the Hero, Persona and Tunnel HTML sections (`#journey`). It renders only while `#journey` is on screen and the tab is visible.
-- `src/scenes/journeyState.ts` holds a mutable `journey` object (intro, hero, persona, tunnel progress, pointer). ScrollTriggers write it (`useJourneyTriggers`, `TunnelSection`); `CameraRig` reads it every frame. Never put scroll progress in React state.
-- Fear gate z positions are derived from the tunnel scroll segments (`FEAR_GATE_Z`), so each card flips exactly as the camera passes its gate. Change `FEAR_IDS` or `TUNNEL_*_Z` there, not in the scene.
-- Tunnel uses CSS `position: sticky` plus a scrubbed GSAP timeline (no GSAP pin), which plays well with Lenis.
-- `immersive = webgl && tier !== 'low' && !reducedMotion`. Otherwise the static M1 sections render (SVG hero, `FearsSection` grid).
-- Dev builds expose R3F state as `window.__journey` for console debugging.
-- Hindi/Gujarati: never letter-space Devanagari/Gujarati (`.eyebrow` resets tracking under `:lang(hi|gu)`).
+- **Places, in order:** 0 Fuji dawn (hero + persona) → 1 Tokyo neon street (food fear) → 2 Shinkansen at golden hour (language) → 3 Kyoto Fushimi Inari + pagoda (visa) → 4 Matsuri night (foreign → leads into Indian roots). Defined in `PLACES` in `src/scenes/journeyState.ts`; each scene lives in `src/scenes/places/*Scene.tsx` and exports its component plus a `CameraPath` (local t 0..1 → camera pos/look).
+- One fixed, lazy-loaded R3F canvas (`src/scenes/JourneyCanvas.tsx`) sits behind `#journey` (Hero, Persona, `PlacesSection`). All five scenes are built up front, but only the active one is visible (`useSceneGroup`), so only one renders per frame. Paused offscreen/hidden. Wrapped in `SceneErrorBoundary` with a static sky fallback.
+- Scroll → `journey` (mutable: intro, hero, persona, places, pointer). `CameraRig` (mounted first) calls `computeStage()` every frame, producing `stage` (scene, t, and the transition values). Never put scroll progress in React state.
+- **Petal Portal transition** (our own, merged from the owner's Awwwards references: austensor particle morph, kelvin stretched type, shape-mask iris): around each boundary, petals swarm into the next place's kanji and the FOV widens; a blush veil closes; the scene switches under it; the veil opens through a torii-shaped window (shader in `journey/PetalPortal.tsx`) while the petals burst away; the Latin place name arrives stretched (`PlacesSection`). Timings live in `computeStage`.
+- Each place has an entry and exit `GlowGate portal` so the fly-through motif is literal. Fear-card flips are timed at local t ≈ 0.42–0.55; camera paths turn toward each scene's key moment (ramen stall, train crossing, fear gate, fireworks) in that window.
+- Per-scene sky, fog and lights: `MOODS` in `journey/Sky.tsx`. Shop signs/noren/lantern textures: `journey/signs.ts` (canvas, cached, redrawn after fonts load).
+- `ChapterRail` (right edge, desktop) shows 00 富士 … 04 祭り and jumps between chapters.
+- `immersive = webgl && tier !== 'low' && !reducedMotion`. Otherwise the static sections render (SVG hero, `FearsSection` grid).
+- Keep three.js out of first paint: anything imported by the 2D/first-paint path must not import `three` (e.g. `petalShape.ts` vs `petalGeometry.ts`). Check `dist/index.html` and the entry chunk size after builds.
+- Dev builds expose `window.__journey` (R3F state) and `window.__stage` for debugging. In the hidden browser pane rAF is throttled and an emulated viewport can stop painting; reset to the desktop preset if screenshots go blank.
+- Hindi/Gujarati: never letter-space Devanagari/Gujarati (`.eyebrow` resets tracking under `:lang(hi|gu)`); split titles with `Intl.Segmenter` graphemes, never by code point.
 
 ## Motion and performance
 

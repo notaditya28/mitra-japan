@@ -1,7 +1,7 @@
 import { useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { PETAL_POINTS } from './petalShape';
+import { petalGeometry } from './petalGeometry';
 
 interface Petals3DProps {
   count: number;
@@ -9,23 +9,21 @@ interface Petals3DProps {
   area?: [number, number, number];
   center?: [number, number, number];
   color?: string;
-}
-
-function petalGeometry(): THREE.ShapeGeometry {
-  const shape = new THREE.Shape();
-  shape.moveTo(0, 0);
-  for (const [a, b, c, d, x, y] of PETAL_POINTS) shape.bezierCurveTo(a, b, c, d, x, y);
-  const geo = new THREE.ShapeGeometry(shape, 6);
-  geo.translate(0, -0.5, 0);
-  geo.scale(0.12, 0.12, 0.12);
-  return geo;
+  /** Per-frame speed multiplier (e.g. the speed warp during portal transitions). */
+  speed?: () => number;
 }
 
 /**
  * Instanced falling petals: one draw call regardless of count.
  * Matte, double-sided, gently tumbling. Parent Canvas controls pausing.
  */
-export function Petals3D({ count, area, center = [0, 0, 0], color = '#F7C6D0' }: Petals3DProps) {
+export function Petals3D({
+  count,
+  area,
+  center = [0, 0, 0],
+  color = '#F7C6D0',
+  speed,
+}: Petals3DProps) {
   const mesh = useRef<THREE.InstancedMesh>(null);
   const geometry = useMemo(petalGeometry, []);
   const dummy = useMemo(() => new THREE.Object3D(), []);
@@ -50,7 +48,7 @@ export function Petals3D({ count, area, center = [0, 0, 0], color = '#F7C6D0' }:
   useFrame((_, delta) => {
     const m = mesh.current;
     if (!m) return;
-    const dt = Math.min(delta, 0.05);
+    const dt = Math.min(delta, 0.05) * (speed ? speed() : 1);
     seeds.forEach((s, i) => {
       s.phase += dt * s.spin;
       s.y -= (dt * s.fall) / ay;

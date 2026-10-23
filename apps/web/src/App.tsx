@@ -5,7 +5,9 @@ import { Footer } from './components/Footer';
 import { Hero } from './components/sections/Hero';
 import { PersonaSection } from './components/sections/PersonaSection';
 import { FearsSection } from './components/sections/FearsSection';
-import { TunnelSection } from './components/sections/TunnelSection';
+import { PlacesSection } from './components/sections/PlacesSection';
+import { ChapterRail } from './components/ChapterRail';
+import { SceneErrorBoundary } from './components/SceneErrorBoundary';
 import { RootsSection } from './components/sections/RootsSection';
 import { NumbersSection } from './components/sections/NumbersSection';
 import { CtaSection } from './components/sections/CtaSection';
@@ -17,6 +19,15 @@ import { useJourneyTriggers } from './scenes/useJourneyTriggers';
 import { useAppStore } from './store/useAppStore';
 
 const JourneyCanvas = lazy(() => import('./scenes/JourneyCanvas'));
+
+// Static dawn sky shown while the 3D chunk loads, or if it fails.
+const SKY_FALLBACK = (
+  <div
+    aria-hidden="true"
+    className="fixed inset-0 -z-10"
+    style={{ background: 'linear-gradient(180deg, #2E1424 0%, #6E2F52 45%, #E07A8F 100%)' }}
+  />
+);
 
 export default function App() {
   const { t } = useTranslation();
@@ -43,26 +54,19 @@ export default function App() {
         {t('a11y.skip')}
       </a>
       {immersive ? (
-        <Suspense
-          fallback={
-            <div
-              aria-hidden="true"
-              className="fixed inset-0 -z-10"
-              style={{
-                background: 'linear-gradient(180deg, #2E1424 0%, #6E2F52 45%, #E07A8F 100%)',
-              }}
-            />
-          }
-        >
-          <JourneyCanvas watchId="journey" />
-        </Suspense>
+        <SceneErrorBoundary fallback={SKY_FALLBACK}>
+          <Suspense fallback={SKY_FALLBACK}>
+            <JourneyCanvas watchId="journey" />
+          </Suspense>
+        </SceneErrorBoundary>
       ) : null}
       <Nav />
+      {immersive ? <ChapterRail /> : null}
       <main id="main">
         <div id="journey">
           <Hero immersive={immersive} />
           <PersonaSection immersive={immersive} />
-          {immersive ? <TunnelSection /> : <FearsSection />}
+          {immersive ? <PlacesSection /> : <FearsSection />}
         </div>
         {immersive ? (
           // Soft hand-off from the 3D sky into the paper sections below.

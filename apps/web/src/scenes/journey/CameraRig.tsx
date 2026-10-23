@@ -1,53 +1,58 @@
 import { useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { journey, TUNNEL_END_Z, TUNNEL_START_Z } from '../journeyState';
+import { computeStage, journey, stage } from '../journeyState';
+import type { CameraPath } from './common';
+import { fujiCamera } from '../places/FujiScene';
+import { tokyoCamera } from '../places/TokyoScene';
+import { shinkansenCamera } from '../places/ShinkansenScene';
+import { kyotoCamera } from '../places/KyotoScene';
+import { matsuriCamera } from '../places/MatsuriScene';
 
-const smooth = (a: number, b: number, t: number) => {
-  const x = Math.min(1, Math.max(0, (t - a) / (b - a)));
-  return x * x * (3 - 2 * x);
-};
+const CAMERAS: CameraPath[] = [
+  fujiCamera,
+  tokyoCamera,
+  shinkansenCamera,
+  kyotoCamera,
+  matsuriCamera,
+];
+const BASE_FOV = 50;
 
-// Keyframes: hero looks up at Fuji and the sun over the gate row; persona
-// settles at the tunnel mouth; the tunnel dollies through every gate.
-const HERO_POS = new THREE.Vector3(0, 2.6, 19);
-const HERO_LOOK = new THREE.Vector3(0, 17, -42);
-const MOUTH_POS = new THREE.Vector3(0, 1.85, TUNNEL_START_Z);
-const MOUTH_LOOK = new THREE.Vector3(0, 4.5, -40);
-
-/** Scroll-driven camera with critically-damped smoothing and soft pointer parallax. */
+/**
+ * Directs the journey: derives the stage from scroll each frame (it must run
+ * first, so it is mounted first), follows the active scene's camera path with
+ * damped smoothing, snaps on scene changes, and applies the portal speed warp.
+ */
 export function CameraRig() {
   const pos = useMemo(() => new THREE.Vector3(), []);
   const look = useMemo(() => new THREE.Vector3(), []);
-  const currentLook = useMemo(() => HERO_LOOK.clone(), []);
+  const currentLook = useMemo(() => new THREE.Vector3(0, 17, -42), []);
 
   useFrame(({ camera }, dt) => {
-    const { hero, persona, tunnel, pointer } = journey;
+    computeStage();
+    const path = CAMERAS[stage.scene] ?? fujiCamera;
+    path(stage.t, pos, look);
 
-    if (tunnel > 0) {
-      const z = THREE.MathUtils.lerp(TUNNEL_START_Z, TUNNEL_END_Z, tunnel);
-      // Lift slightly at the very end, ready for the roots reveal.
-      const lift = smooth(0.92, 1, tunnel);
-      pos.set(0, 1.85 + lift * 2.5, z);
-      const settle = smooth(0, 0.08, tunnel);
-      look.set(0, THREE.MathUtils.lerp(4.5, 1.95, settle) + lift * 6, z - 12);
+    const parallax = stage.scene === 0 ? 0.6 : 0.18;
+    pos.x += journey.pointer.x * parallax;
+    pos.y += journey.pointer.y * parallax * 0.4;
+
+    if (stage.switched) {
+      camera.position.copy(pos);
+      currentLook.copy(look);
     } else {
-      // Hero drift then persona glide to the tunnel mouth.
-      pos.copy(HERO_POS).setZ(HERO_POS.z - hero * 2.5);
-      look.copy(HERO_LOOK);
-      const p = smooth(0, 1, persona);
-      pos.lerp(MOUTH_POS, p);
-      look.lerp(MOUTH_LOOK, p);
+      const k = 1 - Math.exp(-Math.min(dt, 0.1) * 3.2);
+      camera.position.lerp(pos, k);
+      currentLook.lerp(look, k);
     }
-
-    const parallax = tunnel > 0 ? 0.12 : 0.6;
-    pos.x += pointer.x * parallax;
-    pos.y += pointer.y * parallax * 0.4;
-
-    const k = 1 - Math.exp(-Math.min(dt, 0.1) * 3.2);
-    camera.position.lerp(pos, k);
-    currentLook.lerp(look, k);
     camera.lookAt(currentLook);
+
+    const persp = camera as THREE.PerspectiveCamera;
+    const fov = BASE_FOV + stage.warp;
+    if (Math.abs(persp.fov - fov) > 0.01) {
+      persp.fov = fov;
+      persp.updateProjectionMatrix();
+    }
   });
 
   return null;
