@@ -27,4 +27,3 @@ export function tracePetal(ctx: CanvasRenderingContext2D, size: number): void {
   }
   ctx.closePath();
 }
-

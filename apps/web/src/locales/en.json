@@ -5,7 +5,8 @@
     "numbers": "The numbers",
     "cta": "Build my trip",
     "home": "Mitra Japan home",
-    "language": "Language"
+    "language": "Language",
+    "back": "Journey"
   },
   "hero": {
     "eyebrow": "Namaste from the land of the rising sun",
@@ -134,7 +135,16 @@
   "roots": {
     "eyebrow": "Step 3 · Japan has Indian roots",
     "title": "You have met these gods before.",
-    "body": "Buddhism carried Indian deities to Japan more than a thousand years ago. They are still worshipped there today."
+    "body": "Buddhism carried Indian deities to Japan more than a thousand years ago. They are still worshipped there today.",
+    "mapCaption": "Where to meet them in Japan today.",
+    "storiesTitle": "Their stories",
+    "indian": {
+      "benzaiten": "Saraswati",
+      "kangiten": "Ganesha",
+      "kichijoten": "Lakshmi",
+      "daikokuten": "Mahakala",
+      "bishamonten": "Kubera"
+    }
   },
   "numbers": {
     "eyebrow": "Step 4 · The numbers",
@@ -152,6 +162,45 @@
   "footer": {
     "demo": "Restaurant and food-spot data shown in this demo is illustrative and not verified.",
     "made": "Made with care for Indian travellers."
+  },
+  "portal": {
+    "caption": "Your Japan, coming up"
+  },
+  "login": {
+    "eyebrow": "Demo sign-in",
+    "title": "Let's plan your Japan.",
+    "body": "Tell us your name and number so your guide can greet you, then who is travelling and what you eat.",
+    "name": "Your name",
+    "namePh": "e.g. Asha Patel",
+    "phone": "Mobile number",
+    "phoneHint": "10-digit Indian mobile",
+    "persona": "Who is travelling?",
+    "diet": "What do you eat?",
+    "submit": "Continue to my planner",
+    "note": "This is a demo. Nothing is sent anywhere: your details stay in this browser only.",
+    "back": "Back to the journey",
+    "errors": {
+      "nameShort": "Please enter at least 2 letters.",
+      "phoneInvalid": "Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9."
+    }
+  },
+  "planner": {
+    "greeting": "Namaste, {{name}}",
+    "subtitle": "Here is your Japan so far.",
+    "travelling": "Travelling as",
+    "eating": "Eating",
+    "edit": "Edit",
+    "mapTitle": "Your map of Japan",
+    "mapNote": "Gold pins mark the Indian-roots temples you met on the journey.",
+    "nextTitle": "Coming next",
+    "next": [
+      "A 3D map you can spin, with Veg-Safe, heritage, anime and regional layers",
+      "Your AI guide: say “5 days, parents, Jain” and watch the route draw itself",
+      "A daily Food Confidence Score, then a demo booking checkout"
+    ],
+    "signOut": "Sign out",
+    "demo": "Demo account on this device",
+    "notChosen": "Not chosen yet"
   },
   "a11y": {
     "skip": "Skip to content"

@@ -1,18 +1,33 @@
+import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import heritage from '../../data/heritage.json';
-import { SectionHeader } from './SectionHeader';
 
-export function RootsSection() {
+// Map data + d3-geo load with the reveal, not with first paint.
+const RootsReveal = lazy(() =>
+  import('../../features/roots/RootsReveal').then((m) => ({ default: m.RootsReveal })),
+);
+
+/**
+ * Indian roots: the scroll-driven mosaic-to-map reveal, then the story cards
+ * (the accessible, readable version of the same facts).
+ */
+export function RootsSection({ immersive }: { immersive: boolean }) {
   const { t } = useTranslation();
   return (
-    <section id="roots" aria-labelledby="roots-title" className="bg-paper">
-      <div className="mx-auto max-w-7xl px-4 py-24 sm:px-8 sm:py-32">
-        <SectionHeader
-          id="roots-title"
-          eyebrow={t('roots.eyebrow')}
-          title={t('roots.title')}
-          body={t('roots.body')}
-        />
+    <div id="roots" className="bg-paper">
+      <Suspense
+        // Same height as the reveal so nothing below shifts when it arrives.
+        fallback={<div style={{ height: immersive ? '360vh' : '100svh' }} aria-hidden="true" />}
+      >
+        <RootsReveal scrubbed={immersive} />
+      </Suspense>
+      <section
+        aria-labelledby="stories-title"
+        className="mx-auto max-w-7xl px-4 pb-24 sm:px-8 sm:pb-32"
+      >
+        <h3 id="stories-title" className="display mb-8 text-3xl text-plum sm:text-4xl">
+          {t('roots.storiesTitle')}
+        </h3>
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
           {heritage.deities.map((d) => (
             <li key={d.id} className="card relative overflow-hidden p-6">
@@ -24,7 +39,7 @@ export function RootsSection() {
                 {d.kanji.charAt(0)}
               </span>
               <p className="eyebrow text-mist">{d.japanese}</p>
-              <p className="mt-1 font-display text-2xl text-plum">{d.indian}</p>
+              <p className="mt-1 font-display text-2xl text-plum">{t(`roots.indian.${d.id}`)}</p>
               <p className="mt-3 text-sm leading-relaxed text-ink">{d.story}</p>
               <p className="mt-4 flex items-center gap-1.5 text-xs font-medium text-mist">
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold" />
@@ -33,7 +48,7 @@ export function RootsSection() {
             </li>
           ))}
         </ul>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }

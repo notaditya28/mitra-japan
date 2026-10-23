@@ -37,6 +37,13 @@ export default {
         lift: '0 20px 50px -20px rgb(var(--plum) / 0.35)',
       },
       transitionTimingFunction: { calm: 'cubic-bezier(0.33, 1, 0.68, 1)' },
+      keyframes: {
+        'ping-slow': {
+          '0%': { transform: 'scale(1)', opacity: '0.45' },
+          '80%, 100%': { transform: 'scale(2.4)', opacity: '0' },
+        },
+      },
+      animation: { 'ping-slow': 'ping-slow 2.4s cubic-bezier(0, 0, 0.2, 1) infinite' },
     },
   },
   plugins: [],

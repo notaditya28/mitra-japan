@@ -5,13 +5,15 @@
 - [x] **M1 Foundation**: monorepo, tooling, tokens, fonts, motifs (seigaiha, Fuji, sun, torii, lantern, 2D/3D petals), store, smooth scroll, styled landing shell
 - [x] **M2** Stage 1 hero (3D) + persona + torii tunnel with flipping fear cards, HI/GU Stage 1 copy, language switch, ingredient matcher
 - [x] **M2b** Multi-place journey (Fuji → Tokyo → Shinkansen → Kyoto → Matsuri), Petal Portal transitions, stretched place titles, chapter rail
-- [ ] **M3** Indian-roots reveal (idea: Mathilde-style diamond mosaic of deity tiles re-flowing into map pins), ticking counters (verified figures only), CTA transition into the map
+- [x] **M3** Indian-roots mosaic→map reveal, count-up counters (real values only), CTA torii-portal transition, demo sign-in, planner home (2D map; 3D arrives in M4)
 - [ ] **M4** 3D Japan map with layers, pins and city cards
 - [ ] **M5** FastAPI + Claude planner, JSON validation, animated route, Food Confidence rings
 - [ ] **M6** Food scanner (live OCR + demo fallback) and phrase cards
 - [ ] **M7** i18n (HI/GU), export (WhatsApp/PDF), polish, performance, deploy
 
 ## Needs owner input
+
+- [ ] **Stage 1 revisit**: owner is not fully happy with the multi-place journey (2026-10-23) and will come back with changed requirements. Keep scene code modular (one file per place) so it is easy to rework.
 
 - [ ] **Stats**: fill `apps/web/src/data/stats.json` (Indian arrivals vs total from JNTO, India outbound growth, vegetarian share, own survey result) with sources, then set `verified: true`.
 - [x] **Scroll idea / login + booking** (decided 2026-10-23): 3D scroll → "Plan your trip" → **demo login** (name + phone, stored on device, no auth service) → AI planning → review → **mock booking checkout** (clearly labelled demo, no real payments). Slots into M4/M5 after the CTA.
@@ -34,6 +36,10 @@
 | API                      | Skeleton only (`/health`), planner endpoints arrive in M5                               |
 
 ## Known notes
+
+- Counters animate only when a stat has a `value`; all four are still `null`, so they show “—” until real figures are added.
+- Deity stories in `heritage.json` are English only; translate in M7.
+- The browser pane sometimes stops painting after big programmatic scrolls (DOM is fine); open a fresh tab to keep testing.
 
 - Shinkansen livery is stylised (white + rose stripe) to stay in palette; real N700 is white + blue.
 - Optional polish: Mathias-style sakura preloader counter while the 3D chunk loads.

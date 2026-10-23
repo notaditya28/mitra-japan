@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import statsData from '../../data/stats.json';
+import { Counter } from '../Counter';
 import { Seigaiha } from '../motifs/Seigaiha';
 import { SectionHeader } from './SectionHeader';
 
@@ -34,7 +35,7 @@ export function NumbersSection() {
                 {s.value === null ? (
                   <span aria-label={t('numbers.pending')}>—</span>
                 ) : (
-                  `${s.value.toLocaleString('en-IN')}${s.suffix}`
+                  <Counter value={s.value} suffix={s.suffix} />
                 )}
               </p>
               <p className="mt-3 text-sm text-blush/85">{s.label}</p>

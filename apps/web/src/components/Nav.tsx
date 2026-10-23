@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { startTrip } from '../features/auth/startTrip';
+import { navigate, type View } from '../lib/router';
 import { scrollToId } from '../lib/smoothScroll';
+import { playPortal } from '../lib/portal';
 import { LanguageSwitch } from './LanguageSwitch';
 
 const LINKS = [
-  { id: 'fears', key: 'nav.why' },
+  { id: 'places', key: 'nav.why' },
   { id: 'roots', key: 'nav.roots' },
   { id: 'numbers', key: 'nav.numbers' },
 ] as const;
 
-export function Nav() {
+export function Nav({ view }: { view: View }) {
   const { t } = useTranslation();
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setSolid] = useState(false);
+  const onJourney = view === 'journey';
+  const solid = scrolled || !onJourney;
 
   useEffect(() => {
     const onScroll = () => setSolid(window.scrollY > window.innerHeight * 0.6);
@@ -30,14 +35,29 @@ export function Nav() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-8">
         <a
           href="#top"
+          onClick={(e) => {
+            if (onJourney) return;
+            e.preventDefault();
+            playPortal(() => navigate('journey'));
+          }}
           className="flex items-center gap-2.5 font-semibold"
           aria-label={t('nav.home')}
         >
           <img src="/favicon.svg" alt="" width="32" height="32" className="rounded-lg" />
-          <span className="font-display text-lg">Mitra Japan</span>
+          <span className="whitespace-nowrap font-display text-lg">Mitra Japan</span>
         </a>
         <div className="flex items-center gap-1 sm:gap-2">
-          {LINKS.map((l) => (
+          {!onJourney ? (
+            <button
+              type="button"
+              onClick={() => playPortal(() => navigate('journey'))}
+              aria-label={t('nav.back')}
+              className="whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium opacity-90 transition hover:opacity-100"
+            >
+              ← <span className="hidden sm:inline">{t('nav.back')}</span>
+            </button>
+          ) : null}
+          {(onJourney ? LINKS : []).map((l) => (
             <button
               key={l.id}
               type="button"
@@ -48,13 +68,15 @@ export function Nav() {
             </button>
           ))}
           <LanguageSwitch solid={solid} />
-          <button
-            type="button"
-            onClick={() => scrollToId('cta')}
-            className="btn-primary hidden !px-5 !py-2 text-sm sm:inline-flex"
-          >
-            {t('nav.cta')}
-          </button>
+          {onJourney ? (
+            <button
+              type="button"
+              onClick={startTrip}
+              className="btn-primary hidden !px-5 !py-2 text-sm sm:inline-flex"
+            >
+              {t('nav.cta')}
+            </button>
+          ) : null}
         </div>
       </div>
     </nav>

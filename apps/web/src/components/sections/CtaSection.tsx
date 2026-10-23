@@ -1,13 +1,11 @@
-import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Fuji } from '../motifs/Fuji';
 import { Lantern } from '../motifs/Lantern';
 import { ToriiGate } from '../motifs/ToriiGate';
+import { startTrip } from '../../features/auth/startTrip';
 
 export function CtaSection() {
   const { t } = useTranslation();
-  const [notice, setNotice] = useState(false);
 
   return (
     <section
@@ -24,22 +22,9 @@ export function CtaSection() {
           {t('cta.title')}
         </h2>
         <p className="mx-auto mt-5 max-w-xl text-lg text-mist">{t('cta.body')}</p>
-        <button type="button" className="btn-primary mt-9 text-lg" onClick={() => setNotice(true)}>
+        <button type="button" className="btn-primary mt-9 text-lg" onClick={startTrip}>
           {t('cta.button')}
         </button>
-        <AnimatePresence>
-          {notice ? (
-            <motion.p
-              role="status"
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              className="mx-auto mt-4 max-w-sm text-sm text-mist"
-            >
-              {t('cta.soon')}
-            </motion.p>
-          ) : null}
-        </AnimatePresence>
       </div>
       <Fuji
         className="absolute inset-x-0 bottom-0 -z-10 h-56 w-full"

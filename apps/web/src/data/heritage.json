@@ -1,5 +1,5 @@
 {
-  "_note": "Short, accurate one-liners. Places are well-known sites associated with each deity; coordinates are approximate for map pins.",
+  "_note": "Short, accurate one-liners. Places are well-known sites associated with each deity; coordinates are approximate for map pins. 'label' is the map-label offset from the pin, in pixels on a 750px-wide map.",
   "deities": [
     {
       "id": "benzaiten",
@@ -9,7 +9,8 @@
       "story": "Goddess of music, learning and flowing water, often shown holding a biwa lute, much like Saraswati's veena.",
       "place": "Enoshima, Kanagawa",
       "lat": 35.2995,
-      "lng": 139.4803
+      "lng": 139.4803,
+      "label": [70, 80]
     },
     {
       "id": "kangiten",
@@ -19,7 +20,8 @@
       "story": "The elephant-headed remover of obstacles, worshipped in esoteric Buddhist temples for harmony and success.",
       "place": "Matsuchiyama Shoden, Tokyo",
       "lat": 35.7175,
-      "lng": 139.8014
+      "lng": 139.8014,
+      "label": [90, -60]
     },
     {
       "id": "kichijoten",
@@ -29,7 +31,8 @@
       "story": "Goddess of good fortune, beauty and prosperity, honoured with prayers for a fruitful year.",
       "place": "Joruri-ji, Kyoto",
       "lat": 34.7146,
-      "lng": 135.8728
+      "lng": 135.8728,
+      "label": [-60, 110]
     },
     {
       "id": "daikokuten",
@@ -39,7 +42,8 @@
       "story": "A fierce form of Shiva who became Japan's smiling god of the harvest, kitchens and abundance.",
       "place": "Enryaku-ji, Mount Hiei",
       "lat": 35.0706,
-      "lng": 135.8411
+      "lng": 135.8411,
+      "label": [40, -150]
     },
     {
       "id": "bishamonten",
@@ -49,7 +53,8 @@
       "story": "Guardian of the north and of wealth, transformed in Japan into an armoured protector god.",
       "place": "Kurama-dera, Kyoto",
       "lat": 35.1186,
-      "lng": 135.7708
+      "lng": 135.7708,
+      "label": [-230, -70]
     }
   ]
 }

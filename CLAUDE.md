@@ -62,6 +62,16 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 - Dev builds expose `window.__journey` (R3F state) and `window.__stage` for debugging. In the hidden browser pane rAF is throttled and an emulated viewport can stop painting; reset to the desktop preset if screenshots go blank.
 - Hindi/Gujarati: never letter-space Devanagari/Gujarati (`.eyebrow` resets tracking under `:lang(hi|gu)`); split titles with `Intl.Segmenter` graphemes, never by code point.
 
+## Map, pages and transitions (M3)
+
+- `src/data/japan.geojson`: Natural Earth 1:10m admin-1 (public domain), filtered to Japan's 47 prefectures and simplified (script kept outside the repo; rerun with a new tolerance if needed). Import with `?raw`.
+- `src/lib/japanMap.ts` is the one place that projects Japan: rewinds rings for d3 (otherwise polygons invert), puts Okinawa in an upper-left inset by shifting whole polygons, and exposes `project(lng, lat)` for pins. Use it for every 2D map and keep the same inset rule for city pins.
+- Pages: hash router in `src/lib/router.ts` (`journey` / `#/login` / `#/plan`). `#/plan` without a demo user redirects to login. The 3D journey canvas unmounts off the journey page.
+- Page transitions go through `playPortal()` (`src/lib/portal.ts`), rendered by `<PortalTransition/>`: veil with 旅, then a torii-shaped SVG mask opens. Use it for any page change.
+- Demo sign-in (owner decision): name + Indian mobile, validated in `features/auth/demoAuth.ts`, stored only in localStorage. Never add a network call or real auth without asking.
+- Counters (`components/Counter.tsx`) count up only for non-null values from `stats.json`; never fill a value without a source.
+- Keep first paint lean: map data, sign-in, planner and the roots reveal are lazy chunks.
+
 ## Motion and performance
 
 - Slow eases (power2/power3, `ease-calm`). Nothing jittery.
