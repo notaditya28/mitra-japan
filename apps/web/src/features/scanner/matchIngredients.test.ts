@@ -5,41 +5,72 @@ const ids = (text: string, diet: Parameters<typeof matchIngredients>[1]) =>
   matchIngredients(text, diet).matches.map((m) => m.ingredient.id);
 
 describe('matchIngredients', () => {
-  it('flags hidden bonito stock in a "vegetable" ramen for vegetarians', () => {
+  it('flags hidden bonito stock in a "vegetable" ramen as a conflict for vegetarians', () => {
     const r = matchIngredients('野菜ラーメン（かつお出汁、味噌）', 'vegetarian');
-    expect(r.verdict).toBe('avoid');
+    expect(r.verdict).toBe('conflict');
     expect(r.matches.map((m) => m.ingredient.id)).toEqual(['bonito']);
   });
 
   it('reads kombu stock as plant-based, not fish dashi', () => {
     expect(ids('昆布だしの湯豆腐', 'vegetarian')).toEqual(['kombu-dashi']);
-    expect(matchIngredients('昆布だしの湯豆腐', 'vegetarian').verdict).toBe('safe');
+    expect(matchIngredients('昆布だしの湯豆腐', 'vegetarian').verdict).toBe('clear');
+  });
+
+  it('treats a plain "dashi" as unable to verify, never as clear', () => {
+    const r = matchIngredients('味噌汁：出汁、豆腐', 'vegetarian');
+    expect(r.verdict).toBe('unverified');
+    expect(r.matches[0]?.ingredient.ambiguity).toMatch(/kombu/);
+  });
+
+  it('treats unspecified sauces and broths as unable to verify', () => {
+    expect(matchIngredients('焼きそば（たれ）', 'vegan').verdict).toBe('unverified');
+    expect(matchIngredients('ざるそば・めんつゆ', 'jain').verdict).toBe('unverified');
+  });
+
+  it('returns unable to verify for unreadable or non-Japanese text', () => {
+    expect(matchIngredients('', 'vegan')).toEqual({
+      matches: [],
+      verdict: 'unverified',
+      reason: 'unreadable',
+    });
+    expect(matchIngredients('???? 12', 'jain').verdict).toBe('unverified');
   });
 
   it('does not read milk (牛乳) as beef (牛)', () => {
     expect(ids('牛乳プリン', 'no-beef')).toEqual(['milk']);
-    expect(matchIngredients('牛乳プリン', 'no-beef').verdict).toBe('safe');
-    expect(matchIngredients('牛丼', 'no-beef').verdict).toBe('avoid');
+    expect(matchIngredients('牛乳プリン', 'no-beef').verdict).toBe('clear');
+    expect(matchIngredients('牛丼', 'no-beef').verdict).toBe('conflict');
   });
 
-  it('judges the same dish differently per diet', () => {
-    const text = '醤油ラーメン：鶏ガラ、みりん、ねぎ';
-    expect(matchIngredients(text, 'vegetarian').verdict).toBe('avoid');
-    expect(matchIngredients(text, 'halal').verdict).toBe('avoid'); // mirin
-    expect(matchIngredients(text, 'no-beef').verdict).toBe('safe');
+  it('keeps diet categories distinct', () => {
+    const text = '野菜カレー：玉ねぎ、にんにく、じゃがいも';
+    // Vegetarian is not Jain: onion, garlic and potato are fine for vegetarians …
+    expect(matchIngredients(text, 'vegetarian').verdict).toBe('clear');
+    // … but conflict for Jain.
+    const jain = matchIngredients(text, 'jain');
+    expect(jain.verdict).toBe('conflict');
+    expect(jain.matches.map((m) => m.ingredient.id)).toEqual(['onion', 'garlic', 'root-veg']);
+    // Halal covers alcohol including mirin; no-beef does not.
+    expect(matchIngredients('照り焼き（みりん）', 'halal').verdict).toBe('conflict');
+    expect(matchIngredients('照り焼き（みりん）', 'no-beef').verdict).toBe('clear');
+    // Vegan is separate again: dairy conflicts for vegans only.
+    expect(matchIngredients('チーズケーキ', 'vegan').verdict).toBe('conflict');
+    expect(matchIngredients('チーズケーキ', 'vegetarian').verdict).toBe('clear');
   });
 
-  it('applies Jain rules to onion, garlic and root vegetables', () => {
-    const r = matchIngredients('野菜カレー：じゃがいも、にんじん、玉ねぎ', 'jain');
-    expect(r.verdict).toBe('avoid');
-    expect(r.matches.map((m) => m.ingredient.id)).toEqual(['root-veg', 'onion']);
+  it('treats ambiguous egg as unable to verify for vegetarians', () => {
+    expect(matchIngredients('オムライス（卵）', 'vegetarian').verdict).toBe('unverified');
   });
 
-  it('returns "ask" when only uncertain ingredients are present', () => {
-    expect(matchIngredients('オムライス（卵）', 'vegetarian').verdict).toBe('ask');
+  it('applies custom restrictions as conflicts', () => {
+    const r = matchIngredients('きのこご飯', 'vegetarian', [
+      { term: 'きのこ', label: 'Mushrooms' },
+    ]);
+    expect(r.verdict).toBe('conflict');
+    expect(r.matches[0]?.ingredient.en).toBe('Mushrooms');
   });
 
-  it('is safe when nothing matches', () => {
-    expect(matchIngredients('枝豆', 'vegan')).toEqual({ matches: [], verdict: 'safe' });
+  it('reports no listed conflicts when nothing matches', () => {
+    expect(matchIngredients('枝豆', 'vegan')).toEqual({ matches: [], verdict: 'clear' });
   });
 });

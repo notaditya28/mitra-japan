@@ -13,7 +13,8 @@
       "risks": ["alcohol"],
       "note": "Plant-based broth; ask if mirin is used in the tare.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "tokyo-indian-thali",
@@ -27,7 +28,8 @@
       "risks": [],
       "note": "Jain food usually possible if you ask for no onion, garlic or root vegetables.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "tokyo-depachika",
@@ -41,7 +43,8 @@
       "risks": ["dashi", "egg"],
       "note": "Huge choice but labels are in Japanese: scan before you buy.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "kamakura-temple-cafe",
@@ -55,7 +58,8 @@
       "risks": ["dashi"],
       "note": "Confirm the soup stock is kombu or shiitake.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "hakone-ryokan-veg",
@@ -69,7 +73,8 @@
       "risks": ["dashi", "advance-request"],
       "note": "Request at booking, ideally a week ahead.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "nikko-yuba",
@@ -83,7 +88,8 @@
       "risks": ["dashi"],
       "note": "Yuba itself is vegetarian; the dipping broth often is not.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "kanazawa-fu",
@@ -97,7 +103,8 @@
       "risks": ["dashi"],
       "note": "Fu dishes are a local craft; check the broth.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "kanazawa-indian",
@@ -111,7 +118,8 @@
       "risks": [],
       "note": "Reliable fallback in a seafood city.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "takayama-hoba",
@@ -125,7 +133,8 @@
       "risks": ["dashi"],
       "note": "Miso grilled on a magnolia leaf; ask for it without meat.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "kyoto-shojin",
@@ -139,7 +148,8 @@
       "risks": ["root-veg"],
       "note": "Traditionally no meat, fish, onion or garlic; ask about potatoes and carrots if you are Jain.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "kyoto-yudofu",
@@ -153,7 +163,8 @@
       "risks": ["dashi"],
       "note": "Kombu broth is common, but some dipping sauces use bonito.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "kyoto-nishiki",
@@ -167,7 +178,8 @@
       "risks": ["dashi", "egg", "fish"],
       "note": "Great for pickles and sweets; many stalls are seafood.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "nara-shojin",
@@ -181,7 +193,8 @@
       "risks": ["dashi"],
       "note": "Ask before ordering broth-based dishes.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "koyasan-shukubo",
@@ -195,7 +208,8 @@
       "risks": ["root-veg", "alcohol"],
       "note": "Shojin ryori by tradition; tell them about Jain needs when booking.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "osaka-indian",
@@ -209,7 +223,8 @@
       "risks": [],
       "note": "Easy, familiar meal between street-food stops.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "osaka-vegan-okonomiyaki",
@@ -223,7 +238,8 @@
       "risks": ["dashi", "egg", "shared-grill"],
       "note": "Regular okonomiyaki has dashi and egg; only order where a vegan batter is offered.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "hiroshima-veg-okonomi",
@@ -237,7 +253,8 @@
       "risks": ["dashi", "egg", "shared-grill"],
       "note": "Ask for no pork and no bonito flakes; the griddle is shared.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "miyajima-momiji",
@@ -251,7 +268,8 @@
       "risks": ["egg"],
       "note": "The batter usually contains egg.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "fukuoka-vegan-ramen",
@@ -265,7 +283,8 @@
       "risks": [],
       "note": "Avoid regular tonkotsu shops; this kind of bar is the safe choice.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "sapporo-soup-curry",
@@ -279,7 +298,8 @@
       "risks": ["dashi", "meat-stock"],
       "note": "Some shops have a vegetable broth option; ask which base they use.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     },
     {
       "id": "naha-tofu",
@@ -293,7 +313,8 @@
       "risks": ["pork", "egg"],
       "note": "Ask for champuru without pork or egg.",
       "certified": false,
-      "verified": false
+      "verified": false,
+      "status": "sample"
     }
   ]
 }

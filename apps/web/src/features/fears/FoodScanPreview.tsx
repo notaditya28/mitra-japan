@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import samples from '../../data/sampleDishes.json';
 import { DietChips } from '../../components/DietChips';
 import { VerdictPill } from '../../components/VerdictPill';
+import { explainScan } from '../scanner/explain';
 import { matchIngredients } from '../scanner/matchIngredients';
 import { useAppStore } from '../../store/useAppStore';
 
@@ -20,10 +21,13 @@ export function FoodScanPreview() {
   const result = useMemo(() => matchIngredients(dish?.menuText ?? '', diet), [dish, diet]);
 
   if (!dish) return null;
-  const hidden = dish.looksSafe && result.verdict !== 'safe';
+  const hidden = dish.looksSafe && result.verdict === 'conflict';
 
   return (
     <div className="rounded-2xl border border-blush bg-paper p-4 text-sm">
+      <p className="mb-2 inline-block rounded-full bg-mist/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-mist">
+        {t('scanner.demoLabel')}
+      </p>
       <div className="mb-3 flex flex-wrap gap-1.5" role="group" aria-label={t('scanner.dish')}>
         {samples.dishes.map((d) => (
           <button
@@ -83,9 +87,9 @@ export function FoodScanPreview() {
         )}
       </ul>
 
-      <p className="mt-3 text-xs text-mist">
-        {hidden ? t('scanner.explain.hidden') : t(`scanner.explain.${result.verdict}`)}
-      </p>
+      <p className="mt-3 text-xs font-semibold text-plum">{explainScan(result, t)}</p>
+      {hidden ? <p className="mt-1 text-xs text-mist">{t('scanner.explain.hidden')}</p> : null}
+      <p className="mt-2 text-[11px] leading-snug text-mist">{t('scanner.caveat')}</p>
       <div className="mt-3 border-t border-blush pt-3">
         <DietChips diets={['jain', 'vegetarian', 'vegan', 'halal']} />
       </div>

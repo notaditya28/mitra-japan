@@ -4,6 +4,7 @@ import { gsap } from 'gsap';
 import heritage from '../../data/heritage.json';
 import { buildJapanMap } from '../../lib/japanMap';
 import { palette } from '../../styles/tokens';
+import { StatusBadge } from '../../components/StatusBadge';
 import { MOTIFS } from './motifs';
 import { TileMotif } from './TileMotif';
 
@@ -241,7 +242,8 @@ export function RootsReveal({ scrubbed }: { scrubbed: boolean }) {
           </h2>
           <p className="mt-5 hidden text-lg text-mist sm:block">{t('roots.body')}</p>
           <p data-outro className="mt-6 hidden text-base font-medium text-plum sm:block">
-            {t('roots.mapCaption')}
+            {t('roots.mapCaption')}{' '}
+            <StatusBadge status="needs-review" className="ml-1 align-middle" />
           </p>
         </div>
 

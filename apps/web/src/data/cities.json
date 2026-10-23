@@ -12,7 +12,9 @@
       "season": "Cherry blossom late March to early April; autumn colour in late November.",
       "culture": "Shrines tucked between skyscrapers, Asakusa's old streets and Akihabara's pop culture in one city.",
       "veg": "The widest choice in Japan: vegan ramen, Indian restaurants and plant-based cafés. Still ask about dashi in Japanese dishes.",
-      "vegLevel": "high"
+      "vegLevel": "high",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "kamakura",
@@ -25,7 +27,9 @@
       "season": "Hydrangeas in June; easy day trip all year.",
       "culture": "The Great Buddha, Zen temples and the sea, an hour from Tokyo. Enoshima's Benzaiten shrine is nearby.",
       "veg": "Temple-style vegetarian cafés exist around the Zen temples; street snacks are often fish-based.",
-      "vegLevel": "medium"
+      "vegLevel": "medium",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "hakone",
@@ -38,7 +42,9 @@
       "season": "Clear Fuji views most often in winter mornings.",
       "culture": "Hot-spring inns, volcanic valleys and lake views of Mount Fuji.",
       "veg": "Ryokan dinners are fish-heavy by default; most can prepare a vegetarian kaiseki if asked several days ahead.",
-      "vegLevel": "medium"
+      "vegLevel": "medium",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "nikko",
@@ -51,7 +57,9 @@
       "season": "Autumn leaves in October are spectacular.",
       "culture": "Ornate shrines in a cedar forest, waterfalls and mountain lakes.",
       "veg": "Yuba (tofu skin) is the local speciality and is often vegetarian; ask whether the broth uses dashi.",
-      "vegLevel": "medium"
+      "vegLevel": "medium",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "kanazawa",
@@ -64,7 +72,9 @@
       "season": "Snow-covered Kenroku-en garden in winter; lovely all year.",
       "culture": "One of Japan's great gardens, samurai and geisha districts and gold-leaf craft.",
       "veg": "Seafood dominates; look for fu (wheat gluten) dishes and Indian or vegan cafés near the station.",
-      "vegLevel": "low"
+      "vegLevel": "low",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "takayama",
@@ -77,7 +87,9 @@
       "season": "Spring and autumn festivals; snowy villages nearby in winter.",
       "culture": "An Edo-era old town in the Japanese Alps, close to Shirakawa-go and Hida-Furukawa.",
       "veg": "Hida beef is everywhere, but hoba miso (miso grilled on a leaf) and mitarashi dango are good veg options; check for dashi.",
-      "vegLevel": "low"
+      "vegLevel": "low",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "kyoto",
@@ -90,7 +102,9 @@
       "season": "Busiest during cherry blossom and autumn leaves; go early in the morning.",
       "culture": "Over a thousand temples, Fushimi Inari's torii and three of the Indian-roots temples nearby.",
       "veg": "Home of shojin ryori (Buddhist temple cuisine), which is traditionally plant-based, and of tofu restaurants near temples.",
-      "vegLevel": "high"
+      "vegLevel": "high",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "nara",
@@ -103,7 +117,9 @@
       "season": "Easy day trip from Kyoto or Osaka all year.",
       "culture": "Japan's first capital: the giant Buddha of Todai-ji and friendly bowing deer.",
       "veg": "Temple towns offer shojin-style meals; kakinoha-zushi (a local favourite) contains fish.",
-      "vegLevel": "medium"
+      "vegLevel": "medium",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "koyasan",
@@ -116,7 +132,9 @@
       "season": "Cool in summer, snowy in winter; temple stays all year.",
       "culture": "A mountain-top monastery town where you can sleep in a temple and join morning prayers.",
       "veg": "Temple lodgings serve shojin ryori, traditionally free of meat, fish, onion and garlic. Tell them early if you are Jain.",
-      "vegLevel": "high"
+      "vegLevel": "high",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "osaka",
@@ -129,7 +147,9 @@
       "season": "Lively all year; neon Dotonbori is best at night.",
       "culture": "Japan's kitchen: street food, comedy and a friendly, loud crowd.",
       "veg": "Indian restaurants are easy to find, but classic street food uses octopus, pork or dashi (takoyaki, okonomiyaki).",
-      "vegLevel": "medium"
+      "vegLevel": "medium",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "hiroshima",
@@ -142,7 +162,9 @@
       "season": "Pleasant spring and autumn; pairs with Miyajima.",
       "culture": "The Peace Memorial Park and a city rebuilt around a message of peace.",
       "veg": "Hiroshima okonomiyaki usually has pork and dashi; some places make a vegetarian version on request.",
-      "vegLevel": "low"
+      "vegLevel": "low",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "miyajima",
@@ -155,7 +177,9 @@
       "season": "See the floating torii at high tide; check tide tables.",
       "culture": "The island of Itsukushima Shrine and its great torii standing in the sea.",
       "veg": "Momiji manju (maple-leaf cakes) are vegetarian; the oysters and eel the island is known for are not.",
-      "vegLevel": "low"
+      "vegLevel": "low",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "fukuoka",
@@ -168,7 +192,9 @@
       "season": "Mild winters; open-air yatai stalls every evening.",
       "culture": "A relaxed coastal city, gateway to Kyushu's hot springs and volcanoes.",
       "veg": "The capital of tonkotsu (pork-bone) ramen, so be careful; look for vegan ramen and Indian restaurants instead.",
-      "vegLevel": "low"
+      "vegLevel": "low",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "sapporo",
@@ -181,7 +207,9 @@
       "season": "Snow Festival in February; flower fields in July.",
       "culture": "Wide streets, snow sculptures and Hokkaido's countryside on the doorstep.",
       "veg": "Soup curry can be made vegetarian at some shops; ramen broths are usually pork or seafood.",
-      "vegLevel": "medium"
+      "vegLevel": "medium",
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "naha",
@@ -194,7 +222,9 @@
       "season": "Beach season April to October; typhoons possible late summer.",
       "culture": "Subtropical islands with their own Ryukyu culture, music and crafts.",
       "veg": "Champuru stir-fries usually include pork or egg; tofu, sweet potato and sea grapes are good options to ask about.",
-      "vegLevel": "low"
+      "vegLevel": "low",
+      "status": "needs-review",
+      "lastChecked": null
     }
   ]
 }

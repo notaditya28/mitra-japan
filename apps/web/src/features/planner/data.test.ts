@@ -3,6 +3,7 @@ import {
   ANIME_SPOTS,
   CITIES,
   FOOD_SPOTS,
+  HERITAGE_SPOTS,
   REGIONAL_SPOTS,
   cityById,
   distanceKm,
@@ -18,6 +19,21 @@ describe('planner data rules', () => {
     for (const s of FOOD_SPOTS) {
       expect(s.certified, s.id).toBe(false);
       expect(s.verified, s.id).toBe(false);
+      expect(s.status, s.id).toBe('sample');
+    }
+  });
+
+  it('marks every unverified record with a visible status', () => {
+    for (const c of CITIES) expect(c.status, c.id).toBe('needs-review');
+    for (const s of [...ANIME_SPOTS, ...REGIONAL_SPOTS])
+      expect(s.status, s.id).toBe('needs-review');
+    for (const h of HERITAGE_SPOTS) {
+      expect(h.status, h.id).toBe('needs-review');
+      expect(h.references.length, h.id).toBeGreaterThan(0);
+      // Association wording only, never identity.
+      expect(h.story, h.id).not.toMatch(
+        /same as|identical|is (Saraswati|Ganesha|Lakshmi|Kubera|Mahakala)/i,
+      );
     }
   });
 

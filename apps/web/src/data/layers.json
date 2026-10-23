@@ -7,7 +7,8 @@
       "name": "Akihabara Electric Town",
       "lat": 35.698,
       "lng": 139.771,
-      "note": "Anime, manga, figure and game shops across whole buildings."
+      "note": "Anime, manga, figure and game shops across whole buildings.",
+      "status": "needs-review"
     },
     {
       "id": "ghibli",
@@ -15,7 +16,8 @@
       "name": "Ghibli Museum, Mitaka",
       "lat": 35.696,
       "lng": 139.57,
-      "note": "Studio Ghibli's museum. Tickets sell out, so book weeks ahead."
+      "note": "Studio Ghibli's museum. Tickets sell out, so book weeks ahead.",
+      "status": "needs-review"
     },
     {
       "id": "nakano",
@@ -23,7 +25,8 @@
       "name": "Nakano Broadway",
       "lat": 35.709,
       "lng": 139.666,
-      "note": "A vintage mall full of collectors' shops."
+      "note": "A vintage mall full of collectors' shops.",
+      "status": "needs-review"
     },
     {
       "id": "kamakurakokomae",
@@ -31,7 +34,8 @@
       "name": "Kamakura-Kōkōmae crossing",
       "lat": 35.306,
       "lng": 139.5,
-      "note": "The seaside railway crossing fans know from Slam Dunk."
+      "note": "The seaside railway crossing fans know from Slam Dunk.",
+      "status": "needs-review"
     },
     {
       "id": "manga-museum",
@@ -39,7 +43,8 @@
       "name": "Kyoto International Manga Museum",
       "lat": 35.012,
       "lng": 135.759,
-      "note": "A former school with walls of manga you can read."
+      "note": "A former school with walls of manga you can read.",
+      "status": "needs-review"
     },
     {
       "id": "denden",
@@ -47,7 +52,8 @@
       "name": "Den Den Town, Nipponbashi",
       "lat": 34.659,
       "lng": 135.506,
-      "note": "Osaka's answer to Akihabara."
+      "note": "Osaka's answer to Akihabara.",
+      "status": "needs-review"
     },
     {
       "id": "hida-furukawa",
@@ -55,7 +61,8 @@
       "name": "Hida-Furukawa",
       "lat": 36.238,
       "lng": 137.187,
-      "note": "A quiet town fans visit for scenes from the film Your Name."
+      "note": "A quiet town fans visit for scenes from the film Your Name.",
+      "status": "needs-review"
     }
   ],
   "regional": [
@@ -65,7 +72,8 @@
       "name": "Shirakawa-go",
       "lat": 36.257,
       "lng": 136.906,
-      "note": "UNESCO village of thatched gassho-style farmhouses."
+      "note": "UNESCO village of thatched gassho-style farmhouses.",
+      "status": "needs-review"
     },
     {
       "id": "kinosaki",
@@ -73,7 +81,8 @@
       "name": "Kinosaki Onsen",
       "lat": 35.625,
       "lng": 134.807,
-      "note": "Stroll between seven public bathhouses in a yukata."
+      "note": "Stroll between seven public bathhouses in a yukata.",
+      "status": "needs-review"
     },
     {
       "id": "naoshima",
@@ -81,7 +90,8 @@
       "name": "Naoshima",
       "lat": 34.459,
       "lng": 133.995,
-      "note": "An island of art museums and outdoor sculptures."
+      "note": "An island of art museums and outdoor sculptures.",
+      "status": "needs-review"
     }
   ]
 }

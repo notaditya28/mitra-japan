@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { StatusBadge } from '../../components/StatusBadge';
 import { useAppStore } from '../../store/useAppStore';
 import { PhrasePreview } from '../fears/PhrasePreview';
 import { animeForCity, heritageNear, regionalForCity, spotsForCity, type City } from './data';
@@ -31,7 +32,8 @@ export function CityCard({ city, onClose }: { city: City; onClose: () => void })
           </h2>
           <p className="mt-1 text-sm text-mist">
             {t('planner.fromTokyo')}:{' '}
-            <span className="font-semibold text-plum">{city.fromTokyo}</span>
+            <span className="font-semibold text-plum">{city.fromTokyo}</span>{' '}
+            <StatusBadge status="estimate" className="align-middle" />
           </p>
         </div>
         <button
@@ -44,7 +46,9 @@ export function CityCard({ city, onClose }: { city: City; onClose: () => void })
         </button>
       </header>
 
-      <p className="text-ink">{city.culture}</p>
+      <p className="text-ink">
+        {city.culture} <StatusBadge status={city.status} className="align-middle" />
+      </p>
       <p className="rounded-2xl bg-blush/60 px-4 py-3 text-sm text-plum">
         <span className="font-semibold">{t('planner.season')}:</span> {city.season}
       </p>
@@ -74,9 +78,7 @@ export function CityCard({ city, onClose }: { city: City; onClose: () => void })
                         {t(`planner.kinds.${s.kind}`)} · {s.area}
                       </p>
                     </div>
-                    <span className="shrink-0 rounded-full bg-mist/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-mist">
-                      {t('planner.demoData')}
-                    </span>
+                    <StatusBadge status={s.status} />
                   </div>
                   <p className={`mt-2 text-xs font-semibold ${suits ? 'text-plum' : 'text-rose'}`}>
                     <span
@@ -119,10 +121,11 @@ export function CityCard({ city, onClose }: { city: City; onClose: () => void })
                   style={{ background: LAYER_COLORS.heritage }}
                 />
                 <span>
-                  <span className="font-semibold text-plum">
-                    {t(`roots.indian.${h.id}`)} · {h.japanese}
+                  <span className="font-semibold text-plum">{h.japanese}</span>{' '}
+                  <span className="text-mist">
+                    · {t('roots.associated', { name: t(`roots.indian.${h.id}`) })} · {h.place}
                   </span>{' '}
-                  <span className="text-mist">{h.place}</span>
+                  <StatusBadge status="needs-review" />
                 </span>
               </li>
             ))}

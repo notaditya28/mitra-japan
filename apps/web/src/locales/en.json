@@ -65,7 +65,7 @@
       },
       "foreign": {
         "q": "Will it feel foreign?",
-        "a": "Japan already prays to Saraswati, Ganesha and Lakshmi, under Japanese names. Keep walking."
+        "a": "Japan still honours deities that developed from Saraswati, Ganesha and Lakshmi. Keep walking."
       }
     }
   },
@@ -103,20 +103,22 @@
     "none": "No restriction"
   },
   "scanner": {
-    "demoLabel": "Demo scan",
+    "demoLabel": "Sample scan",
     "dish": "Dish",
     "verdict": {
-      "safe": "Safe",
-      "ask": "Ask first",
-      "avoid": "Avoid"
+      "clear": "No listed conflicts",
+      "conflict": "Potential conflict",
+      "unverified": "Unable to verify"
     },
     "explain": {
-      "safe": "Nothing in this dish breaks your diet.",
-      "ask": "Probably fine, but confirm with staff before ordering.",
-      "avoid": "Contains ingredients that break your diet.",
-      "hidden": "Looks safe on the menu, but the stock or fat gives it away."
+      "clear": "No listed conflicts detected for your diet in the text we could read.",
+      "conflict": "Potential dietary conflict detected: {{items}}.",
+      "unverified": "Unable to verify: {{items}} can hide ingredients. Ask staff.",
+      "unreadable": "Unable to verify: we could not read any Japanese text.",
+      "hidden": "Looks fine on the menu, but the stock or fat tells a different story."
     },
-    "noneFound": "No flagged ingredients found."
+    "noneFound": "No flagged ingredients found.",
+    "caveat": "Text recognition can miss words, broths and sauces can hide ingredients, and recipes change. Show the staff card to be sure."
   },
   "phrase": {
     "show": "Show this to staff",
@@ -134,8 +136,8 @@
   },
   "roots": {
     "eyebrow": "Step 3 · Japan has Indian roots",
-    "title": "You have met these gods before.",
-    "body": "Buddhism carried Indian deities to Japan more than a thousand years ago. They are still worshipped there today.",
+    "title": "Some of these gods will feel familiar.",
+    "body": "Through Buddhism, deities that began in India reached Japan more than a thousand years ago and took Japanese forms. They are still honoured there today.",
     "mapCaption": "Where to meet them in Japan today.",
     "storiesTitle": "Their stories",
     "indian": {
@@ -144,7 +146,8 @@
       "kichijoten": "Lakshmi",
       "daikokuten": "Mahakala",
       "bishamonten": "Kubera"
-    }
+    },
+    "associated": "Associated with {{name}}"
   },
   "numbers": {
     "eyebrow": "Step 4 · The numbers",
@@ -263,5 +266,13 @@
   },
   "a11y": {
     "skip": "Skip to content"
+  },
+  "status": {
+    "needsReview": "Needs review",
+    "needsReviewNote": "Draft content: being checked against references.",
+    "sample": "Sample",
+    "estimate": "Estimate",
+    "verified": "Verified",
+    "references": "References"
   }
 }

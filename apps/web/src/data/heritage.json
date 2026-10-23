@@ -1,60 +1,80 @@
 {
-  "_note": "Short, accurate one-liners. Places are well-known sites associated with each deity; coordinates are approximate for map pins. 'label' is the map-label offset from the pin, in pixels on a 750px-wide map.",
+  "_note": "Indian-origin deities in Japan. Wording describes historical associations and syncretic origins ('developed from', 'associated with'), never identity. Every entry is needs-review until the owner verifies the site, wording and references. 'visiting' stays null until practical info is verified. 'label' is the map-label offset from the pin, in pixels on a 750px-wide map.",
   "deities": [
     {
       "id": "benzaiten",
       "japanese": "Benzaiten",
       "kanji": "弁才天",
       "indian": "Saraswati",
-      "story": "Goddess of music, learning and flowing water, often shown holding a biwa lute, much like Saraswati's veena.",
+      "story": "Developed from the Indian river goddess Saraswati. Associated with music, eloquence and water, and often shown playing a biwa lute.",
       "place": "Enoshima, Kanagawa",
       "lat": 35.2995,
       "lng": 139.4803,
-      "label": [70, 80]
+      "label": [70, 80],
+      "references": ["https://en.wikipedia.org/wiki/Benzaiten"],
+      "visiting": null,
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "kangiten",
       "japanese": "Kangiten",
       "kanji": "歓喜天",
       "indian": "Ganesha",
-      "story": "The elephant-headed remover of obstacles, worshipped in esoteric Buddhist temples for harmony and success.",
+      "story": "Developed from Ganesha (Vinayaka) through esoteric Buddhism. Often shown as a pair of embracing elephant-headed figures and associated with removing obstacles.",
       "place": "Matsuchiyama Shoden, Tokyo",
       "lat": 35.7175,
       "lng": 139.8014,
-      "label": [90, -60]
+      "label": [90, -60],
+      "references": ["https://en.wikipedia.org/wiki/Kangiten"],
+      "visiting": null,
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "kichijoten",
       "japanese": "Kichijoten",
       "kanji": "吉祥天",
       "indian": "Lakshmi",
-      "story": "Goddess of good fortune, beauty and prosperity, honoured with prayers for a fruitful year.",
+      "story": "Developed from Lakshmi (Shri). Associated with good fortune, beauty and prosperity.",
       "place": "Joruri-ji, Kyoto",
       "lat": 34.7146,
       "lng": 135.8728,
-      "label": [-60, 110]
+      "label": [-60, 110],
+      "references": ["https://en.wikipedia.org/wiki/Kichij%C5%8Dten"],
+      "visiting": null,
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "daikokuten",
       "japanese": "Daikokuten",
       "kanji": "大黒天",
       "indian": "Mahakala",
-      "story": "A fierce form of Shiva who became Japan's smiling god of the harvest, kitchens and abundance.",
+      "story": "Developed from Mahakala, a fierce form associated with Shiva, and later blended with the Shinto god Ōkuninushi into a smiling god of the harvest and kitchens.",
       "place": "Enryaku-ji, Mount Hiei",
       "lat": 35.0706,
       "lng": 135.8411,
-      "label": [40, -150]
+      "label": [40, -150],
+      "references": ["https://en.wikipedia.org/wiki/Daikokuten"],
+      "visiting": null,
+      "status": "needs-review",
+      "lastChecked": null
     },
     {
       "id": "bishamonten",
       "japanese": "Bishamonten",
       "kanji": "毘沙門天",
       "indian": "Kubera (Vaishravana)",
-      "story": "Guardian of the north and of wealth, transformed in Japan into an armoured protector god.",
+      "story": "Developed from Vaishravana, guardian of the north, who is associated with Kubera. In Japan he became an armoured protector.",
       "place": "Kurama-dera, Kyoto",
       "lat": 35.1186,
       "lng": 135.7708,
-      "label": [-230, -70]
+      "label": [-230, -70],
+      "references": ["https://en.wikipedia.org/wiki/Bishamonten"],
+      "visiting": null,
+      "status": "needs-review",
+      "lastChecked": null
     }
   ]
 }

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import heritage from '../../data/heritage.json';
+import { StatusBadge } from '../StatusBadge';
 
 // Map data + d3-geo load with the reveal, not with first paint.
 const RootsReveal = lazy(() =>
@@ -38,12 +39,29 @@ export function RootsSection({ immersive }: { immersive: boolean }) {
               >
                 {d.kanji.charAt(0)}
               </span>
-              <p className="eyebrow text-mist">{d.japanese}</p>
-              <p className="mt-1 font-display text-2xl text-plum">{t(`roots.indian.${d.id}`)}</p>
+              <StatusBadge status="needs-review" />
+              <p className="mt-3 font-display text-2xl text-plum">{d.japanese}</p>
+              <p className="mt-0.5 text-sm font-semibold text-rose">
+                {t('roots.associated', { name: t(`roots.indian.${d.id}`) })}
+              </p>
               <p className="mt-3 text-sm leading-relaxed text-ink">{d.story}</p>
               <p className="mt-4 flex items-center gap-1.5 text-xs font-medium text-mist">
                 <span aria-hidden="true" className="h-2 w-2 rounded-full bg-gold" />
                 {d.place}
+              </p>
+              <p className="mt-2 text-xs text-mist">
+                {t('status.references')}:{' '}
+                {d.references.map((url, i) => (
+                  <a
+                    key={url}
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-rose underline underline-offset-2"
+                  >
+                    {i === 0 ? d.japanese : i + 1}
+                  </a>
+                ))}
               </p>
             </li>
           ))}

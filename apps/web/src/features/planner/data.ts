@@ -5,6 +5,7 @@ import heritageJson from '../../data/heritage.json';
 import type { Diet } from '../../store/useAppStore';
 
 export type VegLevel = 'high' | 'medium' | 'low';
+export type DataStatus = 'verified' | 'sample' | 'needs-review';
 
 export interface City {
   id: string;
@@ -18,6 +19,8 @@ export interface City {
   culture: string;
   veg: string;
   vegLevel: VegLevel;
+  status: DataStatus;
+  lastChecked: string | null;
 }
 
 /** Demo data only: never certified, never verified (enforced by data.test.ts). */
@@ -34,6 +37,7 @@ export interface FoodSpot {
   note: string;
   certified: false;
   verified: false;
+  status: 'sample';
 }
 
 export interface LayerSpot {
@@ -43,6 +47,7 @@ export interface LayerSpot {
   lat: number;
   lng: number;
   note: string;
+  status: DataStatus;
 }
 
 export interface HeritageSpot {
@@ -54,6 +59,9 @@ export interface HeritageSpot {
   place: string;
   lat: number;
   lng: number;
+  references: string[];
+  status: DataStatus;
+  lastChecked: string | null;
 }
 
 export const CITIES = citiesJson.cities as City[];

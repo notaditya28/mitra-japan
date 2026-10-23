@@ -47,8 +47,8 @@ export default function MapCanvas() {
         id: h.id,
         lat: h.lat,
         lng: h.lng,
-        label: `${t(`roots.indian.${h.id}`)} · ${h.japanese}`,
-        sub: h.place,
+        label: h.japanese,
+        sub: `${t('roots.associated', { name: t(`roots.indian.${h.id}`) })} · ${h.place} · ${t('status.needsReview')}`,
       })),
       anime: ANIME_SPOTS.map<Pin>((a) => ({
         id: a.id,
