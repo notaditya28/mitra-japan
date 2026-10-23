@@ -9,7 +9,7 @@
 - [x] **M4** 3D Japan map (extruded prefectures, seigaiha sea, mini Fuji), 4 animated layers, city cards, sample route with Shinkansen marker, desktop 3-panel + mobile bottom sheet, 2D fallback
 - [x] **M5** FastAPI + Claude planner (streamed, schema-constrained, validated, retry + visible fallback), grounding/feasibility flags, day cards ↔ map sync, per-day regenerate, animated route, Food Confidence rings with reasons, Demo/Offline modes
 - [x] **M6** Veg-Safe scanner (on-device OCR behind a provider interface, 24 sample scans, three-state results incl. unknown words, custom restrictions, staff card, AI explanation endpoint), restaurant directory (9 researched + 21 sample, filters, evidence), interactive visa checklist
-- [ ] **M7** i18n (HI/GU), export (WhatsApp/PDF), polish, performance, deploy
+- [x] **M7** Saved trips (save/edit/duplicate/delete with confirm), printable PDF with sources, wa.me share link, demo reservation, HI/GU lazy-loaded, deploy configs (render.yaml, apps/web/vercel.json). Not done: Lighthouse run, actual deploy (owner), native HI/GU review
 
 ## Needs owner input
 

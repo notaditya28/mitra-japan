@@ -115,3 +115,111 @@
 .scroll-cue {
   animation: cue 2.4s ease-in-out infinite;
 }
+
+/* ---- Printable trip (features/export/TripPrint.tsx) ---------------------- */
+#print-root {
+  display: none;
+}
+@media print {
+  @page {
+    size: A4;
+    margin: 16mm 14mm;
+  }
+  body > *:not(#print-root),
+  dialog {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+  }
+  #print-root {
+    display: block;
+    color: #3a2430;
+    font-family:
+      'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Gujarati', system-ui, sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.45;
+  }
+  .print-doc h1,
+  .print-doc h2 {
+    font-family: 'Shippori Mincho', serif;
+    color: #4a2238;
+    margin: 0 0 4pt;
+  }
+  .print-doc h1 {
+    font-size: 24pt;
+  }
+  .print-doc h2 {
+    font-size: 14pt;
+    border-bottom: 1px solid #f7c6d0;
+    padding-bottom: 2pt;
+  }
+  .print-header {
+    border-bottom: 3px solid #c2456e;
+    padding-bottom: 8pt;
+    margin-bottom: 10pt;
+  }
+  .print-brand {
+    font-size: 8.5pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #c2456e;
+    margin: 0 0 4pt;
+  }
+  .print-meta,
+  .print-sub,
+  .print-note {
+    color: #8a6b77;
+    font-size: 9pt;
+  }
+  .print-sub {
+    display: block;
+  }
+  .print-title {
+    font-weight: 600;
+    margin: 0 0 2pt;
+  }
+  .print-tag {
+    font-size: 8pt;
+    color: #8a6b77;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .print-box {
+    border: 1px solid #f0c27b;
+    background: #fdf6ea;
+    border-radius: 6pt;
+    padding: 6pt 10pt;
+    margin: 8pt 0;
+  }
+  .print-day {
+    margin-top: 12pt;
+    break-inside: avoid;
+  }
+  .print-day ol,
+  .print-day ul {
+    margin: 4pt 0;
+    padding-left: 16pt;
+  }
+  .print-food {
+    background: #fbe3ea;
+    border-radius: 6pt;
+    padding: 4pt 10pt;
+    margin: 6pt 0;
+  }
+  .print-doc table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+  }
+  .print-doc th,
+  .print-doc td {
+    border-bottom: 1px solid #f7c6d0;
+    padding: 3pt 4pt;
+    text-align: left;
+    vertical-align: top;
+  }
+  .print-url {
+    word-break: break-all;
+  }
+}

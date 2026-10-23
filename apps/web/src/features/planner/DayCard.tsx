@@ -1,9 +1,10 @@
 import { forwardRef, useId, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { reasonText } from './confidenceText';
 import { StatusBadge } from '../../components/StatusBadge';
 import { useAppStore } from '../../store/useAppStore';
 import { ConfidenceRing } from './ConfidenceRing';
-import { cityById } from './data';
+import { cityById, stopStatus } from './data';
 import { foodConfidence } from './foodConfidence';
 import type { Day } from './itinerary';
 import { usePlannerStore } from './usePlannerStore';
@@ -67,7 +68,7 @@ export const DayCard = forwardRef<HTMLElement, DayCardProps>(function DayCard(
       </button>
 
       {day.flags.length > 0 ? (
-        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="Warnings">
+        <ul className="mt-3 flex flex-wrap gap-1.5" aria-label={t('trip.warnings')}>
           {day.flags.map((f, i) => (
             <li key={`${f.code}-${i}`} className={FLAG_STYLE} title={f.message}>
               {t(`trip.flags.${f.code}`)}
@@ -86,10 +87,7 @@ export const DayCard = forwardRef<HTMLElement, DayCardProps>(function DayCard(
             <span className="min-w-0 flex-1">
               <span className="font-semibold text-plum">{s.name}</span>{' '}
               {s.inOurData ? (
-                <StatusBadge
-                  status={s.foodSpotId ? 'sample' : 'needs-review'}
-                  className="align-middle"
-                />
+                <StatusBadge status={stopStatus(s)} className="align-middle" />
               ) : (
                 <span className="text-[11px] text-mist">· {t('trip.suggestion')}</span>
               )}
@@ -137,7 +135,7 @@ export const DayCard = forwardRef<HTMLElement, DayCardProps>(function DayCard(
             <ul className="space-y-1">
               {confidence.reasons.map((r) => (
                 <li key={r.key} className="flex justify-between gap-3">
-                  <span>{t(`confidence.reasons.${r.key}`, r.params)}</span>
+                  <span>{reasonText(r, t)}</span>
                   {r.points !== 0 ? (
                     <span
                       className={`shrink-0 font-semibold ${r.points > 0 ? 'text-plum' : 'text-rose'}`}

@@ -30,12 +30,17 @@ interface PlannerState {
   dayError: { day: number; error: PlannerError } | null;
   mode: ServiceMode | null;
   messages: ChatMessage[];
+  /** The saved trip this plan was opened from or saved as (see features/trips). */
+  activeTripId: string | null;
   plan: (prompt: string, opts?: { change?: boolean; days?: number }) => Promise<void>;
   regenerate: (day: number, instruction: string) => Promise<void>;
   focusDay: (day: number | null) => void;
   focusCity: (cityId: string | null) => void;
   checkMode: () => Promise<void>;
   clear: () => void;
+  /** Show a saved trip on the map and in the itinerary panel. */
+  openTrip: (id: string, itinerary: Itinerary) => void;
+  setActiveTrip: (id: string | null) => void;
 }
 
 let controller: AbortController | null = null;
@@ -56,6 +61,7 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
   dayError: null,
   mode: null,
   messages: [],
+  activeTripId: null,
 
   async plan(prompt, opts = {}) {
     controller?.abort();
@@ -71,6 +77,8 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
       dayError: null,
       selectedDay: null,
       messages: [...s.messages, { role: 'user', text: prompt }],
+      // A brand-new plan is not the saved trip any more; a change to it still is.
+      activeTripId: opts.change ? s.activeTripId : null,
     }));
     useAppStore.getState().setShowSampleRoute(false);
 
@@ -151,6 +159,27 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
       error: null,
       selectedDay: null,
       messages: [],
+      activeTripId: null,
     });
+  },
+
+  openTrip(id, itinerary) {
+    controller?.abort();
+    set({
+      phase: 'ready',
+      stage: null,
+      previews: [],
+      itinerary,
+      error: null,
+      dayError: null,
+      activeTripId: id,
+      messages: [],
+    });
+    useAppStore.getState().setShowSampleRoute(false);
+    get().focusDay(itinerary.days[0]?.day ?? null);
+  },
+
+  setActiveTrip(activeTripId) {
+    set({ activeTripId });
   },
 }));

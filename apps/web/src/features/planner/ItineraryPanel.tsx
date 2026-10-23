@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBadge } from '../../components/StatusBadge';
 import { useTools } from '../tools/useTools';
+import { TripActions } from '../trips/TripActions';
 import { DayCard } from './DayCard';
 import { usePlannerStore, visibleDays } from './usePlannerStore';
 
@@ -52,6 +53,8 @@ export function ItineraryPanel({ onShowCity }: { onShowCity: (cityId: string) =>
         </div>
         {itinerary ? <p className="mt-2 text-sm text-ink">{itinerary.summary}</p> : null}
       </header>
+
+      {itinerary ? <TripActions itinerary={itinerary} /> : null}
 
       {itinerary && itinerary.notices.length > 0 ? (
         <div

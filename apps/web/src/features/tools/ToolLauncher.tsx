@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { useTools, type Tool } from './useTools';
 
-const ICONS: Record<Tool, string> = {
+const ICONS: Record<Exclude<Tool, 'book'>, string> = {
+  trips: 'M5 4h14v16l-7-4-7 4z',
   scan: 'M4 7V5a1 1 0 011-1h2M17 4h2a1 1 0 011 1v2M20 17v2a1 1 0 01-1 1h-2M7 20H5a1 1 0 01-1-1v-2M7 12h10',
   eat: 'M7 3v8a2 2 0 002 2v8M11 3v6M5 3v6M17 3c-1.7 1.3-2.5 3.3-2.5 6v4H17v8',
   visa: 'M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5',
@@ -18,7 +19,7 @@ export function ToolLauncher() {
         {t('tools.title')}
       </h2>
       <ul className="mt-3 grid gap-2">
-        {(['scan', 'eat', 'visa'] as Tool[]).map((k) => (
+        {(['trips', 'scan', 'eat', 'visa'] as const).map((k) => (
           <li key={k}>
             <button
               type="button"

@@ -438,7 +438,8 @@
     "emptyHint": "Tell your guide who is travelling and what you eat.",
     "tabItinerary": "Itinerary",
     "tabCity": "City",
-    "notices": "Notes about this plan"
+    "notices": "Notes about this plan",
+    "warnings": "Warnings"
   },
   "confidence": {
     "title": "Food Confidence",
@@ -461,11 +462,11 @@
       },
       "plannedSuits": "{{count}} planned food stop(s) usually suit your diet",
       "plannedClash": "{{count}} planned food stop(s) may not suit your diet",
-      "nearbySuits": "{{count}} more sample place(s) nearby usually suit you",
-      "noSuitablePlaces": "No sample places in {{city}} match your diet yet",
+      "nearbySuits": "{{count}} more listed place(s) nearby usually suit you",
+      "noSuitablePlaces": "No listed places in {{city}} match your diet yet",
       "risks": "Double-check: {{items}}",
       "cap": "Capped at {{cap}}: none of our places are independently verified",
-      "unverified": "Sample data only: always show the staff card",
+      "unverified": "Listed places are unverified: always show the staff card",
       "noRestriction": "No dietary restriction set",
       "unknownCity": "No food data for this city"
     }
@@ -553,6 +554,137 @@
       "title": "Visa checklist",
       "hint": "What to prepare, with official links",
       "open": "Open the visa checklist"
+    },
+    "trips": {
+      "eyebrow": "Saved",
+      "title": "My trips",
+      "hint": "Open, edit, duplicate or delete saved trips"
+    },
+    "book": {
+      "eyebrow": "Demo",
+      "title": "Reserve this trip",
+      "hint": "Try the booking flow (nothing is booked)"
+    }
+  },
+  "trips": {
+    "save": "Save trip",
+    "saveConfirm": "Save",
+    "saveChanges": "Save changes",
+    "savedAs": "Saved as “{{name}}”",
+    "saved": "Saved to My trips.",
+    "updated": "Changes saved.",
+    "name": "Trip name",
+    "notes": "Notes (optional)",
+    "storageNote": "Trips are saved only in this browser. Clearing site data removes them.",
+    "defaultName": "{{n}} days · {{from}} → {{to}}",
+    "intro": "Trips you've saved on this device.",
+    "empty": "No saved trips yet",
+    "emptyHint": "Plan a trip with your guide, then press “Save trip”.",
+    "days_one": "{{count}} day",
+    "days_other": "{{count}} days",
+    "updatedOn": "Updated {{date}}",
+    "open": "Open",
+    "edit": "Edit",
+    "saveEdit": "Save",
+    "duplicate": "Duplicate",
+    "delete": "Delete",
+    "copyLabel": "copy",
+    "duplicated": "Made a copy of “{{name}}”.",
+    "deleted": "Deleted “{{name}}”.",
+    "deleteTitle": "Delete this trip?",
+    "deleteBody": "“{{name}}” will be removed from this browser. This can't be undone.",
+    "errors": {
+      "name": "Give the trip a name (up to 60 characters).",
+      "full": "You can keep up to 30 trips. Delete one first.",
+      "storage": "Your browser didn't let us save (storage full or blocked). The trip is only kept until you close this tab.",
+      "missing": "That trip no longer exists."
+    }
+  },
+  "export": {
+    "pdf": "Download PDF",
+    "whatsapp": "Share on WhatsApp",
+    "shareFooter": "Planned with Mitra Japan. Travel times are estimates; check timetables and restaurants before you go.",
+    "shareSample": "(Sample itinerary from demo data)",
+    "print": {
+      "generated": "Generated {{date}}",
+      "demoNote": "Demo project: place and food data are unverified unless marked Verified. Travel times are estimates; check current timetables.",
+      "practical": "Practical notes",
+      "sources": "Sources and verification",
+      "col": {
+        "source": "Source",
+        "status": "Status",
+        "checked": "Last checked",
+        "link": "Link"
+      },
+      "kinds": {
+        "city": "City",
+        "restaurant": "Food place",
+        "heritage": "Heritage site",
+        "visa": "Visa"
+      },
+      "notChecked": "Not yet checked",
+      "disclaimers": {
+        "times": "Travel times are estimates from distance, not timetables.",
+        "food": "Food Confidence is worked out from our data and capped at 85 while nothing is verified. Always confirm ingredients with staff.",
+        "visa": "Visa notes are preparation help, not immigration advice. Confirm every item with official sources."
+      }
+    }
+  },
+  "booking": {
+    "open": "Reserve (demo)",
+    "view": "View demo reservation",
+    "banner": "Demo only: this does not book anything, takes no payment and sends nothing to anyone.",
+    "needPlan": "Plan a trip first, then you can try the demo reservation.",
+    "tripTitle": "Trip",
+    "noPrices": "No prices: we don't have real fares or rates.",
+    "startDate": "Start date",
+    "leadName": "Lead traveller",
+    "contact": "Contact: {{phone}} (from your demo sign-in)",
+    "travellers": "Who is travelling? (up to {{max}})",
+    "counts": {
+      "adults": "Adults",
+      "seniors": "Seniors (60+)",
+      "children": "Children",
+      "rooms": "Rooms"
+    },
+    "notes": "Requests (optional)",
+    "notesPlaceholder": "e.g. Jain meals, ground-floor room for parents",
+    "reviewButton": "Review",
+    "reviewTitle": "Check your details",
+    "people": "Travellers",
+    "peopleValue": "{{people}} ({{adults}} adults, {{seniors}} seniors, {{children}} children)",
+    "reviewNote": "Confirming creates a demo reference, saved with this trip in your browser only.",
+    "confirmButton": "Create demo reservation",
+    "back": "Back",
+    "doneEyebrow": "Demo reservation",
+    "doneBody": "For {{name}}, starting {{date}} · {{people}} travellers · {{rooms}} room(s).",
+    "notReal": "This is not a real booking. Nothing has been reserved or paid.",
+    "nextTitle": "To book for real",
+    "next": {
+      "rail": "Book Shinkansen seats or a rail pass with JR or an agent you trust.",
+      "stay": "Book hotels, ryokan or temple lodging directly or through a booking site.",
+      "visa": "Prepare your visa with the checklist and confirm with official sources.",
+      "food": "Tell your hotel and restaurants about your diet when you book."
+    },
+    "cancel": "Cancel demo reservation",
+    "cancelTitle": "Remove the demo reservation?",
+    "cancelBody": "Remove demo reservation {{ref}} from this trip?",
+    "cancelConfirm": "Remove",
+    "badge": "Demo reservation {{ref}}",
+    "print": {
+      "title": "Demo reservation",
+      "body": "Reference {{ref}} · from {{date}} · {{people}} travellers · {{rooms}} room(s)."
+    },
+    "errors": {
+      "dateMissing": "Choose a start date.",
+      "datePast": "The start date can't be in the past.",
+      "dateFar": "Choose a date within the next 12 months.",
+      "countInvalid": "Use whole numbers, 0 or more.",
+      "needAdult": "At least one adult or senior must travel.",
+      "tooMany": "Up to 12 travellers per reservation.",
+      "roomsInvalid": "Rooms must be at least 1 and no more than the number of travellers.",
+      "nameShort": "Enter the lead traveller's name.",
+      "notesLong": "Keep requests under 300 characters."
     }
   }
 }

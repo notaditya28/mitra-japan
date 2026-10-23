@@ -18,7 +18,7 @@ export function Dialog({
   title: string;
   eyebrow?: string;
   children: ReactNode;
-  size?: 'lg' | 'full';
+  size?: 'sm' | 'lg' | 'full';
 }) {
   const { t } = useTranslation();
   const ref = useRef<HTMLDialogElement>(null);
@@ -31,10 +31,11 @@ export function Dialog({
     if (!open && d.open) d.close();
   }, [open]);
 
-  const width =
-    size === 'full'
-      ? 'h-[100svh] max-h-none w-screen max-w-none rounded-none'
-      : 'h-[100svh] max-h-none w-screen max-w-none rounded-none sm:h-auto sm:max-h-[90svh] sm:w-[min(92vw,56rem)] sm:rounded-card';
+  const width = {
+    full: 'h-[100svh] max-h-none w-screen max-w-none rounded-none',
+    lg: 'h-[100svh] max-h-none w-screen max-w-none rounded-none sm:h-auto sm:max-h-[90svh] sm:w-[min(92vw,56rem)] sm:rounded-card',
+    sm: 'h-auto max-h-[90svh] w-[calc(100vw-2rem)] max-w-md rounded-card',
+  }[size];
 
   return (
     <dialog

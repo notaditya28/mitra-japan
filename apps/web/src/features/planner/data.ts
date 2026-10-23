@@ -121,3 +121,9 @@ export function distanceKm(
 
 export const heritageNear = (city: City, km = 60): HeritageSpot[] =>
   HERITAGE_SPOTS.filter((h) => distanceKm(city, h) <= km);
+
+/** Status badge for an itinerary stop that is in our data: its restaurant's status, or needs-review. */
+export function stopStatus(s: { foodSpotId: string | null }): DataStatus {
+  if (!s.foodSpotId) return 'needs-review';
+  return RESTAURANTS.find((r) => r.id === s.foodSpotId)?.status ?? 'sample';
+}

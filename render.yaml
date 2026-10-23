@@ -1,0 +1,23 @@
+# Render Blueprint for the Mitra Japan API (FastAPI).
+# The service builds from the repo root because the API reads the shared data
+# files in apps/web/src/data. Secrets are entered in the Render dashboard.
+services:
+  - type: web
+    name: mitra-japan-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r apps/api/requirements.txt
+    # --proxy-headers so rate limiting sees the visitor's IP, not Render's proxy.
+    startCommand: uvicorn app.main:app --app-dir apps/api --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips "*"
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: ANTHROPIC_API_KEY
+        sync: false # paste in the dashboard; leave empty to run in Demo mode
+      - key: CORS_ORIGINS
+        sync: false # e.g. https://mitra-japan.vercel.app
+      - key: PLANNER_MODEL
+        value: claude-sonnet-5-5
+      - key: PLAN_RATE_PER_MINUTE
+        value: '8'

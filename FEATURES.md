@@ -2,7 +2,7 @@
 
 Updated at the end of every milestone. Three lists: what works, what is demo-only, and what needs an external service or the owner's verification.
 
-_Last updated: 2026-10-24, end of milestone 6._
+_Last updated: 2026-10-24, end of milestone 7._
 
 ## Fully working
 
@@ -38,6 +38,10 @@ _Last updated: 2026-10-24, end of milestone 6._
 - Status badges (Verified / Sample / Needs review / Estimate) on seeded records.
 - Demo mode: no key → labelled sample itinerary; API down → "Offline · sample data" with a visible notice.
 
+- Saved trips in this browser (save, edit, duplicate, delete with confirmation), printable A4 PDF with sources and check dates, WhatsApp share link (wa.me, no bot).
+- Demo reservation: clearly labelled, books nothing, no prices.
+- HI/GU translations load only when chosen.
+
 ## Demo-only (works, but on sample or seeded data)
 
 - **Sample restaurants**: 21 illustrative kinds of places in `restaurants.json` (`status: sample`, no address, diet basis "not confirmed").
@@ -59,4 +63,4 @@ _Last updated: 2026-10-24, end of milestone 6._
 
 ## Planned (by milestone)
 
-- **M7**: saved trips, PDF export, WhatsApp share link, i18n polish, performance, deploy.
+- Deploy: configs ready (`render.yaml`, `apps/web/vercel.json`); the owner connects Render and Vercel (README).

@@ -58,6 +58,13 @@ The key is read only by the API and never reaches the browser bundle.
 - The ingredient dictionary (`ingredients.json`) has per-diet rules: `avoid` = conflict, `ask` = unable to verify. Diets are separate (Jain, vegetarian, vegan, halal, no-beef, eggless). Travellers can add their own restrictions (an exact Japanese word), which always count as conflicts.
 - `POST /api/scan-explain` (live mode only) asks Claude to explain a result and draft a question for staff. It never changes the verdict; answers that call a dish "safe", "guaranteed" or "certified" are rejected. In Demo mode it returns 503 and the UI says so.
 
+### Trips, export and the demo reservation
+
+- **Save trip** stores the itinerary in this browser. **My trips** opens, edits (name and notes), duplicates or deletes a trip; delete asks for confirmation. A planner change to an opened trip shows **Save changes**.
+- **Download PDF** builds an A4 print view. It includes days, Food Confidence with its reasons, practical notes, the visa checklist, a sources table with each source's status and last-checked date, and disclaimers.
+- **Share on WhatsApp** is a plain `https://wa.me/?text=…` link with the trip summary. There is no phone number and no bot; you pick the contact in WhatsApp.
+- **Reserve (demo)** collects a start date, the travellers and requests, then shows a reference like `MJ-DEMO-7KQ2RX`. Every screen says it is a demo.
+
 ### Editing data
 
 All seed data lives in `apps/web/src/data/`. Each record has `status` (`verified` / `sample` / `needs-review`), `source` and `lastChecked`. Only a human sets `verified`. `data.test.ts`, `visa.test.ts` and `sampleScans.test.ts` enforce the rules. The API reads the same files.
@@ -96,8 +103,30 @@ cd apps/api && .venv/Scripts/python -m pytest      # API tests always run in Dem
 
 ## Deploy
 
-- **Frontend → Vercel**: root directory `apps/web`, build `pnpm build`, output `dist`. Set `VITE_API_URL` to the API URL.
-- **API → Render or Railway**: root `apps/api`, start `uvicorn app.main:app --host 0.0.0.0 --port $PORT`. Set `ANTHROPIC_API_KEY` and allow the Vercel origin in CORS.
+The web app and the API deploy separately. Config is in the repo; you connect the accounts.
+
+### 1. API on Render (`render.yaml`)
+
+1. In Render choose **New → Blueprint** and pick this GitHub repo. Render reads `render.yaml` and creates `mitra-japan-api`.
+2. When it asks for secrets, set:
+   - `ANTHROPIC_API_KEY`: your key from console.anthropic.com. Leave it empty to run in Demo mode.
+   - `CORS_ORIGINS`: your Vercel URL, e.g. `https://mitra-japan.vercel.app`. Fill this in after step 2 if you don't know it yet.
+3. Deploy, then open `https://<your-api>.onrender.com/health`. It should say `"mode":"live"` (or `"demo"` without a key).
+
+The service builds from the repo root because it reads the shared data in `apps/web/src/data`. On the free plan it sleeps when idle: the first request after a while takes about a minute, and the web app shows "Offline · sample data" until it wakes.
+
+### 2. Web on Vercel (`apps/web/vercel.json`)
+
+1. In Vercel choose **Add New → Project**, import the repo, and set **Root Directory** to `apps/web`. The framework (Vite), build command and output are in `vercel.json`.
+2. Add environment variables:
+   - `VITE_API_URL`: the Render URL from step 1, e.g. `https://mitra-japan-api.onrender.com`.
+   - `ENABLE_EXPERIMENTAL_COREPACK=1`, so Vercel uses the pnpm version pinned in `package.json`.
+3. Deploy. If you set `CORS_ORIGINS` before you knew the Vercel URL, update it in Render and redeploy the API.
+
+### After deploying
+
+- Sign in with the demo login, plan a trip, open the scanner and run a sample scan, then download the PDF.
+- Changing `VITE_*` variables needs a new Vercel build, because they are baked into the bundle.
 
 ## Data honesty
 
@@ -110,3 +139,6 @@ Statistics are placeholders until verified with real sources (`apps/web/src/data
 - The scanner only knows the words in `ingredients.json`. Anything else is reported as unrecognised, never as clear.
 - Restaurant details (hours, menus, whether a place is still open) are not tracked. Always check before visiting.
 - Hindi and Gujarati text are drafts pending native review. Data notes (cities, restaurants, visa items) are English only.
+- Saved trips, the demo reservation, custom restrictions and visa ticks live in this browser's localStorage only. Clearing site data removes them, and they don't sync between devices.
+- "Download PDF" opens the browser's print dialog. Choose **Save as PDF**. This keeps Hindi, Gujarati and Japanese text in the system's own fonts.
+- The demo reservation books nothing and takes no payment. No prices are shown, because we have no real fares.
