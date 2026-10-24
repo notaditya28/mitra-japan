@@ -1,0 +1,752 @@
+{
+  "_note": "Japan in pictures (journey, before the numbers). Media from Wikimedia Commons under the licence shown on each item; made by scripts/gallery_media.py. Every item stays needs-review until the owner checks the picture, the caption and the credit.",
+  "source": "Wikimedia Commons",
+  "lastChecked": "2026-10-25",
+  "items": [
+    {
+      "id": "fushimi-inari",
+      "name": "Fushimi Inari Taisha",
+      "place": "Kyoto",
+      "category": "shrine",
+      "kind": "photo",
+      "src": "/gallery/fushimi-inari.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Torii path with lantern at Fushimi Inari Taisha Shrine, Kyoto, Japan.jpg",
+        "author": "Basile Morin",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Torii_path_with_lantern_at_Fushimi_Inari_Taisha_Shrine,_Kyoto,_Japan.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "kinkakuji",
+      "name": "Kinkaku-ji",
+      "place": "Kyoto",
+      "category": "temple",
+      "kind": "photo",
+      "src": "/gallery/kinkakuji.webp",
+      "width": 1100,
+      "height": 619,
+      "credit": {
+        "title": "Water reflection of Kinkaku-ji Temple a sunny day, Kyoto, Japan.jpg",
+        "author": "Basile Morin",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Water_reflection_of_Kinkaku-ji_Temple_a_sunny_day,_Kyoto,_Japan.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "kiyomizu-dera",
+      "name": "Kiyomizu-dera",
+      "place": "Kyoto",
+      "category": "temple",
+      "kind": "photo",
+      "src": "/gallery/kiyomizu-dera.webp",
+      "width": 1100,
+      "height": 677,
+      "credit": {
+        "title": "Kiyomizu-dera, Kyoto, November 2016 -01.jpg",
+        "author": "Martin Falbisoner",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kiyomizu-dera,_Kyoto,_November_2016_-01.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "arashiyama",
+      "name": "Arashiyama bamboo grove",
+      "place": "Kyoto",
+      "category": "nature",
+      "kind": "photo",
+      "src": "/gallery/arashiyama.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Bamboo Forest, Arashiyama, Kyoto, Japan.jpg",
+        "author": "Basile Morin",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bamboo_Forest,_Arashiyama,_Kyoto,_Japan.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "yasaka",
+      "name": "Yasaka Shrine, Gion",
+      "place": "Kyoto",
+      "category": "shrine",
+      "kind": "photo",
+      "src": "/gallery/yasaka.webp",
+      "width": 1100,
+      "height": 704,
+      "credit": {
+        "title": "Nishiromon Gate, Yasaka Shrine, Kyoto, West view 20190416 1.jpg",
+        "author": "DXR",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nishiromon_Gate,_Yasaka_Shrine,_Kyoto,_West_view_20190416_1.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "kyoto-museum",
+      "name": "Kyoto National Museum",
+      "place": "Kyoto",
+      "category": "museum",
+      "kind": "photo",
+      "src": "/gallery/kyoto-museum.webp",
+      "width": 1100,
+      "height": 825,
+      "credit": {
+        "title": "Kyoto National Museum (2020) - img 05.jpg",
+        "author": "Chainwit.",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kyoto_National_Museum_(2020)_-_img_05.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "sensoji",
+      "name": "Senso-ji",
+      "place": "Tokyo",
+      "category": "temple",
+      "kind": "photo",
+      "src": "/gallery/sensoji.webp",
+      "width": 1100,
+      "height": 826,
+      "credit": {
+        "title": "Senso-ji Kaminarimon 2.jpg",
+        "author": "Zairon",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Senso-ji_Kaminarimon_2.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "meiji-jingu",
+      "name": "Meiji Jingu",
+      "place": "Tokyo",
+      "category": "shrine",
+      "kind": "photo",
+      "src": "/gallery/meiji-jingu.webp",
+      "width": 1100,
+      "height": 825,
+      "credit": {
+        "title": "Torii @ Meiji Jingu Shrine @ Yoyogi Park (13607317544).jpg",
+        "author": "Guilhem Vellut from Annecy, France",
+        "licence": "CC BY 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Torii_%40_Meiji_Jingu_Shrine_%40_Yoyogi_Park_(13607317544).jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "shibuya",
+      "name": "Shibuya Crossing",
+      "place": "Tokyo",
+      "category": "city",
+      "kind": "photo",
+      "src": "/gallery/shibuya.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Tokyo Shibuya Scramble Crossing 2018-10-09.jpg",
+        "author": "Benh LIEU SONG (Flickr)",
+        "licence": "CC BY-SA 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tokyo_Shibuya_Scramble_Crossing_2018-10-09.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "skytree",
+      "name": "Tokyo Skytree",
+      "place": "Tokyo",
+      "category": "city",
+      "kind": "photo",
+      "src": "/gallery/skytree.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Worm's-eye view of Tokyo Skytree with vertical symmetry impression, a sunny day, in Japan.jpg",
+        "author": "Basile Morin",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Worm%27s-eye_view_of_Tokyo_Skytree_with_vertical_symmetry_impression,_a_sunny_day,_in_Japan.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "tokyo-museum",
+      "name": "Tokyo National Museum",
+      "place": "Tokyo",
+      "category": "museum",
+      "kind": "photo",
+      "src": "/gallery/tokyo-museum.webp",
+      "width": 1100,
+      "height": 730,
+      "credit": {
+        "title": "Tokyo National Museum, Honkan 2010.jpg",
+        "author": "Wiiii",
+        "licence": "CC BY-SA 3.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tokyo_National_Museum,_Honkan_2010.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "fuji-chureito",
+      "name": "Mount Fuji and Chureito Pagoda",
+      "place": "Yamanashi",
+      "category": "nature",
+      "kind": "photo",
+      "src": "/gallery/fuji-chureito.webp",
+      "width": 1100,
+      "height": 619,
+      "credit": {
+        "title": "Chureito Pagoda and Mount Fuji 2023-03-07.jpg",
+        "author": "Stjepko Krehula",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chureito_Pagoda_and_Mount_Fuji_2023-03-07.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "hakone-torii",
+      "name": "Hakone Shrine torii on Lake Ashi",
+      "place": "Hakone",
+      "category": "shrine",
+      "kind": "photo",
+      "src": "/gallery/hakone-torii.webp",
+      "width": 1100,
+      "height": 825,
+      "credit": {
+        "title": "Torii on Lake Ashi @ Hakone Shrine (13776878594).jpg",
+        "author": "Guilhem Vellut from Annecy, France",
+        "licence": "CC BY 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Torii_on_Lake_Ashi_%40_Hakone_Shrine_(13776878594).jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "kamakura-buddha",
+      "name": "Great Buddha of Kamakura",
+      "place": "Kamakura",
+      "category": "temple",
+      "kind": "photo",
+      "src": "/gallery/kamakura-buddha.webp",
+      "width": 1100,
+      "height": 825,
+      "credit": {
+        "title": "Le Grand Bouddha du Kotoku-in (Kamakura, Japon) (42096289494).jpg",
+        "author": "Jean-Pierre Dalbéra from Paris, France",
+        "licence": "CC BY 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Le_Grand_Bouddha_du_Kotoku-in_(Kamakura,_Japon)_(42096289494).jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "nikko-toshogu",
+      "name": "Nikko Toshogu",
+      "place": "Nikko",
+      "category": "shrine",
+      "kind": "photo",
+      "src": "/gallery/nikko-toshogu.webp",
+      "width": 1100,
+      "height": 828,
+      "credit": {
+        "title": "Nikko Toshogu Yomeimon Gate 2024.jpg",
+        "author": "Jpatokal",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nikko_Toshogu_Yomeimon_Gate_2024.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "todaiji",
+      "name": "Todai-ji",
+      "place": "Nara",
+      "category": "temple",
+      "kind": "photo",
+      "src": "/gallery/todaiji.webp",
+      "width": 1100,
+      "height": 668,
+      "credit": {
+        "title": "Nara Todai-ji Daibutsuden Exterior South Side 06.jpg",
+        "author": "Zairon",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nara_Todai-ji_Daibutsuden_Exterior_South_Side_06.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "nara-deer",
+      "name": "Deer in Nara Park",
+      "place": "Nara",
+      "category": "nature",
+      "kind": "photo",
+      "src": "/gallery/nara-deer.webp",
+      "width": 1100,
+      "height": 698,
+      "credit": {
+        "title": "Sika deer doe and fawn Nara 2026 dllu.jpg",
+        "author": "Daniel Lu (User:dllu)",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Sika_deer_doe_and_fawn_Nara_2026_dllu.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "osaka-castle",
+      "name": "Osaka Castle",
+      "place": "Osaka",
+      "category": "castle",
+      "kind": "photo",
+      "src": "/gallery/osaka-castle.webp",
+      "width": 1100,
+      "height": 732,
+      "credit": {
+        "title": "Osaka Castle - Japan.jpg",
+        "author": "Manish Prabhune",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Osaka_Castle_-_Japan.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "dotonbori",
+      "name": "Dotonbori",
+      "place": "Osaka",
+      "category": "city",
+      "kind": "photo",
+      "src": "/gallery/dotonbori.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Osaka Dotonbori yoru 02.jpg",
+        "author": "Sakai Yayoi",
+        "licence": "CC0",
+        "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Osaka_Dotonbori_yoru_02.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "himeji",
+      "name": "Himeji Castle",
+      "place": "Hyogo",
+      "category": "castle",
+      "kind": "photo",
+      "src": "/gallery/himeji.webp",
+      "width": 1100,
+      "height": 821,
+      "credit": {
+        "title": "Himeji Castle 0804 1.jpg",
+        "author": "Gorgo",
+        "licence": "Public domain",
+        "licenceUrl": null,
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Himeji_Castle_0804_1.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "itsukushima",
+      "name": "Itsukushima Shrine",
+      "place": "Miyajima, Hiroshima",
+      "category": "shrine",
+      "kind": "photo",
+      "src": "/gallery/itsukushima.webp",
+      "width": 1100,
+      "height": 734,
+      "credit": {
+        "title": "Itsukushima-jinja torii at sunset, Miyajima, Japan, 20240816 1812 4144.jpg",
+        "author": "Jakub Hałun",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Itsukushima-jinja_torii_at_sunset,_Miyajima,_Japan,_20240816_1812_4144.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "genbaku-dome",
+      "name": "Hiroshima Peace Memorial (Genbaku Dome)",
+      "place": "Hiroshima",
+      "category": "history",
+      "kind": "photo",
+      "src": "/gallery/genbaku-dome.webp",
+      "width": 1100,
+      "height": 732,
+      "credit": {
+        "title": "Hiroshima Peace Memorial (Genbaku Dome), 20240817 0823 4200.jpg",
+        "author": "Jakub Hałun",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hiroshima_Peace_Memorial_(Genbaku_Dome),_20240817_0823_4200.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "hiroshima-museum",
+      "name": "Hiroshima Peace Memorial Museum",
+      "place": "Hiroshima",
+      "category": "museum",
+      "kind": "photo",
+      "src": "/gallery/hiroshima-museum.webp",
+      "width": 1100,
+      "height": 825,
+      "credit": {
+        "title": "Hiroshima Peace Memorial Museum at night.jpg",
+        "author": "かるちる",
+        "licence": "CC0",
+        "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Hiroshima_Peace_Memorial_Museum_at_night.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "shirakawago",
+      "name": "Shirakawa-go",
+      "place": "Gifu",
+      "category": "village",
+      "kind": "photo",
+      "src": "/gallery/shirakawago.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Ogi Shirakawa-gō, Gifu, Japan.jpg",
+        "author": "663highland",
+        "licence": "CC BY 2.5",
+        "licenceUrl": "https://creativecommons.org/licenses/by/2.5",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ogi_Shirakawa-g%C5%8D,_Gifu,_Japan.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "kenrokuen",
+      "name": "Kenroku-en",
+      "place": "Kanazawa",
+      "category": "garden",
+      "kind": "photo",
+      "src": "/gallery/kenrokuen.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Kotojitoro (lantern) in http-en.wikipedia.org-wiki-Kenroku-en, Kanazawa, Japan (2622404092).jpg",
+        "author": "KimonBerlin",
+        "licence": "CC BY-SA 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kotojitoro_(lantern)_in_http-en.wikipedia.org-wiki-Kenroku-en,_Kanazawa,_Japan_(2622404092).jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "matsumoto-castle",
+      "name": "Matsumoto Castle",
+      "place": "Nagano",
+      "category": "castle",
+      "kind": "photo",
+      "src": "/gallery/matsumoto-castle.webp",
+      "width": 1100,
+      "height": 732,
+      "credit": {
+        "title": "Matsumoto Castle05s5s4592.jpg",
+        "author": "663highland",
+        "licence": "CC BY 2.5",
+        "licenceUrl": "https://creativecommons.org/licenses/by/2.5",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Matsumoto_Castle05s5s4592.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "snow-monkeys",
+      "name": "Jigokudani snow monkeys",
+      "place": "Nagano",
+      "category": "nature",
+      "kind": "photo",
+      "src": "/gallery/snow-monkeys.webp",
+      "width": 1100,
+      "height": 825,
+      "credit": {
+        "title": "Onsen Macaque.JPG",
+        "author": "Asteiner",
+        "licence": "CC BY 3.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Onsen_Macaque.JPG",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "kusatsu",
+      "name": "Kusatsu Onsen Yubatake",
+      "place": "Gunma",
+      "category": "culture",
+      "kind": "photo",
+      "src": "/gallery/kusatsu.webp",
+      "width": 1100,
+      "height": 619,
+      "credit": {
+        "title": "251130 Yubatake, Kusatsu 10.jpg",
+        "author": "Aspere",
+        "licence": "CC0",
+        "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:251130_Yubatake,_Kusatsu_10.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "nachi",
+      "name": "Nachi Falls and pagoda",
+      "place": "Wakayama",
+      "category": "shrine",
+      "kind": "photo",
+      "src": "/gallery/nachi.webp",
+      "width": 1100,
+      "height": 721,
+      "credit": {
+        "title": "Nachikatsuura Seiganto-ji Three-Storied Pagoda & Nachi Falls 09.jpg",
+        "author": "Zairon",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nachikatsuura_Seiganto-ji_Three-Storied_Pagoda_%26_Nachi_Falls_09.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "furano",
+      "name": "Lavender fields in Furano",
+      "place": "Hokkaido",
+      "category": "nature",
+      "kind": "photo",
+      "src": "/gallery/furano.webp",
+      "width": 1100,
+      "height": 619,
+      "credit": {
+        "title": "Lavender fields, Furano (48254611081).jpg",
+        "author": "Blondinrikard Fröberg from Göteborg, Sweden",
+        "licence": "CC BY 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Lavender_fields,_Furano_(48254611081).jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "otaru",
+      "name": "Otaru Canal",
+      "place": "Hokkaido",
+      "category": "city",
+      "kind": "photo",
+      "src": "/gallery/otaru.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "OtaruCanalPromenade.jpg",
+        "author": "Markus Leupold-Löwenthal",
+        "licence": "CC BY-SA 3.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:OtaruCanalPromenade.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "churaumi",
+      "name": "Okinawa Churaumi Aquarium",
+      "place": "Okinawa",
+      "category": "museum",
+      "kind": "photo",
+      "src": "/gallery/churaumi.webp",
+      "width": 1100,
+      "height": 734,
+      "credit": {
+        "title": "Okinawa Aquarium.jpg",
+        "author": "Jordy Meow",
+        "licence": "CC BY-SA 3.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Okinawa_Aquarium.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "nebuta",
+      "name": "Aomori Nebuta Matsuri",
+      "place": "Aomori",
+      "category": "festival",
+      "kind": "photo",
+      "src": "/gallery/nebuta.webp",
+      "width": 1100,
+      "height": 744,
+      "credit": {
+        "title": "Aomori, Nebuta-matsuri 34.jpg",
+        "author": "Marie-Sophie Mejan",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Aomori,_Nebuta-matsuri_34.jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "tea-ceremony",
+      "name": "Tea ceremony",
+      "place": "Japan",
+      "category": "culture",
+      "kind": "photo",
+      "src": "/gallery/tea-ceremony.webp",
+      "width": 1100,
+      "height": 825,
+      "credit": {
+        "title": "Japanese tea ceremony setup in Sapporo, Japan (34).jpg",
+        "author": "Savannah Rivka",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Japanese_tea_ceremony_setup_in_Sapporo,_Japan_(34).jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "sushi",
+      "name": "Sushi",
+      "place": "Japan",
+      "category": "food",
+      "kind": "photo",
+      "src": "/gallery/sushi.webp",
+      "width": 1100,
+      "height": 733,
+      "credit": {
+        "title": "Nigiri Moriawase (Sushi Sei) (42217840971).jpg",
+        "author": "Asok5 from Budapest, Hungary",
+        "licence": "CC BY-SA 2.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Nigiri_Moriawase_(Sushi_Sei)_(42217840971).jpg",
+        "changes": "Resized and converted to WebP"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "shibuya-clip",
+      "name": "Shibuya Crossing",
+      "place": "Tokyo",
+      "category": "city",
+      "kind": "video",
+      "src": "/gallery/shibuya-clip.mp4",
+      "poster": "/gallery/shibuya-clip.webp",
+      "width": 854,
+      "height": 480,
+      "credit": {
+        "title": "Shibuya crossing time-lapse 2019-01-05.webm",
+        "author": "Asanagi",
+        "licence": "CC0",
+        "licenceUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shibuya_crossing_time-lapse_2019-01-05.webm",
+        "changes": "Trimmed to 10 s, muted and re-encoded"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "fushimi-clip",
+      "name": "Fushimi Inari Taisha",
+      "place": "Kyoto",
+      "category": "shrine",
+      "kind": "video",
+      "src": "/gallery/fushimi-clip.mp4",
+      "poster": "/gallery/fushimi-clip.webp",
+      "width": 854,
+      "height": 480,
+      "credit": {
+        "title": "Fushimi Inari-taisha Senbon torii - one section - 2015-12-29.webm",
+        "author": "Nesnad",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fushimi_Inari-taisha_Senbon_torii_-_one_section_-_2015-12-29.webm",
+        "changes": "Trimmed to 10 s, muted and re-encoded"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "shinkansen-clip",
+      "name": "Shinkansen at Tokyo Station",
+      "place": "Tokyo",
+      "category": "transport",
+      "kind": "video",
+      "src": "/gallery/shinkansen-clip.mp4",
+      "poster": "/gallery/shinkansen-clip.webp",
+      "width": 1030,
+      "height": 480,
+      "credit": {
+        "title": "Shinkansen N700 Series Bullet Train Tokyo Station by Don Ramey Logan.webm",
+        "author": "Don Ramey Logan",
+        "licence": "CC BY 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shinkansen_N700_Series_Bullet_Train_Tokyo_Station_by_Don_Ramey_Logan.webm",
+        "changes": "Trimmed to 10 s, muted and re-encoded"
+      },
+      "status": "needs-review"
+    },
+    {
+      "id": "festival-clip",
+      "name": "Awa Odori dance festival",
+      "place": "Koenji, Tokyo",
+      "category": "festival",
+      "kind": "video",
+      "src": "/gallery/festival-clip.mp4",
+      "poster": "/gallery/festival-clip.webp",
+      "width": 854,
+      "height": 480,
+      "credit": {
+        "title": "Awa dance-koenji-aug2017.webm",
+        "author": "Nesnad",
+        "licence": "CC BY-SA 4.0",
+        "licenceUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+        "sourceUrl": "https://commons.wikimedia.org/wiki/File:Awa_dance-koenji-aug2017.webm",
+        "changes": "Trimmed to 10 s, muted and re-encoded"
+      },
+      "status": "needs-review"
+    }
+  ]
+}

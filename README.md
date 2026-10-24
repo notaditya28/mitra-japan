@@ -58,6 +58,12 @@ Two controls stay on screen while you scroll:
 
 With reduced motion, a low-end device or no WebGL, the same content shows as a flat map and a card per spot.
 
+After Indian roots comes **Japan in pictures**: photos and short silent clips of famous sites, museums, festivals and food. As you scroll down, two rows slide right to left and the cards turn like a revolving strip; with reduced motion it is a strip you scroll sideways. Every picture comes from Wikimedia Commons and shows its author and licence. To change the set, edit `SITES` / `CLIPS` in `apps/web/scripts/gallery_media.py` and run it with a Python that has Pillow and `imageio-ffmpeg`:
+
+```bash
+python -I apps/web/scripts/gallery_media.py --dry-run
+```
+
 #### Adding a spot or a city
 
 Spots are listed in `src/data/tour.json`. Add a new city to `cities` (its id must be in `cities.json`) in the order you want to travel, and give each spot:

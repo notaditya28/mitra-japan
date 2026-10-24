@@ -1,0 +1,77 @@
+{
+  "en": {
+    "gallery": {
+      "eyebrow": "Japan in pictures",
+      "regionLabel": "Pictures of places in Japan (scroll sideways)",
+      "clipLabel": "Silent clip: {{name}}",
+      "photo": "Photo",
+      "video": "Video",
+      "footnote": "Pictures and clips from {{source}} under the licence shown on each, resized or trimmed by us. Captions and credits need review (checked {{date}}).",
+      "categories": {
+        "shrine": "Shrine",
+        "temple": "Temple",
+        "castle": "Castle",
+        "museum": "Museum",
+        "nature": "Nature",
+        "garden": "Garden",
+        "village": "Village",
+        "city": "City",
+        "culture": "Culture",
+        "festival": "Festival",
+        "food": "Food",
+        "history": "History",
+        "transport": "Transport"
+      }
+    }
+  },
+  "hi": {
+    "gallery": {
+      "eyebrow": "तस्वीरों में जापान",
+      "regionLabel": "जापान की जगहों की तस्वीरें (बगल में स्क्रॉल करें)",
+      "clipLabel": "बिना आवाज़ की क्लिप: {{name}}",
+      "photo": "फ़ोटो",
+      "video": "वीडियो",
+      "footnote": "तस्वीरें और क्लिप {{source}} से, हर एक पर दिखाए गए लाइसेंस के तहत, हमने आकार बदला या काटा है। कैप्शन और श्रेय की जाँच बाकी है ({{date}} को देखा गया)।",
+      "categories": {
+        "shrine": "श्राइन",
+        "temple": "मंदिर",
+        "castle": "किला",
+        "museum": "संग्रहालय",
+        "nature": "प्रकृति",
+        "garden": "बगीचा",
+        "village": "गाँव",
+        "city": "शहर",
+        "culture": "संस्कृति",
+        "festival": "त्योहार",
+        "food": "खाना",
+        "history": "इतिहास",
+        "transport": "यातायात"
+      }
+    }
+  },
+  "gu": {
+    "gallery": {
+      "eyebrow": "તસવીરોમાં જાપાન",
+      "regionLabel": "જાપાનના સ્થળોની તસવીરો (બાજુમાં સ્ક્રોલ કરો)",
+      "clipLabel": "અવાજ વગરની ક્લિપ: {{name}}",
+      "photo": "ફોટો",
+      "video": "વીડિયો",
+      "footnote": "તસવીરો અને ક્લિપ {{source}} માંથી, દરેક પર બતાવેલા લાઇસન્સ હેઠળ, અમે માપ બદલ્યું કે કાપી છે. કૅપ્શન અને શ્રેયની તપાસ બાકી છે ({{date}} એ જોયું).",
+      "categories": {
+        "shrine": "શ્રાઇન",
+        "temple": "મંદિર",
+        "castle": "કિલ્લો",
+        "museum": "સંગ્રહાલય",
+        "nature": "પ્રકૃતિ",
+        "garden": "બગીચો",
+        "village": "ગામ",
+        "city": "શહેર",
+        "culture": "સંસ્કૃતિ",
+        "festival": "તહેવાર",
+        "food": "ભોજન",
+        "history": "ઇતિહાસ",
+        "transport": "વાહનવ્યવહાર"
+      }
+    }
+  }
+}

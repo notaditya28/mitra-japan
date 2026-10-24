@@ -24,6 +24,8 @@ const JourneyCanvas = lazy(() => import('./scenes/JourneyCanvas'));
 const DemoLogin = lazy(() =>
   import('./features/auth/DemoLogin').then((m) => ({ default: m.DemoLogin })),
 );
+// Media-heavy, below the fold: its own chunk, loaded after first paint.
+const GallerySection = lazy(() => import('./components/sections/GallerySection'));
 const PlannerPage = lazy(() =>
   import('./features/planner/PlannerPage').then((m) => ({ default: m.PlannerPage })),
 );
@@ -103,6 +105,10 @@ export default function App() {
             />
           ) : null}
           <RootsSection immersive={immersive} />
+          <Suspense fallback={<div className="h-[100svh] bg-plum" aria-hidden="true" />}>
+            {/* The scroll-driven strip needs no WebGL, only motion and a capable device. */}
+            <GallerySection scrubbed={tier !== 'low' && !reduced} />
+          </Suspense>
           <NumbersSection />
           <CtaSection />
         </main>

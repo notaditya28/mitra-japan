@@ -3,7 +3,7 @@
 A demo-ready web experience that makes Indian travellers want to choose Japan at full price.
 Pitch: "Indians don't need Japan to be cheaper, they need it to feel safe, familiar and made for them."
 
-- **Stage 1:** cinematic scroll: title + take-off button → plane flies Delhi → Tokyo → low-poly 3D scenes per city (a short paragraph about each place) → Shinkansen between cities → Indian roots → numbers → CTA, with a city map window (food for your diet, sample stays).
+- **Stage 1:** cinematic scroll: title + take-off button → plane flies Delhi → Tokyo → low-poly 3D scenes per city (a short paragraph about each place) → Shinkansen between cities → Indian roots → Japan in pictures (photo/clip gallery) → numbers → CTA, with a city map window (food for your diet, sample stays).
 - **Stage 2:** 3D Japan map planner with a Claude trip guide, Food Confidence Score, Veg-Safe scanner.
 
 ## Non-negotiable data rules
@@ -63,11 +63,11 @@ Type: Plus Jakarta Sans (UI/body), Shippori Mincho (`.display`, large headings),
 
 `src/components/motifs/`: `Seigaiha` (generated SVG, `lib/seigaiha.ts`), `Fuji` (mountain keeps aspect, hills stretch), `SunDisc`, `ToriiGate`, `Lantern`, `Petals2D` (canvas fallback), `Petals3D` (instanced, one draw call).
 Utility classes in `styles/index.css`: `.card`, `.card-dark`, `.chip`, `.btn-primary`, `.btn-ghost`, `.eyebrow`, `.display`.
-Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, plum-tinted shadows. No photoreal models. Stage 1 spots are low-poly 3D scenes, not photos (owner decision, 2026-10-25, replacing the photo spots of 2026-10-24); each shows a "stylised 3D scene" note. Use `flat` on R3F canvases so palette colours are not tone-mapped.
+Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, plum-tinted shadows. No photoreal models. Stage 1 spots are low-poly 3D scenes, not photos (owner decision, 2026-10-25, replacing the photo spots of 2026-10-24); each shows a "stylised 3D scene" note. The one place for real photos and clips is the Japan in pictures gallery (owner request, 2026-10-25), every item credited. Use `flat` on R3F canvases so palette colours are not tone-mapped.
 
 ## Stage 1 journey architecture (owner redesign, 2026-10-24)
 
-- **Flow:** `Welcome` (title + one button over the 3D map of Asia, plane parked at Delhi; no traveller picker, which is asked once in the planner, owner request 2026-10-25) → `TourSection`: the plane flies Delhi → first city → that city's spots, one 3D scene each → Shinkansen to the next city → its spots → … Roots, numbers and the CTA follow.
+- **Flow:** `Welcome` (title + one button over the 3D map of Asia, plane parked at Delhi; no traveller picker, which is asked once in the planner, owner request 2026-10-25) → `TourSection`: the plane flies Delhi → first city → that city's spots, one 3D scene each → Shinkansen to the next city → its spots → … Roots, the gallery, numbers and the CTA follow.
 - **Data:** `features/tour/tour.ts` (three-free) builds `TOUR_CITIES` and `SEGMENTS` from `data/tour.json` (city order, spot names, Japanese names, short `kanji`, `fear`, `scene`, status). `scene` is one of `PLACE_SCENES` (`tokyo`, `fuji`, `kyoto`, `matsuri`); a spot with an unknown scene is skipped. Today (owner order, 2026-10-25: flight → Fuji → Tokyo → Shinkansen → Kyoto → Matsuri; `tour.test.ts` checks it): Tokyo = Fuji day trip + neon street (food card); Kyoto = Fushimi Inari (visa card) + Gion matsuri (foreign card). Each new city gets a Shinkansen segment.
 - **Segments:** `flight` (weight 2.2), `spot` (1.4), `train` (1.6); `VH_PER_UNIT` = 120vh. `journey.tour` (0..1) → `computeStage()` → `stage` (`scene` = segment index, `kind`, `view`, `t`, transition values; `view` = `flight` | `train` | the spot's scene, from `viewOf`). Never put scroll progress in React state; the rail and city window read `useTourStore.segment`, which `TourSection` sets from the ScrollTrigger (not the render loop, so they work if 3D is paused or fails).
 - **Transitions** (owner request, 2026-10-25: no petal kanji, no torii iris): every boundary is the same slow dip to deep plum (`journey/SceneFade.tsx`; never a light colour, owner found bright veils jarring). The scene, sky and camera switch while the screen is fully dark, then the next scene rises out of it. Timings (`cover`, `warp`) live in `computeStage`.
@@ -84,6 +84,12 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 - Keep three.js, Leaflet and restaurant data out of first paint. The tour uses `features/tour/cities.ts`, not `planner/data`. Check the entry chunk after builds (about 560 kB today).
 - Dev builds expose `window.__journey` (R3F state) and `window.__stage`. In the hidden browser pane rAF is throttled (ScrollTrigger and the canvas stall until a screenshot forces a frame); reset to the desktop preset if screenshots go blank.
 - Hindi/Gujarati: never letter-space Devanagari/Gujarati (`.eyebrow` resets tracking under `:lang(hi|gu)`); split titles with `Intl.Segmenter` graphemes, never by code point. Spot titles wrap by word.
+
+## Japan in pictures gallery (owner request, 2026-10-25)
+
+- `components/sections/GallerySection.tsx` (lazy chunk) sits between Indian roots and the numbers. Scroll-driven when `tier !== 'low' && !reduced` (no WebGL needed): a sticky frame, the section as tall as the sideways travel, two rows tweened right to left with different scrub lag, and each card turned (`rotationY`, `z`) by its distance from the centre for the revolving look. Otherwise it is a plain sideways-scrolling strip (`role="region"`, focusable, snap) with clip controls and no autoplay.
+- Media: `public/gallery/` (WebP photos about 1100 px; MP4 clips trimmed to 10 s, muted, H.264 480p, with WebP posters), listed in `src/data/gallery.json` with `credit` (author, licence, licence link, Commons page, our changes) and `status: needs-review`. Every card shows its credit. Made by `scripts/gallery_media.py` from Wikimedia Commons: free licences only (CC BY, CC BY-SA, CC0, public domain), Quality images first, people-focused titles skipped; pin a reviewed file with `file`. It needs Pillow and imageio-ffmpeg (not project deps). `gallery.test.ts` enforces credits, licences, status and files.
+- Clips play only while on screen (IntersectionObserver), always muted, `preload="none"`.
 
 ## Map, pages and transitions (M3)
 

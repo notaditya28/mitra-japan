@@ -1175,5 +1175,28 @@
     "question": "What should I know about visiting {{name}}?",
     "note": "Names and region come from the map data; places come from our own lists.",
     "close": "Close"
+  },
+  "gallery": {
+    "eyebrow": "Japan in pictures",
+    "regionLabel": "Pictures of places in Japan (scroll sideways)",
+    "clipLabel": "Silent clip: {{name}}",
+    "photo": "Photo",
+    "video": "Video",
+    "footnote": "Pictures and clips from {{source}} under the licence shown on each, resized or trimmed by us. Captions and credits need review (checked {{date}}).",
+    "categories": {
+      "shrine": "Shrine",
+      "temple": "Temple",
+      "castle": "Castle",
+      "museum": "Museum",
+      "nature": "Nature",
+      "garden": "Garden",
+      "village": "Village",
+      "city": "City",
+      "culture": "Culture",
+      "festival": "Festival",
+      "food": "Food",
+      "history": "History",
+      "transport": "Transport"
+    }
   }
 }

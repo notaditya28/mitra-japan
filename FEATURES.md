@@ -20,6 +20,7 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - Reduced-motion / low-end path: static sections instead of scroll-driven 3D.
 - Language switch EN / हिं / ગુ (Stage 1, sign-in and planner UI; data notes are English only).
 - Indian-roots mosaic → map reveal and story cards.
+- Japan in pictures (before the numbers): 35 photos and 4 short muted clips of famous sites, museums, festivals and food, sliding right to left in two rows as you scroll, with a revolving tilt; a sideways-scrolling strip with reduced motion. Each card credits its author and licence (Wikimedia Commons).
 - Count-up counters (only animate real values; all are currently empty).
 - Page transitions (torii portal), hash routes, demo sign-in (name + Indian mobile, browser only).
 - 3D Japan planner map: extruded prefectures, hover/click, orbit limits, camera fly-to, four animated layers, city cards, flat SVG fallback without WebGL, mobile bottom sheet.
@@ -102,6 +103,7 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - **Visa checklist** (`visa.json`): `needs-review`, `lastReviewed: null` until the owner checks each item against official sources. Item text is English only.
 - **City facts** (`cities.json`): travel times are estimates; veg notes need review.
 - **Anime / regional spots** (`layers.json`): need review.
+- **Gallery** (`gallery.json`, `public/gallery/`): Wikimedia Commons media, `needs-review` until the owner checks each picture, caption and credit.
 - **Hindi / Gujarati** strings: drafts pending native-speaker review.
 - **Real restaurants**: 9 places researched from public guides on 2026-10-24 (Tokyo, Kyoto, Osaka, Koyasan, Hiroshima). All are `needs-review`: addresses, map pins (approximate) and diet claims need the owner's check; places may have moved or closed.
 - **Assistant (live)**: Claude-written answers with citation and number validation, the LLM intent check and the tool-using plan-change loop are built and tested with fakes, but untested against the real API.

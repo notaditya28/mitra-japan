@@ -18,6 +18,7 @@
 
 ## Needs owner input
 
+- [ ] **Gallery** (`apps/web/src/data/gallery.json`): look through the photos and clips in `apps/web/public/gallery/`, check each caption and credit on its Commons page, swap any you don't like by pinning a `file` in `scripts/gallery_media.py`, then set `status: verified`. Gallery strings in HI/GU are drafts.
 - [ ] **Knowledge base (R1)**: review the 37 documents in `apps/api/rag/corpus/` (all `needs-review`), especially emergency contacts and visa pages, and the URLs to supply in `rag/corpus/SOURCES.md` (Fushimi Inari, VFS document checklist, JR Central rules, Consulate of India in Fukuoka, temple hours/fees).
 - [ ] **Git history**: commit `eca14ac` contains the Anthropic key that was in `.env.example`; rewrite it out before any push (not pushed yet).
 
