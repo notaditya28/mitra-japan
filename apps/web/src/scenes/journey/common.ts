@@ -1,7 +1,7 @@
 import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 import type * as THREE from 'three';
-import { stage, type SegmentKind } from '../journeyState';
+import { stage, type ViewId } from '../journeyState';
 
 /** Seeded PRNG so every scene is identical on every load. */
 export function rng(seed: number) {
@@ -20,16 +20,16 @@ export const smooth = (a: number, b: number, x: number) => {
 /** Writes camera position and look-at target for local progress t (0..1). */
 export type CameraPath = (t: number, pos: THREE.Vector3, look: THREE.Vector3) => void;
 
-/** A scene group that is only visible (and therefore only rendered) while its kind of segment is on screen. */
-export function useSceneGroup(kind: SegmentKind) {
+/** A scene group that is only visible (and therefore only rendered) while its view is on screen. */
+export function useSceneGroup(view: ViewId) {
   const ref = useRef<THREE.Group>(null);
   useFrame(() => {
-    if (ref.current) ref.current.visible = stage.kind === kind;
+    if (ref.current) ref.current.visible = stage.view === view;
   });
   return ref;
 }
 
-/** Local progress for a kind of segment, 0 when inactive. */
-export function localT(kind: SegmentKind): number {
-  return stage.kind === kind ? stage.t : 0;
+/** Local progress for a view, 0 when inactive. */
+export function localT(view: ViewId): number {
+  return stage.view === view ? stage.t : 0;
 }

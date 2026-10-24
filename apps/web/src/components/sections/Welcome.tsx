@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
-import { PersonaPicker } from '../../features/persona/PersonaPicker';
 import { scrollToId } from '../../lib/smoothScroll';
 
 /**
- * First screen: who is travelling. In the immersive layout the 3D map of India,
+ * First screen: the title and one button. Who is travelling is asked once, in the
+ * planner (owner request, 2026-10-25). In the immersive layout the 3D map of India,
  * with the plane parked at Delhi, sits behind it; scrolling on starts the flight.
  */
 export function Welcome({ immersive }: { immersive: boolean }) {
@@ -27,13 +27,8 @@ export function Welcome({ immersive }: { immersive: boolean }) {
             {t('hero.title')}
           </h1>
           <p className="mt-4 font-display text-2xl text-blush sm:text-3xl">{t('hero.tagline')}</p>
-          <h2 className="mt-8 text-lg font-semibold text-paper sm:text-xl">
-            {t('tour.welcome.pick')}
-          </h2>
-          <p className="mt-2 text-sm text-blush/85">{t('persona.body')}</p>
         </header>
-        <PersonaPicker />
-        <div className="mt-10 flex justify-center">
+        <div className="flex justify-center">
           <button
             type="button"
             onClick={() => scrollToId('tour')}

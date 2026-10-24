@@ -46,9 +46,9 @@ The key is read only by the API and never reaches the browser bundle.
 
 The front page has four parts:
 
-1. **Traveller picker.** It sits over a 3D map of Asia with the plane parked at Delhi.
-2. **Flight.** Scrolling flies the plane to Tokyo, and a petal portal spelling 東京 opens onto the first photo.
-3. **City spots.** Each spot is a real photo shown in 3D. Moving between spots in a city uses a plain veil, and the fear cards appear on fitting spots.
+1. **Welcome.** The title and a take-off button sit over a 3D map of Asia with the plane parked at Delhi. Who is travelling is asked once, in the planner.
+2. **Flight.** Scrolling flies the plane to Tokyo, and the view fades softly into Tokyo.
+3. **City spots.** Each spot is a stylised low-poly 3D scene (Tokyo's neon streets, a Mt Fuji day trip, Fushimi Inari, a Gion festival), not a photo. Every change of scene is a slow dip to deep plum and back, and each spot shows a short paragraph about the place.
 4. **Next city.** A Shinkansen ride carries you to the next city, and the pattern repeats.
 
 Two controls stay on screen while you scroll:
@@ -56,26 +56,20 @@ Two controls stay on screen while you scroll:
 - **Journey rail** (right edge, desktop): jumps to any place.
 - **City map** (top right): opens a street map of the city you're in. It shows food that matches your diet and sample places to stay. The diet you pick there is your profile's, so it carries over to every city.
 
-With reduced motion, a low-end device or no WebGL, the same content shows as a flat map and a photo grid.
+With reduced motion, a low-end device or no WebGL, the same content shows as a flat map and a card per spot.
 
-#### Adding a photo, a spot or a city
+#### Adding a spot or a city
 
-1. Put the photo in `apps/web/src/scenes/places/places/<city>/`. The folder name must match an id in `cities.json`, e.g. `osaka`. Any file name works, but it becomes the spot's id (`osaka/dotonbori`).
-2. Make the web copies. This writes the WebP files to `src/assets/tour/<city>/` and updates `src/data/tourPhotos.json`:
-   ```bash
-   apps/api/.venv/Scripts/python apps/web/scripts/tour_photos.py
-   ```
-3. Describe the spot in `src/data/tour.json`, and add a new city to `cities` in the order you want to travel. Give the spot:
-   - `name`, `nameJa`, and a short `kanji` (2–4 characters) for the portal petals
-   - `area` and approximate `lat`/`lng`
-   - an optional `fear` card
-   - `focus`: the point of interest, from 0 to 1, that the crop keeps in frame
-   - `photo.credit`, `photo.source` and `photo.licence`
-4. Run `pnpm --filter web test`.
+Spots are listed in `src/data/tour.json`. Add a new city to `cities` (its id must be in `cities.json`) in the order you want to travel, and give each spot:
 
-A photo without an entry still appears, named after its file and marked "needs review". A new city gets a Shinkansen ride from the previous one automatically.
+- `name`, `nameJa`, and a short `kanji` (2–4 characters) for the portal petals
+- `area` and approximate `lat`/`lng` (only used for the "you are here" pin)
+- an optional `fear` card
+- `scene`: which 3D scene it shows (`tokyo`, `fuji`, `kyoto` or `matsuri`, from `src/scenes/places/`)
 
-The original photos are git-ignored because they are large; keep them backed up. Places to stay are in `src/data/stays.json`. They are placeholders for now: all `sample`, with names that start with "Sample", and no prices.
+Then run `pnpm --filter web test`. A new city gets a Shinkansen ride from the previous one automatically. A brand-new scene is code: add the component to `src/scenes/places/`, then register it in `PLACE_SCENES` (`features/tour/tour.ts`), `CAMERAS` (`journey/CameraRig.tsx`), `MOODS` (`journey/Sky.tsx`) and `JourneyCanvas.tsx`.
+
+Places to stay are in `src/data/stays.json`. They are placeholders for now: all `sample`, with names that start with "Sample", and no prices.
 
 The flight map is `src/data/asia.geojson`. It comes from Natural Earth (public domain), using the **India point-of-view** edition so India's boundary matches the official map, and is cut down by `scripts/asia_subset.py`. Use the same `_ind` source if you regenerate it.
 
@@ -291,8 +285,8 @@ Statistics are placeholders until verified with real sources (`apps/web/src/data
 - The demo reservation books nothing and takes no payment. No prices are shown, because we have no real fares.
 - The assistant knows only its corpus (37 documents, all `needs-review`). Questions outside it get an honest "I don't know" with an official link. Emergency numbers and the Hindi emergency text need the owner's check before a real trip.
 - Assistant sessions, undo history and trip data live in the API's memory and vanish on restart. The first chat after a start takes a few seconds while the embedding model loads. The model needs roughly 300 MB+ of RAM, which is tight on a free Render instance.
-- Journey photos have no credits yet ("Photo credit pending" on screen). Add the source and licence for each photo before publishing.
-- The city map's street tiles come from the OpenStreetMap tile servers, which are fine for a demo but not for heavy traffic. Switch to a tile provider before a public launch. Without internet the map shows a note and the lists still work.
+- The journey's city spots are stylised 3D scenes, not real views of those places, and each one says so on screen.
+- The journey's city map uses Esri's free light grey canvas tiles without labels (so no Japanese text shows). They are fine for a demo, but check Esri's terms or switch to a keyed tile provider before a public launch. Without internet the map shows a note and the lists still work.
 - The places to stay are dummies, not real listings.
 - Figures from the team guide (visa times and stays, ₹ thresholds, VFS centres, the Nozomi rail time) are unverified until the owner checks them; they carry a visible badge.
 - Esri and CARTO basemaps are free for light or non-commercial use with attribution (shown on the map); check their terms, or use a paid key, before a public launch.

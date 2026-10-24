@@ -1,51 +1,43 @@
 import { describe, expect, it } from 'vitest';
 import tourJson from '../../data/tour.json';
-import photosJson from '../../data/tourPhotos.json';
-import { computeStage, locate, stage } from '../../scenes/journeyState';
+import en from '../../locales/en.json';
+import gu from '../../locales/gu.json';
+import hi from '../../locales/hi.json';
+import { computeStage, locate, stage, viewOf } from '../../scenes/journeyState';
 import { cityById } from '../planner/data';
 import { foodFor, STAYS, staysFor } from './cityMap';
 import {
   buildSegments,
-  isPlainBoundary,
   LAYOUT,
   layout,
   mapCityFor,
+  PLACE_SCENES,
   SEGMENTS,
   TOUR_CITIES,
   WEIGHTS,
 } from './tour';
 
 describe('tour data', () => {
-  it('has a photo, both image sizes and a description for every listed spot', () => {
+  it('describes every listed spot and gives it a known 3D scene', () => {
     const listed = tourJson.cities.flatMap((c) => c.spots);
-    const photos = new Set(photosJson.photos.map((p) => p.id));
-    for (const id of listed) {
-      expect(photos.has(id), id).toBe(true);
-      expect(Object.keys(tourJson.spots), id).toContain(id);
-    }
-    for (const spot of TOUR_CITIES.flatMap((c) => c.spots)) {
-      expect(spot.src.lg).toBeTruthy();
-      expect(spot.src.sm).toBeTruthy();
-    }
+    const built = TOUR_CITIES.flatMap((c) => c.spots).map((s) => s.id);
+    expect(built).toEqual(listed);
+    for (const id of listed) expect(Object.keys(tourJson.spots), id).toContain(id);
+    for (const s of TOUR_CITIES.flatMap((c) => c.spots)) expect(PLACE_SCENES).toContain(s.scene);
   });
 
-  it('keeps every spot unverified and every photo credit pending until the owner fills them in', () => {
-    for (const spot of TOUR_CITIES.flatMap((c) => c.spots)) {
+  it('keeps every spot unverified until the owner checks it', () => {
+    for (const spot of TOUR_CITIES.flatMap((c) => c.spots))
       expect(spot.status).toBe('needs-review');
-      // A credit may only appear together with its source and licence.
-      if (spot.photo.credit) {
-        expect(spot.photo.source).toBeTruthy();
-        expect(spot.photo.licence).toBeTruthy();
-      }
-    }
   });
 
   it('only uses known cities, with spots near their city', () => {
     for (const city of TOUR_CITIES) {
       expect(cityById(city.id)).toBeDefined();
       for (const s of city.spots) {
-        expect(Math.abs(s.lat - city.lat)).toBeLessThan(0.3);
-        expect(Math.abs(s.lng - city.lng)).toBeLessThan(0.3);
+        // Within a day trip (Fuji from Tokyo is about 1°).
+        expect(Math.abs(s.lat - city.lat)).toBeLessThan(1.2);
+        expect(Math.abs(s.lng - city.lng)).toBeLessThan(1.2);
       }
     }
   });
@@ -64,20 +56,6 @@ describe('segments', () => {
         expect(next?.kind === 'spot' && next.first).toBe(true);
         expect(next?.cityId).toBe(s.cityId);
       }
-    });
-  });
-
-  it('spells the city name on arrival and the spot name inside a city', () => {
-    for (const s of SEGMENTS) {
-      if (s.kind !== 'spot') continue;
-      expect(s.kanji).toBe(s.first ? cityById(s.cityId)?.nameJa : s.spot.kanji);
-    }
-  });
-
-  it('makes transitions plain only between spots of the same city', () => {
-    SEGMENTS.forEach((s, i) => {
-      if (i === 0) return;
-      expect(isPlainBoundary(SEGMENTS, i)).toBe(s.kind === 'spot' && !s.first);
     });
   });
 
@@ -111,30 +89,25 @@ describe('stage', () => {
     expect(locate(total + 5, starts, total).index).toBe(SEGMENTS.length - 1);
   });
 
-  it('closes the veil before a boundary and opens the torii window after it', () => {
+  it('dips to dark before every boundary and rises out of it after, cutting only while dark', () => {
     const at = (w: number) => computeStage({ ...stage }, w / LAYOUT.total);
-    const b = LAYOUT.starts[1] ?? 0;
-    const before = at(b - 0.02);
-    expect(before.scene).toBe(0);
-    expect(before.cover).toBeGreaterThan(0.5);
-    expect(before.incoming).toBe(1);
-    expect(before.plain).toBe(false);
-    const after = at(b + 0.03);
-    expect(after.scene).toBe(1);
-    expect(after.cover).toBe(0);
-    expect(after.iris).toBeLessThan(1);
-    const middle = at(b + 0.5);
-    expect(middle.incoming).toBe(-1);
-    expect(middle.iris).toBe(1);
-  });
-
-  it('moves between spots of a city without the petal kanji', () => {
-    const i = SEGMENTS.findIndex((s) => s.kind === 'spot' && !s.first);
-    const b = LAYOUT.starts[i] ?? 0;
-    const s = computeStage({ ...stage }, (b - 0.05) / LAYOUT.total);
-    expect(s.plain).toBe(true);
-    expect(s.assemble).toBe(0);
-    expect(s.cover).toBeGreaterThan(0);
+    for (let i = 1; i < SEGMENTS.length; i++) {
+      const b = LAYOUT.starts[i] ?? 0;
+      const before = at(b - 0.02);
+      expect(before.scene).toBe(i - 1);
+      expect(before.incoming).toBe(i);
+      expect(before.cover).toBeGreaterThan(0.6);
+      expect(at(b - 0.01).cover).toBe(1);
+      const cut = at(b + 0.01);
+      expect(cut.scene).toBe(i);
+      expect(cut.cover).toBe(1);
+      const after = at(b + 0.05);
+      expect(after.cover).toBeGreaterThan(0);
+      expect(after.cover).toBeLessThan(1);
+      const middle = at(b + 0.5);
+      expect(middle.incoming).toBe(-1);
+      expect(middle.cover).toBe(0);
+    }
   });
 });
 
@@ -168,5 +141,40 @@ describe('city map', () => {
       expect(JSON.stringify(s)).not.toMatch(/¥|₹|\$|price|available/i);
     }
     for (const city of TOUR_CITIES) expect(staysFor(city.id).length).toBeGreaterThan(0);
+  });
+});
+
+describe('views', () => {
+  it('shows each spot its own 3D scene, and the flight and train their own', () => {
+    SEGMENTS.forEach((s) => {
+      expect(viewOf(s)).toBe(s.kind === 'spot' ? s.spot.scene : s.kind);
+    });
+    const { starts, total } = LAYOUT;
+    SEGMENTS.forEach((s, i) => {
+      const mid = ((starts[i] ?? 0) + s.weight / 2) / total;
+      expect(computeStage({ ...stage }, mid).view).toBe(viewOf(s));
+    });
+  });
+});
+
+describe('labels', () => {
+  it('has a name, area and paragraph for every spot, and the city names, in every language', () => {
+    for (const locale of [en, hi, gu]) {
+      const tour = locale.tour as {
+        cities: Record<string, string>;
+        spots: Record<string, { name?: string; area?: string; about?: string }>;
+        train: { about?: string };
+      };
+      expect(tour.train.about).toBeTruthy();
+      for (const city of TOUR_CITIES) {
+        expect(tour.cities[city.id], city.id).toBeTruthy();
+        for (const s of city.spots) {
+          const l = tour.spots[s.slug];
+          expect(l?.name, s.slug).toBeTruthy();
+          expect(l?.area, s.slug).toBeTruthy();
+          expect(l?.about, s.slug).toBeTruthy();
+        }
+      }
+    }
   });
 });

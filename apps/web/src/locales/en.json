@@ -955,7 +955,6 @@
   "tour": {
     "title": "Your journey to Japan",
     "rail": "Journey: jump to a place",
-    "photoAlt": "{{name}}, {{city}}",
     "welcome": {
       "pick": "Who is travelling?",
       "cta": "Take off from Delhi",
@@ -970,11 +969,8 @@
     "train": {
       "title": "Shinkansen to {{city}}",
       "body": "Leaving {{from}} by bullet train.",
-      "rail": "Shinkansen"
-    },
-    "credit": {
-      "pending": "Photo credit pending",
-      "by": "Photo: {{credit}} {{licence}}"
+      "rail": "Shinkansen",
+      "about": "The Shinkansen links Japan's big cities with fast, frequent bullet trains. Signs and announcements include English, and reserved cars let a family sit together."
     },
     "map": {
       "open": "{{city}} map",
@@ -995,6 +991,36 @@
         "business-hotel": "Business hotel",
         "ryokan": "Ryokan (inn)",
         "apartment": "Apartment hotel"
+      }
+    },
+    "scene": {
+      "note": "Stylised 3D scene, not a photo of this place"
+    },
+    "about": "About this place",
+    "cities": {
+      "tokyo": "Tokyo",
+      "kyoto": "Kyoto"
+    },
+    "spots": {
+      "neon-street": {
+        "name": "Neon side streets",
+        "area": "Shinjuku",
+        "about": "After dark, Tokyo's side streets glow with lanterns and neon signs over small counters serving ramen, skewers and izakaya plates. Many places put picture menus outside, so you can see what's on offer before you sit down."
+      },
+      "fuji-day-trip": {
+        "name": "Day trip to Mt Fuji",
+        "area": "Fuji Five Lakes",
+        "about": "Mt Fuji is Japan's highest mountain and a popular day trip from Tokyo. The Fuji Five Lakes area at its northern foot has lakeside walks, shrines and viewpoints. The peak often hides in cloud, so clear mornings give the best views."
+      },
+      "fushimi-inari": {
+        "name": "Fushimi Inari Taisha",
+        "area": "Fushimi",
+        "about": "Fushimi Inari Taisha is the head shrine of Inari, associated with rice, harvests and prosperity. Long tunnels of vermilion torii gates, each donated by a person or business, wind up the wooded slopes of Mount Inari behind the main hall."
+      },
+      "gion-matsuri": {
+        "name": "A summer evening festival in Gion",
+        "area": "Gion",
+        "about": "Gion is Kyoto's old entertainment district, with wooden machiya houses and lantern-lit lanes. In July the Gion Matsuri of Yasaka Shrine fills its streets with food stalls, paper lanterns and tall decorated floats."
       }
     }
   },

@@ -1,33 +1,13 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ToriiGate } from '../motifs/ToriiGate';
 import { StatusBadge } from '../StatusBadge';
-import { LazyFoodScanPreview } from '../../features/fears/LazyFoodScanPreview';
-import { PhrasePreview } from '../../features/fears/PhrasePreview';
-import { VisaChecklist } from '../../features/fears/VisaChecklist';
-import { RootsTeaser } from '../../features/fears/RootsTeaser';
-import {
-  FROM,
-  LAYOUT,
-  SEGMENTS,
-  TOUR_CITIES,
-  TOUR_VH,
-  TRAIN_FEAR,
-  type Segment,
-} from '../../features/tour/tour';
+import { FROM, LAYOUT, SEGMENTS, TOUR_CITIES, TOUR_VH } from '../../features/tour/tour';
+import { cityName, spotAbout, spotArea, spotName } from '../../features/tour/labels';
 import { useTourStore } from '../../features/tour/useTourStore';
 import { cityLite as cityById } from '../../features/tour/cities';
-import type { FearId } from '../../scenes/fears';
 import { journey, locate } from '../../scenes/journeyState';
-
-const PREVIEWS: Record<FearId, ReactNode> = {
-  food: <LazyFoodScanPreview />,
-  language: <PhrasePreview />,
-  visa: <VisaChecklist />,
-  foreign: <RootsTeaser />,
-};
 
 /** Split into grapheme clusters so Devanagari and Gujarati conjuncts stay intact. */
 function graphemes(text: string, lang: string): string[] {
@@ -37,22 +17,21 @@ function graphemes(text: string, lang: string): string[] {
   return [...text];
 }
 
-const fearOf = (s: Segment): FearId | null =>
-  s.kind === 'spot' ? s.spot.fear : s.kind === 'train' ? TRAIN_FEAR : null;
-
 interface Copy {
   kanji: string;
   kanjiLang: string;
   title: string;
   tagline: string;
+  /** Short paragraph about where you are ('' for the flight). */
+  about: string;
 }
 
 /**
  * The scrolling journey. A tall section with a sticky viewport: scrolling drives
  * `journey.tour`, which flies the plane from Delhi, then moves through each city's
- * photos (plain transitions) and the Shinkansen between cities (petal portals).
- * A scrubbed timeline brings in each segment's stretched title, its fear card if
- * it has one (flipping from question to answer), and each photo's credit line.
+ * 3D scenes and the Shinkansen between cities, with a soft fade between them.
+ * A scrubbed timeline brings in each segment's stretched title, a short paragraph
+ * about the place, and each scene's status line.
  */
 export function TourSection() {
   const { t, i18n } = useTranslation();
@@ -63,26 +42,31 @@ export function TourSection() {
   const copy = useMemo<Copy[]>(
     () =>
       SEGMENTS.map((s) => {
-        const city = cityById(s.cityId);
+        const city = cityName(t, s.cityId, cityById(s.cityId)?.name ?? '');
         if (s.kind === 'flight')
           return {
-            kanji: `${FROM.nameLocal} → ${city?.nameJa ?? ''}`,
+            kanji: `${FROM.nameLocal} → ${cityById(s.cityId)?.nameJa ?? ''}`,
             kanjiLang: '',
-            title: t('tour.flight.title', { from: FROM.name, to: city?.name ?? '' }),
+            title: t('tour.flight.title', { from: FROM.name, to: city }),
             tagline: t('tour.flight.body'),
+            about: '',
           };
         if (s.kind === 'train')
           return {
             kanji: '新幹線',
             kanjiLang: 'ja',
-            title: t('tour.train.title', { city: city?.name ?? '' }),
-            tagline: t('tour.train.body', { from: cityById(s.from)?.name ?? '' }),
+            title: t('tour.train.title', { city }),
+            tagline: t('tour.train.body', {
+              from: cityName(t, s.from, cityById(s.from)?.name ?? ''),
+            }),
+            about: t('tour.train.about'),
           };
         return {
           kanji: s.spot.nameJa,
           kanjiLang: 'ja',
-          title: s.spot.name,
-          tagline: [s.spot.area, city?.name].filter(Boolean).join(', '),
+          title: spotName(t, s.spot),
+          tagline: [spotArea(t, s.spot), city].filter(Boolean).join(', '),
+          about: spotAbout(t, s.spot),
         };
       }),
     [t],
@@ -135,7 +119,7 @@ export function TourSection() {
         gsap.set(title, { autoAlpha: 0 });
 
         // Kelvin-style title: letters arrive stretched tall and relax into place
-        // as the torii window finishes opening.
+        // as the scene fades in.
         const titleIn = seg.kind === 'flight' ? 0.12 : 0.05;
         tl.to(title, { autoAlpha: 1, duration: 0.04 }, at + titleIn * w);
         tl.fromTo(
@@ -144,8 +128,8 @@ export function TourSection() {
           { scaleY: 1, yPercent: 0, opacity: 1, duration: 0.12, stagger: 0.01, ease: 'power3.out' },
           at + titleIn * w,
         );
-        const fear = fearOf(seg);
-        const titleOut = fear ? 0.24 : seg.kind === 'flight' ? 0.4 : 0.7;
+        const about = el.querySelector<HTMLElement>(`[data-about="${i}"]`);
+        const titleOut = about ? 0.3 : seg.kind === 'flight' ? 0.4 : 0.7;
         tl.to(
           title,
           { autoAlpha: 0, y: -40, duration: 0.06, ease: 'power2.in' },
@@ -158,18 +142,15 @@ export function TourSection() {
           tl.to(credit, { autoAlpha: 0, duration: 0.04 }, at + 0.9 * w);
         }
 
-        const card = el.querySelector<HTMLElement>(`[data-card="${i}"]`);
-        const flip = el.querySelector<HTMLElement>(`[data-card="${i}"] [data-flip]`);
-        if (!card || !flip) return;
-        gsap.set(card, { autoAlpha: 0 });
+        if (!about) return;
+        gsap.set(about, { autoAlpha: 0 });
         tl.fromTo(
-          card,
-          { autoAlpha: 0, y: 48 },
-          { autoAlpha: 1, y: 0, duration: 0.08, ease: 'power3.out' },
-          at + 0.27 * w,
+          about,
+          { autoAlpha: 0, y: 24 },
+          { autoAlpha: 1, y: 0, duration: 0.1, ease: 'power2.out' },
+          at + 0.34 * w,
         );
-        tl.to(flip, { rotateY: 180, duration: 0.13, ease: 'power3.inOut' }, at + 0.42 * w);
-        tl.to(card, { autoAlpha: 0, y: -48, duration: 0.06, ease: 'power2.in' }, at + 0.85 * w);
+        tl.to(about, { autoAlpha: 0, y: -24, duration: 0.08, ease: 'power2.in' }, at + 0.8 * w);
       });
       tl.set({}, {}, LAYOUT.total);
     }, el);
@@ -196,7 +177,7 @@ export function TourSection() {
         ))}
       </ol>
       <div className="sticky top-0 h-[100svh] overflow-hidden">
-        {/* Keeps white text readable over bright photos. */}
+        {/* Keeps white text readable over bright scenes. */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0 bg-gradient-to-b from-plum/35 via-transparent to-plum/55"
@@ -245,7 +226,6 @@ export function TourSection() {
 
         {SEGMENTS.map((seg, i) => {
           if (seg.kind !== 'spot') return null;
-          const p = seg.spot.photo;
           return (
             <p
               key={`c${i}`}
@@ -253,60 +233,26 @@ export function TourSection() {
               className="invisible absolute bottom-3 left-3 flex max-w-[calc(100%-1.5rem)] flex-wrap items-center gap-2 rounded-full bg-plum/70 px-3 py-1 text-[11px] text-blush backdrop-blur-sm sm:left-5 sm:max-w-md"
             >
               <StatusBadge status={seg.spot.status} />
-              <span>
-                {p.credit
-                  ? t('tour.credit.by', { credit: p.credit, licence: p.licence ?? '' })
-                  : t('tour.credit.pending')}
-              </span>
+              <span>{t('tour.scene.note')}</span>
             </p>
           );
         })}
 
-        {SEGMENTS.map((seg, i) => {
-          const fear = fearOf(seg);
+        {SEGMENTS.map((_, i) => {
           const c = copy[i];
-          if (!fear || !c) return null;
+          if (!c?.about) return null;
           return (
-            <article
-              key={`f${i}`}
-              data-card={i}
-              aria-label={t(`fears.items.${fear}.q`)}
-              className="invisible absolute inset-x-3 bottom-12 [perspective:1400px] sm:inset-x-auto sm:bottom-auto sm:left-[6%] sm:top-1/2 sm:w-[440px] sm:-translate-y-1/2"
+            <div
+              key={`a${i}`}
+              data-about={i}
+              className="invisible absolute inset-x-4 bottom-14 text-paper [text-shadow:0_1px_3px_rgb(26_12_24/0.95),0_2px_22px_rgb(26_12_24/0.9)] sm:inset-x-auto sm:bottom-auto sm:left-[6%] sm:top-1/2 sm:w-[420px] sm:-translate-y-1/2"
             >
-              <div data-flip className="grid [transform-style:preserve-3d]">
-                <div className="card-dark col-start-1 row-start-1 flex flex-col items-start justify-center gap-4 p-7 [backface-visibility:hidden]">
-                  <ToriiGate className="h-14 w-16" color="#E0566A" beam="#FFF8FA" />
-                  <p className="eyebrow text-gold">
-                    <span lang={c.kanjiLang || undefined}>{c.kanji}</span> · {c.title}
-                  </p>
-                  <h3 className="display text-4xl text-paper sm:text-5xl">
-                    {t(`fears.items.${fear}.q`)}
-                  </h3>
-                  <p className="mt-2 flex items-center gap-2 text-sm text-blush/80">
-                    <span
-                      aria-hidden="true"
-                      className="scroll-cue inline-block h-5 w-px bg-blush/70"
-                    />
-                    {t('fears.passHint')}
-                  </p>
-                </div>
-                <div className="card col-start-1 row-start-1 flex flex-col gap-3 bg-white/95 p-5 [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-6">
-                  <div className="flex items-center gap-3">
-                    <ToriiGate className="h-8 w-9 shrink-0" />
-                    <div>
-                      <p className="eyebrow text-rose">
-                        <span lang={c.kanjiLang || undefined}>{c.kanji}</span> · {c.title}
-                      </p>
-                      <p className="font-display text-xl leading-tight text-plum">
-                        {t(`fears.items.${fear}.q`)}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-sm text-ink">{t(`fears.items.${fear}.a`)}</p>
-                  {PREVIEWS[fear]}
-                </div>
-              </div>
-            </article>
+              <p className="eyebrow text-gold">{t('tour.about')}</p>
+              <h3 className="display mt-2 text-2xl sm:text-3xl">{c.title}</h3>
+              <p className="mt-3 border-l-2 border-gold/70 pl-4 text-sm leading-relaxed text-paper/95 sm:text-base">
+                {c.about}
+              </p>
+            </div>
           );
         })}
       </div>

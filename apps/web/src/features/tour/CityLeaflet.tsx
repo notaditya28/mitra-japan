@@ -4,11 +4,26 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import type { CityLite } from './cities';
 import type { FoodPin, Stay } from './cityMap';
+import { cityName, spotName } from './labels';
 import type { Spot } from './tour';
 
-const TILES = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+// Esri's light grey canvas without its label layer (those labels are Japanese +
+// romaji in Japan): a quiet base so the pins stand out. We label the places ourselves,
+// in the chosen language.
+const TILES =
+  'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}';
+const MAX_ZOOM = 16;
 const ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors';
+  'Tiles &copy; <a href="https://www.esri.com/" target="_blank" rel="noopener noreferrer">Esri</a> &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors';
+
+/** Pins with a dark plum outline, so they read on the light grey map. */
+const pin = (fill: string, radius = 8): L.CircleMarkerOptions => ({
+  radius,
+  color: '#4A2238',
+  weight: 2.5,
+  fillColor: fill,
+  fillOpacity: 1,
+});
 
 /** Popup content built from DOM nodes, never HTML strings, so data can't inject markup. */
 function popup(title: string, lines: string[]): HTMLElement {
@@ -26,8 +41,10 @@ function popup(title: string, lines: string[]): HTMLElement {
 }
 
 /**
- * The street map inside the city window: OpenStreetMap tiles (free, attribution
- * shown), matcha dots for food, gold for stays, a rose ring for where you are.
+ * The street map inside the city window: Esri's plain light grey canvas (attribution
+ * shown), green pins for food, gold for stays and a labelled rose pin for where you
+ * are, all outlined in plum. Labels and popups come from our data, so they follow
+ * the chosen language instead of the map's.
  * Lazy chunk. If tiles fail (offline) the markers stay and a note says why.
  */
 export default function CityLeaflet({
@@ -51,7 +68,7 @@ export default function CityLeaflet({
     if (!box.current) return;
     const m = L.map(box.current, { zoomControl: true, attributionControl: true });
     let errors = 0;
-    L.tileLayer(TILES, { maxZoom: 19, attribution: ATTRIBUTION })
+    L.tileLayer(TILES, { maxZoom: MAX_ZOOM, attribution: ATTRIBUTION })
       .on('tileerror', () => {
         errors += 1;
         if (errors > 3) setTilesFailed(true);
@@ -75,13 +92,7 @@ export default function CityLeaflet({
 
     for (const { restaurant: r, option } of food) {
       points.push([r.lat, r.lng]);
-      L.circleMarker([r.lat, r.lng], {
-        radius: 7,
-        color: '#FFF8FA',
-        weight: 2,
-        fillColor: '#8FD19E',
-        fillOpacity: 1,
-      })
+      L.circleMarker([r.lat, r.lng], pin('#8FD19E'))
         .bindPopup(
           popup(
             r.name,
@@ -101,13 +112,7 @@ export default function CityLeaflet({
     }
     for (const s of stays) {
       points.push([s.lat, s.lng]);
-      L.circleMarker([s.lat, s.lng], {
-        radius: 7,
-        color: '#FFF8FA',
-        weight: 2,
-        fillColor: '#F0C27B',
-        fillOpacity: 1,
-      })
+      L.circleMarker([s.lat, s.lng], pin('#F0C27B'))
         .bindPopup(
           popup(s.name, [`${t(`tour.map.kinds.${s.kind}`)} · ${s.area}`, t('tour.map.sampleStay')]),
         )
@@ -115,14 +120,10 @@ export default function CityLeaflet({
     }
     if (here) {
       points.push([here.lat, here.lng]);
-      L.circleMarker([here.lat, here.lng], {
-        radius: 9,
-        color: '#C2456E',
-        weight: 3,
-        fillColor: '#FFF8FA',
-        fillOpacity: 0.9,
-      })
-        .bindPopup(popup(here.name, [t('tour.map.youAreHere'), t('tour.map.approximate')]))
+      const name = spotName(t, here);
+      L.circleMarker([here.lat, here.lng], pin('#C2456E', 10))
+        .bindTooltip(name, { permanent: true, direction: 'top', offset: [0, -10] })
+        .bindPopup(popup(name, [t('tour.map.youAreHere'), t('tour.map.approximate')]))
         .addTo(g);
     }
     m.fitBounds(L.latLngBounds(points), { padding: [24, 24], maxZoom: 14 });
@@ -133,7 +134,7 @@ export default function CityLeaflet({
       <div
         ref={box}
         role="region"
-        aria-label={t('tour.map.title', { city: city.name })}
+        aria-label={t('tour.map.title', { city: cityName(t, city.id, city.name) })}
         className="h-full w-full"
       />
       {tilesFailed ? (

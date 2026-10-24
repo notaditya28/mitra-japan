@@ -2,9 +2,6 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { View } from '../lib/router';
 import { jumpTo } from '../lib/sectionScroll';
-import { goToSegment } from '../features/tour/navigate';
-import { SEGMENTS, TOUR_CITIES } from '../features/tour/tour';
-import { useTourStore } from '../features/tour/useTourStore';
 
 const PlannerSectionNav = lazy(() => import('../features/planner/PlannerSectionNav'));
 
@@ -78,7 +75,7 @@ export function SectionBar({
 }
 
 /** Journey chapters we watch, to light up the one on screen. */
-const PAGE_IDS = ['top', 'tour', 'roots', 'numbers'];
+const PAGE_IDS = ['roots', 'numbers'];
 
 function useVisibleSection(ids: string[]): string | null {
   const [active, setActive] = useState<string | null>(null);
@@ -98,41 +95,15 @@ function useVisibleSection(ids: string[]): string | null {
   return active;
 }
 
+// Only the two chapters after the tour (owner request, 2026-10-25); the "Build my trip"
+// button covers the CTA.
 function JourneySectionNav({ solid }: { solid: boolean }) {
   const { t } = useTranslation();
-  const segment = useTourStore((s) => s.segment);
-  const page = useVisibleSection(PAGE_IDS);
-  // The 3D tour scrolls by segment; the reduced-motion layout has one block per city.
-  const immersive = () => document.querySelector('#tour[data-immersive]') !== null;
-
+  const active = useVisibleSection(PAGE_IDS);
   const items: SectionItem[] = [
-    { id: 'top', label: t('sections.start'), go: () => jumpTo('top') },
-    {
-      id: 'flight',
-      label: t('sections.flight'),
-      kanji: '✈',
-      go: () => (immersive() ? goToSegment(0) : jumpTo('tour')),
-    },
-    ...TOUR_CITIES.map((c) => ({
-      id: c.id,
-      label: c.name,
-      kanji: c.nameJa,
-      lang: 'ja',
-      go: () => {
-        const i = SEGMENTS.findIndex((s) => s.kind === 'spot' && s.cityId === c.id);
-        if (immersive() && i >= 0) goToSegment(i);
-        else jumpTo(`tour-city-${c.id}`);
-      },
-    })),
     { id: 'roots', label: t('nav.roots'), go: () => jumpTo('roots') },
     { id: 'numbers', label: t('nav.numbers'), go: () => jumpTo('numbers') },
   ];
-
-  let active: string | null = page;
-  if (page === 'tour') {
-    const seg = SEGMENTS[segment];
-    active = !seg || seg.kind === 'flight' ? 'flight' : seg.cityId;
-  }
   return (
     <SectionBar items={items} active={active} solid={solid} label={t('sections.journeyLabel')} />
   );
@@ -140,8 +111,8 @@ function JourneySectionNav({ solid }: { solid: boolean }) {
 
 /**
  * Second row of the top bar: jump straight to a part of the page instead of scrolling
- * through everything. The journey lists its chapters (flight, each city, roots, numbers,
- * plan); the planner lists its panels and opens its tools.
+ * through everything. The journey lists Indian roots and the numbers; the planner lists
+ * its panels and opens its tools.
  */
 export function SectionNav({ view, solid }: { view: View; solid: boolean }) {
   if (view === 'journey') return <JourneySectionNav solid={solid} />;

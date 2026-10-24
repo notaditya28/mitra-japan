@@ -7,11 +7,15 @@ import { usePageVisible } from '../lib/hooks';
 import { journey, stage } from './journeyState';
 import { CameraRig } from './journey/CameraRig';
 import { FollowCamera } from './journey/FollowCamera';
-import { PetalPortal } from './journey/PetalPortal';
 import { Atmosphere } from './journey/Sky';
 import { FlightScene } from './journey/FlightScene';
-import { PhotoScene, preloadFirstSpots } from './journey/PhotoScene';
+import { SceneFade } from './journey/SceneFade';
 import { ShinkansenScene } from './journey/ShinkansenScene';
+import { refreshSignTextures } from './journey/signs';
+import { FujiScene } from './places/FujiScene';
+import { KyotoScene } from './places/KyotoScene';
+import { MatsuriScene } from './places/MatsuriScene';
+import { TokyoScene } from './places/TokyoScene';
 
 interface JourneyCanvasProps {
   /** Element whose visibility decides whether the scene renders at all. */
@@ -19,8 +23,8 @@ interface JourneyCanvasProps {
 }
 
 /**
- * The single fixed WebGL canvas behind Stage 1: the flight over Asia, the spot
- * photos and the Shinkansen between cities. All are built up front but only the
+ * The single fixed WebGL canvas behind Stage 1: the flight over Asia, each spot's
+ * low-poly scene (Tokyo, Fuji, Kyoto, the Gion matsuri) and the Shinkansen between cities. All are built up front but only the
  * active one is visible, so only one renders per frame. Lazy-loaded; paused while
  * offscreen or the tab is hidden.
  */
@@ -30,8 +34,6 @@ export default function JourneyCanvas({ watchId }: JourneyCanvasProps) {
   const [inView, setInView] = useState(true);
   const [ready, setReady] = useState(false);
   const trees = tier === 'high' ? 56 : 32;
-  // Big screens on capable devices get the 2048 px photos.
-  const large = tier === 'high' && window.innerWidth * Math.min(2, window.devicePixelRatio) >= 1600;
 
   useEffect(() => {
     const el = document.getElementById(watchId);
@@ -48,6 +50,8 @@ export default function JourneyCanvas({ watchId }: JourneyCanvasProps) {
     };
     window.addEventListener('pointermove', onMove, { passive: true });
     const intro = gsap.to(journey, { intro: 1, duration: 3.4, ease: 'power2.out', delay: 0.2 });
+    // Sign textures drawn before the Japanese font arrived get redrawn once it has.
+    void document.fonts.ready.then(refreshSignTextures);
     return () => {
       window.removeEventListener('pointermove', onMove);
       intro.kill();
@@ -72,7 +76,6 @@ export default function JourneyCanvas({ watchId }: JourneyCanvasProps) {
         camera={{ position: [0, 40, 30], fov: 50, near: 0.1, far: 1200 }}
         onCreated={(state) => {
           setReady(true);
-          preloadFirstSpots(large);
           // Dev-only handle for inspecting the scene from the console.
           if (import.meta.env.DEV) Object.assign(window, { __journey: state, __stage: stage });
         }}
@@ -82,8 +85,11 @@ export default function JourneyCanvas({ watchId }: JourneyCanvasProps) {
         <CameraRig />
         <Atmosphere />
         <FlightScene />
-        <PhotoScene large={large} />
+        <TokyoScene />
+        <FujiScene trees={trees} />
         <ShinkansenScene trees={trees} />
+        <KyotoScene trees={trees} />
+        <MatsuriScene />
         {/* Petals stay 5+ units from the lens so none blur across the screen. */}
         <FollowCamera offset={[0, 0, -8.5]}>
           <Petals3D
@@ -92,7 +98,7 @@ export default function JourneyCanvas({ watchId }: JourneyCanvasProps) {
             speed={() => 1 + stage.warp * 0.4}
           />
         </FollowCamera>
-        <PetalPortal count={tier === 'high' ? 1100 : 650} />
+        <SceneFade />
       </Canvas>
     </div>
   );

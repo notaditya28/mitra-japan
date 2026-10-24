@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { stage, type SegmentKind } from '../journeyState';
+import { stage, type ViewId } from '../journeyState';
 import { usePersonaTint } from './usePersonaTint';
 
 interface Mood {
@@ -13,24 +13,16 @@ interface Mood {
 }
 
 /**
- * One mood per kind of segment: the flight at dusk over Asia, the photo spots
- * (the photo covers the sky; the mood only tints the fog and the veil edges)
- * and the Shinkansen at golden hour.
+ * One mood per view: the flight at dusk over Asia, the Shinkansen at golden hour,
+ * Tokyo's neon night, dawn at Fuji, sunset at Fushimi Inari and a festival night in Gion.
  */
-const MOODS: Record<SegmentKind, Mood> = {
+const MOODS: Record<ViewId, Mood> = {
   flight: {
     sky: ['#1A0C18', '#3A1A2E', '#7A3A5A'],
     fog: [90, 420],
     hemi: ['#FFE9EF', '#4A2238', 1.15],
     sun: ['#FFE6D2', 1.4, [-8, 30, 10]],
     ambient: ['#F7C6D0', 0.4],
-  },
-  spot: {
-    sky: ['#2E1424', '#4A2238', '#6E2F52'],
-    fog: [200, 600],
-    hemi: ['#FFD9E2', '#5A2C45', 1],
-    sun: ['#FFE6D2', 1.2, [6, 14, 22]],
-    ambient: ['#F7C6D0', 0.35],
   },
   train: {
     sky: ['#7A4A6E', '#D98A8A', '#F6C58E'],
@@ -39,7 +31,40 @@ const MOODS: Record<SegmentKind, Mood> = {
     sun: ['#FFD09A', 2, [-30, 12, 14]],
     ambient: ['#FBE3EA', 0.3],
   },
+  tokyo: {
+    sky: ['#0C0614', '#22102C', '#4A2045'],
+    fog: [22, 200],
+    hemi: ['#8A6B8A', '#140A14', 0.55],
+    sun: ['#C9B2E0', 0.35, [-8, 20, 10]],
+    ambient: ['#4A2238', 0.6],
+  },
+  fuji: {
+    sky: ['#2E1424', '#6E2F52', '#E07A8F'],
+    fog: [70, 460],
+    hemi: ['#FFD9E2', '#5A2C45', 1.1],
+    sun: ['#FFE6D2', 1.6, [6, 14, 22]],
+    ambient: ['#F7C6D0', 0.35],
+  },
+  kyoto: {
+    sky: ['#4A2238', '#B4506E', '#F2A57E'],
+    fog: [45, 320],
+    hemi: ['#FFD2C2', '#5A2C45', 1],
+    sun: ['#FFB98A', 1.7, [-12, 9, 12]],
+    ambient: ['#F7C6D0', 0.3],
+  },
+  matsuri: {
+    sky: ['#120816', '#2E1430', '#6A2A48'],
+    fog: [24, 220],
+    hemi: ['#8A5A6A', '#140A14', 0.55],
+    sun: ['#F0C27B', 0.3, [0, 20, 10]],
+    ambient: ['#4A2238', 0.65],
+  },
 };
+
+/** The view's horizon (and fog) colour, nudged towards the persona tint like the sky. */
+export function horizonColor(view: ViewId, tint: THREE.Color, out: THREE.Color): THREE.Color {
+  return out.set(MOODS[view].sky[2]).lerp(tint, 0.2);
+}
 
 const vertex = /* glsl */ `
   varying vec3 vDir;
@@ -94,14 +119,12 @@ export function Atmosphere() {
   }, [scene, fog]);
 
   useFrame(({ camera }, dt) => {
-    const m = MOODS[stage.kind];
+    const m = MOODS[stage.view];
     const k = stage.switched ? 1 : 1 - Math.exp(-dt * 2.5);
 
     uniforms.uTop.value.lerp(tmp.set(m.sky[0]), k);
     uniforms.uMid.value.lerp(tmp.set(m.sky[1]), k);
-    tmp.set(m.sky[2]);
-    tmp.lerp(tint.current, 0.2);
-    uniforms.uHorizon.value.lerp(tmp, k);
+    uniforms.uHorizon.value.lerp(horizonColor(stage.view, tint.current, tmp), k);
     fog.color.copy(uniforms.uHorizon.value);
     fog.near = THREE.MathUtils.lerp(fog.near, m.fog[0], k);
     fog.far = THREE.MathUtils.lerp(fog.far, m.fog[1], k);

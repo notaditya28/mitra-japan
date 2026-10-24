@@ -1,43 +1,33 @@
 import tourJson from '../../data/tour.json';
-import photosJson from '../../data/tourPhotos.json';
 import type { DataStatus } from '../planner/data';
 import { cityLite as cityById } from './cities';
-import type { FearId } from '../../scenes/fears';
 
 /**
  * The Stage 1 journey as data: a flight from Delhi to the first city, then each
- * city's spots (one photo each), with a Shinkansen ride between cities.
+ * city's spots (one stylised 3D scene each), with a Shinkansen ride between cities.
  * Three-free so the first paint, the chapter rail and the city map window can use it.
  */
 
-export interface PhotoCredit {
-  credit: string | null;
-  source: string | null;
-  licence: string | null;
-}
+/** The low-poly 3D scenes a spot can show (`src/scenes/places/`). */
+export const PLACE_SCENES = ['tokyo', 'fuji', 'kyoto', 'matsuri'] as const;
+export type PlaceScene = (typeof PLACE_SCENES)[number];
 
 export interface Spot {
-  /** "<city>/<slug>", the same id as the photo manifest. */
+  /** "<city>/<slug>". */
   id: string;
+  /** Key for the translated name, area and paragraph (`tour.spots.<slug>`). */
+  slug: string;
   cityId: string;
   name: string;
   nameJa: string;
-  /** Short Japanese label the portal petals spell out. */
+  /** Short Japanese label for the static (no-3D) card. */
   kanji: string;
   area: string;
+  /** Approximate, only for the "you are here" pin on the city map. */
   lat: number;
   lng: number;
-  fear: FearId | null;
-  /** Point of interest in the photo (0..1), kept in frame when cropping. */
-  focus: [number, number];
+  scene: PlaceScene;
   status: DataStatus;
-  photo: PhotoCredit;
-  photoNote?: string;
-  /** Image URLs: large for desktop, small for phones and mid-tier devices. */
-  src: { lg: string; sm: string };
-  /** Original pixel size, for the crop maths. */
-  width: number;
-  height: number;
 }
 
 export interface TourCity {
@@ -50,12 +40,12 @@ export interface TourCity {
 }
 
 export type Segment =
-  | { kind: 'flight'; kanji: string; cityId: string; weight: number }
-  | { kind: 'spot'; kanji: string; cityId: string; spot: Spot; first: boolean; weight: number }
-  | { kind: 'train'; kanji: string; cityId: string; from: string; weight: number };
+  | { kind: 'flight'; cityId: string; weight: number }
+  | { kind: 'spot'; cityId: string; spot: Spot; first: boolean; weight: number }
+  | { kind: 'train'; cityId: string; from: string; weight: number };
 
 /** Relative scroll length of each kind of segment. */
-export const WEIGHTS = { flight: 2.2, spot: 1, train: 1.6 } as const;
+export const WEIGHTS = { flight: 2.2, spot: 1.4, train: 1.6 } as const;
 /** Scroll length of one weight unit, in viewport heights. */
 export const VH_PER_UNIT = 120;
 
@@ -66,78 +56,38 @@ interface RawSpot {
   area: string;
   lat: number;
   lng: number;
-  fear: string | null;
-  focus: number[];
+  scene: string;
   status: string;
-  photo: PhotoCredit;
-  photoNote?: string;
 }
 
-interface PhotoEntry {
-  id: string;
-  city: string;
-  slug: string;
-  width: number;
-  height: number;
-}
-
-const urls = import.meta.glob<string>('../../assets/tour/*/*.webp', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-});
-const urlFor = (city: string, slug: string, size: 'lg' | 'sm') =>
-  urls[`../../assets/tour/${city}/${slug}-${size}.webp`];
-
-const FEARS: readonly string[] = ['food', 'language', 'visa', 'foreign'];
-const asFear = (f: string | null | undefined): FearId | null =>
-  f && FEARS.includes(f) ? (f as FearId) : null;
-
-const prettify = (slug: string) => slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+const asScene = (s: string | undefined): PlaceScene | null =>
+  PLACE_SCENES.find((p) => p === s) ?? null;
 
 function buildSpot(id: string): Spot | null {
-  const photo = (photosJson.photos as PhotoEntry[]).find((p) => p.id === id);
-  const city = id.split('/')[0] ?? '';
-  const slug = id.split('/')[1] ?? '';
-  const lg = urlFor(city, slug, 'lg');
-  const sm = urlFor(city, slug, 'sm');
-  if (!photo || !lg || !sm) return null;
   const raw = (tourJson.spots as Record<string, RawSpot | undefined>)[id];
-  const c = cityById(city);
-  // A photo dropped in a folder but not yet described still shows, clearly unreviewed.
+  const scene = asScene(raw?.scene);
+  // A spot without a known 3D scene has nothing to show.
+  if (!raw || !scene) return null;
   return {
     id,
-    cityId: city,
-    name: raw?.name ?? prettify(slug),
-    nameJa: raw?.nameJa ?? c?.nameJa ?? '',
-    kanji: raw?.kanji ?? c?.nameJa ?? '旅',
-    area: raw?.area ?? '',
-    lat: raw?.lat ?? c?.lat ?? 0,
-    lng: raw?.lng ?? c?.lng ?? 0,
-    fear: asFear(raw?.fear),
-    focus: [raw?.focus[0] ?? 0.5, raw?.focus[1] ?? 0.5],
-    status: raw?.status === 'verified' ? 'verified' : 'needs-review',
-    photo: raw?.photo ?? { credit: null, source: null, licence: null },
-    photoNote: raw?.photoNote,
-    src: { lg, sm },
-    width: photo.width,
-    height: photo.height,
+    slug: id.split('/')[1] ?? id,
+    cityId: id.split('/')[0] ?? '',
+    name: raw.name,
+    nameJa: raw.nameJa,
+    kanji: raw.kanji,
+    area: raw.area,
+    lat: raw.lat,
+    lng: raw.lng,
+    scene,
+    status: raw.status === 'verified' ? 'verified' : 'needs-review',
   };
 }
 
 function buildCities(): TourCity[] {
-  const listed = tourJson.cities.map((c) => c.id);
-  const photoCities = [...new Set((photosJson.photos as PhotoEntry[]).map((p) => p.city))];
-  // Cities with photos but no entry in tour.json join at the end, in folder order.
-  const order = [...listed, ...photoCities.filter((c) => !listed.includes(c))];
-  return order.flatMap((id) => {
+  return tourJson.cities.flatMap(({ id, spots: ids }) => {
     const city = cityById(id);
     if (!city) return [];
-    const listedSpots = tourJson.cities.find((c) => c.id === id)?.spots ?? [];
-    const extra = (photosJson.photos as PhotoEntry[])
-      .filter((p) => p.city === id && !listedSpots.includes(p.id))
-      .map((p) => p.id);
-    const spots = [...listedSpots, ...extra].map(buildSpot).filter((s): s is Spot => s !== null);
+    const spots = ids.map(buildSpot).filter((s): s is Spot => s !== null);
     if (spots.length === 0) return [];
     return [{ id, name: city.name, nameJa: city.nameJa, lat: city.lat, lng: city.lng, spots }];
   });
@@ -145,19 +95,15 @@ function buildCities(): TourCity[] {
 
 export const FROM = tourJson.from;
 export const TOUR_CITIES: TourCity[] = buildCities();
-export const TRAIN_FEAR: FearId | null = asFear(tourJson.trainFear);
 
 export function buildSegments(cities: TourCity[]): Segment[] {
   const first = cities[0];
   if (!first) return [];
-  const out: Segment[] = [
-    { kind: 'flight', kanji: first.nameJa, cityId: first.id, weight: WEIGHTS.flight },
-  ];
+  const out: Segment[] = [{ kind: 'flight', cityId: first.id, weight: WEIGHTS.flight }];
   cities.forEach((city, ci) => {
     if (ci > 0) {
       out.push({
         kind: 'train',
-        kanji: '新幹線',
         cityId: city.id,
         from: cities[ci - 1]?.id ?? '',
         weight: WEIGHTS.train,
@@ -166,8 +112,6 @@ export function buildSegments(cities: TourCity[]): Segment[] {
     city.spots.forEach((spot, si) => {
       out.push({
         kind: 'spot',
-        // Arriving in a city spells the city's name; moving within it, the spot's.
-        kanji: si === 0 ? city.nameJa : spot.kanji,
         cityId: city.id,
         spot,
         first: si === 0,
@@ -203,9 +147,3 @@ export function mapCityFor(segments: Segment[], index: number): string | null {
   // On the train you are still in the city you left until you arrive.
   return s.kind === 'train' ? s.from : s.cityId;
 }
-
-/** Transitions inside a city are a plain veil; arriving somewhere new gets the petal kanji. */
-export const isPlainBoundary = (segments: Segment[], index: number): boolean => {
-  const s = segments[index];
-  return s?.kind === 'spot' && !s.first;
-};

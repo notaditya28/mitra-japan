@@ -9,7 +9,7 @@ const FlightMapSvg = lazy(() => import('./FlightMapSvg'));
 
 /**
  * The journey without scroll-driven 3D (reduced motion, low-end devices, no WebGL):
- * a flat flight map, then each city's photos in order. The city map window follows
+ * a flat flight map, then each city's spots in order (the 3D scenes need WebGL). The city map window follows
  * whichever city is in view.
  */
 export function TourStatic() {
@@ -73,33 +73,24 @@ export function TourStatic() {
             </h3>
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               {city.spots.map((s) => (
-                <figure key={s.id} className="overflow-hidden rounded-card bg-plum/60">
-                  <img
-                    src={s.src.sm}
-                    srcSet={`${s.src.sm} 1280w, ${s.src.lg} 2048w`}
-                    sizes="(min-width: 640px) 50vw, 100vw"
-                    alt={t('tour.photoAlt', { name: s.name, city: city.name })}
-                    loading="lazy"
-                    decoding="async"
-                    className="aspect-[4/3] w-full object-cover"
-                    style={{ objectPosition: `${s.focus[0] * 100}% ${s.focus[1] * 100}%` }}
-                  />
-                  <figcaption className="flex flex-wrap items-center gap-2 px-4 py-3 text-sm">
+                <article key={s.id} className="overflow-hidden rounded-card bg-plum/60">
+                  <div
+                    aria-hidden="true"
+                    className="grid aspect-[16/9] place-items-center bg-gradient-to-b from-[#2E1424] to-plum"
+                  >
+                    <span lang="ja" className="font-display text-6xl text-gold/90">
+                      {s.kanji}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2 px-4 py-3 text-sm">
                     <span lang="ja" className="font-display text-gold">
                       {s.nameJa}
                     </span>
-                    <span className="font-semibold">{s.name}</span>
+                    <h4 className="font-semibold">{s.name}</h4>
                     <StatusBadge status={s.status} />
-                    <span className="w-full text-[11px] text-blush/75">
-                      {s.photo.credit
-                        ? t('tour.credit.by', {
-                            credit: s.photo.credit,
-                            licence: s.photo.licence ?? '',
-                          })
-                        : t('tour.credit.pending')}
-                    </span>
-                  </figcaption>
-                </figure>
+                    <span className="w-full text-[11px] text-blush/75">{s.area}</span>
+                  </div>
+                </article>
               ))}
             </div>
           </div>

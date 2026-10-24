@@ -270,9 +270,8 @@ function Pin({
   const ring = useRef<THREE.Mesh>(null);
   const tag = useRef<HTMLDivElement>(null);
   useFrame(({ clock }) => {
-    // HTML labels sit above the canvas, so hide them while the portal veil is up.
-    if (tag.current)
-      tag.current.style.opacity = stage.cover > 0.02 || stage.iris < 0.98 ? '0' : '1';
+    // HTML labels sit above the canvas, so hide them while the fade is up.
+    if (tag.current) tag.current.style.opacity = stage.cover > 0.02 ? '0' : '1';
     const r = ring.current;
     if (!r) return;
     const k = (clock.elapsedTime * 0.6) % 1;

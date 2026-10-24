@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useId, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { cityLite } from './cities';
+import { cityName } from './labels';
 import { mapCityFor, SEGMENTS } from './tour';
 import { useTourStore } from './useTourStore';
 
@@ -59,10 +60,7 @@ export function CityMapWindow() {
             strokeLinejoin="round"
           />
         </svg>
-        <span lang="ja" className="font-display">
-          {city.nameJa}
-        </span>
-        {t('tour.map.open', { city: city.name })}
+        {t('tour.map.open', { city: cityName(t, city.id, city.name) })}
         <span aria-hidden="true" className={`transition-transform ${open ? 'rotate-180' : ''}`}>
           ▾
         </span>

@@ -1,18 +1,31 @@
 import { useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { computeStage, journey, stage, type SegmentKind } from '../journeyState';
+import { computeStage, journey, stage, type ViewId } from '../journeyState';
 import type { CameraPath } from './common';
 import { flightCamera } from './FlightScene';
-import { photoCamera } from './PhotoScene';
 import { shinkansenCamera } from './ShinkansenScene';
+import { fujiCamera } from '../places/FujiScene';
+import { kyotoCamera } from '../places/KyotoScene';
+import { matsuriCamera } from '../places/MatsuriScene';
+import { tokyoCamera } from '../places/TokyoScene';
 
-const CAMERAS: Record<SegmentKind, CameraPath> = {
+const CAMERAS: Record<ViewId, CameraPath> = {
   flight: flightCamera,
-  spot: photoCamera,
   train: shinkansenCamera,
+  tokyo: tokyoCamera,
+  fuji: fujiCamera,
+  kyoto: kyotoCamera,
+  matsuri: matsuriCamera,
 };
-const PARALLAX: Record<SegmentKind, number> = { flight: 0.6, spot: 0.22, train: 0.18 };
+const PARALLAX: Record<ViewId, number> = {
+  flight: 0.6,
+  train: 0.18,
+  tokyo: 0.18,
+  fuji: 0.3,
+  kyoto: 0.18,
+  matsuri: 0.18,
+};
 const BASE_FOV = 50;
 
 /**
@@ -27,9 +40,9 @@ export function CameraRig() {
 
   useFrame(({ camera }, dt) => {
     computeStage();
-    CAMERAS[stage.kind](stage.t, pos, look);
+    CAMERAS[stage.view](stage.t, pos, look);
 
-    const parallax = PARALLAX[stage.kind];
+    const parallax = PARALLAX[stage.view];
     pos.x += journey.pointer.x * parallax;
     pos.y += journey.pointer.y * parallax * 0.4;
 

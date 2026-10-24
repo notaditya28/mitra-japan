@@ -7,16 +7,16 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 ## Fully working
 
 - Stage 1 journey (redesigned 2026-10-24):
-  - Traveller picker over a 3D map of Asia (India point-of-view boundaries), with the plane at Delhi.
-  - Scroll flies the plane Delhi → Tokyo along a great-circle route; a petal portal opens onto the first photo.
-  - Real photos of 4 Tokyo and 4 Kyoto spots in 3D (curved plane, slow push-in, petals), with plain veil transitions inside a city and a Shinkansen ride between cities.
-  - Fear cards on Tsukiji (food), the train (language), Fushimi Inari (visa) and Kiyomizu-dera (feeling foreign).
+  - Title and take-off button over a 3D map of Asia (India point-of-view boundaries), with the plane at Delhi (no traveller picker here; the planner asks).
+  - Scroll flies the plane Delhi → Tokyo along a great-circle route; a slow dip to plum opens onto Tokyo.
+  - Low-poly 3D scenes instead of photos (2026-10-25): Tokyo neon street and a Mt Fuji day trip, then Fushimi Inari and a Gion festival in Kyoto, with a slow dip to plum between every scene and a Shinkansen ride between cities.
+  - A short paragraph about each place (and the Shinkansen) on a transparent background, in EN/HI/GU (HI/GU drafts); the journey rail is in the chosen language.
   - Journey rail grouped by city.
   - A flat version for reduced motion and low-end devices.
 - City map window (top right of the journey):
   - Follows the current city.
   - Diet picker that keeps your choice across cities.
-  - OpenStreetMap street map with markers for food that lists your diet and for places to stay, plus a list with status badges.
+  - Plain grey street map (no Japanese labels) with plum-outlined markers for food that lists your diet and for places to stay, a labelled "you are here" pin, plus a list with status badges.
 - Reduced-motion / low-end path: static sections instead of scroll-driven 3D.
 - Language switch EN / हिं / ગુ (Stage 1, sign-in and planner UI; data notes are English only).
 - Indian-roots mosaic → map reveal and story cards.
@@ -108,8 +108,8 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - **Emergency contacts** (`emergency.json`): numbers and mission phone lines taken from official pages, `needs-review`. The Hindi text is a machine draft.
 - **Live weather**: off by default; set `WEATHER_PROVIDER=open-meteo`. Transit status is not connected (says so). Attraction hours are always "unverified".
 - **Embedding model**: the first ingest downloads ~465 MB (internet once).
-- **Journey photos**: 8 photos with credit, source and licence pending; every spot is `needs-review` (names, approximate pins). The "Gion & Pontochō" photo looks like Omoide Yokocho in Shinjuku and needs checking.
-- **City map tiles**: OpenStreetMap's public tile servers (internet needed; fine for a demo, not for heavy traffic).
+- **Journey spots**: 4 stylised 3D scenes, each labelled as such; every spot is `needs-review` (names, approximate pins).
+- **City map tiles**: Esri's free light grey canvas (internet needed; fine for a demo, check the terms before launch).
 - **Team guide figures**: visa processing times and maximum stays, the ₹2.5–3.5 lakh balance, the ₹5 lakh ITR, VFS centres and pitfalls, plus the guide's waiter-card sentences. All are shown with a "From our team guide · needs review" badge until the owner checks them against official pages.
 - **Street map basemaps**: Esri and CARTO tiles (attribution shown; check their terms before launch).
 - **Ingredient dictionary** (`ingredients.json`): 53 entries plus menu words; per-diet rules need the owner's review.

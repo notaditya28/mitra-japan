@@ -15,19 +15,15 @@ void i18n.use(initReactI18next).init({
 describe('static journey (reduced motion / no WebGL)', () => {
   const html = renderToStaticMarkup(<TourStatic />);
 
-  it('shows every city and every spot photo with alt text', () => {
+  it('shows every city and every spot', () => {
     for (const city of TOUR_CITIES) {
       expect(html).toContain(city.name);
-      for (const s of city.spots) {
-        expect(html).toContain(s.src.sm);
-        expect(html).toContain(`alt="${s.name.replace(/&/g, '&amp;')}, ${city.name}"`);
-      }
+      for (const s of city.spots) expect(html).toContain(s.name.replace(/&/g, '&amp;'));
     }
   });
 
-  it('labels every photo as needing review with its credit pending', () => {
+  it('labels every spot as needing review', () => {
     const spots = TOUR_CITIES.flatMap((c) => c.spots).length;
     expect(html.match(/Needs review/g)?.length).toBe(spots);
-    expect(html.match(/Photo credit pending/g)?.length).toBe(spots);
   });
 });

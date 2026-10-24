@@ -1,0 +1,98 @@
+{
+  "en": {
+    "tour": {
+      "scene": { "note": "Stylised 3D scene, not a photo of this place" },
+      "about": "About this place",
+      "cities": { "tokyo": "Tokyo", "kyoto": "Kyoto" },
+      "train": {
+        "about": "The Shinkansen links Japan's big cities with fast, frequent bullet trains. Signs and announcements include English, and reserved cars let a family sit together."
+      },
+      "spots": {
+        "neon-street": {
+          "name": "Neon side streets",
+          "area": "Shinjuku",
+          "about": "After dark, Tokyo's side streets glow with lanterns and neon signs over small counters serving ramen, skewers and izakaya plates. Many places put picture menus outside, so you can see what's on offer before you sit down."
+        },
+        "fuji-day-trip": {
+          "name": "Day trip to Mt Fuji",
+          "area": "Fuji Five Lakes",
+          "about": "Mt Fuji is Japan's highest mountain and a popular day trip from Tokyo. The Fuji Five Lakes area at its northern foot has lakeside walks, shrines and viewpoints. The peak often hides in cloud, so clear mornings give the best views."
+        },
+        "fushimi-inari": {
+          "name": "Fushimi Inari Taisha",
+          "area": "Fushimi",
+          "about": "Fushimi Inari Taisha is the head shrine of Inari, associated with rice, harvests and prosperity. Long tunnels of vermilion torii gates, each donated by a person or business, wind up the wooded slopes of Mount Inari behind the main hall."
+        },
+        "gion-matsuri": {
+          "name": "A summer evening festival in Gion",
+          "area": "Gion",
+          "about": "Gion is Kyoto's old entertainment district, with wooden machiya houses and lantern-lit lanes. In July the Gion Matsuri of Yasaka Shrine fills its streets with food stalls, paper lanterns and tall decorated floats."
+        }
+      }
+    }
+  },
+  "hi": {
+    "tour": {
+      "scene": { "note": "शैलीबद्ध 3D दृश्य, इस जगह की फ़ोटो नहीं" },
+      "about": "इस जगह के बारे में",
+      "cities": { "tokyo": "टोक्यो", "kyoto": "क्योटो" },
+      "train": {
+        "about": "शिंकानसेन जापान के बड़े शहरों को तेज़ और बार-बार चलने वाली बुलेट ट्रेनों से जोड़ती है। साइन और घोषणाएँ अंग्रेज़ी में भी होती हैं, और रिज़र्व्ड डिब्बों में परिवार साथ बैठ सकता है।"
+      },
+      "spots": {
+        "neon-street": {
+          "name": "नियॉन से जगमगाती गलियाँ",
+          "area": "शिंजुकु",
+          "about": "रात होते ही टोक्यो की छोटी गलियाँ लालटेनों और नियॉन साइनों से जगमगा उठती हैं, जहाँ छोटे काउंटरों पर रामेन, सींख और इज़ाकाया के व्यंजन मिलते हैं। कई जगह बाहर तस्वीरों वाला मेन्यू लगा होता है, ताकि बैठने से पहले ही आप देख सकें कि क्या मिलता है।"
+        },
+        "fuji-day-trip": {
+          "name": "माउंट फ़ूजी की एक दिन की सैर",
+          "area": "फ़ूजी फ़ाइव लेक्स",
+          "about": "माउंट फ़ूजी जापान का सबसे ऊँचा पहाड़ है और टोक्यो से एक दिन की लोकप्रिय सैर है। इसकी उत्तरी तलहटी में फ़ूजी फ़ाइव लेक्स इलाके में झील किनारे की सैर, श्राइन और व्यू पॉइंट हैं। चोटी अक्सर बादलों में छिपी रहती है, इसलिए साफ़ सुबह सबसे अच्छा नज़ारा मिलता है।"
+        },
+        "fushimi-inari": {
+          "name": "फ़ुशिमी इनारी ताइशा",
+          "area": "फ़ुशिमी",
+          "about": "फ़ुशिमी इनारी ताइशा इनारी का मुख्य श्राइन है, जो चावल, फ़सल और समृद्धि से जुड़े हैं। मुख्य भवन के पीछे इनारी पर्वत की जंगली ढलानों पर सिंदूरी तोरी द्वारों की लंबी सुरंगें चढ़ती हैं, जिनमें हर द्वार किसी व्यक्ति या कारोबार ने दान किया है।"
+        },
+        "gion-matsuri": {
+          "name": "गियोन में गर्मियों की शाम का उत्सव",
+          "area": "गियोन",
+          "about": "गियोन क्योटो का पुराना मनोरंजन इलाका है, जहाँ लकड़ी के माचिया घर और लालटेनों से रोशन गलियाँ हैं। जुलाई में यासाका श्राइन का गियोन मात्सुरी इसकी गलियों को खाने के स्टॉलों, काग़ज़ की लालटेनों और ऊँचे सजे रथों से भर देता है।"
+        }
+      }
+    }
+  },
+  "gu": {
+    "tour": {
+      "scene": { "note": "શૈલીબદ્ધ 3D દૃશ્ય, આ સ્થળનો ફોટો નથી" },
+      "about": "આ સ્થળ વિશે",
+      "cities": { "tokyo": "ટોક્યો", "kyoto": "ક્યોટો" },
+      "train": {
+        "about": "શિંકાનસેન જાપાનનાં મોટાં શહેરોને ઝડપી અને વારંવાર દોડતી બુલેટ ટ્રેનોથી જોડે છે. સાઇન અને જાહેરાતો અંગ્રેજીમાં પણ હોય છે, અને રિઝર્વ્ડ ડબ્બામાં પરિવાર સાથે બેસી શકે છે."
+      },
+      "spots": {
+        "neon-street": {
+          "name": "નિયોનથી ઝળહળતી ગલીઓ",
+          "area": "શિંજુકુ",
+          "about": "રાત પડતાં જ ટોક્યોની નાની ગલીઓ ફાનસ અને નિયોન સાઇનથી ઝળહળી ઊઠે છે, જ્યાં નાના કાઉન્ટર પર રામેન, સળિયા પર શેકેલી વાનગીઓ અને ઇઝાકાયાની ડીશ મળે છે. ઘણી જગ્યાએ બહાર ચિત્રોવાળું મેનૂ હોય છે, જેથી બેસતાં પહેલાં જ તમે જોઈ શકો કે શું મળે છે."
+        },
+        "fuji-day-trip": {
+          "name": "માઉન્ટ ફૂજીની એક દિવસની સફર",
+          "area": "ફૂજી ફાઇવ લેક્સ",
+          "about": "માઉન્ટ ફૂજી જાપાનનો સૌથી ઊંચો પર્વત છે અને ટોક્યોથી એક દિવસની લોકપ્રિય સફર છે. તેની ઉત્તર તળેટીમાં ફૂજી ફાઇવ લેક્સ વિસ્તારમાં તળાવ કિનારે ફરવાનું, શ્રાઇન અને વ્યૂ પોઇન્ટ છે. શિખર ઘણી વાર વાદળોમાં છુપાયેલું રહે છે, તેથી સ્વચ્છ સવારે સૌથી સારો નજારો મળે છે."
+        },
+        "fushimi-inari": {
+          "name": "ફુશિમી ઇનારી તાઇશા",
+          "area": "ફુશિમી",
+          "about": "ફુશિમી ઇનારી તાઇશા ઇનારીનું મુખ્ય શ્રાઇન છે, જે ચોખા, પાક અને સમૃદ્ધિ સાથે સંકળાયેલા છે. મુખ્ય ભવનની પાછળ ઇનારી પર્વતના જંગલવાળા ઢોળાવ પર સિંદૂરી તોરી દરવાજાઓની લાંબી ટનલ ચઢે છે, જેમાં દરેક દરવાજો કોઈ વ્યક્તિ કે વેપારે દાનમાં આપ્યો છે."
+        },
+        "gion-matsuri": {
+          "name": "ગિયોનમાં ઉનાળાની સાંજનો ઉત્સવ",
+          "area": "ગિયોન",
+          "about": "ગિયોન ક્યોટોનો જૂનો મનોરંજન વિસ્તાર છે, જ્યાં લાકડાનાં માચિયા ઘરો અને ફાનસથી પ્રકાશિત ગલીઓ છે. જુલાઈમાં યાસાકા શ્રાઇનનો ગિયોન માત્સુરી તેની ગલીઓને ખાણીપીણીના સ્ટોલ, કાગળનાં ફાનસ અને ઊંચા સજાવેલા રથોથી ભરી દે છે."
+        }
+      }
+    }
+  }
+}

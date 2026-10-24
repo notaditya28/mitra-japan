@@ -1,10 +1,12 @@
-import { useEffect, useRef } from 'react';
+import { lazy, Suspense, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { startTrip } from '../features/auth/startTrip';
 import { navigate, type View } from '../lib/router';
 import { playPortal } from '../lib/portal';
 import { LanguageSwitch } from './LanguageSwitch';
 import { SectionNav } from './SectionNav';
+
+const AskMitraButton = lazy(() => import('../features/planner/AskMitraButton'));
 
 /**
  * One-row top bar: brand, section links (scroll sideways when they don't fit), language
@@ -71,6 +73,11 @@ export function Nav({ view }: { view: View }) {
           <SectionNav view={view} solid={solid} />
         </div>
         <div className="flex shrink-0 items-center gap-1 sm:gap-2">
+          {view === 'plan' ? (
+            <Suspense fallback={null}>
+              <AskMitraButton />
+            </Suspense>
+          ) : null}
           <LanguageSwitch solid={solid} />
           {onJourney ? (
             <button

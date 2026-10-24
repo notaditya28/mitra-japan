@@ -34,9 +34,8 @@
 - [ ] **Scanner dictionary** (`ingredients.json`, 53 entries + menu words): review per-diet rules (e.g. mushrooms = avoid for Jain, soy sauce and miso = ask for halal, shortening = ask).
 
 - [x] **Stage 1 revisit** (2026-10-24): replaced by traveller picker → Delhi→Tokyo flight → photo spots per city → Shinkansen between cities, plus a city map window.
-- [ ] **Journey photo credits**: fill `photo.credit`, `photo.source` and `photo.licence` for all 8 spots in `src/data/tour.json` (the site shows "Photo credit pending" until then).
-- [ ] **Gion photo**: `kyoto/gion-district-and-pontocho-alley` looks like Omoide Yokocho (Shinjuku, Tokyo). Replace it, or move it to the Tokyo folder and rename it. It is also only 670 px wide, so it looks soft full-screen.
-- [ ] **Journey spots**: check names, Japanese names and pin positions in `tour.json`, then set `status: verified`. Add more cities by dropping photos in `src/scenes/places/places/<city>/` (README).
+- [x] **Journey spots as 3D scenes** (2026-10-25): photos replaced by the low-poly Tokyo, Fuji, Kyoto and Gion matsuri scenes (owner request). The photo pipeline (`tour_photos.py`, `tourPhotos.json`, `assets/tour/`) is removed; it is in git history (`ba2f85e`) if photos come back.
+- [ ] **Journey spots**: check names, Japanese names and pin positions in `tour.json`, then set `status: verified`. Fuji sits under Tokyo as a day trip; move it if you prefer. HI/GU "stylised 3D scene" note is a draft.
 - [ ] **Stays**: replace the dummy stays in `stays.json` with real, sourced places once there is data.
 - [ ] **Team guide figures** (`visa.json` items and blocks with `source: team-guide`, `phrases.json` guide sentences, `shojin.json`): check each against MOFA, the Embassy of Japan in India and VFS pages, then correct them or remove the badge. Pay particular attention to: processing times, "sticker visa up to 15 days", "₹2.5–3.5 lakh", "ITR ₹5 lakh", the photo size, the VFS centre lists, and the three states the guide doesn't list (Chhattisgarh, Andaman and Nicobar, Lakshadweep).
 - [ ] **Basemaps**: confirm Esri and CARTO terms for the public site, or switch to a keyed provider.
@@ -71,8 +70,8 @@
 | Assistant plan changes   | Rule-based in Demo; Claude tool loop in live (untested); always validated + undo      |
 | Emergency card           | Real data from official pages, needs review; works offline                            |
 | Weather / transit / hours| Weather opt-in (Open-Meteo); transit "not connected"; hours "unverified"              |
-| Journey photos           | Real photos, credits pending; spots needs-review                                      |
-| City map window          | Real OSM tiles + our restaurant data (samples + needs-review); stays are dummies      |
+| Journey spots            | Stylised 3D scenes, labelled as such; spots needs-review                              |
+| City map window          | Esri grey tiles + our restaurant data (samples + needs-review); stays are dummies     |
 | Travel times             | Estimates from straight-line distance and mode speed                                  |
 
 ## Known notes

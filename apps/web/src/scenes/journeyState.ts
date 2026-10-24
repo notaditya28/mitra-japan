@@ -1,4 +1,4 @@
-import { LAYOUT, SEGMENTS, isPlainBoundary, type Segment } from '../features/tour/tour';
+import { LAYOUT, SEGMENTS, type PlaceScene, type Segment } from '../features/tour/tour';
 
 /**
  * Shared, mutable scroll state for the Stage 1 journey. HTML ScrollTriggers
@@ -15,6 +15,11 @@ export const journey = {
 };
 
 export type SegmentKind = Segment['kind'];
+/** What the canvas shows: the flight, the train, or a spot's 3D scene. */
+export type ViewId = 'flight' | 'train' | PlaceScene;
+
+export const viewOf = (s: Segment | undefined): ViewId =>
+  !s ? 'flight' : s.kind === 'spot' ? s.spot.scene : s.kind;
 
 const smooth = (a: number, b: number, x: number) => {
   const k = Math.min(1, Math.max(0, (x - a) / (b - a)));
@@ -24,68 +29,49 @@ const smooth = (a: number, b: number, x: number) => {
 /**
  * Derived every frame by the CameraRig from `journey`.
  *
- * Transitions sit around each segment boundary, in weight units (one spot = 1;
- * d = signed distance to the boundary, negative = before the cut):
- *   Petal portal (arriving in a city, boarding or leaving the train):
- *     -0.13 … -0.03  petals swarm into the next place's kanji, FOV widens
- *     -0.07 … -0.01  blush veil closes over the scene
- *      0             scene switches under the veil
- *      0    …  0.09  veil opens through a torii-shaped window, petals burst away
- *   Plain (between spots in one city): the same veil and torii window, no petals.
+ * Every segment boundary is the same slow dip to deep plum, in weight units
+ * (one spot = 1.4; d = signed distance to the boundary, negative = before the cut):
+ *   -0.20 … -0.03  the scene fades down into plum, the FOV widens slightly
+ *   -0.03 …  0.03  fully dark; the scene, sky and camera switch at 0
+ *    0.03 …  0.20  the next scene fades up out of the dark
  */
 export const stage = {
   /** Index into SEGMENTS of the segment on screen. */
   scene: 0,
   kind: (SEGMENTS[0]?.kind ?? 'flight') as SegmentKind,
+  /** Scene on screen; decides which group, camera and sky are used. */
+  view: viewOf(SEGMENTS[0]),
   /** Local progress inside the active segment, 0..1. */
   t: 0,
   /** Index into SEGMENTS of the segment being transitioned into, or -1. */
   incoming: -1,
-  /** True when the current transition shows no petals (moving between spots in a city). */
-  plain: false,
-  /** Petals gathering into the kanji, 0..1. */
-  assemble: 0,
-  /** Petals bursting outward after the cut, 0..1. */
-  burst: 0,
-  /** Veil opacity while closing, 0..1. */
+  /** Fade opacity, 0..1. */
   cover: 0,
-  /** Torii window opening after the cut, 0 (closed) .. 1 (fully open). */
-  iris: 1,
-  /** Extra field of view for the speed warp, degrees. */
+  /** Extra field of view for a gentle push, degrees. */
   warp: 0,
   /** True on the frame the scene changed, so the camera can snap. */
   switched: false,
 };
 
-const BEFORE = 0.13;
-const AFTER = 0.09;
+const BEFORE = 0.2;
+const AFTER = 0.2;
+const HOLD = 0.03;
+const WARP = 4;
 
-function applyBoundary(out: typeof stage, d: number, incoming: number, plain: boolean) {
+function applyBoundary(out: typeof stage, d: number, incoming: number) {
   out.incoming = incoming;
-  out.plain = plain;
-  const warp = plain ? 5 : 16;
   if (d < 0) {
-    out.assemble = plain ? 0 : smooth(-BEFORE, -0.03, d);
-    out.cover = smooth(-0.07, -0.01, d);
-    out.iris = 1;
-    out.burst = 0;
-    out.warp = warp * smooth(-BEFORE, 0, d);
+    out.cover = smooth(-BEFORE, -HOLD, d);
+    out.warp = WARP * smooth(-BEFORE, 0, d);
   } else {
-    out.assemble = plain ? 0 : 1;
-    out.cover = 0;
-    out.iris = smooth(0.004, AFTER, d);
-    out.burst = plain ? 0 : smooth(0, 0.065, d);
-    out.warp = warp * (1 - smooth(0, AFTER, d));
+    out.cover = 1 - smooth(HOLD, AFTER, d);
+    out.warp = WARP * (1 - smooth(0, AFTER, d));
   }
 }
 
 function clearBoundary(out: typeof stage) {
   out.incoming = -1;
-  out.plain = false;
-  out.assemble = 0;
-  out.burst = 0;
   out.cover = 0;
-  out.iris = 1;
   out.warp = 0;
 }
 
@@ -112,6 +98,7 @@ export function computeStage(
   const { index, t } = locate(pos, starts, total);
   out.scene = index;
   out.kind = segments[index]?.kind ?? 'flight';
+  out.view = viewOf(segments[index]);
   out.t = t;
 
   // Nearest boundary (the start of segment k, k ≥ 1).
@@ -124,7 +111,7 @@ export function computeStage(
       k = i;
     }
   }
-  if (k > 0 && d > -BEFORE && d < AFTER) applyBoundary(out, d, k, isPlainBoundary(segments, k));
+  if (k > 0 && d > -BEFORE && d < AFTER) applyBoundary(out, d, k);
   else clearBoundary(out);
 
   out.switched = out.scene !== prev;

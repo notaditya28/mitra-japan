@@ -5,6 +5,7 @@ import { StatusBadge } from '../../components/StatusBadge';
 import { useAppStore, type Diet } from '../../store/useAppStore';
 import type { CityLite } from './cities';
 import { foodFor, staysFor } from './cityMap';
+import { cityName } from './labels';
 import type { Spot } from './tour';
 
 const CityLeaflet = lazy(() => import('./CityLeaflet'));
@@ -34,14 +35,14 @@ export default function CityMapPanel({
   return (
     <section
       id={panelId}
-      aria-label={t('tour.map.title', { city: city.name })}
+      aria-label={t('tour.map.title', { city: cityName(t, city.id, city.name) })}
       data-lenis-prevent
       className="mt-2 flex max-h-[calc(100svh-140px)] w-[min(92vw,400px)] flex-col overflow-hidden rounded-card border border-blush bg-paper text-ink shadow-lift"
     >
       <div className="space-y-2 border-b border-blush px-4 py-3">
         <div className="flex items-center justify-between gap-2">
           <h2 className="font-display text-lg text-plum">
-            {t('tour.map.title', { city: city.name })}
+            {t('tour.map.title', { city: cityName(t, city.id, city.name) })}
           </h2>
           <button
             type="button"
@@ -64,7 +65,10 @@ export default function CityMapPanel({
 
       <div className="min-h-0 flex-1 overflow-y-auto px-4 py-3 text-sm">
         <h3 className="flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-plum">
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-matcha" />
+          <span
+            aria-hidden="true"
+            className="h-2.5 w-2.5 rounded-full bg-matcha ring-2 ring-plum"
+          />
           {t('tour.map.food', { diet: t(`diets.${diet}`) })}
         </h3>
         {food.length === 0 ? (
@@ -91,7 +95,7 @@ export default function CityMapPanel({
         )}
 
         <h3 className="mt-4 flex items-center gap-2 text-xs font-bold uppercase tracking-wide text-plum">
-          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-gold" />
+          <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-gold ring-2 ring-plum" />
           {t('tour.map.stays')}
         </h3>
         <p className="mt-1 text-xs text-mist">{t('tour.map.staysNote')}</p>
