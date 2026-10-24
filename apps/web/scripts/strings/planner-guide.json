@@ -9,7 +9,11 @@
       "daysValue_one": "{{count}} day",
       "daysValue_other": "{{count}} days",
       "startCity": "Starting city",
-      "cities": { "tokyo": "Tokyo", "kyoto": "Kyoto", "osaka": "Osaka" },
+      "cities": {
+        "tokyo": "Tokyo",
+        "kyoto": "Kyoto",
+        "osaka": "Osaka"
+      },
       "travellers": "Travellers",
       "fewer": "One traveller fewer",
       "more": "One traveller more",
@@ -21,7 +25,11 @@
         "fast": "Fast (5–6)"
       },
       "budget": "Budget",
-      "budgets": { "budget": "Budget", "moderate": "Moderate", "premium": "Premium" },
+      "budgets": {
+        "budget": "Budget",
+        "moderate": "Moderate",
+        "premium": "Premium"
+      },
       "yourDiet": "Your diet",
       "groupDiets": "Others in the group also need:",
       "interests": "Interests",
@@ -36,7 +44,11 @@
       }
     },
     "trip": {
-      "slots": { "morning": "Morning", "afternoon": "Afternoon", "evening": "Evening" },
+      "slots": {
+        "morning": "Morning",
+        "afternoon": "Afternoon",
+        "evening": "Evening"
+      },
       "meals": {
         "title": "Meal plan",
         "breakfast": "Breakfast",
@@ -61,7 +73,11 @@
     },
     "planner": {
       "resetCamera": "Reset camera: all of Japan",
-      "vegLevel": { "high": "Veg friendly (high)", "medium": "Moderate", "low": "Ask carefully" }
+      "vegLevel": {
+        "high": "Veg friendly (high)",
+        "medium": "Moderate",
+        "low": "Ask carefully"
+      }
     },
     "cityCard": {
       "label": "{{city}} at a glance",
@@ -72,21 +88,29 @@
     },
     "streetMap": {
       "toggle": "Map view",
-      "modes": { "3d": "3D map", "street": "Street map" },
+      "modes": {
+        "3d": "3D map",
+        "street": "Street map"
+      },
       "label": "Street map of Japan",
       "basemap": "Map style",
       "basemaps": {
         "streets": "Esri streets",
         "topo": "Esri topographic",
-        "osm": "OpenStreetMap",
-        "carto": "CARTO Voyager"
+        "osm": "OpenStreetMap"
       },
       "layers": "Show on the map",
-      "layerNames": { "food": "Food places", "heritage": "Heritage", "itinerary": "My itinerary" },
+      "layerNames": {
+        "food": "Food places",
+        "heritage": "Heritage",
+        "itinerary": "My itinerary"
+      },
       "cities_one": "{{count}} city",
       "cities_other": "{{count}} cities"
     },
-    "export": { "shareAbout": "about {{h}} h, estimate" }
+    "export": {
+      "shareAbout": "about {{h}} h, estimate"
+    }
   },
   "hi": {
     "tripOptions": {
@@ -98,7 +122,11 @@
       "daysValue_one": "{{count}} दिन",
       "daysValue_other": "{{count}} दिन",
       "startCity": "शुरुआती शहर",
-      "cities": { "tokyo": "टोक्यो", "kyoto": "क्योटो", "osaka": "ओसाका" },
+      "cities": {
+        "tokyo": "टोक्यो",
+        "kyoto": "क्योटो",
+        "osaka": "ओसाका"
+      },
       "travellers": "यात्री",
       "fewer": "एक यात्री कम",
       "more": "एक यात्री ज़्यादा",
@@ -110,7 +138,11 @@
         "fast": "तेज़ (5–6)"
       },
       "budget": "बजट",
-      "budgets": { "budget": "किफ़ायती", "moderate": "मध्यम", "premium": "प्रीमियम" },
+      "budgets": {
+        "budget": "किफ़ायती",
+        "moderate": "मध्यम",
+        "premium": "प्रीमियम"
+      },
       "yourDiet": "आपका भोजन",
       "groupDiets": "समूह में दूसरों को भी चाहिए:",
       "interests": "रुचियाँ",
@@ -125,7 +157,11 @@
       }
     },
     "trip": {
-      "slots": { "morning": "सुबह", "afternoon": "दोपहर", "evening": "शाम" },
+      "slots": {
+        "morning": "सुबह",
+        "afternoon": "दोपहर",
+        "evening": "शाम"
+      },
       "meals": {
         "title": "भोजन योजना",
         "breakfast": "नाश्ता",
@@ -165,21 +201,29 @@
     },
     "streetMap": {
       "toggle": "नक्शे का दृश्य",
-      "modes": { "3d": "3D नक्शा", "street": "सड़क नक्शा" },
+      "modes": {
+        "3d": "3D नक्शा",
+        "street": "सड़क नक्शा"
+      },
       "label": "जापान का सड़क नक्शा",
       "basemap": "नक्शे की शैली",
       "basemaps": {
         "streets": "Esri सड़कें",
         "topo": "Esri स्थलाकृतिक",
-        "osm": "OpenStreetMap",
-        "carto": "CARTO Voyager"
+        "osm": "OpenStreetMap"
       },
       "layers": "नक्शे पर दिखाएँ",
-      "layerNames": { "food": "खाने की जगहें", "heritage": "विरासत", "itinerary": "मेरी यात्रा" },
+      "layerNames": {
+        "food": "खाने की जगहें",
+        "heritage": "विरासत",
+        "itinerary": "मेरी यात्रा"
+      },
       "cities_one": "{{count}} शहर",
       "cities_other": "{{count}} शहर"
     },
-    "export": { "shareAbout": "लगभग {{h}} घंटे, अनुमान" }
+    "export": {
+      "shareAbout": "लगभग {{h}} घंटे, अनुमान"
+    }
   },
   "gu": {
     "tripOptions": {
@@ -191,7 +235,11 @@
       "daysValue_one": "{{count}} દિવસ",
       "daysValue_other": "{{count}} દિવસ",
       "startCity": "શરૂઆતનું શહેર",
-      "cities": { "tokyo": "ટોક્યો", "kyoto": "ક્યોટો", "osaka": "ઓસાકા" },
+      "cities": {
+        "tokyo": "ટોક્યો",
+        "kyoto": "ક્યોટો",
+        "osaka": "ઓસાકા"
+      },
       "travellers": "પ્રવાસીઓ",
       "fewer": "એક પ્રવાસી ઓછો",
       "more": "એક પ્રવાસી વધુ",
@@ -203,7 +251,11 @@
         "fast": "ઝડપી (5–6)"
       },
       "budget": "બજેટ",
-      "budgets": { "budget": "કરકસરભર્યું", "moderate": "મધ્યમ", "premium": "પ્રીમિયમ" },
+      "budgets": {
+        "budget": "કરકસરભર્યું",
+        "moderate": "મધ્યમ",
+        "premium": "પ્રીમિયમ"
+      },
       "yourDiet": "તમારો આહાર",
       "groupDiets": "જૂથમાં બીજાને પણ જોઈએ:",
       "interests": "રસ",
@@ -218,7 +270,11 @@
       }
     },
     "trip": {
-      "slots": { "morning": "સવાર", "afternoon": "બપોર", "evening": "સાંજ" },
+      "slots": {
+        "morning": "સવાર",
+        "afternoon": "બપોર",
+        "evening": "સાંજ"
+      },
       "meals": {
         "title": "ભોજન યોજના",
         "breakfast": "નાસ્તો",
@@ -243,7 +299,11 @@
     },
     "planner": {
       "resetCamera": "કેમેરા રીસેટ: આખું જાપાન",
-      "vegLevel": { "high": "શાકાહારી માટે સરળ (ઊંચું)", "medium": "મધ્યમ", "low": "ધ્યાનથી પૂછો" }
+      "vegLevel": {
+        "high": "શાકાહારી માટે સરળ (ઊંચું)",
+        "medium": "મધ્યમ",
+        "low": "ધ્યાનથી પૂછો"
+      }
     },
     "cityCard": {
       "label": "{{city}} એક નજરમાં",
@@ -254,20 +314,28 @@
     },
     "streetMap": {
       "toggle": "નકશાનો દેખાવ",
-      "modes": { "3d": "3D નકશો", "street": "રસ્તાનો નકશો" },
+      "modes": {
+        "3d": "3D નકશો",
+        "street": "રસ્તાનો નકશો"
+      },
       "label": "જાપાનનો રસ્તાનો નકશો",
       "basemap": "નકશાની શૈલી",
       "basemaps": {
         "streets": "Esri રસ્તા",
         "topo": "Esri ભૂપૃષ્ઠ",
-        "osm": "OpenStreetMap",
-        "carto": "CARTO Voyager"
+        "osm": "OpenStreetMap"
       },
       "layers": "નકશા પર બતાવો",
-      "layerNames": { "food": "ભોજનનાં સ્થળો", "heritage": "વારસો", "itinerary": "મારો પ્રવાસ" },
+      "layerNames": {
+        "food": "ભોજનનાં સ્થળો",
+        "heritage": "વારસો",
+        "itinerary": "મારો પ્રવાસ"
+      },
       "cities_one": "{{count}} શહેર",
       "cities_other": "{{count}} શહેરો"
     },
-    "export": { "shareAbout": "લગભગ {{h}} કલાક, અંદાજ" }
+    "export": {
+      "shareAbout": "લગભગ {{h}} કલાક, અંદાજ"
+    }
   }
 }

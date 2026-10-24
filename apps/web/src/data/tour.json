@@ -1,5 +1,5 @@
 {
-  "_note": "Stage 1 journey: Delhi -> Tokyo by plane, then each city's spots in order, a Shinkansen ride between cities. Each spot shows a stylised low-poly 3D scene (src/scenes/places/, 'scene' picks it), not a photo of the place. Every spot stays needs-review until the owner checks it. Coordinates are approximate and only place a 'you are here' pin on the city map.",
+  "_note": "Stage 1 journey: Delhi -> Tokyo by plane, then each city's spots in order (owner order: Fuji, Tokyo neon street, Shinkansen, Kyoto, Matsuri), a Shinkansen ride between cities. Each spot shows a stylised low-poly 3D scene (src/scenes/places/, 'scene' picks it), not a photo of the place. Every spot stays needs-review until the owner checks it. Coordinates are approximate and only place a 'you are here' pin on the city map.",
   "from": {
     "id": "delhi",
     "name": "Delhi",
@@ -11,8 +11,8 @@
     {
       "id": "tokyo",
       "spots": [
-        "tokyo/neon-street",
-        "tokyo/fuji-day-trip"
+        "tokyo/fuji-day-trip",
+        "tokyo/neon-street"
       ]
     },
     {

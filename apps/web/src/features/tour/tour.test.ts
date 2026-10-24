@@ -26,6 +26,10 @@ describe('tour data', () => {
     for (const s of TOUR_CITIES.flatMap((c) => c.spots)) expect(PLACE_SCENES).toContain(s.scene);
   });
 
+  it('runs in the owner order: flight, Fuji, Tokyo, Shinkansen, Kyoto, Matsuri', () => {
+    expect(SEGMENTS.map(viewOf)).toEqual(['flight', 'fuji', 'tokyo', 'train', 'kyoto', 'matsuri']);
+  });
+
   it('keeps every spot unverified until the owner checks it', () => {
     for (const spot of TOUR_CITIES.flatMap((c) => c.spots))
       expect(spot.status).toBe('needs-review');

@@ -128,6 +128,10 @@ export function JapanLand({ selectedPrefecture, onHover, onSelect }: JapanLandPr
             e.stopPropagation();
             onSelect(m.id);
           }}
+          onDoubleClick={(e) => {
+            e.stopPropagation();
+            onSelect(m.id);
+          }}
         >
           <meshStandardMaterial
             attach="material-0"

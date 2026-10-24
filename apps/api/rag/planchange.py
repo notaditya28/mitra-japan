@@ -138,7 +138,14 @@ def _remove_day(message: str, ctx: TripContext, it: Itinerary) -> Patch | str | 
 def _rain(message: str, ctx: TripContext, it: Itinerary) -> Patch | str | None:
     if not re.search(r"\b(rain|raining|rainy|pouring|storm|baarish|barish|too hot)\b|बारिश|雨", message, re.I):
         return None
-    day_n = _target_day(message, ctx) or ctx.current_day or 1
+    day_n = _target_day(message, ctx)
+    if day_n is None:
+        # "It's raining in Kyoto": the current day if it is in Kyoto, else the first Kyoto day.
+        cities = _city_ids(message)
+        in_city = [d.day for d in it.days if cities and d.cityId == cities[0]]
+        if in_city:
+            day_n = ctx.current_day if ctx.current_day in in_city else in_city[0]
+    day_n = day_n or ctx.current_day or 1
     day = next((d for d in it.days if d.day == day_n), None)
     if day is None:
         return f"Day {day_n} isn't in your itinerary."

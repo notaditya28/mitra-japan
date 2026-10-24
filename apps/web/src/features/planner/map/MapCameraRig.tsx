@@ -9,14 +9,22 @@ import { lngLatToWorld, MAP_HALF } from './mapSpace';
 const HOME_TARGET = new THREE.Vector3(1, 0, 1.5);
 const HOME_OFFSET = new THREE.Vector3(0, 21, 17);
 const CITY_OFFSET = new THREE.Vector3(0, 7, 6);
+const AREA_OFFSET = new THREE.Vector3(0, 10, 8.5);
 const STOP_OFFSET = new THREE.Vector3(0, 3.2, 2.8);
 
 /**
  * Orbit controls with sensible limits (team guide: polar angle 0.2-1.25 rad, so the camera
  * never dips under the sea), plus a smooth cubic fly-to whenever the selected city or the
- * clicked stop changes, and back to the whole of Japan on reset.
+ * clicked stop changes, to a prefecture without a city (`area`), and back to the whole of
+ * Japan on reset.
  */
-export function MapCameraRig({ selectedCityId }: { selectedCityId: string | null }) {
+export function MapCameraRig({
+  selectedCityId,
+  area = null,
+}: {
+  selectedCityId: string | null;
+  area?: { lng: number; lat: number } | null;
+}) {
   const controls = useRef<ElementRef<typeof OrbitControls>>(null);
   const camera = useThree((s) => s.camera);
   const size = useThree((s) => s.size);
@@ -43,6 +51,10 @@ export function MapCameraRig({ selectedCityId }: { selectedCityId: string | null
       const [x, z] = lngLatToWorld(city.lng, city.lat);
       target = new THREE.Vector3(x, 0, z + portraitShift);
       position = target.clone().add(CITY_OFFSET);
+    } else if (area) {
+      const [x, z] = lngLatToWorld(area.lng, area.lat);
+      target = new THREE.Vector3(x, 0, z + portraitShift);
+      position = target.clone().add(AREA_OFFSET);
     } else {
       target = HOME_TARGET.clone();
       position = HOME_TARGET.clone().add(HOME_OFFSET);
@@ -50,7 +62,7 @@ export function MapCameraRig({ selectedCityId }: { selectedCityId: string | null
     fromTarget.copy(ctl.target);
     fromPos.copy(camera.position);
     fly.current = { target, position, t: 0 };
-  }, [selectedCityId, stop, resetView, camera, fromTarget, fromPos, portraitShift]);
+  }, [selectedCityId, area, stop, resetView, camera, fromTarget, fromPos, portraitShift]);
 
   useFrame((_, dt) => {
     const ctl = controls.current;

@@ -38,7 +38,8 @@
 - [ ] **Journey spots**: check names, Japanese names and pin positions in `tour.json`, then set `status: verified`. Fuji sits under Tokyo as a day trip; move it if you prefer. HI/GU "stylised 3D scene" note is a draft.
 - [ ] **Stays**: replace the dummy stays in `stays.json` with real, sourced places once there is data.
 - [ ] **Team guide figures** (`visa.json` items and blocks with `source: team-guide`, `phrases.json` guide sentences, `shojin.json`): check each against MOFA, the Embassy of Japan in India and VFS pages, then correct them or remove the badge. Pay particular attention to: processing times, "sticker visa up to 15 days", "₹2.5–3.5 lakh", "ITR ₹5 lakh", the photo size, the VFS centre lists, and the three states the guide doesn't list (Chhattisgarh, Andaman and Nicobar, Lakshadweep).
-- [ ] **Basemaps**: confirm Esri and CARTO terms for the public site, or switch to a keyed provider.
+- [ ] **Basemaps**: confirm Esri and OpenStreetMap tile terms for the public site, or switch to a keyed provider (CARTO was removed, 2026-10-25).
+- [ ] **HI/GU review**: the Ask Mitra pop-up, map layers note and prefecture card strings (`scripts/strings/planner-map.json`) are drafts.
 - [ ] **Guide strings**: native review of the new `visaTool`, `schedule`, `scanner`, `tripOptions`, `trip`, `streetMap` and `cityCard` strings in HI/GU.
 - [ ] **Tour strings**: native review of `tour.*` in `hi.json` / `gu.json`.
 

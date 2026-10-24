@@ -84,7 +84,7 @@ The flight map is `src/data/asia.geojson`. It comes from Natural Earth (public d
 
 What's included:
 
-- **Visa readiness checker** (Travel tools):
+- **Visa readiness checker** (planner top bar):
   - A checklist in the guide's categories (identity, money and tax, schedule), still built from purpose and traveller type only.
   - An eVISA vs sticker visa table.
   - "Where to apply" by Indian state.
@@ -104,7 +104,8 @@ What's included:
   - Click a stop to fly the 3D map to it.
   - A "Redesign this day" dialog.
   - A reset-camera button.
-  - A **Street map** view with Esri streets, Esri topographic, OpenStreetMap and CARTO basemaps, and filters for food, heritage and itinerary.
+  - A **Street map** view with Esri streets, Esri topographic and OpenStreetMap basemaps. The toolbar at the top left of the map switches between 3D and street, and its **Map layers** button sets the layers for both maps.
+  - **Ask Mitra**: the AI button at the bottom left opens the assistant as a pop-up. When it proposes a change (for example after "it's raining in Kyoto"), **Apply to my planner** updates the itinerary; Undo reverts it.
   - A city card on the map.
   - WhatsApp text that includes diet tags and transit lines.
   - The pace sets how many stops count as comfortable (relaxed 2–3, moderate 3–4, fast 5–6), and the overpacked flag follows it.
@@ -289,5 +290,5 @@ Statistics are placeholders until verified with real sources (`apps/web/src/data
 - The journey's city map uses Esri's free light grey canvas tiles without labels (so no Japanese text shows). They are fine for a demo, but check Esri's terms or switch to a keyed tile provider before a public launch. Without internet the map shows a note and the lists still work.
 - The places to stay are dummies, not real listings.
 - Figures from the team guide (visa times and stays, ₹ thresholds, VFS centres, the Nozomi rail time) are unverified until the owner checks them; they carry a visible badge.
-- Esri and CARTO basemaps are free for light or non-commercial use with attribution (shown on the map); check their terms, or use a paid key, before a public launch.
+- Esri and OpenStreetMap basemaps are free for light or non-commercial use with attribution (shown on the map); check their terms, or use a paid key, before a public launch.
 - The first photo scan downloads Japanese and English OCR data (a few MB) from the jsDelivr CDN.

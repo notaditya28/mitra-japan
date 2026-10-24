@@ -854,7 +854,7 @@
         "removed": "removed"
       },
       "unchangedNote": "Days not shown stay exactly as they are. Pinned stops are never changed.",
-      "apply": "Apply",
+      "apply": "Apply to my planner",
       "edit": "Edit",
       "dismiss": "Dismiss",
       "applying": "Checking and applying…",
@@ -950,6 +950,12 @@
       "bad_request": "That message couldn't be sent. Try shortening it.",
       "index_missing": "The knowledge base isn't built on the server yet.",
       "unknown": "Something went wrong. Please try again."
+    },
+    "popup": {
+      "subtitle": "AI travel assistant · answers cite their sources",
+      "noPlan": "Plan a trip first, and Mitra can change it for you, for example when it rains.",
+      "planFirst": "Go to trip options",
+      "close": "Close Ask Mitra"
     }
   },
   "tour": {
@@ -1121,8 +1127,7 @@
     "basemaps": {
       "streets": "Esri streets",
       "topo": "Esri topographic",
-      "osm": "OpenStreetMap",
-      "carto": "CARTO Voyager"
+      "osm": "OpenStreetMap"
     },
     "layers": "Show on the map",
     "layerNames": {
@@ -1131,7 +1136,8 @@
       "itinerary": "My itinerary"
     },
     "cities_one": "{{count}} city",
-    "cities_other": "{{count}} cities"
+    "cities_other": "{{count}} cities",
+    "layersNote": "These layers show on both the 3D map and the street map."
   },
   "sections": {
     "journeyLabel": "Jump to a part of the journey",
@@ -1144,5 +1150,30 @@
     "itinerary": "Itinerary",
     "ask": "Ask Mitra",
     "layers": "Map layers"
+  },
+  "prefCard": {
+    "label": "{{name}} at a glance",
+    "region": "Region: {{region}}",
+    "regions": {
+      "hokkaido": "Hokkaido",
+      "tohoku": "Tohoku",
+      "kanto": "Kanto",
+      "chubu": "Chubu",
+      "kansai": "Kansai",
+      "chugoku": "Chugoku",
+      "shikoku": "Shikoku",
+      "kyushu": "Kyushu",
+      "okinawa": "Okinawa"
+    },
+    "inData": "In our data here",
+    "noPlaces": "We don't list any places here yet. Ask Mitra, or try a nearby city.",
+    "more": "+{{count}} more",
+    "nearest": "Our nearest cities",
+    "km": "{{km}} km",
+    "distanceNote": "Straight-line distance from the centre of the prefecture, not travel time.",
+    "ask": "Ask Mitra about {{name}}",
+    "question": "What should I know about visiting {{name}}?",
+    "note": "Names and region come from the map data; places come from our own lists.",
+    "close": "Close"
   }
 }

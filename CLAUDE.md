@@ -68,7 +68,7 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 ## Stage 1 journey architecture (owner redesign, 2026-10-24)
 
 - **Flow:** `Welcome` (title + one button over the 3D map of Asia, plane parked at Delhi; no traveller picker, which is asked once in the planner, owner request 2026-10-25) → `TourSection`: the plane flies Delhi → first city → that city's spots, one 3D scene each → Shinkansen to the next city → its spots → … Roots, numbers and the CTA follow.
-- **Data:** `features/tour/tour.ts` (three-free) builds `TOUR_CITIES` and `SEGMENTS` from `data/tour.json` (city order, spot names, Japanese names, short `kanji`, `fear`, `scene`, status). `scene` is one of `PLACE_SCENES` (`tokyo`, `fuji`, `kyoto`, `matsuri`); a spot with an unknown scene is skipped. Today: Tokyo = neon street (food card) + Fuji day trip; Kyoto = Fushimi Inari (visa card) + Gion matsuri (foreign card). Each new city gets a Shinkansen segment.
+- **Data:** `features/tour/tour.ts` (three-free) builds `TOUR_CITIES` and `SEGMENTS` from `data/tour.json` (city order, spot names, Japanese names, short `kanji`, `fear`, `scene`, status). `scene` is one of `PLACE_SCENES` (`tokyo`, `fuji`, `kyoto`, `matsuri`); a spot with an unknown scene is skipped. Today (owner order, 2026-10-25: flight → Fuji → Tokyo → Shinkansen → Kyoto → Matsuri; `tour.test.ts` checks it): Tokyo = Fuji day trip + neon street (food card); Kyoto = Fushimi Inari (visa card) + Gion matsuri (foreign card). Each new city gets a Shinkansen segment.
 - **Segments:** `flight` (weight 2.2), `spot` (1.4), `train` (1.6); `VH_PER_UNIT` = 120vh. `journey.tour` (0..1) → `computeStage()` → `stage` (`scene` = segment index, `kind`, `view`, `t`, transition values; `view` = `flight` | `train` | the spot's scene, from `viewOf`). Never put scroll progress in React state; the rail and city window read `useTourStore.segment`, which `TourSection` sets from the ScrollTrigger (not the render loop, so they work if 3D is paused or fails).
 - **Transitions** (owner request, 2026-10-25: no petal kanji, no torii iris): every boundary is the same slow dip to deep plum (`journey/SceneFade.tsx`; never a light colour, owner found bright veils jarring). The scene, sky and camera switch while the screen is fully dark, then the next scene rises out of it. Timings (`cover`, `warp`) live in `computeStage`.
 - **Scenes**, one lazy canvas (`JourneyCanvas.tsx`), only the active view visible (`useSceneGroup(view)`); all scenes share the origin, which is fine because only one renders:
@@ -105,6 +105,8 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 - Selection state (`selectedCityId`, `showSampleRoute`) is in the store, not persisted. Camera fly-to is in `MapCameraRig`; user drag cancels it.
 - Layout (owner's choice, 2026-10-24): ≥1024 px is the map on the left and one trip panel on the right (profile, guide, day cards, chat, tools, layers), with no city list or city panel. Below 1024 px: a full-screen map + `BottomSheet` with the same trip panel. No WebGL → `JapanMapSvg`. The grid row is `minmax(0,1fr)` and the panel is `relative`, so neither its content nor its `sr-only`/absolute children make the page taller than the viewport.
 - Layer pins scale with each pin's distance to the camera (`LayerPins`), so they stay a similar size on screen.
+- Map toolbar (`planner/MapToolbar`, owner request 2026-10-25): top left on both maps, 3D map | Street map plus one Map layers button whose panel holds `LayerToggles` (shared store layers) and, on the street map, the basemap picker. Mode and basemap live in `map/mapView.ts`. `StreetMap` is `isolate`d so Leaflet's panes never cover the toolbar; its zoom buttons sit bottom right. Basemaps: Esri streets, Esri topo, OSM (CARTO removed). The street map always draws the itinerary when there is one.
+- Prefectures with none of our cities: clicking or double-clicking flies the camera there (`MapCameraRig` `area`) and shows `PrefectureCard`: names, region (`prefecture.ts` `regionOf`, by JIS code), places from our layer data inside it, our nearest cities by straight-line distance (labelled estimate, not travel time), and "Ask Mitra about …". Nothing about a prefecture is invented; `prefecture.test.ts` covers all 47.
 
 ## AI trip guide (M5)
 
@@ -118,7 +120,7 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 
 ## Scanner, restaurants and visa (M6)
 
-- Planner tools open as native `<dialog>`s (`components/Dialog.tsx`) from `ToolLauncher`; which one is open lives in `features/tools/useTools.ts`. Each panel (`ScannerPanel`, `RestaurantDirectory`, `VisaPanel`) is a lazy chunk.
+- Planner tools open as native `<dialog>`s (`components/Dialog.tsx`) straight from the top bar's tool chips (`PlannerSectionNav`; the side-panel tools card was removed, owner request 2026-10-25, so the tools are only in the bar); which one is open lives in `features/tools/useTools.ts`. Each panel (`ScannerPanel`, `RestaurantDirectory`, `VisaPanel`) is a lazy chunk.
 - Matcher (`features/scanner/matchIngredients.ts`): longest-match over `ingredients.json`, then `unknownWords` makes anything unrecognised `unverified` (reason `unknown`). A dish title before a colon is skipped for the unknown check only; `menuWords` are ignored. Never let unknown or ambiguous map to `clear`. New dictionary terms: check `sampleScans.test.ts` still finds no unknowns.
 - OCR goes through `features/scanner/ocr` (`OcrProvider`, `loadOcrProvider`). Tesseract is lazy-loaded on the first photo; low confidence (< `LOW_CONFIDENCE`) forces "Unable to verify" until the traveller edits the text.
 - `/api/scan-explain` (`apps/api/app/scan.py`) only explains the browser's verdict; it rejects overclaiming answers. Custom restrictions and visa ticks persist in `useAppStore` (localStorage).
@@ -152,6 +154,7 @@ Implementation notes (R2–R5):
   - `screen` drops chunks with instruction-like text.
   - `validate_live` rejects uncited facts, numbers not found in cited sources, and booking-change claims. Next steps are built after citations are renumbered.
   - Retune thresholds on `--split dev` only, and report held-out results as they are.
+- Rain (`planchange._rain`): an explicit day wins; otherwise a named city picks the current day if it is in that city, else that city's first day.
 - Patches (`patching.py`): the pin key is `cityId|name`. `apply_patch` runs `ground_plan` + feasibility and returns a `Diff` plus an undo token (`UNDO`, in memory). The Demo planner is `planchange.rule_based`; live mode is a tool loop with `propose_patch`.
 - Web (`features/assistant/`): `useAssistantStore` persists the session id, messages, pins and current day under `mitra-assistant`; location and undo stay in memory only. Patches go through `replaceItinerary`. The emergency dialog uses `offline.ts` when the API fails. Emergency contacts come only from `emergency.json` (pick the mission with `missionsFor`).
 - Nested `<dialog>`s: `Dialog` reacts only to its own close/cancel events, because React propagates them up the component tree.
@@ -188,9 +191,9 @@ Implementation notes (R2–R5):
 
 ## Section bar (owner request, 2026-10-24)
 
-- The top bar (`Nav`) is one row: brand, `SectionNav` links (scroll sideways when they don't fit), language, CTA. On the planner, "Ask Mitra" (`planner/AskMitraButton`, lazy) sits just left of the language switch (owner request, 2026-10-25). On the journey it stays transparent the whole way down (owner request); the brand, links and language switch sit on frosted plum pills (`bg-plum/65` + blur) and the active link is rose, so they read over the 3D scenes and paper alike. App pages keep a solid bar. Links:
+- The top bar (`Nav`) is one row: brand, `SectionNav` links (scroll sideways when they don't fit), language, CTA. On the planner, Ask Mitra is not in the bar: it is a floating AI button at the bottom left (`planner/AskMitraButton`, sparkle icon) that opens the chat as a pop-up (`assistant/useAskMitra` holds open + a prefilled question; Esc or × closes it). On phones it sits above the bottom sheet (owner request, 2026-10-25). On the journey it stays transparent the whole way down (owner request); the brand, links and language switch sit on frosted plum pills (`bg-plum/65` + blur) and the active link is rose, so they read over the 3D scenes and paper alike. App pages keep a solid bar. Links:
   - Journey: only Indian roots and The numbers (owner request, 2026-10-25; the "Build my trip" button covers the CTA).
-  - Planner (lazy `PlannerSectionNav`): Map, Trip options, Itinerary (once there is a plan), Map layers, then chips that open the tools (scanner, food places, visa, Schedule of Stay, My trips).
+  - Planner (lazy `PlannerSectionNav`): Trip options, Itinerary (once there is a plan), then chips that open the tools (scanner, food places, visa, Schedule of Stay, My trips). No Map or Map layers links (owner request, 2026-10-25): those live in the map toolbar.
 - The bar's height is published as `--nav-h`; pages that sit under it use `pt-[var(--nav-h,61px)]`.
 - Jumps go through `lib/sectionScroll.ts`:
   - `jumpTo(id)` leaves room for the bar and moves focus.

@@ -1,6 +1,5 @@
 import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { AssistantChat } from '../assistant/AssistantChat';
 import { TripOptions } from './TripOptions';
 import { usePlannerStore } from './usePlannerStore';
 
@@ -141,8 +140,6 @@ export function GuidePanel({ children }: { children?: ReactNode }) {
       </div>
 
       {children}
-
-      <AssistantChat />
 
       {itinerary && !busy ? (
         <button

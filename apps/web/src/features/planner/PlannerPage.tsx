@@ -9,10 +9,11 @@ import { useAppStore } from '../../store/useAppStore';
 import { PersonaIcon } from '../persona/PersonaIcon';
 import { GuidePanel } from './GuidePanel';
 import { ItineraryPanel } from './ItineraryPanel';
-import { LayerToggles } from './LayerToggles';
+import { MapToolbar } from './MapToolbar';
+import { useMapView } from './map/mapView';
+import AskMitraButton from './AskMitraButton';
 import { usePlannerStore } from './usePlannerStore';
 import { ToolDialogs } from '../tools/ToolDialogs';
-import { ToolLauncher } from '../tools/ToolLauncher';
 import { TripPrint } from '../export/TripPrint';
 import { SchedulePrint } from '../schedule/SchedulePrint';
 import { UndoToast } from '../assistant/UndoToast';
@@ -40,7 +41,10 @@ function MapFallback({ title }: { title: string }) {
   );
 }
 
-/** Side panel: who is travelling, the AI guide with the day cards, map layers, and the sample route preview. */
+/**
+ * Side panel: who is travelling, the AI guide with the day cards, and the sample route
+ * preview. The travel tools live only in the top bar (owner request, 2026-10-25).
+ */
 function TripPanel() {
   const { t } = useTranslation();
   const user = useAppStore((s) => s.user);
@@ -76,10 +80,6 @@ function TripPanel() {
       </div>
 
       <GuidePanel>{hasPlan ? <ItineraryPanel onShowCity={focusCity} /> : null}</GuidePanel>
-
-      <ToolLauncher />
-
-      <LayerToggles />
 
       {hasPlan ? null : (
         <div className="card-dark p-5">
@@ -126,8 +126,8 @@ export function PlannerPage() {
   const { webgl } = getDeviceProfile();
   const user = useAppStore((s) => s.user);
   const hasPlan = usePlannerStore((s) => s.itinerary !== null || s.previews.length > 0);
-  // Team guide 2.6: switch between the 3D archipelago and a 2D street map.
-  const [mapMode, setMapMode] = useState<'3d' | 'street'>('3d');
+  // Team guide 2.6: switch between the 3D archipelago and a 2D street map (`MapToolbar`).
+  const mapMode = useMapView((s) => s.mode);
   if (!user) return null;
 
   const loading = <MapFallback title={t('planner.mapTitle')} />;
@@ -149,27 +149,7 @@ export function PlannerPage() {
       ) : (
         threeD
       )}
-      <div
-        role="group"
-        aria-label={t('streetMap.toggle')}
-        className={`absolute z-20 flex gap-1 rounded-full bg-plum/85 p-1 shadow-lift backdrop-blur-sm ${
-          mapMode === 'street' ? 'bottom-8 right-3' : 'left-3 top-3'
-        }`}
-      >
-        {(['3d', 'street'] as const).map((m) => (
-          <button
-            key={m}
-            type="button"
-            aria-pressed={mapMode === m}
-            onClick={() => setMapMode(m)}
-            className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold ${
-              mapMode === m ? 'bg-paper text-plum' : 'text-paper/80 hover:text-paper'
-            }`}
-          >
-            {t(`streetMap.modes.${m}`)}
-          </button>
-        ))}
-      </div>
+      <MapToolbar />
     </>
   );
 
@@ -200,6 +180,7 @@ export function PlannerPage() {
         <TripPrint />
         <SchedulePrint />
         <UndoToast />
+        <AskMitraButton />
       </main>
     );
   }
@@ -222,6 +203,7 @@ export function PlannerPage() {
       <TripPrint />
       <SchedulePrint />
       <UndoToast />
+      <AskMitraButton />
     </main>
   );
 }

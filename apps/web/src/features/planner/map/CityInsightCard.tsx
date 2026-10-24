@@ -18,7 +18,7 @@ export function CityInsightCard({ cityId }: { cityId: string | null }) {
   return (
     <section
       aria-label={t('cityCard.label', { city: city.name })}
-      className="absolute bottom-12 left-3 z-10 w-[min(88vw,300px)] rounded-2xl border border-white/30 bg-paper/95 p-3 text-xs text-ink shadow-lift backdrop-blur-sm sm:left-4"
+      className="absolute bottom-[calc(132px+4.25rem)] left-3 z-10 w-[min(88vw,300px)] rounded-2xl border border-white/30 bg-paper/95 p-3 text-xs text-ink shadow-lift backdrop-blur-sm sm:left-4 lg:bottom-24"
     >
       <div className="flex items-start justify-between gap-2">
         <h3 className="font-display text-lg leading-tight text-plum">

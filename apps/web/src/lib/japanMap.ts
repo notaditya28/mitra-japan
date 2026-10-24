@@ -1,4 +1,4 @@
-import { geoArea, geoContains, geoMercator, geoPath, type GeoProjection } from 'd3-geo';
+import { geoArea, geoCentroid, geoContains, geoMercator, geoPath, type GeoProjection } from 'd3-geo';
 import type { Feature, FeatureCollection, MultiPolygon, Position } from 'geojson';
 import raw from '../data/japan.geojson?raw';
 
@@ -106,4 +106,18 @@ export function prefectureAt(lng: number, lat: number): string | undefined {
 
 export function prefectureName(id: string): PrefectureProps | undefined {
   return prefectures.find((f) => f.properties.id === id)?.properties;
+}
+
+/**
+ * Real-world centre (lng, lat) of a prefecture: the centroid of its unshifted outline, so
+ * Okinawa stays where it is (pass it through `project` / `lngLatToWorld` for the inset).
+ */
+export function prefectureCentre(id: string): [number, number] | undefined {
+  const f = source.features.find((x) => x.properties.id === id);
+  if (!f) return undefined;
+  const [lng, lat] = geoCentroid({
+    type: 'MultiPolygon',
+    coordinates: f.geometry.coordinates.map(rewind),
+  });
+  return [lng, lat];
 }

@@ -8,6 +8,7 @@ import { MessageView } from './MessageView';
 import { nearbyFood } from './offline';
 import { SourcesDrawer } from './SourcesDrawer';
 import { TripDataDialog } from './TripDataDialog';
+import { useAskMitra } from './useAskMitra';
 import { useAssistantStore, type AssistantMessage } from './useAssistantStore';
 
 const QUICK = ['visa', 'veg', 'tired', 'rain', 'wrong', 'menu'] as const;
@@ -27,6 +28,9 @@ export function AssistantChat() {
   const applyProposal = useAssistantStore((s) => s.applyProposal);
   const dismissProposal = useAssistantStore((s) => s.dismissProposal);
   const itinerary = usePlannerStore((s) => s.itinerary);
+  const focusDay = usePlannerStore((s) => s.focusDay);
+  const draft = useAskMitra((s) => s.draft);
+  const takeDraft = useAskMitra((s) => s.takeDraft);
   const diet = useAppStore((s) => s.diet);
   const openTool = useTools((s) => s.open);
   const [text, setText] = useState('');
@@ -36,6 +40,14 @@ export function AssistantChat() {
   const [locating, setLocating] = useState(false);
   const thread = useRef<HTMLDivElement>(null);
   const box = useRef<HTMLTextAreaElement>(null);
+
+  // A question handed over from elsewhere (e.g. a prefecture card) waits in the box to be sent.
+  useEffect(() => {
+    if (!draft) return;
+    setText(draft);
+    takeDraft();
+    box.current?.focus();
+  }, [draft, takeDraft]);
 
   useEffect(() => {
     thread.current?.scrollTo({ top: thread.current.scrollHeight, behavior: 'smooth' });
@@ -98,8 +110,9 @@ export function AssistantChat() {
       aria-labelledby={`${id}-title`}
       className="flex scroll-mt-2 flex-col gap-3"
     >
-      <div className="flex items-center justify-between gap-2">
-        <h3 id={`${id}-title`} className="text-sm font-semibold text-plum">
+      <div className="flex items-center justify-end gap-2">
+        {/* The pop-up header already shows the name. */}
+        <h3 id={`${id}-title`} className="sr-only">
           {t('assistant.title')}
         </h3>
         <button
@@ -142,7 +155,18 @@ export function AssistantChat() {
             key={m.id}
             m={m}
             onSource={(n) => setSources({ messageId: m.id, n })}
-            onApply={() => void applyProposal(m.id)}
+            onApply={() => {
+              // Once applied, show the changed day in the planner (day card + map).
+              const day =
+                m.role === 'assistant'
+                  ? m.response.proposed_patch?.diff?.days.find((d) => d.status !== 'unchanged')
+                      ?.day
+                  : undefined;
+              void applyProposal(m.id).then(() => {
+                const now = useAssistantStore.getState().messages.find((x) => x.id === m.id);
+                if (day && now?.role === 'assistant' && now.patchState === 'applied') focusDay(day);
+              });
+            }}
             onEdit={() => {
               const i = messages.findIndex((x) => x.id === m.id);
               const prev = messages

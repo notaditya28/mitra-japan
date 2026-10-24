@@ -23,17 +23,17 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - Count-up counters (only animate real values; all are currently empty).
 - Page transitions (torii portal), hash routes, demo sign-in (name + Indian mobile, browser only).
 - 3D Japan planner map: extruded prefectures, hover/click, orbit limits, camera fly-to, four animated layers, city cards, flat SVG fallback without WebGL, mobile bottom sheet.
-- Veg-Safe scanner (planner → Travel tools → Menu scanner):
+- Veg-Safe scanner (planner top bar → Menu scanner):
   - Photo → on-device OCR (Tesseract.js behind an `OcrProvider` interface) → editable text.
   - Three results with their cause: no listed conflicts / potential conflict / unable to verify.
   - Unknown words, ambiguous broths and sauces, unreadable text, and low-confidence photos never count as clear.
   - Distinct diets, plus your own restrictions (saved on this device).
   - The calm caveat on every result, and a full-screen staff card in Japanese.
-- Restaurant directory (Travel tools → Veg-friendly places):
+- Restaurant directory (planner top bar → Veg-friendly places):
   - Search plus city, diet, real/sample and "evidence only" filters.
   - Per-diet basis (restaurant says so / listed by a guide / checked by us / not confirmed), with evidence, sources and dates.
   - "Show on map".
-- Visa checklist (Travel tools → Visa checklist):
+- Visa checklist (planner top bar → Visa readiness checker):
   - Asks only purpose and traveller type.
   - Every item says "confirm with the official source" and links to official Japanese government sites.
   - Ticks are saved on this device.
@@ -76,12 +76,13 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
     - Trip options (2–12 days, start city, travellers, pace, budget, group diets, interests) and pace-aware overpacked checks.
     - Day tabs with morning, afternoon and evening sections, a meal plan for each day, and a Redesign day dialog.
     - Fly to a clicked stop, a reset-camera button, and a city card on the map.
-    - A 2D street map with basemaps and layer filters, and WhatsApp text with diet tags.
+    - A 2D street map (Esri streets, Esri topographic, OpenStreetMap) with the same layers as the 3D map, and WhatsApp text with diet tags. One toolbar on the map switches 3D / street and opens the shared Map layers panel.
   - **API aliases:** `/api/planner/generate`, `/api/planner/regenerate-day`, `/api/ocr/analyze` (text), `/api/ocr/demo-presets`, `/api/restaurants` and `/api/visa/checklist`. The Python matcher is checked against the browser's on a shared fixture.
 
 - Section bar under the top bar:
   - Journey: jump to the start, the flight, any city, Indian roots, the numbers or the CTA, with the current chapter highlighted.
-  - Planner: jump to the map, trip options, itinerary, Ask Mitra or map layers, or open any tool.
+  - Planner: jump to trip options or the itinerary, or open any tool. Ask Mitra is a floating AI button at the bottom left that opens the chat as a pop-up; plan changes it proposes (e.g. "it's raining in Kyoto") apply to the planner with one button and can be undone.
+  - Clicking a prefecture with none of our cities shows a card: region, places we list there, our nearest cities (straight-line estimate) and an Ask Mitra hand-off.
   - It works with the keyboard, scrolls sideways on phones, and opens the bottom sheet there before jumping.
 
 ## Demo-only (works, but on sample or seeded data)
@@ -111,7 +112,7 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - **Journey spots**: 4 stylised 3D scenes, each labelled as such; every spot is `needs-review` (names, approximate pins).
 - **City map tiles**: Esri's free light grey canvas (internet needed; fine for a demo, check the terms before launch).
 - **Team guide figures**: visa processing times and maximum stays, the ₹2.5–3.5 lakh balance, the ₹5 lakh ITR, VFS centres and pitfalls, plus the guide's waiter-card sentences. All are shown with a "From our team guide · needs review" badge until the owner checks them against official pages.
-- **Street map basemaps**: Esri and CARTO tiles (attribution shown; check their terms before launch).
+- **Street map basemaps**: Esri and OpenStreetMap tiles (attribution shown; check their terms before launch).
 - **Ingredient dictionary** (`ingredients.json`): 53 entries plus menu words; per-diet rules need the owner's review.
 
 ## Planned (by milestone)

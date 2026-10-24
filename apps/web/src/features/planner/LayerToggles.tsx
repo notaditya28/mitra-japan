@@ -5,16 +5,19 @@ import { LAYER_COLORS } from './map/layerColors';
 
 const ORDER: MapLayer[] = ['vegSafe', 'heritage', 'anime', 'regional'];
 
-/** Map layer switches. Each swatch matches its pin colour on the map. */
+/**
+ * Map layer switches, shared by the 3D and the street map (they open from the map toolbar).
+ * Each swatch matches its pin colour on the map.
+ */
 export function LayerToggles() {
   const { t } = useTranslation();
   const layers = useAppStore((s) => s.layers);
   const toggle = useAppStore((s) => s.toggleLayer);
 
   return (
-    <fieldset id="map-layers" className="scroll-mt-2">
-      <legend className="eyebrow mb-3 text-rose">{t('planner.layersTitle')}</legend>
-      <ul className="space-y-2">
+    <fieldset>
+      <legend className="eyebrow mb-2 text-rose">{t('planner.layersTitle')}</legend>
+      <ul className="space-y-1.5">
         {ORDER.map((l) => {
           const on = layers[l];
           return (
@@ -25,7 +28,7 @@ export function LayerToggles() {
                 aria-checked={on}
                 aria-label={t(`planner.layers.${l}.name`)}
                 onClick={() => toggle(l)}
-                className={`flex w-full items-center gap-3 rounded-2xl border px-3 py-2.5 text-left transition-colors ${
+                className={`flex w-full items-center gap-3 rounded-2xl border px-3 py-2 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-rose ${
                   on
                     ? 'border-transparent bg-plum text-paper'
                     : 'border-blush bg-white/70 text-plum hover:border-petal'

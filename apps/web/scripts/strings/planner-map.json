@@ -1,0 +1,125 @@
+{
+  "en": {
+    "streetMap": {
+      "layersNote": "These layers show on both the 3D map and the street map."
+    },
+    "assistant": {
+      "popup": {
+        "subtitle": "AI travel assistant · answers cite their sources",
+        "noPlan": "Plan a trip first, and Mitra can change it for you, for example when it rains.",
+        "planFirst": "Go to trip options",
+        "close": "Close Ask Mitra"
+      },
+      "diff": {
+        "apply": "Apply to my planner"
+      }
+    },
+    "prefCard": {
+      "label": "{{name}} at a glance",
+      "region": "Region: {{region}}",
+      "regions": {
+        "hokkaido": "Hokkaido",
+        "tohoku": "Tohoku",
+        "kanto": "Kanto",
+        "chubu": "Chubu",
+        "kansai": "Kansai",
+        "chugoku": "Chugoku",
+        "shikoku": "Shikoku",
+        "kyushu": "Kyushu",
+        "okinawa": "Okinawa"
+      },
+      "inData": "In our data here",
+      "noPlaces": "We don't list any places here yet. Ask Mitra, or try a nearby city.",
+      "more": "+{{count}} more",
+      "nearest": "Our nearest cities",
+      "km": "{{km}} km",
+      "distanceNote": "Straight-line distance from the centre of the prefecture, not travel time.",
+      "ask": "Ask Mitra about {{name}}",
+      "question": "What should I know about visiting {{name}}?",
+      "note": "Names and region come from the map data; places come from our own lists.",
+      "close": "Close"
+    }
+  },
+  "hi": {
+    "streetMap": {
+      "layersNote": "ये लेयर 3D मैप और स्ट्रीट मैप दोनों पर दिखती हैं।"
+    },
+    "assistant": {
+      "popup": {
+        "subtitle": "AI यात्रा सहायक · जवाबों के साथ स्रोत",
+        "noPlan": "पहले ट्रिप प्लान करें, फिर मित्र उसे बदल सकता है, जैसे बारिश होने पर।",
+        "planFirst": "ट्रिप विकल्पों पर जाएँ",
+        "close": "मित्र से पूछें बंद करें"
+      },
+      "diff": {
+        "apply": "मेरे प्लानर में लागू करें"
+      }
+    },
+    "prefCard": {
+      "label": "{{name}} एक नज़र में",
+      "region": "क्षेत्र: {{region}}",
+      "regions": {
+        "hokkaido": "होक्काइदो",
+        "tohoku": "तोहोकु",
+        "kanto": "कांतो",
+        "chubu": "चुबु",
+        "kansai": "कंसाई",
+        "chugoku": "चुगोकु",
+        "shikoku": "शिकोकु",
+        "kyushu": "क्यूशू",
+        "okinawa": "ओकिनावा"
+      },
+      "inData": "यहाँ हमारे डेटा में",
+      "noPlaces": "हमारी सूची में यहाँ अभी कोई जगह नहीं है। मित्र से पूछें, या पास का शहर देखें।",
+      "more": "+{{count}} और",
+      "nearest": "हमारे सबसे पास के शहर",
+      "km": "{{km}} किमी",
+      "distanceNote": "प्रांत के केंद्र से सीधी दूरी, यात्रा का समय नहीं।",
+      "ask": "{{name}} के बारे में मित्र से पूछें",
+      "question": "{{name}} घूमने के बारे में मुझे क्या जानना चाहिए?",
+      "note": "नाम और क्षेत्र मैप डेटा से हैं; जगहें हमारी अपनी सूची से।",
+      "close": "बंद करें"
+    }
+  },
+  "gu": {
+    "streetMap": {
+      "layersNote": "આ લેયર 3D નકશા અને સ્ટ્રીટ નકશા બંને પર દેખાય છે."
+    },
+    "assistant": {
+      "popup": {
+        "subtitle": "AI પ્રવાસ સહાયક · જવાબો સાથે સ્રોત",
+        "noPlan": "પહેલા ટ્રિપ પ્લાન કરો, પછી મિત્ર તેને બદલી શકે છે, જેમ કે વરસાદ પડે ત્યારે.",
+        "planFirst": "ટ્રિપ વિકલ્પો પર જાઓ",
+        "close": "મિત્રને પૂછો બંધ કરો"
+      },
+      "diff": {
+        "apply": "મારા પ્લાનરમાં લાગુ કરો"
+      }
+    },
+    "prefCard": {
+      "label": "{{name}} એક નજરે",
+      "region": "પ્રદેશ: {{region}}",
+      "regions": {
+        "hokkaido": "હોક્કાઇડો",
+        "tohoku": "તોહોકુ",
+        "kanto": "કાંતો",
+        "chubu": "ચુબુ",
+        "kansai": "કાન્સાઇ",
+        "chugoku": "ચુગોકુ",
+        "shikoku": "શિકોકુ",
+        "kyushu": "ક્યુશુ",
+        "okinawa": "ઓકિનાવા"
+      },
+      "inData": "અહીં અમારા ડેટામાં",
+      "noPlaces": "અમારી યાદીમાં અહીં હજી કોઈ સ્થળ નથી. મિત્રને પૂછો, અથવા નજીકનું શહેર જુઓ.",
+      "more": "+{{count}} વધુ",
+      "nearest": "અમારા સૌથી નજીકના શહેરો",
+      "km": "{{km}} કિમી",
+      "distanceNote": "પ્રાંતના કેન્દ્રથી સીધું અંતર, મુસાફરીનો સમય નહીં.",
+      "ask": "{{name}} વિશે મિત્રને પૂછો",
+      "question": "{{name}} ફરવા માટે મારે શું જાણવું જોઈએ?",
+      "note": "નામ અને પ્રદેશ નકશા ડેટામાંથી; સ્થળો અમારી પોતાની યાદીમાંથી.",
+      "close": "બંધ કરો"
+    }
+  }
+}

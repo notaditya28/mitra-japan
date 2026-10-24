@@ -202,6 +202,12 @@ def test_rule_based_lighter_day_keeps_pinned_and_food():
     assert "Joruri-ji, Kyoto" in kept and "Temple shojin ryori lunch" in kept
 
 
+def test_rain_in_a_named_city_changes_that_citys_day():
+    r = chat("It's raining in Kyoto", ctx(current_day=1))
+    assert r.intent == "plan_change" and r.proposed_patch
+    assert {op["day"] for op in r.proposed_patch["patch"]["ops"]} == {3}
+
+
 def test_booking_changes_are_never_claimed():
     r = chat("Remove day 2 and change my hotel booking", ctx())
     assert r.proposed_patch

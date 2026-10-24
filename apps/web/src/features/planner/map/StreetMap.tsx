@@ -3,18 +3,17 @@ import { useTranslation } from 'react-i18next';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useAppStore } from '../../../store/useAppStore';
-import { CITIES, FOOD_SPOTS, HERITAGE_SPOTS, cityById } from '../data';
+import { ANIME_SPOTS, CITIES, FOOD_SPOTS, HERITAGE_SPOTS, REGIONAL_SPOTS, cityById } from '../data';
 import { usePlannerStore, visibleDays } from '../usePlannerStore';
+import { LAYER_COLORS } from './layerColors';
+import { useMapView, type Basemap } from './mapView';
 
 /**
- * 2D street view of the planner (team guide 2.6): hot-swappable basemaps (Esri streets
- * and topo, OpenStreetMap, CARTO Voyager; attribution always shown) and layer filters for
- * food places, heritage sites and itinerary waypoints, with coloured drop markers.
- * Lazy chunk. Selecting a city or a stop elsewhere moves this map too.
+ * 2D street view of the planner (team guide 2.6): swappable basemaps (Esri streets and
+ * topo, OpenStreetMap; attribution always shown) with coloured drop markers for the same
+ * layers as the 3D map, plus the itinerary whenever there is one. Style and layers are set
+ * from the shared `MapToolbar`. Lazy chunk. Selecting a city or a stop elsewhere moves this map too.
  */
-
-type Basemap = 'streets' | 'topo' | 'osm' | 'carto';
-type Layer = 'food' | 'heritage' | 'itinerary';
 
 const BASEMAPS: Record<Basemap, { url: string; attribution: string; maxZoom: number }> = {
   streets: {
@@ -33,20 +32,9 @@ const BASEMAPS: Record<Basemap, { url: string; attribution: string; maxZoom: num
       '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors',
     maxZoom: 19,
   },
-  carto: {
-    url: 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    attribution:
-      '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer">CARTO</a>',
-    maxZoom: 20,
-  },
 };
 
-const COLORS: Record<Layer | 'stop', string> = {
-  food: '#8FD19E',
-  heritage: '#F0C27B',
-  itinerary: '#C2456E',
-  stop: '#4A2238',
-};
+const ROUTE_COLORS = { day: '#C2456E', stop: '#4A2238' };
 
 /** SVG drop marker in the layer colour, optionally numbered. */
 function drop(color: string, label = ''): L.DivIcon {
@@ -82,12 +70,8 @@ export default function StreetMap() {
   const map = useRef<L.Map | null>(null);
   const tiles = useRef<L.TileLayer | null>(null);
   const group = useRef<L.LayerGroup | null>(null);
-  const [basemap, setBasemap] = useState<Basemap>('streets');
-  const [layers, setLayers] = useState<Record<Layer, boolean>>({
-    food: true,
-    heritage: true,
-    itinerary: true,
-  });
+  const basemap = useMapView((s) => s.basemap);
+  const layers = useAppStore((s) => s.layers);
   const [tilesFailed, setTilesFailed] = useState(false);
   const diet = useAppStore((s) => s.diet);
   const selectedCityId = useAppStore((s) => s.selectedCityId);
@@ -99,7 +83,9 @@ export default function StreetMap() {
 
   useEffect(() => {
     if (!box.current) return;
-    const m = L.map(box.current, { zoomControl: true }).setView([36.2, 137.5], 5);
+    // Zoom buttons go bottom right: the map toolbar owns the top left.
+    const m = L.map(box.current, { zoomControl: false }).setView([36.2, 137.5], 5);
+    L.control.zoom({ position: 'bottomright' }).addTo(m);
     group.current = L.layerGroup().addTo(m);
     map.current = m;
     return () => {
@@ -118,7 +104,6 @@ export default function StreetMap() {
     tiles.current = L.tileLayer(b.url, {
       attribution: b.attribution,
       maxZoom: b.maxZoom,
-      subdomains: 'abcd',
     })
       .on('tileerror', () => {
         errors += 1;
@@ -132,10 +117,10 @@ export default function StreetMap() {
     const g = group.current;
     if (!g) return;
     g.clearLayers();
-    if (layers.food) {
+    if (layers.vegSafe) {
       for (const f of FOOD_SPOTS) {
         if (diet !== 'none' && !f.dietOptions.some((o) => o.diet === diet)) continue;
-        L.marker([f.lat, f.lng], { icon: drop(COLORS.food), title: f.name })
+        L.marker([f.lat, f.lng], { icon: drop(LAYER_COLORS.vegSafe), title: f.name })
           .bindPopup(
             popup(f.name, [
               `${f.cuisine} · ${f.area}`,
@@ -147,24 +132,35 @@ export default function StreetMap() {
     }
     if (layers.heritage) {
       for (const h of HERITAGE_SPOTS) {
-        L.marker([h.lat, h.lng], { icon: drop(COLORS.heritage), title: h.japanese })
+        L.marker([h.lat, h.lng], { icon: drop(LAYER_COLORS.heritage), title: h.japanese })
           .bindPopup(popup(h.japanese, [h.place, t('status.needsReview')]))
           .addTo(g);
       }
     }
-    if (layers.itinerary && days.length > 0) {
+    for (const [layer, spots] of [
+      ['anime', ANIME_SPOTS],
+      ['regional', REGIONAL_SPOTS],
+    ] as const) {
+      if (!layers[layer]) continue;
+      for (const a of spots) {
+        L.marker([a.lat, a.lng], { icon: drop(LAYER_COLORS[layer]), title: a.name })
+          .bindPopup(popup(a.name, [a.note]))
+          .addTo(g);
+      }
+    }
+    if (days.length > 0) {
       const route: L.LatLngExpression[] = [];
       for (const d of days) {
         const c = cityById(d.cityId);
         if (!c) continue;
         route.push([c.lat, c.lng]);
-        L.marker([c.lat, c.lng], { icon: drop(COLORS.itinerary, String(d.day)), title: d.title })
+        L.marker([c.lat, c.lng], { icon: drop(ROUTE_COLORS.day, String(d.day)), title: d.title })
           .bindPopup(popup(`${t('trip.day', { n: d.day })} · ${c.name}`, [d.title]))
           .on('click', () => focusCity(d.cityId))
           .addTo(g);
         d.stops.forEach((s) => {
           if (s.lat === null || s.lng === null) return;
-          L.marker([s.lat, s.lng], { icon: drop(COLORS.stop), title: s.name })
+          L.marker([s.lat, s.lng], { icon: drop(ROUTE_COLORS.stop), title: s.name })
             .bindPopup(popup(s.name, [t(`trip.slots.${s.slot}`), s.note]))
             .addTo(g);
         });
@@ -185,47 +181,8 @@ export default function StreetMap() {
   }, [selectedCityId, focusedStop]);
 
   return (
-    <div className="absolute inset-0 flex flex-col">
-      <div className="flex flex-wrap items-center gap-2 border-b border-white/10 bg-plum px-3 py-2 text-xs text-paper">
-        <label className="flex items-center gap-1.5">
-          <span className="font-semibold">{t('streetMap.basemap')}</span>
-          <select
-            value={basemap}
-            onChange={(e) => setBasemap(e.target.value as Basemap)}
-            className="rounded-lg border border-white/20 bg-plum px-2 py-1 text-paper focus:outline focus:outline-2 focus:outline-gold"
-          >
-            {(Object.keys(BASEMAPS) as Basemap[]).map((b) => (
-              <option key={b} value={b}>
-                {t(`streetMap.basemaps.${b}`)}
-              </option>
-            ))}
-          </select>
-        </label>
-        <fieldset className="flex flex-wrap items-center gap-1.5">
-          <legend className="sr-only">{t('streetMap.layers')}</legend>
-          {(Object.keys(layers) as Layer[]).map((l) => (
-            <label
-              key={l}
-              className={`flex cursor-pointer items-center gap-1 rounded-full px-2 py-1 font-semibold focus-within:outline focus-within:outline-2 focus-within:outline-gold ${
-                layers[l] ? 'bg-paper text-plum' : 'bg-white/10 text-paper/80'
-              }`}
-            >
-              <input
-                type="checkbox"
-                checked={layers[l]}
-                onChange={() => setLayers((s) => ({ ...s, [l]: !s[l] }))}
-                className="sr-only"
-              />
-              <span
-                aria-hidden="true"
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ background: COLORS[l] }}
-              />
-              {t(`streetMap.layerNames.${l}`)}
-            </label>
-          ))}
-        </fieldset>
-      </div>
+    // `isolate` keeps Leaflet's z-indexed panes below the map toolbar.
+    <div className="absolute inset-0 isolate flex flex-col">
       <div className="relative min-h-0 flex-1">
         <div
           ref={box}

@@ -24,12 +24,14 @@ export function Dialog({
   const ref = useRef<HTMLDialogElement>(null);
   const titleId = useId();
 
+  // Sync on every render, not only when `open` flips: one dialog serves several tools, and
+  // switching tools (a new title) must reopen it even if the browser closed it on its own.
   useEffect(() => {
     const d = ref.current;
     if (!d) return;
     if (open && !d.open) d.showModal();
     if (!open && d.open) d.close();
-  }, [open]);
+  });
 
   const width = {
     full: 'h-[100svh] max-h-none w-screen max-w-none rounded-none',
