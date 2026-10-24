@@ -113,7 +113,9 @@ def screen(selected: list[Candidate]) -> tuple[list[Candidate], int]:
 
 def _excerpt(text: str, limit: int = 280) -> str:
     t = re.sub(r"\[[^\]]+\]\n", "", text)
-    t = re.sub(r"[*_`#]", "", t).strip()
+    t = re.sub(r"(?m)^\s*(?:[-*]|\d+\.)\s+", "", t)  # list markers
+    t = re.sub(r"[*_`#]", "", t)
+    t = re.sub(r"\s*\n+\s*", " ", t).strip()
     return t if len(t) <= limit else t[: limit - 1].rsplit(" ", 1)[0] + "…"
 
 

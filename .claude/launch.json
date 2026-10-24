@@ -28,6 +28,23 @@
         "8000"
       ],
       "port": 8000
+    },
+    {
+      "name": "api-demo",
+      "runtimeExecutable": "apps/api/.venv/Scripts/python",
+      "runtimeArgs": [
+        "-m",
+        "uvicorn",
+        "app.main:app",
+        "--app-dir",
+        "apps/api",
+        "--port",
+        "8000"
+      ],
+      "port": 8000,
+      "env": {
+        "MITRA_DEMO_MODE": "1"
+      }
     }
   ]
 }

@@ -10,11 +10,21 @@
 - [x] **M5** FastAPI + Claude planner (streamed, schema-constrained, validated, retry + visible fallback), grounding/feasibility flags, day cards ↔ map sync, per-day regenerate, animated route, Food Confidence rings with reasons, Demo/Offline modes
 - [x] **M6** Veg-Safe scanner (on-device OCR behind a provider interface, 24 sample scans, three-state results incl. unknown words, custom restrictions, staff card, AI explanation endpoint), restaurant directory (9 researched + 21 sample, filters, evidence), interactive visa checklist
 - [x] **M7** Saved trips (save/edit/duplicate/delete with confirm), printable PDF with sources, wa.me share link, demo reservation, HI/GU lazy-loaded, deploy configs (render.yaml, apps/web/vercel.json). Not done: Lighthouse run, actual deploy (owner), native HI/GU review
+- [x] **R1** Knowledge-base corpus (37 docs), local FAISS + multilingual e5 ingestion, staleness check, SOURCES.md
+- [x] **R2** Hybrid retrieval (BM25 + dense, RRF, rerank), query rewrite, confidence gate + abstention, citations, `/api/assistant/chat`, eval v1
+- [x] **R3** TripContext with provenance and PII scrubbing, patch ops with validation, diff, undo, pinned stops
+- [x] **R4** Emergency router + offline `emergency.json`, weather (opt-in Open-Meteo), honest transit/hours tools, opt-in location
+- [x] **R5** Assistant chat panel, Sources drawer, diff cards, quick actions, emergency dialog (offline), trip-data panel, full eval (dev 58/58, held-out 18/19)
 
 ## Needs owner input
 
 - [ ] **Knowledge base (R1)**: review the 37 documents in `apps/api/rag/corpus/` (all `needs-review`), especially emergency contacts and visa pages, and the URLs to supply in `rag/corpus/SOURCES.md` (Fushimi Inari, VFS document checklist, JR Central rules, Consulate of India in Fukuoka, temple hours/fees).
 - [ ] **Git history**: commit `eca14ac` contains the Anthropic key that was in `.env.example`; rewrite it out before any push (not pushed yet).
+
+- [ ] **Emergency contacts** (`apps/web/src/data/emergency.json`): check every number and the Indian mission lines against the official pages linked in the file. Have the Hindi text reviewed (machine draft). Only then set `status: verified`.
+- [ ] **Assistant strings** (`assistant.*` in `hi.json` / `gu.json`): native review.
+- [ ] **Eval case c072** (cash withdrawal with an Indian card) abstains wrongly. Add a sourced ATM/currency document, or accept the abstention; it was left untuned on purpose.
+- [ ] **Live assistant**: with a valid key, try a few questions and one plan change in live mode and check the citations. Run `python -m rag.eval --judge` if you want a groundedness score (costs credit).
 
 - [ ] **API key**: add `ANTHROPIC_API_KEY=` to `.env` (repo root) yourself, then restart the API. Live Claude mode has not been tested yet.
 
@@ -49,6 +59,10 @@
 | AI planner               | Real code; Demo mode (sample itinerary) until a key is set; live mode untested        |
 | Offline fallback         | `sampleItinerary.json` exported from the API sample planner                           |
 | Food Confidence          | Real formula on unverified demo data, capped at 85                                    |
+| Assistant answers        | Real retrieval over the corpus; Demo = quotes, live = Claude (untested)               |
+| Assistant plan changes   | Rule-based in Demo; Claude tool loop in live (untested); always validated + undo      |
+| Emergency card           | Real data from official pages, needs review; works offline                            |
+| Weather / transit / hours| Weather opt-in (Open-Meteo); transit "not connected"; hours "unverified"              |
 | Travel times             | Estimates from straight-line distance and mode speed                                  |
 
 ## Known notes

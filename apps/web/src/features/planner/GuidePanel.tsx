@@ -1,5 +1,6 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AssistantChat } from '../assistant/AssistantChat';
 import { usePlannerStore } from './usePlannerStore';
 
 const MODE_STYLE = {
@@ -70,49 +71,53 @@ export function GuidePanel() {
         <p className="text-xs text-mist">{t(`guide.modeExplain.${shownMode}`)}</p>
       ) : null}
 
-      <form onSubmit={submit} className="flex flex-col gap-2">
-        <label htmlFor={id} className="text-sm font-semibold text-plum">
-          {changing ? t('guide.changeLabel') : t('guide.label')}
-        </label>
-        <textarea
-          ref={box}
-          id={id}
-          value={text}
-          rows={2}
-          maxLength={500}
-          onChange={(e) => setText(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' && !e.shiftKey) submit(e);
-          }}
-          placeholder={changing ? t('guide.changePlaceholder') : t('guide.placeholder')}
-          className="resize-none rounded-2xl border border-petal bg-white/80 px-3 py-2.5 text-sm text-ink outline-none transition focus:border-rose focus:ring-2 focus:ring-rose/30"
-        />
-        {!changing ? (
-          <div className="flex flex-wrap gap-1.5">
-            {suggestions.map((s) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => {
-                  setText(s);
-                  // Ready to submit with Enter, or to edit first.
-                  box.current?.focus();
-                }}
-                className="rounded-full border border-petal bg-blush px-2.5 py-1 text-xs font-medium text-plum transition hover:border-rose"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        ) : null}
-        <button
-          type="submit"
-          disabled={busy || text.trim().length < 2}
-          className="btn-primary !py-2.5 text-sm disabled:opacity-50"
-        >
-          {changing ? t('guide.submitChange') : t('guide.submit')}
-        </button>
-      </form>
+      {/* Before there's a plan, the guide plans a whole trip; after that, changes go through the
+          assistant as small, previewed patches instead of a full re-plan. */}
+      {!changing ? (
+        <form onSubmit={submit} className="flex flex-col gap-2">
+          <label htmlFor={id} className="text-sm font-semibold text-plum">
+            {changing ? t('guide.changeLabel') : t('guide.label')}
+          </label>
+          <textarea
+            ref={box}
+            id={id}
+            value={text}
+            rows={2}
+            maxLength={500}
+            onChange={(e) => setText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) submit(e);
+            }}
+            placeholder={changing ? t('guide.changePlaceholder') : t('guide.placeholder')}
+            className="resize-none rounded-2xl border border-petal bg-white/80 px-3 py-2.5 text-sm text-ink outline-none transition focus:border-rose focus:ring-2 focus:ring-rose/30"
+          />
+          {!changing ? (
+            <div className="flex flex-wrap gap-1.5">
+              {suggestions.map((s) => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => {
+                    setText(s);
+                    // Ready to submit with Enter, or to edit first.
+                    box.current?.focus();
+                  }}
+                  className="rounded-full border border-petal bg-blush px-2.5 py-1 text-xs font-medium text-plum transition hover:border-rose"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          ) : null}
+          <button
+            type="submit"
+            disabled={busy || text.trim().length < 2}
+            className="btn-primary !py-2.5 text-sm disabled:opacity-50"
+          >
+            {changing ? t('guide.submitChange') : t('guide.submit')}
+          </button>
+        </form>
+      ) : null}
 
       <div aria-live="polite" className="min-h-[1.25rem] text-sm">
         {busy ? (
@@ -127,6 +132,8 @@ export function GuidePanel() {
           </p>
         ) : null}
       </div>
+
+      <AssistantChat />
 
       {itinerary && !busy ? (
         <button

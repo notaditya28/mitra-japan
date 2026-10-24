@@ -148,7 +148,10 @@ def _rain(message: str, ctx: TripContext, it: Itinerary) -> Patch | str | None:
     for i, s in enumerate(day.stops):
         if not is_outdoor(s.kind, s.name, s.note) or pin_key(day.cityId, s.name) in pinned:
             continue
-        alt = next(iter(search_places(day.cityId, diet=ctx.diet_name(), exclude=used, indoor_only=True)), None)
+        indoor = search_places(day.cityId, diet=ctx.diet_name(), exclude=used, indoor_only=True)
+        # Swap a sight for an indoor sight; only fall back to a food place if there's none.
+        same_kind = [p for p in indoor if (p.kind == "food") == (s.kind == "food")]
+        alt = next(iter(same_kind or ([] if s.kind != "food" and any(x.kind == "food" for x in day.stops) else indoor)), None)
         if alt is None:
             continue
         used.add(alt.name)

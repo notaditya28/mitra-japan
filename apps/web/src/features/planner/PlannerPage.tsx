@@ -17,6 +17,7 @@ import { usePlannerStore, visibleDays } from './usePlannerStore';
 import { ToolDialogs } from '../tools/ToolDialogs';
 import { ToolLauncher } from '../tools/ToolLauncher';
 import { TripPrint } from '../export/TripPrint';
+import { UndoToast } from '../assistant/UndoToast';
 
 const MapCanvas = lazy(() => import('./map/MapCanvas'));
 
@@ -222,6 +223,7 @@ export function PlannerPage() {
         </aside>
         <ToolDialogs />
         <TripPrint />
+        <UndoToast />
       </main>
     );
   }
@@ -240,6 +242,7 @@ export function PlannerPage() {
       </BottomSheet>
       <ToolDialogs />
       <TripPrint />
+      <UndoToast />
     </main>
   );
 }

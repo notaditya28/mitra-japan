@@ -135,7 +135,21 @@ Grounded Q&A + persistent trip context + safe conversational itinerary edits, in
 - Emergency router (rules first, LLM second) has top priority; offline `emergency.json` from official sources, `needs-review` until verified; never replaces responders.
 - Live tools (`get_weather`, `get_transit_status`, `get_attraction_hours`) are interfaces; when not connected they say so honestly. Location is opt-in, session-only, never logged.
 - Eval: `python -m rag.eval` over 50-80 golden cases (7 demo scenarios + Hindi/Hinglish, prompt injection, stale doc, fake-booking request) with a held-out subset; Markdown report.
-- Milestones (stop after each): R1 corpus + ingestion → R2 retrieval + grounded answers + eval → R3 trip context + patching → R4 emergency + live tools → R5 frontend + full eval. Priority if short on time: R1, R2, R4, R3, R5.
+- Milestones (stop after each): R1 corpus + ingestion → R2 retrieval + grounded answers + eval → R3 trip context + patching → R4 emergency + live tools → R5 frontend + full eval. Priority if short on time: R1, R2, R4, R3, R5. All five done (2026-10-24).
+
+Implementation notes (R2–R5):
+
+- `assistant.handle` order: scrub → diet-change ack → `router.route` → emergency / smalltalk / plan_change / info. Hypothetical phrasing ("what if", "agar", 「〜たら」) routes to info, not emergency. The LLM route check runs in live mode only.
+- Retrieval (`retrieve.py`): BM25 + e5 → RRF (k=60) → `HeuristicReranker`. Confidence is a mix of dense, coverage, agreement and same-doc scores; it abstains below `RAG_ABSTAIN_THRESHOLD` (0.42). Retrieval excludes `test-` fixture docs unless `include_fixtures` is set. `text.EXPANSIONS` holds the Hindi/Hinglish/Japanese query words. Follow-up rewriting (`rewrite.py`) applies only to short pronoun questions.
+- `answer.py`:
+  - `missing_detail` abstains when a price, hours or timetable question has no evidence line about the same entity.
+  - `screen` drops chunks with instruction-like text.
+  - `validate_live` rejects uncited facts, numbers not found in cited sources, and booking-change claims. Next steps are built after citations are renumbered.
+  - Retune thresholds on `--split dev` only, and report held-out results as they are.
+- Patches (`patching.py`): the pin key is `cityId|name`. `apply_patch` runs `ground_plan` + feasibility and returns a `Diff` plus an undo token (`UNDO`, in memory). The Demo planner is `planchange.rule_based`; live mode is a tool loop with `propose_patch`.
+- Web (`features/assistant/`): `useAssistantStore` persists the session id, messages, pins and current day under `mitra-assistant`; location and undo stay in memory only. Patches go through `replaceItinerary`. The emergency dialog uses `offline.ts` when the API fails. Emergency contacts come only from `emergency.json` (pick the mission with `missionsFor`).
+- Nested `<dialog>`s: `Dialog` reacts only to its own close/cancel events, because React propagates them up the component tree.
+- `MITRA_ENV=production` turns off `/api/knowledge/search` and `/api/ingest`. Render's build runs `rag.ingest`, because the index is git-ignored.
 
 ## Motion and performance
 

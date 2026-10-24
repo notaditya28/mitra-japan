@@ -26,6 +26,9 @@ export type PlannerErrorCode =
   | 'ai_busy'
   | 'ai_invalid'
   | 'ai_declined'
+  | 'invalid_patch'
+  | 'undo_unavailable'
+  | 'index_missing'
   | 'unknown';
 
 export interface PlannerError {
@@ -79,6 +82,9 @@ const KNOWN: PlannerErrorCode[] = [
   'ai_busy',
   'ai_invalid',
   'ai_declined',
+  'invalid_patch',
+  'undo_unavailable',
+  'index_missing',
 ];
 
 /** Read a structured API error ({ error: { code, message } }) into a PlannerError. */

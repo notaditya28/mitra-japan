@@ -33,16 +33,21 @@ export function Dialog({
 
   const width = {
     full: 'h-[100svh] max-h-none w-screen max-w-none rounded-none',
-    lg: 'h-[100svh] max-h-none w-screen max-w-none rounded-none sm:h-auto sm:max-h-[90svh] sm:w-[min(92vw,56rem)] sm:rounded-card',
-    sm: 'h-auto max-h-[90svh] w-[calc(100vw-2rem)] max-w-md rounded-card',
+    lg: 'h-[100svh] max-h-none w-screen max-w-none rounded-none sm:h-fit sm:max-h-[90svh] sm:w-[min(92vw,56rem)] sm:rounded-card',
+    sm: 'h-fit max-h-[90svh] w-[calc(100vw-2rem)] max-w-md rounded-card',
   }[size];
 
   return (
     <dialog
       ref={ref}
       aria-labelledby={titleId}
-      onClose={onClose}
+      // React passes close/cancel up the component tree even though the browser doesn't
+      // bubble them, so a nested dialog closing would close this one too. Only react to our own.
+      onClose={(e) => {
+        if (e.target === e.currentTarget) onClose();
+      }}
       onCancel={(e) => {
+        if (e.target !== e.currentTarget) return;
         e.preventDefault();
         onClose();
       }}

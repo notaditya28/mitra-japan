@@ -2,7 +2,7 @@
 
 Updated at the end of every milestone. Three lists: what works, what is demo-only, and what needs an external service or the owner's verification.
 
-_Last updated: 2026-10-24, end of milestone 7._
+_Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 
 ## Fully working
 
@@ -32,7 +32,7 @@ _Last updated: 2026-10-24, end of milestone 7._
   - Strict schemas, one retry, visible fallback.
   - Grounding against `cities.json`, feasibility flags.
   - 400/413/429/502/503 errors, CORS from env, rate limit.
-  - 33 pytest tests.
+  - 110 pytest tests (planner, scanner, RAG ingestion, retrieval, routing, patches, emergency, privacy).
 - Trip guide UI: prompt composer with suggestions, days stream in live, day cards with stops, transport estimate, stay, tips, flags and per-day regenerate; Itinerary/City tabs; cards and map markers select each other; animated route line with day badges.
 - Food Confidence ring per day with a "Why this score" breakdown; capped at 85 because no spot is verified.
 - Status badges (Verified / Sample / Needs review / Estimate) on seeded records.
@@ -41,6 +41,19 @@ _Last updated: 2026-10-24, end of milestone 7._
 - Saved trips in this browser (save, edit, duplicate, delete with confirmation), printable A4 PDF with sources and check dates, WhatsApp share link (wa.me, no bot).
 - Demo reservation: clearly labelled, books nothing, no prices.
 - HI/GU translations load only when chosen.
+- Knowledge assistant (planner guide panel, always visible):
+  - Grounded answers: hybrid BM25 + multilingual e5 retrieval, RRF, reranking, a confidence gate and abstention ("I don't know" plus the official link). Prices, hours and timetables are never guessed.
+  - Each answer shows numbered citations, a confidence badge, a freshness note and a Sources drawer.
+  - Works in English, Hindi and Hinglish; Japanese questions are understood.
+  - Follow-up questions are rewritten from the previous turn.
+  - Prompt-injection text in documents is dropped.
+- Conversational plan changes: lighter day, rain, a closed place, add or remove a day, move a stop. Each comes as a diff card with what changes, what stays and booking notes. Apply is validated against our data and feasibility checks; Undo restores the plan. Pinned stops are never touched.
+- Emergency path: lost passport, medical, police, lost belongings, earthquake, typhoon/tsunami, stranded, missing person.
+  - Detected in EN/HI/Hinglish/JA, skips retrieval and shows the Indian mission for today's city.
+  - The Emergency button works offline from a bundled copy.
+- Privacy: passport, card, Aadhaar and PAN numbers are scrubbed. Location is opt-in and session-only. The "Trip data" panel views and deletes what the server holds for the session.
+- Offline-first quick action: "veg food nearby" uses opt-in location and our own place data.
+- RAG eval: 77 cases, `python -m rag.eval`. Results: dev 58/58, held-out 18/19.
 
 ## Demo-only (works, but on sample or seeded data)
 
@@ -48,6 +61,7 @@ _Last updated: 2026-10-24, end of milestone 7._
 - **Sample scans**: 24 menu lines and shop labels (`sampleScans.json`), labelled "Sample scan". The Tokyo fear card uses five of them.
 - **Sample route** on the planner map (Golden Route), behind an explicit toggle.
 - **Stats**: all four counters are empty placeholders until real, sourced figures are added.
+- **Assistant in Demo mode** (no key): answers are quotes from the corpus, labelled "Demo". Plan changes come from a rule-based planner, not Claude.
 
 ## Needs an external service or the owner's verification
 
@@ -59,16 +73,15 @@ _Last updated: 2026-10-24, end of milestone 7._
 - **Anime / regional spots** (`layers.json`): need review.
 - **Hindi / Gujarati** strings: drafts pending native-speaker review.
 - **Real restaurants**: 9 places researched from public guides on 2026-10-24 (Tokyo, Kyoto, Osaka, Koyasan, Hiroshima). All are `needs-review`: addresses, map pins (approximate) and diet claims need the owner's check; places may have moved or closed.
+- **Assistant (live)**: Claude-written answers with citation and number validation, the LLM intent check and the tool-using plan-change loop are built and tested with fakes, but untested against the real API.
+- **Knowledge corpus** (`apps/api/rag/corpus`): 37 documents, all `needs-review`. Fushimi Inari is a stub, and pages we could not fetch are listed in `_fetch_notes.yaml` for the owner.
+- **Emergency contacts** (`emergency.json`): numbers and mission phone lines taken from official pages, `needs-review`. The Hindi text is a machine draft.
+- **Live weather**: off by default; set `WEATHER_PROVIDER=open-meteo`. Transit status is not connected (says so). Attraction hours are always "unverified".
+- **Embedding model**: the first ingest downloads ~465 MB (internet once).
 - **Ingredient dictionary** (`ingredients.json`): 53 entries plus menu words; per-diet rules need the owner's review.
 
 ## Planned (by milestone)
 
-Knowledge assistant (addendum 3):
-
-- **R1 (done)**: 37 documents (31 summarised from fetched official/operator pages, 4 team-written, 2 eval fixtures) across all 11 topics, 53 chunks in a local FAISS index with multilingual e5 embeddings; idempotent `rag.ingest`, `--check` staleness report, generated `SOURCES.md`. Everything is `needs-review` until the owner checks it.
-- **R2**: hybrid retrieval, query rewrite, confidence gate, citations, abstention, `/api/assistant/chat`, first eval.
-- **R3**: TripContext with provenance, patch tools, diff preview, apply with validation, undo, pinned items.
-- **R4**: emergency router, offline `emergency.json`, weather tool, honest "not connected" transit tool, opt-in location.
-- **R5**: assistant chat panel, Sources drawer, diff cards, quick actions, trip-data panel, demo mode, full eval report.
+Knowledge assistant (addendum 3): R1–R5 all done (see above).
 
 - Deploy: configs ready (`render.yaml`, `apps/web/vercel.json`); the owner connects Render and Vercel (README).

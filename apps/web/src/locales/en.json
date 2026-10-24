@@ -686,5 +686,181 @@
       "nameShort": "Enter the lead traveller's name.",
       "notesLong": "Keep requests under 300 characters."
     }
+  },
+  "assistant": {
+    "title": "Ask Mitra",
+    "you": "You",
+    "today": "We're on",
+    "notStarted": "Not started yet",
+    "empty": "Ask about visas, trains, food for your diet or etiquette. Answers come only from official and checked sources, with links. Once you have a plan, ask for changes here too.",
+    "thinking": "Checking the sources…",
+    "quickLabel": "Quick actions",
+    "quick": {
+      "visa": "Visa help",
+      "veg": "Find veg food nearby",
+      "tired": "I'm tired",
+      "rain": "It's raining",
+      "wrong": "Something's wrong",
+      "menu": "Explain this menu"
+    },
+    "quickPrompts": {
+      "visa": "What do I need to apply for a Japan tourist visa from India?",
+      "tired": "We're tired, make today lighter",
+      "rain": "It's raining today, change my plan"
+    },
+    "inputLabel": "Your question or change",
+    "placeholder": "e.g. Do I need a visa? Can I bring my medicines?",
+    "placeholderTrip": "e.g. Add a day in Kyoto, or: the restaurant is closed",
+    "send": "Send",
+    "demoBadge": "Demo",
+    "kind": {
+      "fact": "Fact",
+      "suggestion": "Suggestion",
+      "estimate": "Estimate"
+    },
+    "confidence": {
+      "high": "High confidence",
+      "medium": "Medium confidence",
+      "low": "Low confidence",
+      "abstained": "Can't verify"
+    },
+    "confidenceHelp": {
+      "high": "Several sources agree closely with your question.",
+      "medium": "Sources match, but less closely. Check the links.",
+      "low": "Only a loose match in our sources. Double-check before relying on it.",
+      "abstained": "Our sources don't answer this, so Mitra won't guess."
+    },
+    "sources": {
+      "title": "Sources",
+      "eyebrow": "Where this comes from",
+      "intro": "Every fact in the answer points to one of these. Status and dates show how recently each was checked.",
+      "source": "Source",
+      "type": "Type",
+      "verified": "Last verified",
+      "never": "not yet checked",
+      "volatile": "changes often",
+      "open": "Open source {{n}}",
+      "view_one": "View {{count}} source",
+      "view_other": "View {{count}} sources"
+    },
+    "sourceTypes": {
+      "official-government": "Official (government)",
+      "official-transport": "Official (transport operator)",
+      "official-tourism": "Official (tourism board)",
+      "reputable-local": "Local official site",
+      "team-written": "Written by the Mitra team (not official)"
+    },
+    "diff": {
+      "label": "Proposed change to your itinerary",
+      "title": "Proposed change",
+      "counts": "{{added}} added · {{removed}} removed · {{kept}} unchanged stops · {{days}} day(s) affected",
+      "newDay": "new day",
+      "removedDay": "removed",
+      "status": {
+        "kept": "unchanged",
+        "added": "added",
+        "replaced": "replacement",
+        "moved-in": "moved here",
+        "moved-out": "moved away",
+        "removed": "removed"
+      },
+      "unchangedNote": "Days not shown stay exactly as they are. Pinned stops are never changed.",
+      "apply": "Apply",
+      "edit": "Edit",
+      "dismiss": "Dismiss",
+      "applying": "Checking and applying…",
+      "applied": "Applied to your itinerary",
+      "dismissed": "Dismissed",
+      "undone": "Undone"
+    },
+    "pin": {
+      "pin": "Pin",
+      "pinned": "Pinned",
+      "toggle": "Pin {{name}} so the assistant never moves it",
+      "help": "Pinned stops are never changed without asking"
+    },
+    "undo": {
+      "applied": "Changed: {{summary}}",
+      "button": "Undo"
+    },
+    "emergency": {
+      "button": "Emergency help",
+      "title": "Emergency help",
+      "eyebrow": "Works offline",
+      "pick": "What's happening?",
+      "contacts": "Who to call",
+      "offline": "Saved in the app, works offline",
+      "sources": "Sources",
+      "kinds": {
+        "lost_passport": "Lost passport",
+        "medical": "Medical",
+        "police": "Theft or danger",
+        "lost_belongings": "Lost phone or wallet",
+        "earthquake": "Earthquake",
+        "typhoon_tsunami": "Typhoon or tsunami",
+        "stranded": "Trains stopped",
+        "missing_person": "Someone is missing"
+      }
+    },
+    "location": {
+      "use": "Use my location",
+      "finding": "Finding you…",
+      "on": "Location on (this session only, never sent or saved).",
+      "off": "Turn off",
+      "unsupported": "This browser can't share location.",
+      "denied": "Location wasn't shared. You can still ask about a city by name."
+    },
+    "nearby": {
+      "title": "Places in our data near you that may suit {{diet}}",
+      "none": "None of our listed places are within 30 km. Try asking about the city you're in.",
+      "suits": "listed for your diet",
+      "check": "check with staff",
+      "km": "{{km}} km",
+      "note": "Distances are straight-line estimates. Only places in our data are shown; none are verified. For pharmacies, hospitals or police, use the official guides in Emergency help."
+    },
+    "data": {
+      "open": "Trip data",
+      "title": "Your trip data",
+      "eyebrow": "What Mitra knows",
+      "intro": "This is everything the assistant uses about your trip. It's kept in this browser and sent only with your questions.",
+      "diet": "Diet",
+      "style": "Travel style",
+      "itinerary": "Itinerary",
+      "today": "Trip day",
+      "pinned": "Pinned stops",
+      "messages": "Chat messages",
+      "location": "Location",
+      "none": "none",
+      "notStarted": "not started",
+      "locationOn": "on for this session (not saved)",
+      "locationOff": "off",
+      "never": "Never stored: passport, ID or card numbers. If you type one, it's removed before anything is saved.",
+      "serverLoading": "Checking what the server holds…",
+      "serverOffline": "The server isn't reachable, so it holds nothing new from this session.",
+      "serverStored": "The server holds a copy in memory only: {{storage}}.",
+      "serverNone": "The server holds nothing for this session.",
+      "session": "Session {{id}}…",
+      "delete": "Delete my trip data",
+      "deleteTitle": "Delete your trip data?",
+      "deleteBody": "This clears the chat, pinned stops, trip day and the server's copy. Your saved trips in My trips stay.",
+      "deleted": "Deleted from this browser and the server.",
+      "deletedLocal": "Deleted from this browser. The server wasn't reachable; its copy is cleared when it restarts."
+    },
+    "provenance": {
+      "confirmed": "confirmed",
+      "user-provided": "you told us",
+      "estimate": "estimate",
+      "assumption": "assumption"
+    },
+    "errors": {
+      "offline": "The guide is offline right now. Emergency help still works.",
+      "rate_limited": "Too many messages. Please wait a moment.",
+      "invalid_patch": "This change no longer fits your itinerary. Ask again.",
+      "undo_unavailable": "That change can't be undone any more.",
+      "invalid_response": "The answer couldn't be read. Please try again.",
+      "bad_request": "That message couldn't be sent. Try shortening it.",
+      "index_missing": "The knowledge base isn't built on the server yet.",
+      "unknown": "Something went wrong. Please try again."
+    }
   }
 }

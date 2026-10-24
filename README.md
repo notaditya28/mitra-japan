@@ -92,7 +92,7 @@ All seed data lives in `apps/web/src/data/`. Each record has `status` (`verified
 - Heritage entries describe historical associations ("developed from", "associated with"), never identity. Each needs real `references`. Keep `needs-review` until checked.
 - The visa checklist is preparation help only. Every item links to an official Japanese government source. After reviewing it, set `lastReviewed` to the date.
 
-### Knowledge assistant (RAG), milestone R1: corpus and ingestion
+### Knowledge assistant (RAG)
 
 The assistant answers only from a small, curated corpus in `apps/api/rag/corpus/<topic>/`. Each document is Markdown with front matter, and `SOURCES.md` lists every document and its status.
 
@@ -118,6 +118,34 @@ cd apps/api
   - Pages you couldn't fetch become stubs, listed in `rag/corpus/_fetch_notes.yaml`.
   - Only the owner sets `status: verified`.
 - **Staleness:** `last_verified` older than 730 days (static), 365 days (slow-changing) or 90 days (volatile) counts as stale. Override with `RAG_STALE_DAYS` and `RAG_STALE_DAYS_VOLATILE`.
+
+#### Using the assistant
+
+The chat sits in the planner's guide panel (`features/assistant/AssistantChat.tsx`). Ask a question, use a quick action (visa, veg food, "we're tired", rain, "something went wrong", read a menu) or ask for a change to the plan.
+
+- **Answers** come from hybrid retrieval: BM25 plus dense search merged with RRF, then a reranker. If confidence is below `RAG_ABSTAIN_THRESHOLD`, or the question asks for a price, opening hours or a timetable that our sources don't state, the assistant says it doesn't know and links the official page. Every answer shows numbered citations, a confidence badge, a freshness note and a Sources drawer.
+  - **Demo mode** (no key): quotes are extractive, labelled "Demo".
+  - **Live mode:** Claude writes the answer only from the retrieved chunks. The reply is validated (citations exist, every number appears in a cited source, no claim that a booking was changed). If validation fails, it retries once, then falls back to source quotes with a visible notice.
+- **Plan changes** ("make day 2 lighter", "it's raining on day 3", "add a day in Nara") come back as a proposed patch with a diff card. Nothing changes until you press Apply; Undo restores the previous plan. Pin a stop on a day card to protect it. Hotel, train and ticket changes are never made for you; the card tells you what to change with the provider yourself.
+- **Emergencies** (lost passport, medical, police, earthquake, typhoon, stranded, missing person, lost belongings) skip retrieval. They return a card built from `apps/web/src/data/emergency.json`: numbers, the Indian mission for today's city, and steps with sources. The browser keeps an offline copy, so the Emergency button works with the API down. The numbers are `needs-review` until the owner checks them.
+- **Privacy:** passport, card, Aadhaar and PAN numbers are removed before anything is stored or sent. Location is opt-in, kept in memory for the session only and never logged. "Trip data" shows and deletes what the server holds for your session (memory only, no database).
+- **Live tools:** weather only when `WEATHER_PROVIDER=open-meteo` (free, no key). Transit status says "not connected", and attraction hours are always "unverified". Nothing is invented.
+
+Endpoints: `POST /api/assistant/chat`, `POST /api/assistant/apply-patch`, `POST /api/assistant/undo`, `GET /api/knowledge/sources`, `GET`/`DELETE /api/trip-data`. `POST /api/knowledge/search` and `POST /api/ingest` are debug endpoints, switched off when `MITRA_ENV=production`.
+
+#### Evaluation
+
+```bash
+cd apps/api
+.venv/Scripts/python -m rag.eval               # 77 cases, Demo mode, no API calls; writes rag/eval/report.md
+.venv/Scripts/python -m rag.eval --split dev   # tune on dev only; held-out cases are every 4th
+```
+
+The cases and metrics:
+
+- **Cases:** retrieval, abstention, emergency routing, plan patches (including pinned stops), prompt-injection and Hindi/Hinglish/Japanese questions.
+- **Metrics:** hit@3, MRR, abstain precision/recall, emergency routing, patch validity, preserved pins and safety.
+- **Current results:** dev 58/58, held-out 18/19. The miss is c072, cash withdrawal with an Indian card: the assistant abstains when it shouldn't. It is left untuned on purpose.
 
 ## Checks
 
@@ -161,7 +189,7 @@ Statistics are placeholders until verified with real sources (`apps/web/src/data
 
 ## Limitations
 
-- Live Claude mode (planner and scan explanations) has not been tested against the real API until a key is added.
+- Live Claude mode (planner, scan explanations, assistant answers and the plan-change tool loop) has not been tested against the real API. Every test and the eval run on fakes or Demo mode.
 - OCR works best on printed, horizontal, well-lit text. Handwritten or vertical menus often come back as "Unable to verify".
 - The scanner only knows the words in `ingredients.json`. Anything else is reported as unrecognised, never as clear.
 - Restaurant details (hours, menus, whether a place is still open) are not tracked. Always check before visiting.
@@ -169,3 +197,5 @@ Statistics are placeholders until verified with real sources (`apps/web/src/data
 - Saved trips, the demo reservation, custom restrictions and visa ticks live in this browser's localStorage only. Clearing site data removes them, and they don't sync between devices.
 - "Download PDF" opens the browser's print dialog. Choose **Save as PDF**. This keeps Hindi, Gujarati and Japanese text in the system's own fonts.
 - The demo reservation books nothing and takes no payment. No prices are shown, because we have no real fares.
+- The assistant knows only its corpus (37 documents, all `needs-review`). Questions outside it get an honest "I don't know" with an official link. Emergency numbers and the Hindi emergency text need the owner's check before a real trip.
+- Assistant sessions, undo history and trip data live in the API's memory and vanish on restart. The first chat after a start takes a few seconds while the embedding model loads. The model needs roughly 300 MB+ of RAM, which is tight on a free Render instance.

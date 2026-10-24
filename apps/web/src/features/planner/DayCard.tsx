@@ -8,6 +8,7 @@ import { cityById, stopStatus } from './data';
 import { foodConfidence } from './foodConfidence';
 import type { Day } from './itinerary';
 import { usePlannerStore } from './usePlannerStore';
+import { useAssistantStore } from '../assistant/useAssistantStore';
 
 const FLAG_STYLE = 'rounded-full bg-gold/30 px-2 py-0.5 text-[11px] font-semibold text-plum';
 
@@ -30,6 +31,9 @@ export const DayCard = forwardRef<HTMLElement, DayCardProps>(function DayCard(
   const regenerate = usePlannerStore((s) => s.regenerate);
   const regenerating = usePlannerStore((s) => s.regenerating === day.day);
   const dayError = usePlannerStore((s) => (s.dayError?.day === day.day ? s.dayError.error : null));
+  const pinned = useAssistantStore((s) => s.pinned);
+  const togglePin = useAssistantStore((s) => s.togglePin);
+  const justChanged = useAssistantStore((s) => s.changedDays.includes(day.day));
   const [editing, setEditing] = useState(false);
   const [instruction, setInstruction] = useState('');
   const [showWhy, setShowWhy] = useState(false);
@@ -45,7 +49,7 @@ export const DayCard = forwardRef<HTMLElement, DayCardProps>(function DayCard(
       aria-current={selected ? 'true' : undefined}
       className={`card p-4 transition-shadow duration-300 sm:p-5 ${
         selected ? 'ring-2 ring-sakura' : ''
-      } ${preview ? 'opacity-80' : ''}`}
+      } ${justChanged ? 'ring-4 ring-matcha/70 motion-safe:animate-pulse' : ''} ${preview ? 'opacity-80' : ''}`}
     >
       <button
         type="button"
@@ -93,6 +97,24 @@ export const DayCard = forwardRef<HTMLElement, DayCardProps>(function DayCard(
               )}
               {s.note ? <span className="block text-xs text-mist">{s.note}</span> : null}
             </span>
+            {!preview ? (
+              <button
+                type="button"
+                onClick={() => togglePin(day.cityId, s.name)}
+                aria-pressed={pinned.includes(`${day.cityId}|${s.name}`)}
+                aria-label={t('assistant.pin.toggle', { name: s.name })}
+                title={t('assistant.pin.help')}
+                className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase transition-colors ${
+                  pinned.includes(`${day.cityId}|${s.name}`)
+                    ? 'bg-plum text-paper'
+                    : 'bg-blush text-mist hover:text-plum'
+                }`}
+              >
+                {pinned.includes(`${day.cityId}|${s.name}`)
+                  ? t('assistant.pin.pinned')
+                  : t('assistant.pin.pin')}
+              </button>
+            ) : null}
           </li>
         ))}
       </ol>

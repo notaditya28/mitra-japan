@@ -45,16 +45,7 @@
       "consular": "+81-80710-94857",
       "consular_note": "Passport, police, hospital matters; 09:00-17:30 JST on working days.",
       "email": "cons.tokyo@mea.gov.in",
-      "region": [
-        "tokyo",
-        "kamakura",
-        "hakone",
-        "nikko",
-        "kanazawa",
-        "takayama",
-        "sapporo",
-        "naha"
-      ],
+      "region": ["tokyo", "kamakura", "hakone", "nikko", "kanazawa", "takayama", "sapporo", "naha"],
       "source_url": "https://www.indembassy-tokyo.gov.in/"
     },
     {
@@ -66,14 +57,7 @@
       "consular": "+81-6-6261-7299 / +81-6-6261-9299",
       "consular_note": "Office hours Monday-Friday 09:00-17:30.",
       "email": "cons.osakakobe@mea.gov.in",
-      "region": [
-        "kyoto",
-        "osaka",
-        "nara",
-        "koyasan",
-        "hiroshima",
-        "miyajima"
-      ],
+      "region": ["kyoto", "osaka", "nara", "koyasan", "hiroshima", "miyajima"],
       "source_url": "https://www.indconosaka.gov.in/pages/MjE,"
     }
   ],
@@ -96,11 +80,7 @@
         "आवेदन, 3x3 सेमी फ़ोटो, फ़ीस, पुलिस रिपोर्ट, खोए पासपोर्ट की कॉपी और फ़्लाइट विवरण लेकर मिशन जाएँ।",
         "इमरजेंसी सर्टिफ़िकेट केवल भारत लौटने के लिए है और खोया पासपोर्ट रद्द कर देता है।"
       ],
-      "contacts": [
-        "police",
-        "mission",
-        "visitor-hotline"
-      ],
+      "contacts": ["police", "mission", "visitor-hotline"],
       "sources": [
         "https://www.japan.travel/en/plan/emergencies/",
         "https://www.indconosaka.gov.in/pages/MjE,",
@@ -125,11 +105,7 @@
         "एम्बुलेंस को रास्ता दिखाने किसी को भेजें। पासपोर्ट, पैसे/कार्ड और दवाइयाँ तैयार रखें।",
         "पक्का न हो तो जापान विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे मदद करती है।"
       ],
-      "contacts": [
-        "ambulance-fire",
-        "visitor-hotline",
-        "mission"
-      ],
+      "contacts": ["ambulance-fire", "visitor-hotline", "mission"],
       "sources": [
         "https://www.fdma.go.jp/publication/portal/items/portal001_pamphiet_english.pdf",
         "https://www.japan.travel/en/plan/hotline/"
@@ -149,14 +125,8 @@
         "पुलिस रिपोर्ट माँगें; बीमा और दस्तावेज़ों के लिए ज़रूरी है।",
         "चोरी हुए कार्ड या टिकट जारी करने वालों से संपर्क कर उन्हें रद्द करवाएँ।"
       ],
-      "contacts": [
-        "police",
-        "tokyo-police-english",
-        "mission"
-      ],
-      "sources": [
-        "https://www.japan.travel/en/plan/emergencies/"
-      ]
+      "contacts": ["police", "tokyo-police-english", "mission"],
+      "sources": ["https://www.japan.travel/en/plan/emergencies/"]
     },
     "lost_belongings": {
       "title": "Lost phone, wallet, cards or bag",
@@ -172,13 +142,8 @@
         "नज़दीकी कोबान या पुलिस स्टेशन में रिपोर्ट करें और पुलिस रिपोर्ट लें।",
         "अगर पासपोर्ट भी उसी बैग में था, तो पासपोर्ट खोने वाले कदम भी अपनाएँ।"
       ],
-      "contacts": [
-        "police",
-        "visitor-hotline"
-      ],
-      "sources": [
-        "https://www.japan.travel/en/plan/emergencies/"
-      ]
+      "contacts": ["police", "visitor-hotline"],
+      "sources": ["https://www.japan.travel/en/plan/emergencies/"]
     },
     "earthquake": {
       "title": "Earthquake",
@@ -198,10 +163,7 @@
         "आधिकारिक जानकारी देखें: JMA चेतावनियाँ, Safety Tips ऐप या NHK WORLD-JAPAN।",
         "मदद के लिए जापान विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे उपलब्ध है।"
       ],
-      "contacts": [
-        "visitor-hotline",
-        "ambulance-fire"
-      ],
+      "contacts": ["visitor-hotline", "ambulance-fire"],
       "sources": [
         "https://www.japan.travel/en/plan/emergencies/",
         "https://www.jma.go.jp/jma/en/Emergency_Warning/ew_index.html"
@@ -225,11 +187,7 @@
         "JMA और Safety Tips ऐप पर लाइव चेतावनियाँ देखें।",
         "आपदा में जापान विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे मदद करती है।"
       ],
-      "contacts": [
-        "visitor-hotline",
-        "ambulance-fire",
-        "police"
-      ],
+      "contacts": ["visitor-hotline", "ambulance-fire", "police"],
       "sources": [
         "https://www.jma.go.jp/jma/en/Emergency_Warning/ew_index.html",
         "https://www.japan.travel/en/plan/emergencies/"
@@ -251,9 +209,7 @@
         "देरी से हुए होटल ख़र्च JR East नहीं देता, इसलिए जल्दी ठहरने की जगह ढूँढें।",
         "आपदा के कारण हो तो JMA चेतावनियाँ और Safety Tips ऐप देखें; विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे मदद करती है।"
       ],
-      "contacts": [
-        "visitor-hotline"
-      ],
+      "contacts": ["visitor-hotline"],
       "sources": [
         "https://www.jreast.co.jp/en/multi/ticket/changes.html",
         "https://www.japan.travel/en/plan/hotline/"
@@ -271,15 +227,8 @@
         "110 (पुलिस) पर कॉल करें या नज़दीकी कोबान (पुलिस बॉक्स) जाकर मदद माँगें।",
         "टोक्यो में पुलिस की अंग्रेज़ी हेल्पलाइन 03-3501-0110 (24 घंटे) है।"
       ],
-      "contacts": [
-        "police",
-        "tokyo-police-english",
-        "visitor-hotline",
-        "mission"
-      ],
-      "sources": [
-        "https://www.japan.travel/en/plan/emergencies/"
-      ]
+      "contacts": ["police", "tokyo-police-english", "visitor-hotline", "mission"],
+      "sources": ["https://www.japan.travel/en/plan/emergencies/"]
     }
   },
   "replan_prompt": "When you're safe, say \"replan\" and I'll adjust your itinerary around what happened.",

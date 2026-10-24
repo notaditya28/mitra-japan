@@ -40,6 +40,8 @@ interface PlannerState {
   clear: () => void;
   /** Show a saved trip on the map and in the itinerary panel. */
   openTrip: (id: string, itinerary: Itinerary) => void;
+  /** Swap in an itinerary changed by the assistant (patch applied or undone). */
+  replaceItinerary: (itinerary: Itinerary) => void;
   setActiveTrip: (id: string | null) => void;
 }
 
@@ -181,5 +183,14 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
 
   setActiveTrip(activeTripId) {
     set({ activeTripId });
+  },
+
+  replaceItinerary(itinerary) {
+    set((s) => ({
+      itinerary,
+      phase: 'ready',
+      // Keep the selected day if it still exists.
+      selectedDay: s.selectedDay && s.selectedDay <= itinerary.days.length ? s.selectedDay : 1,
+    }));
   },
 }));

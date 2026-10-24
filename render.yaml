@@ -6,7 +6,8 @@ services:
     name: mitra-japan-api
     runtime: python
     plan: free
-    buildCommand: pip install -r apps/api/requirements.txt
+    # The FAISS index is git-ignored, so the build embeds the corpus (downloads the ~465 MB e5 model once).
+    buildCommand: pip install -r apps/api/requirements.txt && cd apps/api && python -m rag.ingest
     # --proxy-headers so rate limiting sees the visitor's IP, not Render's proxy.
     startCommand: uvicorn app.main:app --app-dir apps/api --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips "*"
     healthCheckPath: /health
@@ -21,3 +22,7 @@ services:
         value: claude-sonnet-5-5
       - key: PLAN_RATE_PER_MINUTE
         value: '8'
+      - key: CHAT_RATE_PER_MINUTE
+        value: '30'
+      - key: MITRA_ENV
+        value: production # turns off the debug endpoints

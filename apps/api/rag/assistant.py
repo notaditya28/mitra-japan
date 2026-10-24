@@ -275,7 +275,7 @@ async def _info(message: str, history: list[dict], ctx: TripContext, language: s
             mode_label = FALLBACK_LABEL
     if not statements:
         statements = A.extractive(rew.text, result.selected, entity=entity)
-        steps = A.where_to_check(citations)
+        steps = []
         if not statements:
             stmts, steps = A.abstain_statements(message, result)
             return AssistantResponse(answer=A.render(stmts), statements=stmts, confidence="abstained", suggested_next_steps=steps, debug=debug)
