@@ -8,6 +8,7 @@ const RestaurantDirectory = lazy(() => import('../restaurants/RestaurantDirector
 const VisaPanel = lazy(() => import('../visa/VisaPanel'));
 const TripsPanel = lazy(() => import('../trips/TripsPanel'));
 const BookingPanel = lazy(() => import('../booking/BookingPanel'));
+const SchedulePanel = lazy(() => import('../schedule/SchedulePanel'));
 
 const PANELS: Record<Tool, React.LazyExoticComponent<() => JSX.Element>> = {
   trips: TripsPanel,
@@ -15,6 +16,7 @@ const PANELS: Record<Tool, React.LazyExoticComponent<() => JSX.Element>> = {
   eat: RestaurantDirectory,
   visa: VisaPanel,
   book: BookingPanel,
+  schedule: SchedulePanel,
 };
 
 /** The planner's tool dialogs (scanner, restaurants, visa). Each panel is its own lazy chunk. */

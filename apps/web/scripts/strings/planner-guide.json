@@ -1,0 +1,273 @@
+{
+  "en": {
+    "tripOptions": {
+      "title": "Trip options",
+      "summary": "{{days}} days · from {{city}} · {{n}} travelling",
+      "persona": "Who is travelling",
+      "customPersona": "Custom (describe it below)",
+      "days": "Trip length",
+      "daysValue_one": "{{count}} day",
+      "daysValue_other": "{{count}} days",
+      "startCity": "Starting city",
+      "cities": { "tokyo": "Tokyo", "kyoto": "Kyoto", "osaka": "Osaka" },
+      "travellers": "Travellers",
+      "fewer": "One traveller fewer",
+      "more": "One traveller more",
+      "pace": "Pace",
+      "paces": {
+        "auto": "Let the guide choose",
+        "relaxed": "Relaxed (2–3 stops)",
+        "moderate": "Moderate (3–4)",
+        "fast": "Fast (5–6)"
+      },
+      "budget": "Budget",
+      "budgets": { "budget": "Budget", "moderate": "Moderate", "premium": "Premium" },
+      "yourDiet": "Your diet",
+      "groupDiets": "Others in the group also need:",
+      "interests": "Interests",
+      "interestNames": {
+        "heritage": "Heritage",
+        "nature": "Nature",
+        "food": "Food",
+        "anime": "Anime",
+        "shopping": "Shopping",
+        "spiritual": "Spiritual",
+        "culture": "Culture"
+      }
+    },
+    "trip": {
+      "slots": { "morning": "Morning", "afternoon": "Afternoon", "evening": "Evening" },
+      "meals": {
+        "title": "Meal plan",
+        "breakfast": "Breakfast",
+        "lunch": "Lunch",
+        "dinner": "Dinner"
+      },
+      "pace": "Pace: {{pace}}",
+      "duration": "about {{min}} min",
+      "flyTo": "Show this stop on the map",
+      "flyToCity": "Show this city on the map (no exact pin for a suggestion)",
+      "redesignTitle": "Redesign this day",
+      "redesignHelp": "Only this day changes; the rest of your trip stays as it is.",
+      "redesignLabel": "What should change?",
+      "redesignExamples": [
+        "Replace the afternoon with anime shopping in Akihabara",
+        "Make it slower for my parents",
+        "Suggest a Jain lunch nearby",
+        "More temples, fewer crowds"
+      ],
+      "dayTabs": "Days",
+      "allDays": "All days"
+    },
+    "planner": {
+      "resetCamera": "Reset camera: all of Japan",
+      "vegLevel": { "high": "Veg friendly (high)", "medium": "Moderate", "low": "Ask carefully" }
+    },
+    "cityCard": {
+      "label": "{{city}} at a glance",
+      "fromTokyo": "From Tokyo",
+      "culture": "Culture",
+      "veg": "Vegetarian access",
+      "note": "City notes are our own summary; check before you rely on them."
+    },
+    "streetMap": {
+      "toggle": "Map view",
+      "modes": { "3d": "3D map", "street": "Street map" },
+      "label": "Street map of Japan",
+      "basemap": "Map style",
+      "basemaps": {
+        "streets": "Esri streets",
+        "topo": "Esri topographic",
+        "osm": "OpenStreetMap",
+        "carto": "CARTO Voyager"
+      },
+      "layers": "Show on the map",
+      "layerNames": { "food": "Food places", "heritage": "Heritage", "itinerary": "My itinerary" },
+      "cities_one": "{{count}} city",
+      "cities_other": "{{count}} cities"
+    },
+    "export": { "shareAbout": "about {{h}} h, estimate" }
+  },
+  "hi": {
+    "tripOptions": {
+      "title": "यात्रा के विकल्प",
+      "summary": "{{days}} दिन · {{city}} से · {{n}} यात्री",
+      "persona": "कौन यात्रा कर रहा है",
+      "customPersona": "अपना (नीचे लिखें)",
+      "days": "यात्रा की अवधि",
+      "daysValue_one": "{{count}} दिन",
+      "daysValue_other": "{{count}} दिन",
+      "startCity": "शुरुआती शहर",
+      "cities": { "tokyo": "टोक्यो", "kyoto": "क्योटो", "osaka": "ओसाका" },
+      "travellers": "यात्री",
+      "fewer": "एक यात्री कम",
+      "more": "एक यात्री ज़्यादा",
+      "pace": "रफ़्तार",
+      "paces": {
+        "auto": "गाइड चुने",
+        "relaxed": "आराम से (2–3 जगहें)",
+        "moderate": "मध्यम (3–4)",
+        "fast": "तेज़ (5–6)"
+      },
+      "budget": "बजट",
+      "budgets": { "budget": "किफ़ायती", "moderate": "मध्यम", "premium": "प्रीमियम" },
+      "yourDiet": "आपका भोजन",
+      "groupDiets": "समूह में दूसरों को भी चाहिए:",
+      "interests": "रुचियाँ",
+      "interestNames": {
+        "heritage": "विरासत",
+        "nature": "प्रकृति",
+        "food": "भोजन",
+        "anime": "एनीमे",
+        "shopping": "ख़रीदारी",
+        "spiritual": "आध्यात्मिक",
+        "culture": "संस्कृति"
+      }
+    },
+    "trip": {
+      "slots": { "morning": "सुबह", "afternoon": "दोपहर", "evening": "शाम" },
+      "meals": {
+        "title": "भोजन योजना",
+        "breakfast": "नाश्ता",
+        "lunch": "दोपहर का खाना",
+        "dinner": "रात का खाना"
+      },
+      "pace": "रफ़्तार: {{pace}}",
+      "duration": "लगभग {{min}} मिनट",
+      "flyTo": "यह जगह नक्शे पर दिखाएँ",
+      "flyToCity": "यह शहर नक्शे पर दिखाएँ (सुझाव का सटीक पिन नहीं है)",
+      "redesignTitle": "यह दिन दोबारा बनाएँ",
+      "redesignHelp": "सिर्फ़ यही दिन बदलेगा; बाकी यात्रा वैसी ही रहेगी।",
+      "redesignLabel": "क्या बदलना है?",
+      "redesignExamples": [
+        "दोपहर में अकिहाबारा में एनीमे ख़रीदारी रखें",
+        "माता-पिता के लिए धीमा करें",
+        "पास में जैन दोपहर का खाना सुझाएँ",
+        "ज़्यादा मंदिर, कम भीड़"
+      ],
+      "dayTabs": "दिन",
+      "allDays": "सभी दिन"
+    },
+    "planner": {
+      "resetCamera": "कैमरा रीसेट: पूरा जापान",
+      "vegLevel": {
+        "high": "शाकाहारी के लिए आसान (ऊँचा)",
+        "medium": "मध्यम",
+        "low": "ध्यान से पूछें"
+      }
+    },
+    "cityCard": {
+      "label": "{{city}} एक नज़र में",
+      "fromTokyo": "टोक्यो से",
+      "culture": "संस्कृति",
+      "veg": "शाकाहारी भोजन",
+      "note": "शहर की जानकारी हमारा सारांश है; भरोसा करने से पहले जाँचें।"
+    },
+    "streetMap": {
+      "toggle": "नक्शे का दृश्य",
+      "modes": { "3d": "3D नक्शा", "street": "सड़क नक्शा" },
+      "label": "जापान का सड़क नक्शा",
+      "basemap": "नक्शे की शैली",
+      "basemaps": {
+        "streets": "Esri सड़कें",
+        "topo": "Esri स्थलाकृतिक",
+        "osm": "OpenStreetMap",
+        "carto": "CARTO Voyager"
+      },
+      "layers": "नक्शे पर दिखाएँ",
+      "layerNames": { "food": "खाने की जगहें", "heritage": "विरासत", "itinerary": "मेरी यात्रा" },
+      "cities_one": "{{count}} शहर",
+      "cities_other": "{{count}} शहर"
+    },
+    "export": { "shareAbout": "लगभग {{h}} घंटे, अनुमान" }
+  },
+  "gu": {
+    "tripOptions": {
+      "title": "પ્રવાસના વિકલ્પો",
+      "summary": "{{days}} દિવસ · {{city}} થી · {{n}} પ્રવાસી",
+      "persona": "કોણ પ્રવાસ કરે છે",
+      "customPersona": "પોતાનું (નીચે લખો)",
+      "days": "પ્રવાસની લંબાઈ",
+      "daysValue_one": "{{count}} દિવસ",
+      "daysValue_other": "{{count}} દિવસ",
+      "startCity": "શરૂઆતનું શહેર",
+      "cities": { "tokyo": "ટોક્યો", "kyoto": "ક્યોટો", "osaka": "ઓસાકા" },
+      "travellers": "પ્રવાસીઓ",
+      "fewer": "એક પ્રવાસી ઓછો",
+      "more": "એક પ્રવાસી વધુ",
+      "pace": "ગતિ",
+      "paces": {
+        "auto": "ગાઇડ પસંદ કરે",
+        "relaxed": "આરામથી (2–3 જગ્યા)",
+        "moderate": "મધ્યમ (3–4)",
+        "fast": "ઝડપી (5–6)"
+      },
+      "budget": "બજેટ",
+      "budgets": { "budget": "કરકસરભર્યું", "moderate": "મધ્યમ", "premium": "પ્રીમિયમ" },
+      "yourDiet": "તમારો આહાર",
+      "groupDiets": "જૂથમાં બીજાને પણ જોઈએ:",
+      "interests": "રસ",
+      "interestNames": {
+        "heritage": "વારસો",
+        "nature": "પ્રકૃતિ",
+        "food": "ભોજન",
+        "anime": "એનિમે",
+        "shopping": "ખરીદી",
+        "spiritual": "આધ્યાત્મિક",
+        "culture": "સંસ્કૃતિ"
+      }
+    },
+    "trip": {
+      "slots": { "morning": "સવાર", "afternoon": "બપોર", "evening": "સાંજ" },
+      "meals": {
+        "title": "ભોજન યોજના",
+        "breakfast": "નાસ્તો",
+        "lunch": "બપોરનું ભોજન",
+        "dinner": "રાતનું ભોજન"
+      },
+      "pace": "ગતિ: {{pace}}",
+      "duration": "લગભગ {{min}} મિનિટ",
+      "flyTo": "આ જગ્યા નકશા પર બતાવો",
+      "flyToCity": "આ શહેર નકશા પર બતાવો (સૂચનનો ચોક્કસ પિન નથી)",
+      "redesignTitle": "આ દિવસ ફરી બનાવો",
+      "redesignHelp": "ફક્ત આ દિવસ બદલાશે; બાકીનો પ્રવાસ એમ જ રહેશે.",
+      "redesignLabel": "શું બદલવું છે?",
+      "redesignExamples": [
+        "બપોરે અકિહાબારામાં એનિમે ખરીદી રાખો",
+        "માતા-પિતા માટે ધીમું કરો",
+        "નજીકમાં જૈન બપોરનું ભોજન સૂચવો",
+        "વધુ મંદિર, ઓછી ભીડ"
+      ],
+      "dayTabs": "દિવસો",
+      "allDays": "બધા દિવસ"
+    },
+    "planner": {
+      "resetCamera": "કેમેરા રીસેટ: આખું જાપાન",
+      "vegLevel": { "high": "શાકાહારી માટે સરળ (ઊંચું)", "medium": "મધ્યમ", "low": "ધ્યાનથી પૂછો" }
+    },
+    "cityCard": {
+      "label": "{{city}} એક નજરમાં",
+      "fromTokyo": "ટોક્યોથી",
+      "culture": "સંસ્કૃતિ",
+      "veg": "શાકાહારી ભોજન",
+      "note": "શહેરની માહિતી અમારો સારાંશ છે; આધાર રાખતાં પહેલાં ચકાસો."
+    },
+    "streetMap": {
+      "toggle": "નકશાનો દેખાવ",
+      "modes": { "3d": "3D નકશો", "street": "રસ્તાનો નકશો" },
+      "label": "જાપાનનો રસ્તાનો નકશો",
+      "basemap": "નકશાની શૈલી",
+      "basemaps": {
+        "streets": "Esri રસ્તા",
+        "topo": "Esri ભૂપૃષ્ઠ",
+        "osm": "OpenStreetMap",
+        "carto": "CARTO Voyager"
+      },
+      "layers": "નકશા પર બતાવો",
+      "layerNames": { "food": "ભોજનનાં સ્થળો", "heritage": "વારસો", "itinerary": "મારો પ્રવાસ" },
+      "cities_one": "{{count}} શહેર",
+      "cities_other": "{{count}} શહેરો"
+    },
+    "export": { "shareAbout": "લગભગ {{h}} કલાક, અંદાજ" }
+  }
+}

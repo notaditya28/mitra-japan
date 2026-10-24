@@ -1,21 +1,18 @@
 import { useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { computeStage, journey, stage } from '../journeyState';
+import { computeStage, journey, stage, type SegmentKind } from '../journeyState';
 import type { CameraPath } from './common';
-import { fujiCamera } from '../places/FujiScene';
-import { tokyoCamera } from '../places/TokyoScene';
-import { shinkansenCamera } from '../places/ShinkansenScene';
-import { kyotoCamera } from '../places/KyotoScene';
-import { matsuriCamera } from '../places/MatsuriScene';
+import { flightCamera } from './FlightScene';
+import { photoCamera } from './PhotoScene';
+import { shinkansenCamera } from './ShinkansenScene';
 
-const CAMERAS: CameraPath[] = [
-  fujiCamera,
-  tokyoCamera,
-  shinkansenCamera,
-  kyotoCamera,
-  matsuriCamera,
-];
+const CAMERAS: Record<SegmentKind, CameraPath> = {
+  flight: flightCamera,
+  spot: photoCamera,
+  train: shinkansenCamera,
+};
+const PARALLAX: Record<SegmentKind, number> = { flight: 0.6, spot: 0.22, train: 0.18 };
 const BASE_FOV = 50;
 
 /**
@@ -26,14 +23,13 @@ const BASE_FOV = 50;
 export function CameraRig() {
   const pos = useMemo(() => new THREE.Vector3(), []);
   const look = useMemo(() => new THREE.Vector3(), []);
-  const currentLook = useMemo(() => new THREE.Vector3(0, 17, -42), []);
+  const currentLook = useMemo(() => new THREE.Vector3(0, 0, 0), []);
 
   useFrame(({ camera }, dt) => {
     computeStage();
-    const path = CAMERAS[stage.scene] ?? fujiCamera;
-    path(stage.t, pos, look);
+    CAMERAS[stage.kind](stage.t, pos, look);
 
-    const parallax = stage.scene === 0 ? 0.6 : 0.18;
+    const parallax = PARALLAX[stage.kind];
     pos.x += journey.pointer.x * parallax;
     pos.y += journey.pointer.y * parallax * 0.4;
 

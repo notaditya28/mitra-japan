@@ -1,5 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { animate, motion, useMotionValue, type PanInfo } from 'framer-motion';
+import { useSheetRequest } from '../lib/sectionScroll';
 
 type Snap = 'peek' | 'half' | 'full';
 
@@ -34,6 +35,13 @@ export function BottomSheet({ children, label, open = 'peek' }: BottomSheetProps
   }, []);
 
   useEffect(() => setSnap(open), [open]);
+
+  // The section bar can open the sheet to show a section, or lower it to show the map.
+  const request = useSheetRequest((r) => r.snap);
+  const seq = useSheetRequest((r) => r.seq);
+  useEffect(() => {
+    if (request) setSnap(request);
+  }, [request, seq]);
 
   useEffect(() => {
     const controls = animate(y, offsetsFor(vh)[snap], {
@@ -75,6 +83,7 @@ export function BottomSheet({ children, label, open = 'peek' }: BottomSheetProps
         <span aria-hidden="true" className="h-1.5 w-12 rounded-full bg-petal" />
       </button>
       <div
+        data-scroll-box
         className="min-h-0 flex-1 overflow-y-auto px-4 pb-[calc(env(safe-area-inset-bottom)+12vh)]"
         onPointerDownCapture={(e) => {
           // Let the content scroll normally once the sheet is open.

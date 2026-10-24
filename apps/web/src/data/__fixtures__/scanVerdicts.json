@@ -1,0 +1,1636 @@
+{
+  "cases": [
+    {
+      "id": "pack-miso-soup",
+      "text": "即席みそ汁\n原材料名：米みそ、乾燥わかめ、乾燥ねぎ、かつおエキス、昆布エキス、調味料（アミノ酸等）",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["miso", "rice", "seaweed", "onion", "bonito", "kombu-dashi", "seasoning-generic"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["miso", "rice", "seaweed", "onion", "bonito", "kombu-dashi", "seasoning-generic"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["miso", "rice", "seaweed", "onion", "bonito", "kombu-dashi", "seasoning-generic"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["miso", "rice", "seaweed", "onion", "bonito", "kombu-dashi", "seasoning-generic"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["miso", "rice", "seaweed", "onion", "bonito", "kombu-dashi", "seasoning-generic"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["miso", "rice", "seaweed", "onion", "bonito", "kombu-dashi", "seasoning-generic"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["miso", "rice", "seaweed", "onion", "bonito", "kombu-dashi", "seasoning-generic"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "pack-zaru-soba",
+      "text": "ざるそば つゆ付き\n原材料名：めん（小麦粉、そば粉、食塩）、つゆ（しょうゆ、砂糖、みりん、かつおぶしエキス、食塩）",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tsuyu", "flour", "seasoning", "soy-sauce", "alcohol", "bonito"],
+          "matchedBy": ["kana", "kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tsuyu", "flour", "seasoning", "soy-sauce", "alcohol", "bonito"],
+          "matchedBy": ["kana", "kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tsuyu", "flour", "seasoning", "soy-sauce", "alcohol", "bonito"],
+          "matchedBy": ["kana", "kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tsuyu", "flour", "seasoning", "soy-sauce", "alcohol", "bonito"],
+          "matchedBy": ["kana", "kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["noodles", "tsuyu", "flour", "seasoning", "soy-sauce", "alcohol", "bonito"],
+          "matchedBy": ["kana", "kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": ["noodles", "tsuyu", "flour", "seasoning", "soy-sauce", "alcohol", "bonito"],
+          "matchedBy": ["kana", "kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["noodles", "tsuyu", "flour", "seasoning", "soy-sauce", "alcohol", "bonito"],
+          "matchedBy": ["kana", "kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "pack-rice-cracker",
+      "text": "米菓\n原材料名：うるち米、しょうゆ、砂糖、ゼラチン、でん粉",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["rice", "soy-sauce", "seasoning", "gelatin", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["rice", "soy-sauce", "seasoning", "gelatin", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["rice", "soy-sauce", "seasoning", "gelatin", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["rice", "soy-sauce", "seasoning", "gelatin", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "seasoning", "gelatin", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "seasoning", "gelatin", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "seasoning", "gelatin", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kana", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "pack-matcha-mochi",
+      "text": "抹茶もち\n原材料名：もち米、砂糖、抹茶、寒天、片栗粉",
+      "results": {
+        "jain": {
+          "verdict": "clear",
+          "ids": ["matcha", "rice", "seasoning", "agar", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["matcha", "rice", "seasoning", "agar", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["matcha", "rice", "seasoning", "agar", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["matcha", "rice", "seasoning", "agar", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["matcha", "rice", "seasoning", "agar", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["matcha", "rice", "seasoning", "agar", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["matcha", "rice", "seasoning", "agar", "flour"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "yasai-ramen",
+      "text": "野菜ラーメン：かつお出汁、味噌、ラード、ねぎ、もやし",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "noodles", "bonito", "miso", "lard", "onion"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "noodles", "bonito", "miso", "lard", "onion"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "noodles", "bonito", "miso", "lard", "onion"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "noodles", "bonito", "miso", "lard", "onion"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["vegetables", "noodles", "bonito", "miso", "lard", "onion"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": ["vegetables", "noodles", "bonito", "miso", "lard", "onion"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["vegetables", "noodles", "bonito", "miso", "lard", "onion"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "yudofu",
+      "text": "湯豆腐：昆布だし、豆腐、ねぎ、醤油",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["tofu", "kombu-dashi", "onion", "soy-sauce"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["tofu", "kombu-dashi", "onion", "soy-sauce"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["tofu", "kombu-dashi", "onion", "soy-sauce"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["tofu", "kombu-dashi", "onion", "soy-sauce"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["tofu", "kombu-dashi", "onion", "soy-sauce"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["tofu", "kombu-dashi", "onion", "soy-sauce"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["tofu", "kombu-dashi", "onion", "soy-sauce"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "miso-shiru",
+      "text": "味噌汁：出汁、味噌、豆腐、わかめ、ねぎ",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["miso", "dashi", "tofu", "seaweed", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": ["miso", "dashi", "tofu", "seaweed", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": ["miso", "dashi", "tofu", "seaweed", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["miso", "dashi", "tofu", "seaweed", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["miso", "dashi", "tofu", "seaweed", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["miso", "dashi", "tofu", "seaweed", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["miso", "dashi", "tofu", "seaweed", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "yasai-tempura",
+      "text": "野菜天ぷら：さつまいも、なす、かぼちゃ、天つゆ（かつお出汁、みりん）",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "tempura", "root-veg", "tsuyu", "bonito", "alcohol"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "tempura", "root-veg", "tsuyu", "bonito", "alcohol"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "tempura", "root-veg", "tsuyu", "bonito", "alcohol"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "tempura", "root-veg", "tsuyu", "bonito", "alcohol"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["vegetables", "tempura", "root-veg", "tsuyu", "bonito", "alcohol"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": ["vegetables", "tempura", "root-veg", "tsuyu", "bonito", "alcohol"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["vegetables", "tempura", "root-veg", "tsuyu", "bonito", "alcohol"],
+          "matchedBy": ["kanji", "kanji", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "omurice",
+      "text": "オムライス：卵、ご飯、玉ねぎ、ケチャップ、バター、チキン",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["rice", "egg", "onion", "ketchup", "milk", "chicken"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["rice", "egg", "onion", "ketchup", "milk", "chicken"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["rice", "egg", "onion", "ketchup", "milk", "chicken"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["rice", "egg", "onion", "ketchup", "milk", "chicken"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["rice", "egg", "onion", "ketchup", "milk", "chicken"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "conflict",
+          "ids": ["rice", "egg", "onion", "ketchup", "milk", "chicken"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["rice", "egg", "onion", "ketchup", "milk", "chicken"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "edamame",
+      "text": "枝豆：枝豆、塩",
+      "results": {
+        "jain": {
+          "verdict": "clear",
+          "ids": ["soy", "seasoning"],
+          "matchedBy": ["kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["soy", "seasoning"],
+          "matchedBy": ["kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["soy", "seasoning"],
+          "matchedBy": ["kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["soy", "seasoning"],
+          "matchedBy": ["kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["soy", "seasoning"],
+          "matchedBy": ["kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["soy", "seasoning"],
+          "matchedBy": ["kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["soy", "seasoning"],
+          "matchedBy": ["kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "hiyayakko",
+      "text": "冷奴：豆腐、ねぎ、生姜、醤油",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["tofu", "onion", "root-veg", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["tofu", "onion", "root-veg", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["tofu", "onion", "root-veg", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["tofu", "onion", "root-veg", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["tofu", "onion", "root-veg", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["tofu", "onion", "root-veg", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["tofu", "onion", "root-veg", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "kitsune-udon",
+      "text": "きつねうどん：うどん、油揚げ、ねぎ、つゆ（かつお出汁、醤油、みりん）",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tofu", "onion", "tsuyu", "bonito", "soy-sauce", "alcohol"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tofu", "onion", "tsuyu", "bonito", "soy-sauce", "alcohol"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tofu", "onion", "tsuyu", "bonito", "soy-sauce", "alcohol"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["noodles", "tofu", "onion", "tsuyu", "bonito", "soy-sauce", "alcohol"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["noodles", "tofu", "onion", "tsuyu", "bonito", "soy-sauce", "alcohol"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": ["noodles", "tofu", "onion", "tsuyu", "bonito", "soy-sauce", "alcohol"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["noodles", "tofu", "onion", "tsuyu", "bonito", "soy-sauce", "alcohol"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kanji", "kanji", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "zaru-soba",
+      "text": "ざるそば：そば、海苔、わさび、ねぎ、めんつゆ",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["noodles", "seaweed", "seasoning", "onion", "tsuyu"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": ["noodles", "seaweed", "seasoning", "onion", "tsuyu"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": ["noodles", "seaweed", "seasoning", "onion", "tsuyu"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["noodles", "seaweed", "seasoning", "onion", "tsuyu"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["noodles", "seaweed", "seasoning", "onion", "tsuyu"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": ["noodles", "seaweed", "seasoning", "onion", "tsuyu"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["noodles", "seaweed", "seasoning", "onion", "tsuyu"],
+          "matchedBy": ["kana", "kanji", "kana", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "shojin-zen",
+      "text": "精進膳：昆布だし、豆腐、湯葉、麩、椎茸、ごま、ご飯",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["kombu-dashi", "tofu", "fu", "shiitake-dashi", "sesame", "rice"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["kombu-dashi", "tofu", "fu", "shiitake-dashi", "sesame", "rice"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["kombu-dashi", "tofu", "fu", "shiitake-dashi", "sesame", "rice"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["kombu-dashi", "tofu", "fu", "shiitake-dashi", "sesame", "rice"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["kombu-dashi", "tofu", "fu", "shiitake-dashi", "sesame", "rice"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["kombu-dashi", "tofu", "fu", "shiitake-dashi", "sesame", "rice"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["kombu-dashi", "tofu", "fu", "shiitake-dashi", "sesame", "rice"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "yasai-curry",
+      "text": "野菜カレー：カレールー、じゃがいも、人参、玉ねぎ、ご飯",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "curry", "root-veg", "onion", "rice"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": ["vegetables", "curry", "root-veg", "onion", "rice"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": ["vegetables", "curry", "root-veg", "onion", "rice"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["vegetables", "curry", "root-veg", "onion", "rice"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["vegetables", "curry", "root-veg", "onion", "rice"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["vegetables", "curry", "root-veg", "onion", "rice"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["vegetables", "curry", "root-veg", "onion", "rice"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "gyoza",
+      "text": "焼き餃子：豚肉、キャベツ、にら、にんにく、ごま油",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["gyoza", "pork", "vegetables", "onion", "garlic", "oil"],
+          "matchedBy": ["kanji", "kanji", "kana", "kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["gyoza", "pork", "vegetables", "onion", "garlic", "oil"],
+          "matchedBy": ["kanji", "kanji", "kana", "kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["gyoza", "pork", "vegetables", "onion", "garlic", "oil"],
+          "matchedBy": ["kanji", "kanji", "kana", "kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["gyoza", "pork", "vegetables", "onion", "garlic", "oil"],
+          "matchedBy": ["kanji", "kanji", "kana", "kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "unverified",
+          "ids": ["gyoza", "pork", "vegetables", "onion", "garlic", "oil"],
+          "matchedBy": ["kanji", "kanji", "kana", "kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["gyoza", "pork", "vegetables", "onion", "garlic", "oil"],
+          "matchedBy": ["kanji", "kanji", "kana", "kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["gyoza", "pork", "vegetables", "onion", "garlic", "oil"],
+          "matchedBy": ["kanji", "kanji", "kana", "kana", "kana", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "tonkotsu",
+      "text": "とんこつラーメン：豚骨スープ、チャーシュー、ねぎ、もやし",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["pork", "noodles", "soup", "onion", "vegetables"],
+          "matchedBy": ["kana", "kana", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["pork", "noodles", "soup", "onion", "vegetables"],
+          "matchedBy": ["kana", "kana", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["pork", "noodles", "soup", "onion", "vegetables"],
+          "matchedBy": ["kana", "kana", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["pork", "noodles", "soup", "onion", "vegetables"],
+          "matchedBy": ["kana", "kana", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["pork", "noodles", "soup", "onion", "vegetables"],
+          "matchedBy": ["kana", "kana", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": ["pork", "noodles", "soup", "onion", "vegetables"],
+          "matchedBy": ["kana", "kana", "kana", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["pork", "noodles", "soup", "onion", "vegetables"],
+          "matchedBy": ["kana", "kana", "kana", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "okonomiyaki",
+      "text": "お好み焼き：小麦粉、キャベツ、卵、天かす、豚肉、ソース、マヨネーズ",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["flour", "vegetables", "egg", "tempura", "pork", "ketchup"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["flour", "vegetables", "egg", "tempura", "pork", "ketchup"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["flour", "vegetables", "egg", "tempura", "pork", "ketchup"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["flour", "vegetables", "egg", "tempura", "pork", "ketchup"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["flour", "vegetables", "egg", "tempura", "pork", "ketchup"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "conflict",
+          "ids": ["flour", "vegetables", "egg", "tempura", "pork", "ketchup"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["flour", "vegetables", "egg", "tempura", "pork", "ketchup"],
+          "matchedBy": ["kanji", "kana", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "nasu-dengaku",
+      "text": "なす田楽：なす、味噌、砂糖、みりん、ごま",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "miso", "seasoning", "alcohol", "sesame"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["vegetables", "miso", "seasoning", "alcohol", "sesame"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["vegetables", "miso", "seasoning", "alcohol", "sesame"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["vegetables", "miso", "seasoning", "alcohol", "sesame"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["vegetables", "miso", "seasoning", "alcohol", "sesame"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["vegetables", "miso", "seasoning", "alcohol", "sesame"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["vegetables", "miso", "seasoning", "alcohol", "sesame"],
+          "matchedBy": ["kana", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "agedashi",
+      "text": "揚げ出し豆腐：豆腐、片栗粉、天つゆ、大根おろし、ねぎ",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["tofu", "flour", "tsuyu", "root-veg", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": ["tofu", "flour", "tsuyu", "root-veg", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": ["tofu", "flour", "tsuyu", "root-veg", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["tofu", "flour", "tsuyu", "root-veg", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["tofu", "flour", "tsuyu", "root-veg", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["tofu", "flour", "tsuyu", "root-veg", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["tofu", "flour", "tsuyu", "root-veg", "onion"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "onigiri-ume",
+      "text": "原材料：ご飯、梅干し、海苔、塩",
+      "results": {
+        "jain": {
+          "verdict": "clear",
+          "ids": ["rice", "umeboshi", "seaweed", "seasoning"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["rice", "umeboshi", "seaweed", "seasoning"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["rice", "umeboshi", "seaweed", "seasoning"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["rice", "umeboshi", "seaweed", "seasoning"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["rice", "umeboshi", "seaweed", "seasoning"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["rice", "umeboshi", "seaweed", "seasoning"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["rice", "umeboshi", "seaweed", "seasoning"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "onigiri-tuna",
+      "text": "原材料：ご飯、ツナ、マヨネーズ、海苔、醤油",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["rice", "fish", "egg", "seaweed", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["rice", "fish", "egg", "seaweed", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["rice", "fish", "egg", "seaweed", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["rice", "fish", "egg", "seaweed", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["rice", "fish", "egg", "seaweed", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "conflict",
+          "ids": ["rice", "fish", "egg", "seaweed", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["rice", "fish", "egg", "seaweed", "soy-sauce"],
+          "matchedBy": ["kanji", "kana", "kana", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "melon-pan",
+      "text": "原材料：小麦粉、砂糖、卵、バター、ショートニング",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["flour", "seasoning", "egg", "milk", "shortening"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": ["flour", "seasoning", "egg", "milk", "shortening"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["flour", "seasoning", "egg", "milk", "shortening"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["flour", "seasoning", "egg", "milk", "shortening"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["flour", "seasoning", "egg", "milk", "shortening"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "conflict",
+          "ids": ["flour", "seasoning", "egg", "milk", "shortening"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["flour", "seasoning", "egg", "milk", "shortening"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "mochi",
+      "text": "原材料：もち、あずき、砂糖、塩",
+      "results": {
+        "jain": {
+          "verdict": "clear",
+          "ids": ["rice", "bean-paste", "seasoning"],
+          "matchedBy": ["kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["rice", "bean-paste", "seasoning"],
+          "matchedBy": ["kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["rice", "bean-paste", "seasoning"],
+          "matchedBy": ["kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["rice", "bean-paste", "seasoning"],
+          "matchedBy": ["kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["rice", "bean-paste", "seasoning"],
+          "matchedBy": ["kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["rice", "bean-paste", "seasoning"],
+          "matchedBy": ["kana", "kana", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["rice", "bean-paste", "seasoning"],
+          "matchedBy": ["kana", "kana", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "matcha-pudding",
+      "text": "原材料：牛乳、砂糖、抹茶、生クリーム、ゼラチン",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["milk", "seasoning", "matcha", "gelatin"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["milk", "seasoning", "matcha", "gelatin"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["milk", "seasoning", "matcha", "gelatin"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["milk", "seasoning", "matcha", "gelatin"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["milk", "seasoning", "matcha", "gelatin"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["milk", "seasoning", "matcha", "gelatin"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["milk", "seasoning", "matcha", "gelatin"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "senbei",
+      "text": "原材料：米、醤油、砂糖、エキス",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["rice", "soy-sauce", "seasoning", "consomme"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": ["rice", "soy-sauce", "seasoning", "consomme"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": ["rice", "soy-sauce", "seasoning", "consomme"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["rice", "soy-sauce", "seasoning", "consomme"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "seasoning", "consomme"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "seasoning", "consomme"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "seasoning", "consomme"],
+          "matchedBy": ["kanji", "kanji", "kanji", "kana"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "potato-chips",
+      "text": "原材料：じゃがいも、植物油、塩",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["root-veg", "oil", "seasoning"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["root-veg", "oil", "seasoning"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["root-veg", "oil", "seasoning"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["root-veg", "oil", "seasoning"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["root-veg", "oil", "seasoning"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["root-veg", "oil", "seasoning"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["root-veg", "oil", "seasoning"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "blurred",
+      "text": "??? ¥800 ...",
+      "results": {
+        "jain": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "extra-0",
+      "text": "Ingredients: rice, soy sauce, bonito extract",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["rice", "soy-sauce", "bonito"],
+          "matchedBy": ["english", "english", "english"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["rice", "soy-sauce", "bonito"],
+          "matchedBy": ["english", "english", "english"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["rice", "soy-sauce", "bonito"],
+          "matchedBy": ["english", "english", "english"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": ["rice", "soy-sauce", "bonito"],
+          "matchedBy": ["english", "english", "english"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "bonito"],
+          "matchedBy": ["english", "english", "english"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "bonito"],
+          "matchedBy": ["english", "english", "english"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["rice", "soy-sauce", "bonito"],
+          "matchedBy": ["english", "english", "english"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "extra-1",
+      "text": "katsuobushi, wakame",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["bonito", "seaweed"],
+          "matchedBy": ["romaji", "romaji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["bonito", "seaweed"],
+          "matchedBy": ["romaji", "romaji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["bonito", "seaweed"],
+          "matchedBy": ["romaji", "romaji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["bonito", "seaweed"],
+          "matchedBy": ["romaji", "romaji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["bonito", "seaweed"],
+          "matchedBy": ["romaji", "romaji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["bonito", "seaweed"],
+          "matchedBy": ["romaji", "romaji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["bonito", "seaweed"],
+          "matchedBy": ["romaji", "romaji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "extra-2",
+      "text": "Ingredients: graham crackers",
+      "results": {
+        "jain": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": ["graham", "crackers"]
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": ["graham", "crackers"]
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": ["graham", "crackers"]
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": ["graham", "crackers"]
+        },
+        "no-beef": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": ["graham", "crackers"]
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": ["graham", "crackers"]
+        },
+        "none": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": ["graham", "crackers"]
+        }
+      }
+    },
+    {
+      "id": "extra-3",
+      "text": "原材料：牛脂、動物油脂、調味料（アミノ酸等）",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["beef", "animal-fat", "seasoning-generic"],
+          "matchedBy": ["kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "conflict",
+          "ids": ["beef", "animal-fat", "seasoning-generic"],
+          "matchedBy": ["kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "conflict",
+          "ids": ["beef", "animal-fat", "seasoning-generic"],
+          "matchedBy": ["kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "conflict",
+          "ids": ["beef", "animal-fat", "seasoning-generic"],
+          "matchedBy": ["kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "conflict",
+          "ids": ["beef", "animal-fat", "seasoning-generic"],
+          "matchedBy": ["kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["beef", "animal-fat", "seasoning-generic"],
+          "matchedBy": ["kanji", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["beef", "animal-fat", "seasoning-generic"],
+          "matchedBy": ["kanji", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "extra-4",
+      "text": "ラムネ、カキ氷、貝割れ大根",
+      "results": {
+        "jain": {
+          "verdict": "conflict",
+          "ids": ["drinks", "vegetables", "root-veg"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "clear",
+          "ids": ["drinks", "vegetables", "root-veg"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "clear",
+          "ids": ["drinks", "vegetables", "root-veg"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "clear",
+          "ids": ["drinks", "vegetables", "root-veg"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "clear",
+          "ids": ["drinks", "vegetables", "root-veg"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "clear",
+          "ids": ["drinks", "vegetables", "root-veg"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "clear",
+          "ids": ["drinks", "vegetables", "root-veg"],
+          "matchedBy": ["kana", "kanji", "kanji"],
+          "unknown": []
+        }
+      }
+    },
+    {
+      "id": "extra-5",
+      "text": "???? 12",
+      "results": {
+        "jain": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "vegetarian": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "vegan": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "halal": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "no-beef": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "eggless": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        },
+        "none": {
+          "verdict": "unverified",
+          "ids": [],
+          "matchedBy": [],
+          "unknown": []
+        }
+      }
+    }
+  ]
+}

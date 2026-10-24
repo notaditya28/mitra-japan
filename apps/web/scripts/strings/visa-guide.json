@@ -1,0 +1,110 @@
+{
+  "en": {
+    "guideBadge": {
+      "label": "From our team guide · needs review",
+      "note": "Taken as written from the Mitra Japan system guide. Not yet checked against official sources: confirm before you rely on it."
+    },
+    "visaTool": {
+      "guideExplain": "Figures marked like this come from our team guide and have not been checked against official pages yet.",
+      "officialSummary": "Summarised from official pages",
+      "sections": "Visa checker sections",
+      "tabs": {
+        "checklist": "Checklist",
+        "types": "eVISA or sticker?",
+        "where": "Where to apply",
+        "money": "Money tips"
+      },
+      "categories": {
+        "route": "Which visa route",
+        "identity": "Identity and travel documents",
+        "finance": "Money and tax records",
+        "schedule": "Travel schedule and itinerary",
+        "purpose": "Documents for your purpose"
+      },
+      "makeSchedule": "Make a Schedule of Stay draft from my plan",
+      "needPlan": "Plan a trip first.",
+      "typesTitle": "JAPAN eVISA or a sticker visa",
+      "feature": "Feature",
+      "whereTitle": "Where to apply",
+      "stateLabel": "Where do you live?",
+      "statePlaceholder": "Choose your state or union territory",
+      "centres": "Application centres: {{list}}",
+      "unlisted": "Our team guide does not list an office for this state. Check the Embassy of Japan in India website.",
+      "allOffices": "All offices in our guide",
+      "moneyTitle": "Money and tax records",
+      "pitfallsTitle": "Common problems to avoid"
+    }
+  },
+  "hi": {
+    "guideBadge": {
+      "label": "हमारी टीम गाइड से · समीक्षा बाकी",
+      "note": "Mitra Japan सिस्टम गाइड से जैसा लिखा है वैसा लिया गया। आधिकारिक स्रोतों से अभी जाँचा नहीं गया: भरोसा करने से पहले पक्का करें।"
+    },
+    "visaTool": {
+      "guideExplain": "इस तरह चिह्नित आँकड़े हमारी टीम गाइड से हैं और अभी आधिकारिक पेजों से जाँचे नहीं गए हैं।",
+      "officialSummary": "आधिकारिक पेजों से सारांश",
+      "sections": "वीज़ा चेकर के हिस्से",
+      "tabs": {
+        "checklist": "चेकलिस्ट",
+        "types": "eVISA या स्टिकर?",
+        "where": "कहाँ आवेदन करें",
+        "money": "पैसे से जुड़ी सलाह"
+      },
+      "categories": {
+        "route": "कौन-सा वीज़ा रास्ता",
+        "identity": "पहचान और यात्रा के दस्तावेज़",
+        "finance": "पैसे और टैक्स के रिकॉर्ड",
+        "schedule": "यात्रा का कार्यक्रम",
+        "purpose": "आपके उद्देश्य के दस्तावेज़"
+      },
+      "makeSchedule": "मेरी योजना से Schedule of Stay का ड्राफ़्ट बनाएँ",
+      "needPlan": "पहले यात्रा की योजना बनाएँ।",
+      "typesTitle": "JAPAN eVISA या स्टिकर वीज़ा",
+      "feature": "विशेषता",
+      "whereTitle": "कहाँ आवेदन करें",
+      "stateLabel": "आप कहाँ रहते हैं?",
+      "statePlaceholder": "अपना राज्य या केंद्र शासित प्रदेश चुनें",
+      "centres": "आवेदन केंद्र: {{list}}",
+      "unlisted": "हमारी टीम गाइड में इस राज्य का दफ़्तर नहीं दिया है। भारत में जापान दूतावास की वेबसाइट देखें।",
+      "allOffices": "हमारी गाइड के सभी दफ़्तर",
+      "moneyTitle": "पैसे और टैक्स के रिकॉर्ड",
+      "pitfallsTitle": "आम गलतियाँ जिनसे बचें"
+    }
+  },
+  "gu": {
+    "guideBadge": {
+      "label": "અમારી ટીમ ગાઇડમાંથી · સમીક્ષા બાકી",
+      "note": "Mitra Japan સિસ્ટમ ગાઇડમાંથી જેમ લખ્યું છે તેમ લીધું છે. સત્તાવાર સ્રોતો સાથે હજુ ચકાસ્યું નથી: આધાર રાખતાં પહેલાં ખાતરી કરો."
+    },
+    "visaTool": {
+      "guideExplain": "આ રીતે ચિહ્નિત આંકડા અમારી ટીમ ગાઇડમાંથી છે અને હજુ સત્તાવાર પાનાં સાથે ચકાસ્યા નથી.",
+      "officialSummary": "સત્તાવાર પાનાંમાંથી સારાંશ",
+      "sections": "વિઝા ચેકરના વિભાગો",
+      "tabs": {
+        "checklist": "ચેકલિસ્ટ",
+        "types": "eVISA કે સ્ટિકર?",
+        "where": "ક્યાં અરજી કરવી",
+        "money": "પૈસાની સલાહ"
+      },
+      "categories": {
+        "route": "કયો વિઝા માર્ગ",
+        "identity": "ઓળખ અને મુસાફરીના દસ્તાવેજો",
+        "finance": "પૈસા અને ટેક્સના રેકોર્ડ",
+        "schedule": "મુસાફરીનો કાર્યક્રમ",
+        "purpose": "તમારા હેતુ માટેના દસ્તાવેજો"
+      },
+      "makeSchedule": "મારી યોજનામાંથી Schedule of Stay નો ડ્રાફ્ટ બનાવો",
+      "needPlan": "પહેલાં પ્રવાસની યોજના બનાવો.",
+      "typesTitle": "JAPAN eVISA કે સ્ટિકર વિઝા",
+      "feature": "લક્ષણ",
+      "whereTitle": "ક્યાં અરજી કરવી",
+      "stateLabel": "તમે ક્યાં રહો છો?",
+      "statePlaceholder": "તમારું રાજ્ય કે કેન્દ્રશાસિત પ્રદેશ પસંદ કરો",
+      "centres": "અરજી કેન્દ્રો: {{list}}",
+      "unlisted": "અમારી ટીમ ગાઇડમાં આ રાજ્ય માટે કચેરી આપી નથી. ભારતમાં જાપાન દૂતાવાસની વેબસાઇટ જુઓ.",
+      "allOffices": "અમારી ગાઇડની બધી કચેરીઓ",
+      "moneyTitle": "પૈસા અને ટેક્સના રેકોર્ડ",
+      "pitfallsTitle": "ટાળવા જેવી સામાન્ય ભૂલો"
+    }
+  }
+}

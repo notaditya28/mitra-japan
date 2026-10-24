@@ -1,5 +1,5 @@
 {
-  "summary": "A 5-day sample route built from our city data. It is not an AI plan.",
+  "summary": "A 5-day sample route built from our city data at a relaxed pace. It is not an AI plan.",
   "days": [
     {
       "day": 1,
@@ -12,7 +12,11 @@
           "foodSpotId": null,
           "heritageId": null,
           "note": "Shrines tucked between skyscrapers, Asakusa's old streets and Akihabara's pop culture in one city.",
-          "inOurData": false
+          "inOurData": false,
+          "slot": "morning",
+          "durationMinutes": 120,
+          "lat": null,
+          "lng": null
         },
         {
           "name": "Enoshima, Kanagawa",
@@ -20,7 +24,11 @@
           "foodSpotId": null,
           "heritageId": "benzaiten",
           "note": "Developed from the Indian river goddess Saraswati. Associated with music, eloquence and water, and often shown playing a biwa lute.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "afternoon",
+          "durationMinutes": 90,
+          "lat": 35.2995,
+          "lng": 139.4803
         },
         {
           "name": "Vegan ramen counter",
@@ -28,7 +36,11 @@
           "foodSpotId": "tokyo-vegan-ramen",
           "heritageId": null,
           "note": "Plant-based broth; ask if mirin is used in the tare.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "evening",
+          "durationMinutes": 60,
+          "lat": 35.68,
+          "lng": 139.77
         }
       ],
       "transport": {
@@ -49,7 +61,14 @@
         "Double-check: alcohol, dashi, egg, root-veg."
       ],
       "tips": ["Cherry blossom late March to early April; autumn colour in late November."],
-      "flags": []
+      "flags": [],
+      "meals": {
+        "breakfast": "At your stay: ask the day before for a vegetarian breakfast.",
+        "lunch": "Near your morning stop: look for a vegetarian-friendly place and show the waiter card.",
+        "dinner": "Vegan ramen counter (illustrative kind of place)",
+        "dietaryNotes": "The widest choice in Japan: vegan ramen, Indian restaurants and plant-based cafés. Still ask about dashi in Japanese dishes."
+      },
+      "pace": "relaxed"
     },
     {
       "day": 2,
@@ -62,7 +81,11 @@
           "foodSpotId": null,
           "heritageId": null,
           "note": "Hot-spring inns, volcanic valleys and lake views of Mount Fuji.",
-          "inOurData": false
+          "inOurData": false,
+          "slot": "morning",
+          "durationMinutes": 120,
+          "lat": null,
+          "lng": null
         },
         {
           "name": "Enoshima, Kanagawa",
@@ -70,7 +93,11 @@
           "foodSpotId": null,
           "heritageId": "benzaiten",
           "note": "Developed from the Indian river goddess Saraswati. Associated with music, eloquence and water, and often shown playing a biwa lute.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "afternoon",
+          "durationMinutes": 90,
+          "lat": 35.2995,
+          "lng": 139.4803
         },
         {
           "name": "Ryokan vegetarian kaiseki (on request)",
@@ -78,7 +105,11 @@
           "foodSpotId": "hakone-ryokan-veg",
           "heritageId": null,
           "note": "Request at booking, ideally a week ahead.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "evening",
+          "durationMinutes": 60,
+          "lat": 35.233,
+          "lng": 139.105
         }
       ],
       "transport": {
@@ -99,7 +130,14 @@
         "Double-check: advance-request, dashi."
       ],
       "tips": ["Clear Fuji views most often in winter mornings."],
-      "flags": []
+      "flags": [],
+      "meals": {
+        "breakfast": "At your stay: ask the day before for a vegetarian breakfast.",
+        "lunch": "Near your morning stop: look for a vegetarian-friendly place and show the waiter card.",
+        "dinner": "Ryokan vegetarian kaiseki (on request) (illustrative kind of place)",
+        "dietaryNotes": "Ryokan dinners are fish-heavy by default; most can prepare a vegetarian kaiseki if asked several days ahead."
+      },
+      "pace": "relaxed"
     },
     {
       "day": 3,
@@ -112,7 +150,11 @@
           "foodSpotId": null,
           "heritageId": null,
           "note": "Over a thousand temples, Fushimi Inari's torii and three of the Indian-roots temples nearby.",
-          "inOurData": false
+          "inOurData": false,
+          "slot": "morning",
+          "durationMinutes": 120,
+          "lat": null,
+          "lng": null
         },
         {
           "name": "Joruri-ji, Kyoto",
@@ -120,7 +162,11 @@
           "foodSpotId": null,
           "heritageId": "kichijoten",
           "note": "Developed from Lakshmi (Shri). Associated with good fortune, beauty and prosperity.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "afternoon",
+          "durationMinutes": 90,
+          "lat": 34.7146,
+          "lng": 135.8728
         },
         {
           "name": "Temple shojin ryori lunch",
@@ -128,7 +174,11 @@
           "foodSpotId": "kyoto-shojin",
           "heritageId": null,
           "note": "Traditionally no meat, fish, onion or garlic; ask about potatoes and carrots if you are Jain.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "evening",
+          "durationMinutes": 60,
+          "lat": 35.015,
+          "lng": 135.678
         }
       ],
       "transport": {
@@ -149,7 +199,14 @@
         "Double-check: alcohol, dashi, egg, fish, root-veg."
       ],
       "tips": ["Busiest during cherry blossom and autumn leaves; go early in the morning."],
-      "flags": []
+      "flags": [],
+      "meals": {
+        "breakfast": "At your stay: ask the day before for a vegetarian breakfast.",
+        "lunch": "Near your morning stop: look for a vegetarian-friendly place and show the waiter card.",
+        "dinner": "Temple shojin ryori lunch (illustrative kind of place)",
+        "dietaryNotes": "Home of shojin ryori (Buddhist temple cuisine), which is traditionally plant-based, and of tofu restaurants near temples."
+      },
+      "pace": "relaxed"
     },
     {
       "day": 4,
@@ -162,7 +219,11 @@
           "foodSpotId": null,
           "heritageId": null,
           "note": "Japan's first capital: the giant Buddha of Todai-ji and friendly bowing deer.",
-          "inOurData": false
+          "inOurData": false,
+          "slot": "morning",
+          "durationMinutes": 120,
+          "lat": null,
+          "lng": null
         },
         {
           "name": "Joruri-ji, Kyoto",
@@ -170,7 +231,11 @@
           "foodSpotId": null,
           "heritageId": "kichijoten",
           "note": "Developed from Lakshmi (Shri). Associated with good fortune, beauty and prosperity.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "afternoon",
+          "durationMinutes": 90,
+          "lat": 34.7146,
+          "lng": 135.8728
         },
         {
           "name": "Temple-town vegetarian set",
@@ -178,7 +243,11 @@
           "foodSpotId": "nara-shojin",
           "heritageId": null,
           "note": "Ask before ordering broth-based dishes.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "evening",
+          "durationMinutes": 60,
+          "lat": 34.677,
+          "lng": 135.83
         }
       ],
       "transport": {
@@ -199,7 +268,14 @@
         "Double-check: dashi."
       ],
       "tips": ["Easy day trip from Kyoto or Osaka all year."],
-      "flags": []
+      "flags": [],
+      "meals": {
+        "breakfast": "At your stay: ask the day before for a vegetarian breakfast.",
+        "lunch": "Near your morning stop: look for a vegetarian-friendly place and show the waiter card.",
+        "dinner": "Temple-town vegetarian set (illustrative kind of place)",
+        "dietaryNotes": "Temple towns offer shojin-style meals; kakinoha-zushi (a local favourite) contains fish."
+      },
+      "pace": "relaxed"
     },
     {
       "day": 5,
@@ -212,7 +288,11 @@
           "foodSpotId": null,
           "heritageId": null,
           "note": "Japan's kitchen: street food, comedy and a friendly, loud crowd.",
-          "inOurData": false
+          "inOurData": false,
+          "slot": "morning",
+          "durationMinutes": 120,
+          "lat": null,
+          "lng": null
         },
         {
           "name": "Joruri-ji, Kyoto",
@@ -220,7 +300,11 @@
           "foodSpotId": null,
           "heritageId": "kichijoten",
           "note": "Developed from Lakshmi (Shri). Associated with good fortune, beauty and prosperity.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "afternoon",
+          "durationMinutes": 90,
+          "lat": 34.7146,
+          "lng": 135.8728
         },
         {
           "name": "North Indian restaurant",
@@ -228,7 +312,11 @@
           "foodSpotId": "osaka-indian",
           "heritageId": null,
           "note": "Easy, familiar meal between street-food stops.",
-          "inOurData": true
+          "inOurData": true,
+          "slot": "evening",
+          "durationMinutes": 60,
+          "lat": 34.666,
+          "lng": 135.501
         }
       ],
       "transport": {
@@ -249,7 +337,14 @@
         "Double-check: dashi, egg, shared-grill."
       ],
       "tips": ["Lively all year; neon Dotonbori is best at night."],
-      "flags": []
+      "flags": [],
+      "meals": {
+        "breakfast": "At your stay: ask the day before for a vegetarian breakfast.",
+        "lunch": "Near your morning stop: look for a vegetarian-friendly place and show the waiter card.",
+        "dinner": "North Indian restaurant (illustrative kind of place)",
+        "dietaryNotes": "Indian restaurants are easy to find, but classic street food uses octopus, pork or dashi (takoyaki, okonomiyaki)."
+      },
+      "pace": "relaxed"
     }
   ],
   "visaChecklist": [
@@ -266,6 +361,5 @@
   ],
   "source": "sample",
   "model": null,
-  "notices": ["The planner service is not reachable, so this is the built-in sample itinerary."],
-  "_note": "Generated by apps/api sample planner. Shown only when the API is unreachable; always labelled as sample."
+  "notices": []
 }

@@ -1,5 +1,5 @@
 {
-  "_note": "Visa PREPARATION checklist: general items that official and travel sources commonly list for short-term visas to Japan from India. Not immigration advice, never a prediction of an outcome. Every item must be confirmed with the official sources below. Owner to review and set lastReviewed.",
+  "_note": "Visa readiness checker (preparation help, not immigration advice, never a prediction of an outcome). Items and figures with source 'team-guide' come from MITRA_JAPAN_SYSTEM_GUIDE.md (owner decision 2026-10-24: shown as written, labelled 'From our team guide, needs review'). Items with source 'official-summary' were researched from official pages. Everything must be confirmed with the official links. Owner to review and set lastReviewed.",
   "status": "needs-review",
   "lastReviewed": null,
   "researched": "2026-10-24",
@@ -25,101 +25,348 @@
   "items": [
     {
       "id": "route-evisa",
+      "category": "route",
       "text": "Check whether JAPAN eVISA covers your trip (it is for single-entry tourism)",
       "purposes": ["tourism"],
       "travellers": "all",
-      "link": "mofa-evisa"
+      "link": "mofa-evisa",
+      "source": "official-summary"
     },
     {
       "id": "route-paper",
+      "category": "route",
       "text": "Check where to apply: purposes other than tourism are applied for through the Embassy, a Consulate or an accredited agency",
       "purposes": ["business", "visiting"],
       "travellers": "all",
-      "link": "mofa-visa"
+      "link": "mofa-visa",
+      "source": "official-summary"
     },
     {
       "id": "passport",
-      "text": "Passport valid for your whole stay, with blank pages",
+      "category": "identity",
+      "text": "Original Indian passport, valid for at least 6 months beyond your intended stay, with at least 2 blank pages",
       "purposes": "all",
       "travellers": "all",
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
       "id": "form",
-      "text": "Visa application form, completed and signed",
+      "category": "identity",
+      "text": "Visa application form, filled in and signed (the signature must match your passport)",
       "purposes": "all",
       "travellers": "all",
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
       "id": "photo",
-      "text": "Recent passport-size photo (check the current size rules)",
+      "category": "identity",
+      "text": "2 identical photos, 2 × 2 inches (50 × 50 mm), taken within the last 6 months: plain white background, matte finish, face covering 70–80% of the photo",
       "purposes": "all",
       "travellers": "all",
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
-      "id": "schedule",
-      "text": "Day-by-day schedule of your stay",
+      "id": "flights",
+      "category": "identity",
+      "text": "Round-trip flight booking (confirmed or tentative) showing your entry to and exit from Japan",
       "purposes": "all",
       "travellers": "all",
-      "link": "embassy"
-    },
-    {
-      "id": "tickets",
-      "text": "Flight reservation (return or onward)",
-      "purposes": "all",
-      "travellers": "all",
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
       "id": "hotel",
-      "text": "Hotel or accommodation bookings",
+      "category": "identity",
+      "text": "Confirmed hotel bookings covering every night of your stay",
       "purposes": ["tourism", "business"],
       "travellers": "all",
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
-      "id": "funds",
-      "text": "Proof you can pay for the trip, such as recent bank statements",
+      "id": "bank",
+      "category": "finance",
+      "text": "Bank statements for the last 6 months: original, stamped and signed by the bank, showing steady transactions without sudden large deposits",
       "purposes": "all",
       "travellers": "all",
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
-      "id": "income",
-      "text": "Income proof, such as income tax returns",
+      "id": "itr",
+      "category": "finance",
+      "text": "Income tax returns (ITR-V) for the last 1–2 assessment years, with Form 16 or the computation of income",
       "purposes": "all",
       "travellers": ["employed", "self-employed"],
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
+    },
+    {
+      "id": "employment",
+      "category": "finance",
+      "text": "Letter on your company letterhead, signed, stating your designation, joining date, approved leave dates and salary",
+      "purposes": "all",
+      "travellers": ["employed"],
+      "link": "embassy",
+      "source": "team-guide"
+    },
+    {
+      "id": "gst",
+      "category": "finance",
+      "text": "Business owners: GST registration",
+      "purposes": "all",
+      "travellers": ["self-employed"],
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
       "id": "student-proof",
+      "category": "finance",
       "text": "Proof that you are a student, such as a student ID or a letter from your institution",
       "purposes": "all",
       "travellers": ["student"],
-      "link": "embassy"
+      "link": "embassy",
+      "source": "official-summary"
     },
     {
       "id": "sponsor",
-      "text": "If someone else is paying, their financial documents and your relationship to them",
+      "category": "finance",
+      "text": "If a family member is paying: a signed sponsorship letter, the sponsor's bank statements and proof of your relationship",
       "purposes": "all",
       "travellers": ["student", "retired"],
-      "link": "embassy"
+      "link": "embassy",
+      "source": "team-guide"
+    },
+    {
+      "id": "schedule",
+      "category": "schedule",
+      "text": "Schedule of Stay (Taizai Nitteihyo): for each day, the date, activities, accommodation name, address and phone number. You can make a draft from your Mitra Japan plan.",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy",
+      "source": "team-guide",
+      "action": "schedule"
+    },
+    {
+      "id": "cover-letter",
+      "category": "schedule",
+      "text": "Cover letter to the Embassy or Consulate explaining why you are travelling and who is travelling with you",
+      "purposes": "all",
+      "travellers": "all",
+      "link": "embassy",
+      "source": "team-guide"
     },
     {
       "id": "business-letter",
+      "category": "purpose",
       "text": "Documents about the business visit, such as a letter from the company in Japan and from your own company",
       "purposes": ["business"],
       "travellers": "all",
-      "link": "mofa-visa"
+      "link": "mofa-visa",
+      "source": "official-summary"
     },
     {
       "id": "invitation",
+      "category": "purpose",
       "text": "Documents from the person you are visiting in Japan, such as an invitation letter and proof of your relationship",
       "purposes": ["visiting"],
       "travellers": "all",
-      "link": "mofa-visa"
+      "link": "mofa-visa",
+      "source": "official-summary"
     }
-  ]
+  ],
+  "guideNote": "The team guide says it is updated for the October 2026 consular schedule.",
+  "categories": [
+    {
+      "id": "route",
+      "label": "Which visa route"
+    },
+    {
+      "id": "identity",
+      "label": "Identity and travel documents"
+    },
+    {
+      "id": "finance",
+      "label": "Money and tax records"
+    },
+    {
+      "id": "schedule",
+      "label": "Travel schedule and itinerary"
+    },
+    {
+      "id": "purpose",
+      "label": "Documents for your purpose"
+    }
+  ],
+  "types": {
+    "source": "team-guide",
+    "columns": [
+      {
+        "id": "evisa",
+        "label": "JAPAN eVISA (electronic)"
+      },
+      {
+        "id": "single",
+        "label": "Single-entry sticker visa"
+      },
+      {
+        "id": "multiple",
+        "label": "Multiple-entry sticker visa"
+      }
+    ],
+    "rows": [
+      {
+        "id": "eligibility",
+        "label": "Who it is for",
+        "evisa": "Indian nationals living in India, arriving by air for tourism",
+        "single": "Indian passport holders applying at a physical centre",
+        "multiple": "Travellers with high economic capability or travel history to G7 nations"
+      },
+      {
+        "id": "stay",
+        "label": "Longest stay",
+        "evisa": "Up to 90 days",
+        "single": "Up to 15 days",
+        "multiple": "30 days per entry (valid 3 to 5 years)"
+      },
+      {
+        "id": "submission",
+        "label": "How you apply",
+        "evisa": "Online through the MOFA eVISA website",
+        "single": "In person or through a representative at VFS Global",
+        "multiple": "In person at VFS Global"
+      },
+      {
+        "id": "processing",
+        "label": "Processing time",
+        "evisa": "5 to 7 working days",
+        "single": "4 to 6 working days",
+        "multiple": "5 to 8 working days"
+      },
+      {
+        "id": "passport",
+        "label": "Your passport",
+        "evisa": "No physical submission needed",
+        "single": "Kept during the review",
+        "multiple": "Kept during the review"
+      },
+      {
+        "id": "issued",
+        "label": "What you receive",
+        "evisa": "A digital visa issuance notice",
+        "single": "A sticker in your passport",
+        "multiple": "A sticker in your passport"
+      }
+    ]
+  },
+  "finance": {
+    "source": "team-guide",
+    "items": [
+      {
+        "id": "balance",
+        "label": "Suggested liquid balance",
+        "text": "₹2,50,000 to ₹3,50,000 per person for a 7–10 day visit"
+      },
+      {
+        "id": "itr",
+        "label": "Income tax returns",
+        "text": "Consistent annual taxable income, ideally above ₹5,00,000 a year"
+      },
+      {
+        "id": "sponsor",
+        "label": "If someone sponsors you",
+        "text": "A signed sponsorship letter, the sponsor's bank statements and proof of your relationship"
+      }
+    ]
+  },
+  "jurisdictions": {
+    "source": "team-guide",
+    "note": "Apply where you live, shown by Aadhaar, a lease agreement or a utility bill.",
+    "offices": [
+      {
+        "id": "delhi",
+        "name": "Embassy of Japan, New Delhi",
+        "centres": ["New Delhi", "Chandigarh", "Jalandhar", "Jaipur"],
+        "states": [
+          "Delhi",
+          "Haryana",
+          "Punjab",
+          "Rajasthan",
+          "Uttar Pradesh",
+          "Uttarakhand",
+          "Himachal Pradesh",
+          "Jammu and Kashmir",
+          "Ladakh",
+          "Chandigarh"
+        ]
+      },
+      {
+        "id": "mumbai",
+        "name": "Consulate-General of Japan, Mumbai",
+        "centres": ["Mumbai", "Ahmedabad", "Pune", "Goa"],
+        "states": [
+          "Maharashtra",
+          "Gujarat",
+          "Goa",
+          "Madhya Pradesh",
+          "Dadra and Nagar Haveli and Daman and Diu"
+        ]
+      },
+      {
+        "id": "chennai",
+        "name": "Consulate-General of Japan, Chennai",
+        "centres": ["Chennai", "Hyderabad", "Kochi"],
+        "states": ["Tamil Nadu", "Andhra Pradesh", "Telangana", "Kerala", "Puducherry"]
+      },
+      {
+        "id": "kolkata",
+        "name": "Consulate-General of Japan, Kolkata",
+        "centres": ["Kolkata"],
+        "states": [
+          "West Bengal",
+          "Bihar",
+          "Jharkhand",
+          "Odisha",
+          "Assam",
+          "Arunachal Pradesh",
+          "Manipur",
+          "Meghalaya",
+          "Mizoram",
+          "Nagaland",
+          "Sikkim",
+          "Tripura"
+        ]
+      },
+      {
+        "id": "bengaluru",
+        "name": "Consulate-General of Japan, Bengaluru",
+        "centres": ["Bengaluru"],
+        "states": ["Karnataka"]
+      }
+    ],
+    "unlisted": ["Chhattisgarh", "Andaman and Nicobar Islands", "Lakshadweep"]
+  },
+  "pitfalls": {
+    "source": "team-guide",
+    "items": [
+      {
+        "id": "deposits",
+        "title": "Unexplained lump-sum deposits",
+        "text": "Large, sudden deposits just before you print your statements often attract extra scrutiny. Savings that build up steadily are easier to explain."
+      },
+      {
+        "id": "dates",
+        "title": "Dates that don't match",
+        "text": "Your flight dates, hotel vouchers and Schedule of Stay should all show the same dates."
+      },
+      {
+        "id": "vague",
+        "title": "Vague itinerary entries",
+        "text": "Entries like 'Day 2: Tokyo sightseeing' without specific places, hotels and phone numbers can cause delays."
+      }
+    ]
+  }
 }

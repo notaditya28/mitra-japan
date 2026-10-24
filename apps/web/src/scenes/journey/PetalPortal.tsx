@@ -3,7 +3,8 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { petalGeometry } from '../../components/motifs/petalGeometry';
 import { palette } from '../../styles/tokens';
-import { PLACES, stage } from '../journeyState';
+import { SEGMENTS } from '../../features/tour/tour';
+import { stage } from '../journeyState';
 import { rng } from './common';
 
 const DEPTH = 6;
@@ -99,10 +100,11 @@ const veilFragment = /* glsl */ `
 `;
 
 /**
- * The signature "petal portal" between places:
+ * The signature "petal portal" between segments of the journey:
  * petals swarm into the next place's kanji while a blush veil closes; after
  * the scene cut the veil opens through a torii-shaped window and the petals
- * burst past the camera. Everything is camera-attached and drawn last.
+ * burst past the camera. Inside a city the transition is plain: the veil and
+ * torii window only (`stage.plain`). Everything is camera-attached and drawn last.
  */
 export function PetalPortal({ count }: { count: number }) {
   const group = useRef<THREE.Group>(null);
@@ -126,9 +128,9 @@ export function PetalPortal({ count }: { count: number }) {
   // Wait for the display font so the petals spell the kanji in Shippori Mincho.
   useEffect(() => {
     let alive = true;
-    const text = PLACES.map((p) => p.kanji).join('');
+    const text = SEGMENTS.map((s) => s.kanji).join('');
     const build = () => {
-      if (alive) setTargets(PLACES.map((p, i) => sampleKanji(p.kanji, count, 300 + i)));
+      if (alive) setTargets(SEGMENTS.map((s, i) => sampleKanji(s.kanji, count, 300 + i)));
     };
     document.fonts.load(`700 120px "Shippori Mincho"`, text).then(build, build);
     return () => {
@@ -170,7 +172,7 @@ export function PetalPortal({ count }: { count: number }) {
     const persp = camera as THREE.PerspectiveCamera;
     const viewH = 2 * DEPTH * Math.tan(THREE.MathUtils.degToRad(persp.fov / 2));
     const viewW = viewH * (size.width / size.height);
-    const chars = [...(PLACES[stage.incoming]?.kanji ?? '')].length;
+    const chars = [...(SEGMENTS[stage.incoming]?.kanji ?? '')].length;
     const unit = Math.min(viewH * 0.3, (viewW * 0.78) / chars);
     const time = clock.elapsedTime;
 

@@ -42,6 +42,98 @@ uvicorn app.main:app --reload --port 8000
 
 The key is read only by the API and never reaches the browser bundle.
 
+### The journey (front page)
+
+The front page has four parts:
+
+1. **Traveller picker.** It sits over a 3D map of Asia with the plane parked at Delhi.
+2. **Flight.** Scrolling flies the plane to Tokyo, and a petal portal spelling 東京 opens onto the first photo.
+3. **City spots.** Each spot is a real photo shown in 3D. Moving between spots in a city uses a plain veil, and the fear cards appear on fitting spots.
+4. **Next city.** A Shinkansen ride carries you to the next city, and the pattern repeats.
+
+Two controls stay on screen while you scroll:
+
+- **Journey rail** (right edge, desktop): jumps to any place.
+- **City map** (top right): opens a street map of the city you're in. It shows food that matches your diet and sample places to stay. The diet you pick there is your profile's, so it carries over to every city.
+
+With reduced motion, a low-end device or no WebGL, the same content shows as a flat map and a photo grid.
+
+#### Adding a photo, a spot or a city
+
+1. Put the photo in `apps/web/src/scenes/places/places/<city>/`. The folder name must match an id in `cities.json`, e.g. `osaka`. Any file name works, but it becomes the spot's id (`osaka/dotonbori`).
+2. Make the web copies. This writes the WebP files to `src/assets/tour/<city>/` and updates `src/data/tourPhotos.json`:
+   ```bash
+   apps/api/.venv/Scripts/python apps/web/scripts/tour_photos.py
+   ```
+3. Describe the spot in `src/data/tour.json`, and add a new city to `cities` in the order you want to travel. Give the spot:
+   - `name`, `nameJa`, and a short `kanji` (2–4 characters) for the portal petals
+   - `area` and approximate `lat`/`lng`
+   - an optional `fear` card
+   - `focus`: the point of interest, from 0 to 1, that the crop keeps in frame
+   - `photo.credit`, `photo.source` and `photo.licence`
+4. Run `pnpm --filter web test`.
+
+A photo without an entry still appears, named after its file and marked "needs review". A new city gets a Shinkansen ride from the previous one automatically.
+
+The original photos are git-ignored because they are large; keep them backed up. Places to stay are in `src/data/stays.json`. They are placeholders for now: all `sample`, with names that start with "Sample", and no prices.
+
+The flight map is `src/data/asia.geojson`. It comes from Natural Earth (public domain), using the **India point-of-view** edition so India's boundary matches the official map, and is cut down by `scripts/asia_subset.py`. Use the same `_ind` source if you regenerate it.
+
+### Team system guide features (visa checker, OCR, AI planner)
+
+`MITRA_JAPAN_SYSTEM_GUIDE.md` (the team's spec) was merged in on 2026-10-24. Where it conflicted with the app, the guide's feature won, with four owner decisions:
+
+1. **Unsourced figures** from the guide are shown as written with a **"From our team guide · needs review"** badge and the official link. This covers visa processing times and stays, the ₹ balance and ITR thresholds, VFS centres and rejection pitfalls.
+2. **Schedule of Stay** is a plain draft, never a copy of the official form.
+3. **City card:** a small closable card on the map.
+4. **Stack:** we kept FastAPI, Pydantic, Claude Sonnet 5.5 and on-device OCR, and added the guide's routes as aliases.
+
+What's included:
+
+- **Visa readiness checker** (Travel tools):
+  - A checklist in the guide's categories (identity, money and tax, schedule), still built from purpose and traveller type only.
+  - An eVISA vs sticker visa table.
+  - "Where to apply" by Indian state.
+  - Money tips and common problems.
+  - A **Schedule of Stay draft**: pick your arrival date, fill in each night's hotel, address and phone, then print or save it as a PDF. Data: `visa.json` (`source: team-guide | official-summary`).
+- **Scanner:**
+  - Japanese + English OCR on the device, with a crop frame you move over the ingredient list.
+  - A 5-script dictionary (kanji, kana, romaji, English, aliases; 600+ terms, including the guide's hazards such as beef tallow, animal fat, emulsifier and "seasoning (amino acids)").
+  - Each match shows the script it matched in and a severity.
+  - Uncertainty notes and practical advice.
+  - Four packaging presets.
+  - A printable waiter card with romaji and the guide's sentences.
+  - A Shojin Ryori guide in the restaurant directory.
+- **Planner:**
+  - Trip options: persona (or custom), 2–12 days, starting city, travellers, pace, budget, extra diets in the group, interests.
+  - Day tabs, with morning, afternoon and evening sections and a meal plan for each day.
+  - Click a stop to fly the 3D map to it.
+  - A "Redesign this day" dialog.
+  - A reset-camera button.
+  - A **Street map** view with Esri streets, Esri topographic, OpenStreetMap and CARTO basemaps, and filters for food, heritage and itinerary.
+  - A city card on the map.
+  - WhatsApp text that includes diet tags and transit lines.
+  - The pace sets how many stops count as comfortable (relaxed 2–3, moderate 3–4, fast 5–6), and the overpacked flag follows it.
+- **API aliases** (see `app/guide_api.py` and `main.py`):
+  - `POST /api/planner/generate`: the guide's `{preferences, customPrompt}` body.
+  - `POST /api/planner/regenerate-day`: `{trip, dayNumber, instructions}`.
+  - `POST /api/ocr/analyze`: send `{rawText, dietaryRestrictions}`. An image upload gets **415**, because OCR runs on the device.
+  - `GET /api/ocr/demo-presets`
+  - `GET /api/restaurants?city=&dietary=&search=`
+  - `GET /api/visa/checklist`
+
+Maintenance:
+
+- **Changing the dictionary.** After editing `ingredients.json`, regenerate the fixture both matchers are tested against, because the API's matcher (`app/ingredients.py`) must agree with the browser's:
+  ```bash
+  cd apps/web && UPDATE_PARITY=1 pnpm exec vitest run src/features/scanner/scanParity.test.ts
+  ```
+- **Offline sample plan.** Regenerate it with:
+  ```bash
+  apps/api/.venv/Scripts/python apps/api/export_sample.py
+  ```
+- **UI strings** live in `apps/web/scripts/strings/*.json` and are merged into the locales with `scripts/merge_locales.py`.
+
 ### How the planner behaves
 
 - `POST /api/plan` streams Server-Sent Events (`status`, `day`, `notice`, `final`); `stream:false` returns JSON. `POST /api/plan/day` regenerates one day. `GET /health` reports `live` or `demo`.
@@ -199,3 +291,9 @@ Statistics are placeholders until verified with real sources (`apps/web/src/data
 - The demo reservation books nothing and takes no payment. No prices are shown, because we have no real fares.
 - The assistant knows only its corpus (37 documents, all `needs-review`). Questions outside it get an honest "I don't know" with an official link. Emergency numbers and the Hindi emergency text need the owner's check before a real trip.
 - Assistant sessions, undo history and trip data live in the API's memory and vanish on restart. The first chat after a start takes a few seconds while the embedding model loads. The model needs roughly 300 MB+ of RAM, which is tight on a free Render instance.
+- Journey photos have no credits yet ("Photo credit pending" on screen). Add the source and licence for each photo before publishing.
+- The city map's street tiles come from the OpenStreetMap tile servers, which are fine for a demo but not for heavy traffic. Switch to a tile provider before a public launch. Without internet the map shows a note and the lists still work.
+- The places to stay are dummies, not real listings.
+- Figures from the team guide (visa times and stays, ₹ thresholds, VFS centres, the Nozomi rail time) are unverified until the owner checks them; they carry a visible badge.
+- Esri and CARTO basemaps are free for light or non-commercial use with attribution (shown on the map); check their terms, or use a paid key, before a public launch.
+- The first photo scan downloads Japanese and English OCR data (a few MB) from the jsDelivr CDN.

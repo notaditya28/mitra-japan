@@ -49,6 +49,13 @@ export interface Restaurant {
   lat: number;
   lng: number;
   coordinatePrecision: 'area' | 'approximate' | 'exact';
+  /** Optional details from the team guide's RestaurantRecord, shown only when recorded. */
+  nearestStation?: string | null;
+  /** Exit and walking time, e.g. "South Exit, 4 min walk" (only with a source). */
+  stationGuidance?: string | null;
+  priceRange?: '¥' | '¥¥' | '¥¥¥' | '¥¥¥¥' | null;
+  englishMenu?: boolean | null;
+  dedicatedCookware?: boolean | null;
   dietOptions: DietOption[];
   risks: string[];
   note: string;

@@ -1,0 +1,107 @@
+{
+  "en": {
+    "tools": {
+      "visa": {
+        "title": "Visa readiness checker",
+        "hint": "Checklist, eVISA or sticker, where to apply"
+      },
+      "schedule": {
+        "eyebrow": "Visa preparation",
+        "title": "Schedule of Stay draft",
+        "hint": "Day-by-day table for your visa application"
+      }
+    },
+    "schedule": {
+      "needPlan": "Plan a trip first, then come back to make the Schedule of Stay draft.",
+      "notOfficial": "Prepared by the traveller with Mitra Japan. This is not an official form: copy it into the format your Embassy or Consulate asks for.",
+      "explain": "Consulates ask for each day's date, activities, accommodation name, address and phone number. Fill in your hotels; we can't know them.",
+      "startDate": "Arrival date in Japan",
+      "startDateNeeded": "Choose your arrival date so each day gets a date.",
+      "applicant": "Your name (optional)",
+      "noIds": "Never type passport or ID numbers here.",
+      "noDate": "date not set",
+      "date": "Date",
+      "activities": "Activities",
+      "hotel": "Accommodation name",
+      "address": "Address",
+      "phone": "Phone number",
+      "missing": "Still empty: {{list}}. Vague entries can cause delays.",
+      "incomplete_one": "{{count}} day still needs accommodation details.",
+      "incomplete_other": "{{count}} days still need accommodation details.",
+      "complete": "Every day has accommodation details.",
+      "print": "Print or save as PDF",
+      "storage": "Your entries are saved only in this browser.",
+      "printTitle": "Schedule of Stay (draft)",
+      "printFooter": "Check that these dates match your flight and hotel bookings. Draft made with Mitra Japan; confirm the required format with the Embassy of Japan in India."
+    }
+  },
+  "hi": {
+    "tools": {
+      "visa": {
+        "title": "वीज़ा तैयारी चेकर",
+        "hint": "चेकलिस्ट, eVISA या स्टिकर, कहाँ आवेदन करें"
+      },
+      "schedule": {
+        "eyebrow": "वीज़ा की तैयारी",
+        "title": "Schedule of Stay ड्राफ़्ट",
+        "hint": "वीज़ा आवेदन के लिए दिन-ब-दिन तालिका"
+      }
+    },
+    "schedule": {
+      "needPlan": "पहले यात्रा की योजना बनाएँ, फिर Schedule of Stay का ड्राफ़्ट बनाने आएँ।",
+      "notOfficial": "यात्री ने Mitra Japan से तैयार किया। यह आधिकारिक फ़ॉर्म नहीं है: इसे दूतावास या कॉन्सुलेट के माँगे गए प्रारूप में लिखें।",
+      "explain": "कॉन्सुलेट हर दिन की तारीख़, गतिविधियाँ, ठहरने की जगह का नाम, पता और फ़ोन नंबर माँगते हैं। अपने होटल भरें; हमें वे पता नहीं हैं।",
+      "startDate": "जापान पहुँचने की तारीख़",
+      "startDateNeeded": "पहुँचने की तारीख़ चुनें ताकि हर दिन को तारीख़ मिले।",
+      "applicant": "आपका नाम (वैकल्पिक)",
+      "noIds": "यहाँ कभी पासपोर्ट या आईडी नंबर न लिखें।",
+      "noDate": "तारीख़ तय नहीं",
+      "date": "तारीख़",
+      "activities": "गतिविधियाँ",
+      "hotel": "ठहरने की जगह का नाम",
+      "address": "पता",
+      "phone": "फ़ोन नंबर",
+      "missing": "अभी खाली: {{list}}। अस्पष्ट जानकारी से देरी हो सकती है।",
+      "incomplete_one": "{{count}} दिन के ठहरने की जानकारी बाकी है।",
+      "incomplete_other": "{{count}} दिनों के ठहरने की जानकारी बाकी है।",
+      "complete": "हर दिन के ठहरने की जानकारी भरी है।",
+      "print": "प्रिंट करें या PDF सेव करें",
+      "storage": "आपकी जानकारी सिर्फ़ इसी ब्राउज़र में सेव होती है।",
+      "printTitle": "Schedule of Stay (ड्राफ़्ट)",
+      "printFooter": "जाँचें कि ये तारीख़ें आपकी फ़्लाइट और होटल बुकिंग से मेल खाती हैं। Mitra Japan से बना ड्राफ़्ट; ज़रूरी प्रारूप भारत में जापान दूतावास से पक्का करें।"
+    }
+  },
+  "gu": {
+    "tools": {
+      "visa": { "title": "વિઝા તૈયારી ચેકર", "hint": "ચેકલિસ્ટ, eVISA કે સ્ટિકર, ક્યાં અરજી કરવી" },
+      "schedule": {
+        "eyebrow": "વિઝાની તૈયારી",
+        "title": "Schedule of Stay ડ્રાફ્ટ",
+        "hint": "વિઝા અરજી માટે દિવસવાર કોષ્ટક"
+      }
+    },
+    "schedule": {
+      "needPlan": "પહેલાં પ્રવાસની યોજના બનાવો, પછી Schedule of Stay નો ડ્રાફ્ટ બનાવવા આવો.",
+      "notOfficial": "પ્રવાસીએ Mitra Japan સાથે તૈયાર કર્યું. આ સત્તાવાર ફોર્મ નથી: દૂતાવાસ કે કોન્સ્યુલેટ માગે તે ફોર્મેટમાં તેને લખો.",
+      "explain": "કોન્સ્યુલેટ દરેક દિવસની તારીખ, પ્રવૃત્તિઓ, રહેવાની જગ્યાનું નામ, સરનામું અને ફોન નંબર માગે છે. તમારી હોટેલ ભરો; અમને તે ખબર નથી.",
+      "startDate": "જાપાન પહોંચવાની તારીખ",
+      "startDateNeeded": "પહોંચવાની તારીખ પસંદ કરો જેથી દરેક દિવસને તારીખ મળે.",
+      "applicant": "તમારું નામ (વૈકલ્પિક)",
+      "noIds": "અહીં ક્યારેય પાસપોર્ટ કે આઈડી નંબર ન લખો.",
+      "noDate": "તારીખ નક્કી નથી",
+      "date": "તારીખ",
+      "activities": "પ્રવૃત્તિઓ",
+      "hotel": "રહેવાની જગ્યાનું નામ",
+      "address": "સરનામું",
+      "phone": "ફોન નંબર",
+      "missing": "હજુ ખાલી: {{list}}. અસ્પષ્ટ માહિતીથી વિલંબ થઈ શકે છે.",
+      "incomplete_one": "{{count}} દિવસની રહેવાની માહિતી બાકી છે.",
+      "incomplete_other": "{{count}} દિવસોની રહેવાની માહિતી બાકી છે.",
+      "complete": "દરેક દિવસની રહેવાની માહિતી ભરેલી છે.",
+      "print": "પ્રિન્ટ કરો કે PDF સેવ કરો",
+      "storage": "તમારી માહિતી ફક્ત આ બ્રાઉઝરમાં સેવ થાય છે.",
+      "printTitle": "Schedule of Stay (ડ્રાફ્ટ)",
+      "printFooter": "ખાતરી કરો કે આ તારીખો તમારી ફ્લાઇટ અને હોટેલ બુકિંગ સાથે મેળ ખાય છે. Mitra Japan થી બનેલો ડ્રાફ્ટ; જરૂરી ફોર્મેટ ભારતમાં જાપાન દૂતાવાસ પાસેથી ખાતરી કરો."
+    }
+  }
+}

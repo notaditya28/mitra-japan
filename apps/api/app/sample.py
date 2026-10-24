@@ -1,7 +1,8 @@
 """Deterministic sample itineraries for Demo mode (no API key) and AI fallbacks.
 
 Built only from our seeded data, always returned with source="sample" so the
-UI labels it as such. Never presented as an AI result.
+UI labels it as such. Never presented as an AI result. Honours the team guide's
+structured inputs: starting city, pace (stops per day), interests and diets.
 """
 
 from __future__ import annotations
@@ -9,7 +10,7 @@ from __future__ import annotations
 import re
 
 from .data import PlaceData, distance_km
-from .schema import Itinerary, RawDay, RawPlan, RawStay, RawStop, RawTransport
+from .schema import PACE_STOPS, Itinerary, RawDay, RawMeals, RawPlan, RawStay, RawStop, RawTransport
 from .validate import ground_plan
 
 #: City order per persona; the first N become the route.
@@ -21,7 +22,11 @@ ROUTES: dict[str, list[str]] = {
     "spiritual": ["tokyo", "kamakura", "kyoto", "nara", "koyasan", "miyajima", "nikko"],
 }
 DEFAULT_ROUTE = ["tokyo", "hakone", "kyoto", "nara", "osaka", "hiroshima", "kanazawa"]
-PACE = {"family": 2, "honeymoon": 2, "spiritual": 3, "student": 3, "foodie": 3}
+#: Default pace per persona when the traveller doesn't choose one.
+PERSONA_PACE = {"family": "relaxed", "honeymoon": "relaxed", "spiritual": "moderate", "student": "moderate", "foodie": "moderate"}
+#: Rough time to allow per kind of stop, in minutes (estimates).
+DURATION = {"culture": 120, "heritage": 90, "food": 60, "sight": 90, "anime": 90, "temple": 90, "nature": 120}
+SLOTS = ("morning", "afternoon", "evening")
 
 _DAYS_RE = re.compile(r"(\d{1,2})\s*(?:-|\s)?\s*(?:days?|nights?|din|दिन|દિવસ)", re.IGNORECASE)
 
@@ -43,13 +48,36 @@ def _mode(km: float, a: str, b: str) -> str:
     return "shinkansen"
 
 
-def _route(persona: str | None, n: int) -> list[str]:
-    base = ROUTES.get(persona or "", DEFAULT_ROUTE)
+def _nearest_first(start: str, cities: list[str], data: PlaceData) -> list[str]:
+    """Greedy nearest-neighbour order from the start, so the route doesn't zig-zag."""
+    order, left = [start], [c for c in cities if c != start]
+    while left:
+        here = data.cities[order[-1]]
+        nxt = min(left, key=lambda c: distance_km(here.lat, here.lng, data.cities[c].lat, data.cities[c].lng))
+        order.append(nxt)
+        left.remove(nxt)
+    return order
+
+
+def _route(persona: str | None, n: int, start: str | None = None, data: PlaceData | None = None) -> list[str]:
+    base = list(ROUTES.get(persona or "", DEFAULT_ROUTE))
+    if start and data is not None and start != base[0]:
+        # Start where the traveller lands, then visit the persona's first cities nearest-first.
+        picks = [start, *[c for c in base if c != start]][: max(n, 2)]
+        base = _nearest_first(start, picks, data) + [c for c in base if c not in picks]
     route: list[str] = []
     for i in range(n):
         # Stay two nights in a city before moving on once the list runs out.
         route.append(base[i] if i < len(base) else base[(i - len(base)) % len(base)])
     return route
+
+
+def _slot(i: int, n: int) -> str:
+    return SLOTS[min(2, (i * 3) // max(1, n))]
+
+
+def _diet_word(diet: str) -> str:
+    return {"none": "any", "no-beef": "no-beef"}.get(diet, diet)
 
 
 def sample_plan(
@@ -58,25 +86,36 @@ def sample_plan(
     persona: str | None,
     diet: str,
     days: int,
+    start_city: str | None = None,
+    pace: str | None = None,
+    interests: list[str] | None = None,
+    diets: list[str] | None = None,
 ) -> Itinerary:
-    route = _route(persona, days)
-    pace = PACE.get(persona or "", 3)
+    interests = interests or []
+    all_diets = [diet, *[d for d in (diets or []) if d != diet]]
+    pace = pace or PERSONA_PACE.get(persona or "", "moderate")
+    lo, hi = PACE_STOPS[pace]
+    route = _route(persona, days, start_city if start_city in data.cities else None, data)
     raw_days: list[RawDay] = []
     previous: str | None = None
     for i, city_id in enumerate(route, start=1):
         city = data.cities[city_id]
-        stops: list[RawStop] = [
-            RawStop(name=f"Explore {city.name}", kind="culture", note=city.culture),
+        candidates: list[RawStop] = [RawStop(name=f"Explore {city.name}", kind="culture", note=city.culture)]
+        for h in data.heritage_near(city_id)[: 2 if "heritage" in interests or "spiritual" in interests else 1]:
+            candidates.append(RawStop(name=h.place, kind="heritage", heritageId=h.id, note=h.story))
+        for s in data.layers_for(city_id):
+            wants_anime = "anime" in interests or persona in {"student", "foodie"}
+            if (s.layer == "anime" and wants_anime) or s.layer == "regional":
+                candidates.append(RawStop(name=s.name, kind="anime" if s.layer == "anime" else "sight", note=s.note))
+        suited = [f for f in data.food_for(city_id) if all(d == "none" or d in f.diets for d in all_diets)]
+        food_stops = [RawStop(name=f.title, kind="food", foodSpotId=f.id, note=f.note) for f in suited[:2]]
+        # Sights fill the day up to the pace, and the meal stop ends it.
+        sights = candidates[: max(lo - len(food_stops[:1]), hi - len(food_stops[:1]))]
+        stops = (sights + food_stops[:1])[:hi]
+        stops = [
+            s.model_copy(update={"slot": _slot(j, len(stops)), "durationMinutes": DURATION.get(s.kind, 90)})
+            for j, s in enumerate(stops)
         ]
-        for h in data.heritage_near(city_id)[:1]:
-            stops.append(RawStop(name=h.place, kind="heritage", heritageId=h.id, note=h.story))
-        for s in data.layers_for(city_id)[:1]:
-            if persona in {"student", "foodie"} or s.layer == "regional":
-                stops.append(RawStop(name=s.name, kind="anime" if s.layer == "anime" else "sight", note=s.note))
-        suited = [f for f in data.food_for(city_id) if diet == "none" or diet in f.diets]
-        for f in suited[:1]:
-            stops.append(RawStop(name=f.title, kind="food", foodSpotId=f.id, note=f.note))
-        stops = stops[: pace + 1]
 
         if previous and previous != city_id:
             a, b = data.cities[previous], city
@@ -90,6 +129,13 @@ def sample_plan(
         reasons = [f"{city.name}: {city.veg}"]
         if risks:
             reasons.append("Double-check: " + ", ".join(risks) + ".")
+        words = " and ".join(_diet_word(d) for d in all_diets)
+        dinner = (
+            f"{suited[0].title} ({'illustrative kind of place' if suited[0].status == 'sample' else 'confirm before you go'})"
+            if suited
+            else f"See the veg-friendly places list for {city.name}, or a convenience store as a back-up."
+        )
+        lunch = f"Near your morning stop: look for a {words}-friendly place and show the waiter card."
         raw_days.append(
             RawDay(
                 day=i,
@@ -105,12 +151,19 @@ def sample_plan(
                 foodNotes=city.veg,
                 foodReasons=reasons,
                 tips=[city.season],
+                meals=RawMeals(
+                    breakfast=f"At your stay: ask the day before for a {words} breakfast.",
+                    lunch=lunch,
+                    dinner=dinner,
+                    dietaryNotes=city.veg,
+                ),
+                pace=pace,  # type: ignore[arg-type]
             )
         )
         previous = city_id
 
     raw = RawPlan(
-        summary=f"A {days}-day sample route built from our city data. It is not an AI plan.",
+        summary=f"A {days}-day sample route built from our city data at a {pace} pace. It is not an AI plan.",
         days=raw_days,
         visaChecklist=[
             "Passport valid for your whole trip (confirm with official source).",

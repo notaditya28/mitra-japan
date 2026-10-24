@@ -1,0 +1,72 @@
+{
+  "_note": "Placeholder stays for the city map window. Owner decision (2026-10-24): dummy hotels until real data exists. None of these are real listings; names say 'Sample', pins are illustrative locations in well-known districts, and there are no prices or availability.",
+  "status": "sample",
+  "stays": [
+    {
+      "id": "tokyo-sample-capsule",
+      "cityId": "tokyo",
+      "name": "Sample capsule stay",
+      "kind": "capsule",
+      "area": "Shinjuku",
+      "lat": 35.6917,
+      "lng": 139.7005,
+      "note": "Pod beds, shared bathrooms, lockers. Usually a separate floor or building per gender: check when booking.",
+      "status": "sample"
+    },
+    {
+      "id": "tokyo-sample-business",
+      "cityId": "tokyo",
+      "name": "Sample business hotel",
+      "kind": "business-hotel",
+      "area": "Ueno",
+      "lat": 35.7115,
+      "lng": 139.7765,
+      "note": "Compact private rooms with an en-suite bathroom; often near a station.",
+      "status": "sample"
+    },
+    {
+      "id": "tokyo-sample-family",
+      "cityId": "tokyo",
+      "name": "Sample family apartment hotel",
+      "kind": "apartment",
+      "area": "Ginza",
+      "lat": 35.6715,
+      "lng": 139.765,
+      "note": "Larger rooms with a small kitchen, useful for families who cook their own vegetarian meals.",
+      "status": "sample"
+    },
+    {
+      "id": "kyoto-sample-capsule",
+      "cityId": "kyoto",
+      "name": "Sample capsule stay",
+      "kind": "capsule",
+      "area": "Kyoto Station",
+      "lat": 34.9862,
+      "lng": 135.7588,
+      "note": "Pod beds, shared bathrooms, lockers. Usually a separate floor or building per gender: check when booking.",
+      "status": "sample"
+    },
+    {
+      "id": "kyoto-sample-ryokan",
+      "cityId": "kyoto",
+      "name": "Sample ryokan",
+      "kind": "ryokan",
+      "area": "Higashiyama",
+      "lat": 35.0005,
+      "lng": 135.7795,
+      "note": "Tatami rooms and futons. Meals are often included: ask in advance for vegetarian or Jain food.",
+      "status": "sample"
+    },
+    {
+      "id": "kyoto-sample-business",
+      "cityId": "kyoto",
+      "name": "Sample business hotel",
+      "kind": "business-hotel",
+      "area": "Kawaramachi",
+      "lat": 35.0045,
+      "lng": 135.7685,
+      "note": "Compact private rooms with an en-suite bathroom; close to shops and buses.",
+      "status": "sample"
+    }
+  ]
+}

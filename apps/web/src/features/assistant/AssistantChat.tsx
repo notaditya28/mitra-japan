@@ -93,7 +93,11 @@ export function AssistantChat() {
     : undefined;
 
   return (
-    <section aria-labelledby={`${id}-title`} className="flex flex-col gap-3">
+    <section
+      id="ask-mitra"
+      aria-labelledby={`${id}-title`}
+      className="flex scroll-mt-2 flex-col gap-3"
+    >
       <div className="flex items-center justify-between gap-2">
         <h3 id={`${id}-title`} className="text-sm font-semibold text-plum">
           {t('assistant.title')}

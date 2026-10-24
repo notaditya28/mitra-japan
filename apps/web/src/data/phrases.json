@@ -5,11 +5,12 @@
       "id": "no-fish-stock",
       "kind": "food",
       "diets": ["vegetarian"],
-      "ja": "魚のだし（かつお節など）を使わないでください。",
-      "romaji": "Sakana no dashi (katsuobushi nado) o tsukawanaide kudasai.",
-      "en": "Please do not use fish stock (like bonito flakes).",
-      "hi": "कृपया इसमें मछली का शोरबा (जैसे बोनिटो) न डालें।",
-      "gu": "કૃપા કરીને આમાં માછલીનો સૂપ (જેમ કે બોનિટો) ન નાખશો."
+      "ja": "私は肉、魚、魚介類の出汁（かつおだし等）を食べることができません。",
+      "romaji": "Watashi wa niku, sakana, gyokairui no dashi (katsuo dashi nado) o taberu koto ga dekimasen.",
+      "en": "I cannot eat meat, fish, or seafood broths like bonito dashi.",
+      "hi": "मांस, मछली या समुद्री जीवों से बना शोरबा (जैसे बोनिटो दाशी) मेरे लिए मना है।",
+      "gu": "માંસ, માછલી કે દરિયાઈ જીવોમાંથી બનેલો સૂપ (જેમ કે બોનિટો દાશી) મારા માટે મનાઈ છે.",
+      "source": "team-guide"
     },
     {
       "id": "vegetarian",
@@ -29,7 +30,15 @@
       "romaji": "Jaina-kyō no shokuji seigen ga arimasu. Niku, sakana, tamago, tamanegi, ninniku, konsai wa taberaremasen.",
       "en": "I follow a Jain diet: no meat, fish, egg, onion, garlic or root vegetables.",
       "hi": "मेरा भोजन जैन है: मांस, मछली, अंडा, प्याज़, लहसुन और कंदमूल नहीं चलेंगे।",
-      "gu": "મારું ભોજન જૈન છે: માંસ, માછલી, ઈંડા, ડુંગળી, લસણ અને કંદમૂળ નહીં ચાલે."
+      "gu": "મારું ભોજન જૈન છે: માંસ, માછલી, ઈંડા, ડુંગળી, લસણ અને કંદમૂળ નહીં ચાલે.",
+      "request": {
+        "ja": "玉ねぎ、にんにく、ネギ、根菜類も一切使わないでいただけますか？",
+        "romaji": "Tamanegi, ninniku, negi, konsairui mo issai tsukawanaide itadakemasu ka?",
+        "en": "Could you prepare this without onion, garlic, leeks or root vegetables?",
+        "hi": "क्या आप इसे प्याज़, लहसुन, हरा प्याज़ और कंदमूल के बिना बना सकते हैं?",
+        "gu": "શું તમે આ ડુંગળી, લસણ, લીલી ડુંગળી અને કંદમૂળ વગર બનાવી શકો?",
+        "source": "team-guide"
+      }
     },
     {
       "id": "halal",

@@ -15,6 +15,7 @@ export default defineConfig({
       'three/examples/jsm/utils/BufferGeometryUtils.js',
       'three/examples/jsm/geometries/RoundedBoxGeometry.js',
       'd3-geo',
+      'leaflet',
       'framer-motion',
       'gsap',
       'gsap/ScrollTrigger',

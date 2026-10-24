@@ -2,11 +2,12 @@ import { lazy, Suspense, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Nav } from './components/Nav';
 import { Footer } from './components/Footer';
-import { Hero } from './components/sections/Hero';
-import { PersonaSection } from './components/sections/PersonaSection';
+import { Welcome } from './components/sections/Welcome';
 import { FearsSection } from './components/sections/FearsSection';
-import { PlacesSection } from './components/sections/PlacesSection';
+import { TourSection } from './components/sections/TourSection';
 import { ChapterRail } from './components/ChapterRail';
+import { CityMapWindow } from './features/tour/CityMapWindow';
+import { TourStatic } from './features/tour/TourStatic';
 import { SceneErrorBoundary } from './components/SceneErrorBoundary';
 import { RootsSection } from './components/sections/RootsSection';
 import { NumbersSection } from './components/sections/NumbersSection';
@@ -17,7 +18,6 @@ import { navigate, useView } from './lib/router';
 import { getDeviceProfile } from './lib/device';
 import { useReducedMotion } from './lib/hooks';
 import { useSmoothScroll } from './lib/smoothScroll';
-import { useJourneyTriggers } from './scenes/useJourneyTriggers';
 import { useAppStore } from './store/useAppStore';
 
 const JourneyCanvas = lazy(() => import('./scenes/JourneyCanvas'));
@@ -28,12 +28,12 @@ const PlannerPage = lazy(() =>
   import('./features/planner/PlannerPage').then((m) => ({ default: m.PlannerPage })),
 );
 
-// Static dawn sky shown while the 3D chunk loads, or if it fails.
+// Static plum backdrop shown while the 3D chunk loads, or if it fails.
 const SKY_FALLBACK = (
   <div
     aria-hidden="true"
     className="fixed inset-0 -z-10"
-    style={{ background: 'linear-gradient(180deg, #2E1424 0%, #6E2F52 45%, #E07A8F 100%)' }}
+    style={{ background: 'linear-gradient(180deg, #1A0C18 0%, #3A1A2E 60%, #4A2238 100%)' }}
   />
 );
 
@@ -49,7 +49,6 @@ export default function App() {
   const immersive = webgl && tier !== 'low' && !reduced;
 
   useSmoothScroll(!reduced);
-  useJourneyTriggers(immersive && onJourney);
 
   // Each page starts at its top (the browser would otherwise restore the old scroll).
   useEffect(() => {
@@ -84,6 +83,7 @@ export default function App() {
       ) : null}
       <Nav view={view} />
       {immersive && onJourney ? <ChapterRail /> : null}
+      {onJourney ? <CityMapWindow /> : null}
       <Suspense fallback={<div className="min-h-[100svh] bg-paper" />}>
         {view === 'login' ? <DemoLogin /> : null}
         {view === 'plan' && user ? <PlannerPage /> : null}
@@ -91,10 +91,10 @@ export default function App() {
       {onJourney ? (
         <main id="main">
           <div id="journey">
-            <Hero immersive={immersive} />
-            <PersonaSection immersive={immersive} />
-            {immersive ? <PlacesSection /> : <FearsSection />}
+            <Welcome immersive={immersive} />
+            {immersive ? <TourSection /> : <TourStatic />}
           </div>
+          {immersive ? null : <FearsSection />}
           {immersive ? (
             // Soft hand-off from the 3D sky into the paper sections below.
             <div

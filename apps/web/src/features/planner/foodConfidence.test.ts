@@ -9,6 +9,10 @@ const stop = (foodSpotId: string | null = null): Stop => ({
   heritageId: null,
   note: '',
   inOurData: foodSpotId !== null,
+  slot: 'afternoon',
+  durationMinutes: null,
+  lat: null,
+  lng: null,
 });
 
 describe('foodConfidence', () => {

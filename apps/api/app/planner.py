@@ -113,7 +113,16 @@ async def plan_events(req: PlanRequest, data: PlaceData, client: Any | None = No
     days = req.days or days_from_prompt(req.prompt)
 
     def fallback(code: str) -> list[Event]:
-        plan = sample_plan(data, persona=req.persona, diet=req.diet, days=days)
+        plan = sample_plan(
+            data,
+            persona=req.persona,
+            diet=req.diet,
+            days=days,
+            start_city=req.startCity,
+            pace=req.pace,
+            interests=list(req.interests),
+            diets=list(req.diets),
+        )
         plan.notices.insert(0, NOTICES[code])
         return [{"type": "notice", "code": code, "message": NOTICES[code]}, {"type": "final", "itinerary": plan}]
 

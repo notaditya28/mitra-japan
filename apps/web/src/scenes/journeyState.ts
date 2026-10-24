@@ -1,35 +1,20 @@
+import { LAYOUT, SEGMENTS, isPlainBoundary, type Segment } from '../features/tour/tour';
+
 /**
  * Shared, mutable scroll state for the Stage 1 journey. HTML ScrollTriggers
  * write it; the R3F scene reads it every frame. Deliberately not React state
  * so scrolling never re-renders the tree.
  */
 export const journey = {
-  /** 0 → 1 dawn intro on load (sun rise). */
+  /** 0 → 1 intro on load (the map fades up). */
   intro: 0,
-  /** Hero section scroll progress. */
-  hero: 0,
-  /** Persona section scroll progress. */
-  persona: 0,
-  /** Places section scroll progress, 0 → 1 across all places. */
-  places: 0,
+  /** Tour section scroll progress, 0 → 1 across the flight, every spot and every train. */
+  tour: 0,
   /** Pointer position in -1..1 for gentle parallax. */
   pointer: { x: 0, y: 0 },
 };
 
-export const FEAR_IDS = ['food', 'language', 'visa', 'foreign'] as const;
-export type FearId = (typeof FEAR_IDS)[number];
-
-/** The places the journey travels through after Fuji, in order, each answering one fear. */
-export const PLACES = [
-  { id: 'tokyo', fear: 'food', kanji: '東京' },
-  { id: 'shinkansen', fear: 'language', kanji: '新幹線' },
-  { id: 'kyoto', fear: 'visa', kanji: '京都' },
-  { id: 'matsuri', fear: 'foreign', kanji: '祭り' },
-] as const satisfies readonly { id: string; fear: FearId; kanji: string }[];
-export type PlaceId = (typeof PLACES)[number]['id'];
-
-/** Scene indices: 0 is Fuji (hero + persona), then one per place. */
-export const SCENE_COUNT = PLACES.length + 1;
+export type SegmentKind = Segment['kind'];
 
 const smooth = (a: number, b: number, x: number) => {
   const k = Math.min(1, Math.max(0, (x - a) / (b - a)));
@@ -37,21 +22,27 @@ const smooth = (a: number, b: number, x: number) => {
 };
 
 /**
- * Derived every frame by the Director from `journey`.
+ * Derived every frame by the CameraRig from `journey`.
  *
- * The "petal portal" transition around each boundary, in chapter units
- * (d = signed distance to the boundary, negative = before the cut):
- *   -0.13 … -0.03  petals swarm into the next place's kanji, FOV widens
- *   -0.07 … -0.01  blush veil closes over the scene
- *    0             scene switches under the veil
- *    0    …  0.09  veil opens through a torii-shaped window, petals burst away
+ * Transitions sit around each segment boundary, in weight units (one spot = 1;
+ * d = signed distance to the boundary, negative = before the cut):
+ *   Petal portal (arriving in a city, boarding or leaving the train):
+ *     -0.13 … -0.03  petals swarm into the next place's kanji, FOV widens
+ *     -0.07 … -0.01  blush veil closes over the scene
+ *      0             scene switches under the veil
+ *      0    …  0.09  veil opens through a torii-shaped window, petals burst away
+ *   Plain (between spots in one city): the same veil and torii window, no petals.
  */
 export const stage = {
+  /** Index into SEGMENTS of the segment on screen. */
   scene: 0,
-  /** Local progress inside the active scene, 0..1. */
+  kind: (SEGMENTS[0]?.kind ?? 'flight') as SegmentKind,
+  /** Local progress inside the active segment, 0..1. */
   t: 0,
-  /** Index into PLACES of the place being transitioned into, or -1. */
+  /** Index into SEGMENTS of the segment being transitioned into, or -1. */
   incoming: -1,
+  /** True when the current transition shows no petals (moving between spots in a city). */
+  plain: false,
   /** Petals gathering into the kanji, 0..1. */
   assemble: 0,
   /** Petals bursting outward after the cut, 0..1. */
@@ -69,25 +60,28 @@ export const stage = {
 const BEFORE = 0.13;
 const AFTER = 0.09;
 
-function applyBoundary(out: typeof stage, d: number, incoming: number) {
+function applyBoundary(out: typeof stage, d: number, incoming: number, plain: boolean) {
   out.incoming = incoming;
+  out.plain = plain;
+  const warp = plain ? 5 : 16;
   if (d < 0) {
-    out.assemble = smooth(-BEFORE, -0.03, d);
+    out.assemble = plain ? 0 : smooth(-BEFORE, -0.03, d);
     out.cover = smooth(-0.07, -0.01, d);
     out.iris = 1;
     out.burst = 0;
-    out.warp = 16 * smooth(-BEFORE, 0, d);
+    out.warp = warp * smooth(-BEFORE, 0, d);
   } else {
-    out.assemble = 1;
+    out.assemble = plain ? 0 : 1;
     out.cover = 0;
     out.iris = smooth(0.004, AFTER, d);
-    out.burst = smooth(0, 0.065, d);
-    out.warp = 16 * (1 - smooth(0, AFTER, d));
+    out.burst = plain ? 0 : smooth(0, 0.065, d);
+    out.warp = warp * (1 - smooth(0, AFTER, d));
   }
 }
 
 function clearBoundary(out: typeof stage) {
   out.incoming = -1;
+  out.plain = false;
   out.assemble = 0;
   out.burst = 0;
   out.cover = 0;
@@ -95,26 +89,44 @@ function clearBoundary(out: typeof stage) {
   out.warp = 0;
 }
 
-export function computeStage(out = stage): typeof stage {
+/** Segment index and local t for a position in weight units. */
+export function locate(pos: number, starts: number[], total: number): { index: number; t: number } {
+  const n = starts.length;
+  if (n === 0) return { index: 0, t: 0 };
+  const p = Math.min(Math.max(pos, 0), total - 1e-6);
+  let index = 0;
+  while (index + 1 < n && (starts[index + 1] ?? Infinity) <= p) index++;
+  const start = starts[index] ?? 0;
+  const end = starts[index + 1] ?? total;
+  return { index, t: (p - start) / (end - start) };
+}
+
+export function computeStage(
+  out = stage,
+  progress = journey.tour,
+  segments: Segment[] = SEGMENTS,
+  { starts, total } = LAYOUT,
+): typeof stage {
   const prev = out.scene;
-  if (journey.places > 0) {
-    const p = journey.places * PLACES.length;
-    const i = Math.min(PLACES.length - 1, Math.floor(p));
-    out.scene = i + 1;
-    out.t = p - i;
-    const k = Math.round(p);
-    const d = p - k;
-    // Boundaries 0..3 bring in PLACES[k]; the end of the last place has no portal.
-    if (k < PLACES.length && d > -BEFORE && d < AFTER) applyBoundary(out, d, k);
-    else clearBoundary(out);
-  } else {
-    out.scene = 0;
-    out.t = journey.persona;
-    // The dive from Fuji into Tokyo happens over the last part of the persona section.
-    const d = (journey.persona - 1) * 0.65;
-    if (d > -BEFORE) applyBoundary(out, d, 0);
-    else clearBoundary(out);
+  const pos = progress * total;
+  const { index, t } = locate(pos, starts, total);
+  out.scene = index;
+  out.kind = segments[index]?.kind ?? 'flight';
+  out.t = t;
+
+  // Nearest boundary (the start of segment k, k ≥ 1).
+  let k = -1;
+  let d = Infinity;
+  for (let i = 1; i < starts.length; i++) {
+    const di = pos - (starts[i] ?? 0);
+    if (Math.abs(di) < Math.abs(d)) {
+      d = di;
+      k = i;
+    }
   }
+  if (k > 0 && d > -BEFORE && d < AFTER) applyBoundary(out, d, k, isPlainBoundary(segments, k));
+  else clearBoundary(out);
+
   out.switched = out.scene !== prev;
   return out;
 }

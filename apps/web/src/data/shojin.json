@@ -1,0 +1,51 @@
+{
+  "_note": "Shojin ryori guide (team guide section 3.7). Points marked 'jnto' summarise the JNTO pages linked here (fetched for the knowledge base, apps/api/rag/corpus); points marked 'team-guide' come from MITRA_JAPAN_SYSTEM_GUIDE.md. Everything is needs-review until the owner checks it.",
+  "status": "needs-review",
+  "links": [
+    {
+      "id": "jnto-veg",
+      "label": "JNTO: Vegetarian and vegan guide",
+      "url": "https://www.japan.travel/en/guide/vegetarian-guide/"
+    }
+  ],
+  "sections": [
+    {
+      "id": "what",
+      "title": "What it is",
+      "points": [
+        {
+          "text": "Buddhist temple cuisine, the vegetarian food eaten by monks, mostly served at temples.",
+          "source": "jnto"
+        },
+        {
+          "text": "Its philosophy avoids animal products and the pungent alliums known as gokun.",
+          "source": "team-guide"
+        }
+      ]
+    },
+    {
+      "id": "where",
+      "title": "Where to try it",
+      "points": [
+        {
+          "text": "Temple lodgings (shukubo), where you can also join meditation and sutra-copying. It is a practical base for meals mainly if you stay there.",
+          "source": "jnto"
+        }
+      ]
+    },
+    {
+      "id": "ask",
+      "title": "What to ask",
+      "points": [
+        {
+          "text": "Temple cuisine traditionally avoids garlic and onion, but it can still use root vegetables. Jain travellers should ask when they book.",
+          "source": "jnto"
+        },
+        {
+          "text": "Show the waiter card from the scanner when you book, so the kitchen knows your diet.",
+          "source": "team-guide"
+        }
+      ]
+    }
+  ]
+}

@@ -9,13 +9,14 @@ let workerPromise: Promise<Worker> | null = null;
 let report: ((stage: 'loading' | 'recognizing', progress: number) => void) | null = null;
 
 /**
- * One shared worker, created on first use. tesseract.js and the Japanese
+ * One shared worker, created on first use, reading Japanese and English (team guide:
+ * jpn + eng, for bilingual packaging). tesseract.js and the
  * language data (a few MB) are fetched from its default CDN the first time;
  * the browser caches them afterwards.
  */
 function getWorker(): Promise<Worker> {
   workerPromise ??= import('tesseract.js').then(({ createWorker }) =>
-    createWorker('jpn', undefined, {
+    createWorker(['jpn', 'eng'], undefined, {
       logger: (m) =>
         report?.(m.status === 'recognizing text' ? 'recognizing' : 'loading', m.progress),
     }),

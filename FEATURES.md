@@ -6,7 +6,17 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 
 ## Fully working
 
-- Stage 1 scroll journey: 3D Fuji hero, persona choice (tints the journey), five places (Fuji, Tokyo, Shinkansen, Kyoto, Matsuri) with Petal Portal transitions, flipping fear cards, chapter rail.
+- Stage 1 journey (redesigned 2026-10-24):
+  - Traveller picker over a 3D map of Asia (India point-of-view boundaries), with the plane at Delhi.
+  - Scroll flies the plane Delhi → Tokyo along a great-circle route; a petal portal opens onto the first photo.
+  - Real photos of 4 Tokyo and 4 Kyoto spots in 3D (curved plane, slow push-in, petals), with plain veil transitions inside a city and a Shinkansen ride between cities.
+  - Fear cards on Tsukiji (food), the train (language), Fushimi Inari (visa) and Kiyomizu-dera (feeling foreign).
+  - Journey rail grouped by city.
+  - A flat version for reduced motion and low-end devices.
+- City map window (top right of the journey):
+  - Follows the current city.
+  - Diet picker that keeps your choice across cities.
+  - OpenStreetMap street map with markers for food that lists your diet and for places to stay, plus a list with status badges.
 - Reduced-motion / low-end path: static sections instead of scroll-driven 3D.
 - Language switch EN / हिं / ગુ (Stage 1, sign-in and planner UI; data notes are English only).
 - Indian-roots mosaic → map reveal and story cards.
@@ -55,12 +65,32 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - Offline-first quick action: "veg food nearby" uses opt-in location and our own place data.
 - RAG eval: 77 cases, `python -m rag.eval`. Results: dev 58/58, held-out 18/19.
 
+- Team system guide features (merged 2026-10-24):
+  - **Visa readiness checker:** a categorised checklist, the eVISA vs sticker table, where to apply by state, money tips and pitfalls, and a Schedule of Stay draft you can print.
+  - **Scanner:**
+    - Japanese + English OCR on the device, with a crop frame.
+    - A 5-script dictionary (600+ terms); results show severity and the script that matched, plus notes and advice.
+    - Four packaging presets and a printable waiter card with romaji.
+    - A Shojin Ryori guide.
+  - **Planner:**
+    - Trip options (2–12 days, start city, travellers, pace, budget, group diets, interests) and pace-aware overpacked checks.
+    - Day tabs with morning, afternoon and evening sections, a meal plan for each day, and a Redesign day dialog.
+    - Fly to a clicked stop, a reset-camera button, and a city card on the map.
+    - A 2D street map with basemaps and layer filters, and WhatsApp text with diet tags.
+  - **API aliases:** `/api/planner/generate`, `/api/planner/regenerate-day`, `/api/ocr/analyze` (text), `/api/ocr/demo-presets`, `/api/restaurants` and `/api/visa/checklist`. The Python matcher is checked against the browser's on a shared fixture.
+
+- Section bar under the top bar:
+  - Journey: jump to the start, the flight, any city, Indian roots, the numbers or the CTA, with the current chapter highlighted.
+  - Planner: jump to the map, trip options, itinerary, Ask Mitra or map layers, or open any tool.
+  - It works with the keyboard, scrolls sideways on phones, and opens the bottom sheet there before jumping.
+
 ## Demo-only (works, but on sample or seeded data)
 
 - **Sample restaurants**: 21 illustrative kinds of places in `restaurants.json` (`status: sample`, no address, diet basis "not confirmed").
 - **Sample scans**: 24 menu lines and shop labels (`sampleScans.json`), labelled "Sample scan". The Tokyo fear card uses five of them.
 - **Sample route** on the planner map (Golden Route), behind an explicit toggle.
 - **Stats**: all four counters are empty placeholders until real, sourced figures are added.
+- **Places to stay** on the city map: 6 dummy stays (`stays.json`, owner decision), all labelled "Sample", with illustrative locations and no prices.
 - **Assistant in Demo mode** (no key): answers are quotes from the corpus, labelled "Demo". Plan changes come from a rule-based planner, not Claude.
 
 ## Needs an external service or the owner's verification
@@ -78,6 +108,10 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - **Emergency contacts** (`emergency.json`): numbers and mission phone lines taken from official pages, `needs-review`. The Hindi text is a machine draft.
 - **Live weather**: off by default; set `WEATHER_PROVIDER=open-meteo`. Transit status is not connected (says so). Attraction hours are always "unverified".
 - **Embedding model**: the first ingest downloads ~465 MB (internet once).
+- **Journey photos**: 8 photos with credit, source and licence pending; every spot is `needs-review` (names, approximate pins). The "Gion & Pontochō" photo looks like Omoide Yokocho in Shinjuku and needs checking.
+- **City map tiles**: OpenStreetMap's public tile servers (internet needed; fine for a demo, not for heavy traffic).
+- **Team guide figures**: visa processing times and maximum stays, the ₹2.5–3.5 lakh balance, the ₹5 lakh ITR, VFS centres and pitfalls, plus the guide's waiter-card sentences. All are shown with a "From our team guide · needs review" badge until the owner checks them against official pages.
+- **Street map basemaps**: Esri and CARTO tiles (attribution shown; check their terms before launch).
 - **Ingredient dictionary** (`ingredients.json`): 53 entries plus menu words; per-diet rules need the owner's review.
 
 ## Planned (by milestone)

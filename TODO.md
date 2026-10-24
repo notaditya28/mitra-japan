@@ -33,7 +33,15 @@
 - [ ] **Visa checklist** (`visa.json`): review each item against the Embassy of Japan in India and MOFA, then set `lastReviewed`. Item text needs HI/GU translation.
 - [ ] **Scanner dictionary** (`ingredients.json`, 53 entries + menu words): review per-diet rules (e.g. mushrooms = avoid for Jain, soy sauce and miso = ask for halal, shortening = ask).
 
-- [ ] **Stage 1 revisit**: owner is not fully happy with the multi-place journey (2026-10-23) and will come back with changed requirements. Keep scene code modular (one file per place) so it is easy to rework.
+- [x] **Stage 1 revisit** (2026-10-24): replaced by traveller picker → Delhi→Tokyo flight → photo spots per city → Shinkansen between cities, plus a city map window.
+- [ ] **Journey photo credits**: fill `photo.credit`, `photo.source` and `photo.licence` for all 8 spots in `src/data/tour.json` (the site shows "Photo credit pending" until then).
+- [ ] **Gion photo**: `kyoto/gion-district-and-pontocho-alley` looks like Omoide Yokocho (Shinjuku, Tokyo). Replace it, or move it to the Tokyo folder and rename it. It is also only 670 px wide, so it looks soft full-screen.
+- [ ] **Journey spots**: check names, Japanese names and pin positions in `tour.json`, then set `status: verified`. Add more cities by dropping photos in `src/scenes/places/places/<city>/` (README).
+- [ ] **Stays**: replace the dummy stays in `stays.json` with real, sourced places once there is data.
+- [ ] **Team guide figures** (`visa.json` items and blocks with `source: team-guide`, `phrases.json` guide sentences, `shojin.json`): check each against MOFA, the Embassy of Japan in India and VFS pages, then correct them or remove the badge. Pay particular attention to: processing times, "sticker visa up to 15 days", "₹2.5–3.5 lakh", "ITR ₹5 lakh", the photo size, the VFS centre lists, and the three states the guide doesn't list (Chhattisgarh, Andaman and Nicobar, Lakshadweep).
+- [ ] **Basemaps**: confirm Esri and CARTO terms for the public site, or switch to a keyed provider.
+- [ ] **Guide strings**: native review of the new `visaTool`, `schedule`, `scanner`, `tripOptions`, `trip`, `streetMap` and `cityCard` strings in HI/GU.
+- [ ] **Tour strings**: native review of `tour.*` in `hi.json` / `gu.json`.
 
 - [ ] **Stats**: fill `apps/web/src/data/stats.json` (Indian arrivals vs total from JNTO, India outbound growth, vegetarian share, own survey result) with sources, then set `verified: true`.
 - [x] **Scroll idea / login + booking** (decided 2026-10-23): 3D scroll → "Plan your trip" → **demo login** (name + phone, stored on device, no auth service) → AI planning → review → **mock booking checkout** (clearly labelled demo, no real payments). Slots into M4/M5 after the CTA.
@@ -63,6 +71,8 @@
 | Assistant plan changes   | Rule-based in Demo; Claude tool loop in live (untested); always validated + undo      |
 | Emergency card           | Real data from official pages, needs review; works offline                            |
 | Weather / transit / hours| Weather opt-in (Open-Meteo); transit "not connected"; hours "unverified"              |
+| Journey photos           | Real photos, credits pending; spots needs-review                                      |
+| City map window          | Real OSM tiles + our restaurant data (samples + needs-review); stays are dummies      |
 | Travel times             | Estimates from straight-line distance and mode speed                                  |
 
 ## Known notes

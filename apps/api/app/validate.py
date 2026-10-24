@@ -11,7 +11,7 @@ long transfers, and stops spread far apart are flagged, never hidden.
 from __future__ import annotations
 
 from .data import PlaceData, distance_km
-from .schema import Day, Flag, Itinerary, RawDay, RawPlan, Stay, Stop, Transport
+from .schema import PACE_STOPS, Day, Flag, Itinerary, Meals, RawDay, RawPlan, Stay, Stop, Transport
 
 MAX_COMFORTABLE_STOPS = 5
 #: Rough door-to-door speeds in km/h, used only for labelled estimates.
@@ -52,6 +52,16 @@ def _ground_stop(raw, data: PlaceData, day_city: str, flags: list[Flag]) -> Stop
             Flag(code="unknown-place", message=f"{data.food[food_id].title} is not in this day's city; reference removed.")
         )
         food_id = None
+    lat = lng = None
+    if food_id is not None:
+        lat, lng = data.food[food_id].lat, data.food[food_id].lng
+    elif heritage_id is not None:
+        lat, lng = data.heritage[heritage_id].lat, data.heritage[heritage_id].lng
+    else:
+        # A named layer spot in this city (anime / regional) has real coordinates too.
+        spot = next((s for s in data.layers_for(day_city) if s.name == raw.name), None)
+        if spot is not None:
+            lat, lng = spot.lat, spot.lng
     return Stop(
         name=raw.name,
         kind=raw.kind,
@@ -59,6 +69,10 @@ def _ground_stop(raw, data: PlaceData, day_city: str, flags: list[Flag]) -> Stop
         heritageId=heritage_id,
         note=raw.note,
         inOurData=food_id is not None or heritage_id is not None,
+        slot=raw.slot,
+        durationMinutes=raw.durationMinutes,
+        lat=lat,
+        lng=lng,
     )
 
 
@@ -79,8 +93,11 @@ def ground_day(raw: RawDay, data: PlaceData, previous_city: str | None) -> Day |
         if km > LONG_TRANSFER_KM and raw.transport.mode != "flight":
             flags.append(Flag(code="long-transfer", message=f"About {km} km from the previous city; consider flying."))
 
-    if len(stops) > MAX_COMFORTABLE_STOPS:
-        flags.append(Flag(code="overpacked", message=f"{len(stops)} stops is a lot for one day."))
+    # The pace sets how many stops are comfortable (team guide: relaxed 2-3, fast 5-6).
+    comfortable = PACE_STOPS[raw.pace][1] if raw.pace else MAX_COMFORTABLE_STOPS
+    if len(stops) > comfortable:
+        pace = f" at a {raw.pace} pace" if raw.pace else ""
+        flags.append(Flag(code="overpacked", message=f"{len(stops)} stops is a lot for one day{pace}."))
     elif hours is not None and hours > 3.5 and len(stops) > 3:
         flags.append(
             Flag(code="overpacked", message=f"About {hours} h of travel plus {len(stops)} stops; consider fewer stops.")
@@ -115,6 +132,8 @@ def ground_day(raw: RawDay, data: PlaceData, previous_city: str | None) -> Day |
         foodReasons=raw.foodReasons,
         tips=raw.tips,
         flags=flags,
+        meals=Meals(**raw.meals.model_dump()),
+        pace=raw.pace,
     )
 
 

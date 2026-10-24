@@ -7,19 +7,18 @@ import { getDeviceProfile } from '../../lib/device';
 import { navigate } from '../../lib/router';
 import { useAppStore } from '../../store/useAppStore';
 import { PersonaIcon } from '../persona/PersonaIcon';
-import { CityCard } from './CityCard';
-import { CityList } from './CityList';
-import { cityById } from './data';
 import { GuidePanel } from './GuidePanel';
 import { ItineraryPanel } from './ItineraryPanel';
 import { LayerToggles } from './LayerToggles';
-import { usePlannerStore, visibleDays } from './usePlannerStore';
+import { usePlannerStore } from './usePlannerStore';
 import { ToolDialogs } from '../tools/ToolDialogs';
 import { ToolLauncher } from '../tools/ToolLauncher';
 import { TripPrint } from '../export/TripPrint';
+import { SchedulePrint } from '../schedule/SchedulePrint';
 import { UndoToast } from '../assistant/UndoToast';
 
 const MapCanvas = lazy(() => import('./map/MapCanvas'));
+const StreetMap = lazy(() => import('./map/StreetMap'));
 
 function useIsDesktop(): boolean {
   const query = '(min-width: 1024px)';
@@ -41,7 +40,7 @@ function MapFallback({ title }: { title: string }) {
   );
 }
 
-/** Left panel: who is travelling, the AI guide, map layers, and the sample route preview. */
+/** Side panel: who is travelling, the AI guide with the day cards, map layers, and the sample route preview. */
 function TripPanel() {
   const { t } = useTranslation();
   const user = useAppStore((s) => s.user);
@@ -51,6 +50,7 @@ function TripPanel() {
   const setShowSampleRoute = useAppStore((s) => s.setShowSampleRoute);
   const signOut = useAppStore((s) => s.signOut);
   const hasPlan = usePlannerStore((s) => s.itinerary !== null || s.previews.length > 0);
+  const focusCity = usePlannerStore((s) => s.focusCity);
 
   return (
     <div className="flex flex-col gap-6">
@@ -75,7 +75,7 @@ function TripPanel() {
         </div>
       </div>
 
-      <GuidePanel />
+      <GuidePanel>{hasPlan ? <ItineraryPanel onShowCity={focusCity} /> : null}</GuidePanel>
 
       <ToolLauncher />
 
@@ -116,132 +116,111 @@ function TripPanel() {
   );
 }
 
-type Tab = 'itinerary' | 'city';
-
-/** Right panel (or sheet body): the itinerary, or details for the selected city. */
-function RightPanel() {
-  const { t } = useTranslation();
-  const selectedCityId = useAppStore((s) => s.selectedCityId);
-  const selectCity = useAppStore((s) => s.selectCity);
-  const selectedDay = usePlannerStore((s) => s.selectedDay);
-  const days = usePlannerStore((s) => visibleDays(s));
-  const focusCity = usePlannerStore((s) => s.focusCity);
-  const hasPlan = days.length > 0;
-  const [tab, setTab] = useState<Tab>(hasPlan ? 'itinerary' : 'city');
-  const city = selectedCityId ? cityById(selectedCityId) : undefined;
-
-  // A city that is part of the plan highlights its day; any other city opens its details.
-  useEffect(() => {
-    if (!hasPlan) return setTab('city');
-    if (selectedCityId && !days.some((d) => d.cityId === selectedCityId)) setTab('city');
-    else if (selectedDay !== null) setTab('itinerary');
-  }, [selectedCityId, selectedDay, hasPlan, days]);
-
-  const showCity = (cityId: string) => {
-    focusCity(cityId);
-    setTab('city');
-  };
-
-  return (
-    <div className="flex flex-col gap-4">
-      {hasPlan ? (
-        <div
-          role="tablist"
-          aria-label={t('planner.cityPanel')}
-          className="flex gap-1 rounded-full bg-blush p-1"
-        >
-          {(['itinerary', 'city'] as const).map((k) => (
-            <button
-              key={k}
-              type="button"
-              role="tab"
-              aria-selected={tab === k}
-              onClick={() => setTab(k)}
-              className={`flex-1 rounded-full px-3 py-1.5 text-sm font-semibold transition-colors ${
-                tab === k ? 'bg-paper text-plum shadow-soft' : 'text-mist hover:text-plum'
-              }`}
-            >
-              {t(k === 'itinerary' ? 'trip.tabItinerary' : 'trip.tabCity')}
-            </button>
-          ))}
-        </div>
-      ) : null}
-      {tab === 'itinerary' && hasPlan ? (
-        <ItineraryPanel onShowCity={showCity} />
-      ) : city ? (
-        <CityCard city={city} onClose={() => selectCity(null)} />
-      ) : (
-        <CityList />
-      )}
-    </div>
-  );
-}
-
 /**
- * The 3D planner. Desktop: trip panel | map | city panel. Mobile: full-screen
- * map with a draggable bottom sheet. Without WebGL the flat SVG map stands in.
+ * The 3D planner. Desktop: map | trip panel. Mobile: full-screen map with a
+ * draggable bottom sheet. Without WebGL the flat SVG map stands in.
  */
 export function PlannerPage() {
   const { t } = useTranslation();
   const desktop = useIsDesktop();
   const { webgl } = getDeviceProfile();
-  const selectedCityId = useAppStore((s) => s.selectedCityId);
   const user = useAppStore((s) => s.user);
   const hasPlan = usePlannerStore((s) => s.itinerary !== null || s.previews.length > 0);
+  // Team guide 2.6: switch between the 3D archipelago and a 2D street map.
+  const [mapMode, setMapMode] = useState<'3d' | 'street'>('3d');
   if (!user) return null;
 
-  const map = webgl ? (
-    <SceneErrorBoundary fallback={<MapFallback title={t('planner.mapTitle')} />}>
-      <Suspense fallback={<MapFallback title={t('planner.mapTitle')} />}>
+  const loading = <MapFallback title={t('planner.mapTitle')} />;
+  const threeD = webgl ? (
+    <SceneErrorBoundary fallback={loading}>
+      <Suspense fallback={loading}>
         <MapCanvas />
       </Suspense>
     </SceneErrorBoundary>
   ) : (
-    <MapFallback title={t('planner.mapTitle')} />
+    loading
+  );
+  const map = (
+    <>
+      {mapMode === 'street' ? (
+        <Suspense fallback={loading}>
+          <StreetMap />
+        </Suspense>
+      ) : (
+        threeD
+      )}
+      <div
+        role="group"
+        aria-label={t('streetMap.toggle')}
+        className={`absolute z-20 flex gap-1 rounded-full bg-plum/85 p-1 shadow-lift backdrop-blur-sm ${
+          mapMode === 'street' ? 'bottom-8 right-3' : 'left-3 top-3'
+        }`}
+      >
+        {(['3d', 'street'] as const).map((m) => (
+          <button
+            key={m}
+            type="button"
+            aria-pressed={mapMode === m}
+            onClick={() => setMapMode(m)}
+            className={`rounded-full px-3 py-1 text-xs font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold ${
+              mapMode === m ? 'bg-paper text-plum' : 'text-paper/80 hover:text-paper'
+            }`}
+          >
+            {t(`streetMap.modes.${m}`)}
+          </button>
+        ))}
+      </div>
+    </>
   );
 
   if (desktop) {
     return (
+      // The single row is capped at the viewport (minmax(0,1fr)), so the panel scrolls inside
+      // itself instead of stretching the page.
       <main
         id="main"
-        className="grid h-[100svh] grid-cols-[290px_minmax(0,1fr)_330px] xl:grid-cols-[340px_minmax(0,1fr)_400px] overflow-hidden pt-[61px]"
+        className="relative grid h-[100svh] grid-cols-[minmax(0,1fr)_360px] grid-rows-[minmax(0,1fr)] overflow-hidden pt-[var(--nav-h,61px)] xl:grid-cols-[minmax(0,1fr)_420px]"
       >
-        <aside
-          aria-label={t('planner.tripPanel')}
-          className="overflow-y-auto border-r border-blush bg-paper p-5 xl:p-6"
+        <section
+          id="planner-map"
+          aria-label={t('planner.mapTitle')}
+          className="relative min-h-0 bg-plum"
         >
-          <TripPanel />
-        </aside>
-        <section aria-label={t('planner.mapTitle')} className="relative min-h-0 bg-plum">
           {map}
         </section>
         <aside
-          aria-label={t('planner.cityPanel')}
-          className="overflow-y-auto border-l border-blush bg-paper p-4 xl:p-6"
+          aria-label={t('planner.tripPanel')}
+          data-lenis-prevent
+          data-scroll-box
+          className="relative min-h-0 overflow-y-auto overscroll-contain border-l border-blush bg-paper p-5 xl:p-6"
         >
-          <RightPanel />
+          <TripPanel />
         </aside>
         <ToolDialogs />
         <TripPrint />
+        <SchedulePrint />
         <UndoToast />
       </main>
     );
   }
 
   return (
-    <main id="main" className="relative h-[100svh] overflow-hidden pt-[61px]">
-      <section aria-label={t('planner.mapTitle')} className="relative h-full bg-plum">
+    <main id="main" className="relative h-[100svh] overflow-hidden pt-[var(--nav-h,61px)]">
+      <section
+        id="planner-map"
+        aria-label={t('planner.mapTitle')}
+        className="relative h-full bg-plum"
+      >
         {map}
       </section>
-      <BottomSheet label={t('planner.sheet')} open={selectedCityId || hasPlan ? 'half' : 'peek'}>
-        <div className="space-y-8 pt-2">
-          {selectedCityId || hasPlan ? <RightPanel /> : null}
+      <BottomSheet label={t('planner.sheet')} open={hasPlan ? 'half' : 'peek'}>
+        <div className="pt-2">
           <TripPanel />
-          {selectedCityId || hasPlan ? null : <RightPanel />}
         </div>
       </BottomSheet>
       <ToolDialogs />
       <TripPrint />
+      <SchedulePrint />
       <UndoToast />
     </main>
   );

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useTools, type Tool } from './useTools';
 
-const ICONS: Record<Exclude<Tool, 'book'>, string> = {
+const ICONS: Record<Exclude<Tool, 'book' | 'schedule'>, string> = {
   trips: 'M5 4h14v16l-7-4-7 4z',
   scan: 'M4 7V5a1 1 0 011-1h2M17 4h2a1 1 0 011 1v2M20 17v2a1 1 0 01-1 1h-2M7 20H5a1 1 0 01-1-1v-2M7 12h10',
   eat: 'M7 3v8a2 2 0 002 2v8M11 3v6M5 3v6M17 3c-1.7 1.3-2.5 3.3-2.5 6v4H17v8',
@@ -14,7 +14,7 @@ export function ToolLauncher() {
   const open = useTools((s) => s.open);
 
   return (
-    <section aria-labelledby="tools-title">
+    <section id="tools" aria-labelledby="tools-title" className="scroll-mt-2">
       <h2 id="tools-title" className="eyebrow text-rose">
         {t('tools.title')}
       </h2>

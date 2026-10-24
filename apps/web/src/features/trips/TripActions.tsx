@@ -1,3 +1,4 @@
+import { useTripPrefs } from '../planner/tripPrefs';
 import { useId, useState, type FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAppStore } from '../../store/useAppStore';
@@ -64,7 +65,8 @@ export function TripActions({ itinerary }: { itinerary: Itinerary }) {
     setStatus(t('trips.updated'));
   };
 
-  const share = whatsappUrl(shareText(tripName, itinerary, t));
+  const groupDiets = useTripPrefs((s) => s.prefs.diets);
+  const share = whatsappUrl(shareText(tripName, itinerary, t, [diet, ...groupDiets]));
 
   return (
     <div className="rounded-2xl border border-blush bg-white/70 p-3">

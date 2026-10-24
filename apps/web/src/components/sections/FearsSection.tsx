@@ -6,7 +6,7 @@ import { PhrasePreview } from '../../features/fears/PhrasePreview';
 import { VisaChecklist } from '../../features/fears/VisaChecklist';
 import { RootsTeaser } from '../../features/fears/RootsTeaser';
 import { SectionHeader } from './SectionHeader';
-import type { FearId } from '../../scenes/journeyState';
+import type { FearId } from '../../scenes/fears';
 
 const FEARS: { id: FearId; preview: ReactNode }[] = [
   { id: 'food', preview: <LazyFoodScanPreview /> },

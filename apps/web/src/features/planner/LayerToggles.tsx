@@ -12,7 +12,7 @@ export function LayerToggles() {
   const toggle = useAppStore((s) => s.toggleLayer);
 
   return (
-    <fieldset>
+    <fieldset id="map-layers" className="scroll-mt-2">
       <legend className="eyebrow mb-3 text-rose">{t('planner.layersTitle')}</legend>
       <ul className="space-y-2">
         {ORDER.map((l) => {

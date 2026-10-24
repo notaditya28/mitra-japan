@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useTranslation } from 'react-i18next';
 import { getDeviceProfile } from '../../../lib/device';
@@ -15,6 +15,8 @@ import { LayerPins, type Pin } from './LayerPins';
 import { MapCameraRig } from './MapCameraRig';
 import { LAND_HEIGHT, lngLatToWorld } from './mapSpace';
 import { RouteLine } from './RouteLine';
+import { CityInsightCard } from './CityInsightCard';
+import { StopMarker } from './StopMarker';
 import { Sea } from './Sea';
 
 const FUJI = lngLatToWorld(138.7274, 35.3606);
@@ -27,6 +29,7 @@ export default function MapCanvas() {
   const layers = useAppStore((s) => s.layers);
   const selectedCityId = useAppStore((s) => s.selectedCityId);
   const focusCity = usePlannerStore((s) => s.focusCity);
+  const resetCamera = usePlannerStore((s) => s.resetCamera);
   const focusDay = usePlannerStore((s) => s.focusDay);
   const selectedDay = usePlannerStore((s) => s.selectedDay);
   const planDays = usePlannerStore((s) => visibleDays(s));
@@ -37,9 +40,11 @@ export default function MapCanvas() {
   );
   const hoverChip = useRef<HTMLDivElement>(null);
 
-  const selectedPrefecture = useMemo(() => {
+  // Any prefecture can be selected (it turns see-through); choosing a city selects its prefecture.
+  const [selectedPrefecture, setSelectedPrefecture] = useState<string | null>(null);
+  useEffect(() => {
     const c = CITIES.find((x) => x.id === selectedCityId);
-    return c ? (prefectureAt(c.lng, c.lat) ?? null) : null;
+    if (c) setSelectedPrefecture(prefectureAt(c.lng, c.lat) ?? null);
   }, [selectedCityId]);
 
   const pins = useMemo(
@@ -77,8 +82,9 @@ export default function MapCanvas() {
   );
 
   const onSelectPrefecture = (prefId: string) => {
+    setSelectedPrefecture(prefId);
     const city = CITIES.find((c) => prefectureAt(c.lng, c.lat) === prefId);
-    if (city) focusCity(city.id);
+    focusCity(city ? city.id : null);
   };
 
   return (
@@ -89,7 +95,10 @@ export default function MapCanvas() {
         frameloop={visible ? 'always' : 'never'}
         gl={{ antialias: tier !== 'low' }}
         camera={{ position: [1, 21, 18.5], fov: 40, near: 0.1, far: 300 }}
-        onPointerMissed={() => focusCity(null)}
+        onPointerMissed={() => {
+          setSelectedPrefecture(null);
+          focusCity(null);
+        }}
         onCreated={(state) => {
           // Dev-only handle for inspecting the map scene from the console.
           if (import.meta.env.DEV) Object.assign(window, { __map: state });
@@ -134,13 +143,25 @@ export default function MapCanvas() {
             dayLabel={(n) => t('planner.day', { n })}
           />
         ) : null}
+        <StopMarker />
         <MapCameraRig selectedCityId={selectedCityId} />
       </Canvas>
       <div
         ref={hoverChip}
         aria-hidden="true"
-        className="pointer-events-none absolute left-4 top-4 rounded-full bg-plum/85 px-3 py-1.5 text-xs font-semibold text-paper opacity-0 shadow-lift transition-opacity"
+        className="pointer-events-none absolute left-4 top-14 rounded-full bg-plum/85 px-3 py-1.5 text-xs font-semibold text-paper opacity-0 shadow-lift transition-opacity"
       />
+      <button
+        type="button"
+        onClick={() => {
+          setSelectedPrefecture(null);
+          resetCamera();
+        }}
+        className="absolute right-3 top-3 z-10 rounded-full bg-plum/85 px-3 py-1.5 text-xs font-semibold text-paper shadow-lift backdrop-blur-sm hover:bg-plum focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
+      >
+        {t('planner.resetCamera')}
+      </button>
+      <CityInsightCard cityId={selectedCityId} />
       <p className="pointer-events-none absolute bottom-3 left-1/2 hidden -translate-x-1/2 rounded-full bg-plum/70 px-3 py-1 text-[11px] text-blush md:block">
         {t('planner.mapHint')}
       </p>

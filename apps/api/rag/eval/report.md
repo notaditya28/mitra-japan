@@ -1,6 +1,6 @@
 # Mitra Japan assistant: evaluation report
 
-Generated 2026-10-24T17:22:54 · mode: **demo** · cases: 77
+Generated 2026-10-24T22:18:23 · mode: **demo** · cases: 77
 
 Thresholds were tuned on the **dev** split only; **held-out** numbers are the honest ones.
 Groundedness here is a lexical check (≥60% of a cited fact's words appear in the cited chunk). It is
@@ -21,8 +21,8 @@ in live mode for an LLM judge, and spot-check by hand (sample below).
 | patch_validity | 100% | 100% | 100% |
 | unaffected_preserved | 100% | 100% | 100% |
 | safety_checks | 100% | 100% | 100% |
-| latency_p50_ms | 206.0 | 185 | 204 |
-| latency_p95_ms | 375 | 287 | 356 |
+| latency_p50_ms | 8.0 | 8 | 8 |
+| latency_p95_ms | 11 | 12 | 12 |
 | passed | 58 | 18 | 76 |
 | cases | 58 | 19 | 77 |
 

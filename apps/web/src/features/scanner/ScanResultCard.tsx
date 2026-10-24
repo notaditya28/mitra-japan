@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { VerdictPill } from '../../components/VerdictPill';
+import { useAppStore } from '../../store/useAppStore';
+import { practicalAdvice, uncertaintyNotes } from './analysis';
 import { explainScan } from './explain';
 import type { ScanResult, Verdict } from './matchIngredients';
 import type { ScanExplanation } from './scanApi';
@@ -35,6 +37,9 @@ export function ScanResultCard({
   onStaffCard: () => void;
 }) {
   const { t } = useTranslation();
+  const diet = useAppStore((s) => s.diet);
+  const notes = uncertaintyNotes(result, verdict, lowConfidence);
+  const advice = practicalAdvice(result, verdict, diet);
   const ruleLabel = (rule: 'avoid' | 'ask' | null) =>
     rule === 'avoid'
       ? t('scanner.rule.avoid')
@@ -82,6 +87,9 @@ export function ScanResultCard({
                 </span>
                 <span className="shrink-0 text-xs font-bold">{ruleLabel(m.rule)}</span>
               </div>
+              <p className="mt-0.5 text-[10px] uppercase tracking-wide opacity-70">
+                {t(`scanner.severity.${m.severity}`)} · {t(`scanner.matchedBy.${m.matchedBy}`)}
+              </p>
               {m.rule === 'ask' && m.ingredient.ambiguity ? (
                 <p className="mt-1 text-xs text-mist">{m.ingredient.ambiguity}</p>
               ) : null}
@@ -106,6 +114,26 @@ export function ScanResultCard({
           </ul>
         </div>
       ) : null}
+
+      {notes.length > 0 ? (
+        <div className="mt-3">
+          <p className="text-xs font-semibold text-plum">{t('scanner.notesTitle')}</p>
+          <ul className="mt-1 list-disc space-y-0.5 pl-5 text-xs text-ink">
+            {notes.map((n, i) => (
+              <li key={`${n.key}-${i}`}>{t(n.key, n.values)}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      <div className="mt-3">
+        <p className="text-xs font-semibold text-plum">{t('scanner.adviceTitle')}</p>
+        <ul className="mt-1 list-disc space-y-0.5 pl-5 text-xs text-ink">
+          {advice.map((n) => (
+            <li key={n.key}>{t(n.key, n.values)}</li>
+          ))}
+        </ul>
+      </div>
 
       <p className="mt-4 text-xs leading-snug text-mist">{t('scanner.caveat')}</p>
 

@@ -12,9 +12,20 @@ export type Rule = 'avoid' | 'ask';
  */
 export type Verdict = 'clear' | 'conflict' | 'unverified';
 
+/** Which of the dictionary's five scripts matched (team guide: kanji, kana, romaji, English). */
+export type MatchedBy = 'kanji' | 'kana' | 'romaji' | 'english' | 'custom';
+
+/** critical = conflicts with the diet, warning = can't tell, info = listed, no conflict. */
+export type Severity = 'critical' | 'warning' | 'info';
+
 export interface Ingredient {
   id: string;
+  /** Kanji and kana spellings and aliases. */
   terms: string[];
+  /** Romaji spellings, matched as whole words in Latin-script text. */
+  romaji: string[];
+  /** English names, matched as whole words in Latin-script text. */
+  english: string[];
   reading: string;
   en: string;
   category: string;
@@ -28,6 +39,8 @@ export interface Match {
   term: string;
   index: number;
   rule: Rule | null;
+  matchedBy: MatchedBy;
+  severity: Severity;
 }
 
 /** A user-defined restriction, e.g. { term: 'きのこ', label: 'Mushrooms' }. */
@@ -47,22 +60,38 @@ export interface ScanResult {
 
 const INGREDIENTS: Ingredient[] = dictionary.ingredients as Ingredient[];
 const MENU_WORDS = [...dictionary.menuWords.terms].sort((a, b) => b.length - a.length);
+const LATIN_STOP = new Set(dictionary.latinWords.terms);
+
+const KANJI = /[㐀-鿿]/;
+const byScript = (term: string): MatchedBy => (KANJI.test(term) ? 'kanji' : 'kana');
 
 // Longest terms first so 昆布だし beats だし and 牛乳 beats 牛.
 const TERMS = INGREDIENTS.flatMap((ingredient) =>
-  ingredient.terms.map((term) => ({ term, ingredient })),
+  ingredient.terms.map((term) => ({ term, ingredient, by: byScript(term) })),
 ).sort((a, b) => b.term.length - a.term.length);
 
-/** Any kana or kanji at all: without them there is nothing we can check. */
+const LATIN_TERMS = INGREDIENTS.flatMap((ingredient) => [
+  ...ingredient.romaji.map((term) => ({ term, ingredient, by: 'romaji' as const })),
+  ...ingredient.english.map((term) => ({ term, ingredient, by: 'english' as const })),
+]).sort((a, b) => b.term.length - a.term.length);
+
+/** Any kana or kanji at all. */
 const JAPANESE = /[぀-ヿ㐀-鿿]/;
 const JAPANESE_CHAR = /^[぀-ヿ㐀-鿿]$/u;
+const LATIN = /[a-z]/i;
+const LATIN_CHAR = /^[a-z]$/;
 /** Separators between ingredients on a menu or label. */
 const SEPARATOR = /[、，,・／/\s()（）「」『』【】［］[\]。.:：;；]/;
+
+export const severityFor = (rule: Rule | null): Severity =>
+  rule === 'avoid' ? 'critical' : rule === 'ask' ? 'warning' : 'info';
 
 function customIngredient(c: CustomRestriction): Ingredient {
   return {
     id: `custom:${c.term}`,
     terms: [c.term],
+    romaji: [],
+    english: [],
     reading: '',
     en: c.label,
     category: 'custom',
@@ -73,29 +102,48 @@ function customIngredient(c: CustomRestriction): Ingredient {
 }
 
 /**
- * Find dictionary ingredients in Japanese text and judge them for a diet.
- * Each character can belong to only one match, so overlapping shorter terms
- * inside an already-matched longer term are ignored. Custom restrictions are
- * always treated as conflicts.
+ * Lower-case and strip accents one character at a time, so indexes still line up
+ * with the original text (ō → o, Ā → a).
+ */
+function foldLatin(text: string): string {
+  let out = '';
+  for (const ch of text) {
+    const base = ch.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase();
+    // Keep one output unit per input unit so positions match.
+    out += (base.charAt(0) || ch).padEnd(ch.length, ' ');
+  }
+  return out;
+}
+
+const isWordChar = (s: string, i: number) => LATIN_CHAR.test(s.charAt(i));
+
+/**
+ * Find dictionary ingredients in Japanese, romaji or English text and judge them for a
+ * diet. Each character can belong to only one match, so overlapping shorter terms inside
+ * an already-matched longer term are ignored. Custom restrictions are always conflicts.
  */
 export function matchIngredients(
   text: string,
   diet: Diet,
   custom: CustomRestriction[] = [],
 ): ScanResult {
-  if (!JAPANESE.test(text))
+  const hasJapanese = JAPANESE.test(text);
+  if (!hasJapanese && !LATIN.test(text))
     return { matches: [], verdict: 'unverified', unknown: [], reason: 'unreadable' };
 
   const taken = new Array<boolean>(text.length).fill(false);
   const matches: Match[] = [];
   const customTerms = custom
     .filter((c) => c.term.trim().length > 0)
-    .map((c) => ({ term: c.term.trim(), ingredient: customIngredient(c), custom: true }));
-  const all = [...customTerms, ...TERMS.map((t) => ({ ...t, custom: false }))].sort(
-    (a, b) => b.term.length - a.term.length,
-  );
+    .map((c) => ({ term: c.term.trim(), ingredient: customIngredient(c), by: 'custom' as const }));
+  const all = [...customTerms, ...TERMS].sort((a, b) => b.term.length - a.term.length);
 
-  for (const { term, ingredient, custom: isCustom } of all) {
+  const record = (ingredient: Ingredient, term: string, index: number, by: MatchedBy) => {
+    const rule: Rule | null = by === 'custom' ? 'avoid' : (ingredient.rules[diet] ?? null);
+    matches.push({ ingredient, term, index, rule, matchedBy: by, severity: severityFor(rule) });
+  };
+
+  for (const { term, ingredient, by } of all) {
     let from = 0;
     for (;;) {
       const index = text.indexOf(term, from);
@@ -103,13 +151,28 @@ export function matchIngredients(
       from = index + term.length;
       if (taken.slice(index, index + term.length).some(Boolean)) continue;
       taken.fill(true, index, index + term.length);
-      const rule: Rule | null = isCustom ? 'avoid' : (ingredient.rules[diet] ?? null);
-      matches.push({ ingredient, term, index, rule });
+      record(ingredient, term, index, by);
+    }
+  }
+
+  // Latin-script text (romaji or English, as on bilingual packaging): whole words only.
+  const folded = foldLatin(text);
+  for (const { term, ingredient, by } of LATIN_TERMS) {
+    let from = 0;
+    for (;;) {
+      const index = folded.indexOf(term, from);
+      if (index === -1) break;
+      from = index + term.length;
+      const end = index + term.length;
+      if (isWordChar(folded, index - 1) || isWordChar(folded, end)) continue;
+      if (taken.slice(index, end).some(Boolean)) continue;
+      taken.fill(true, index, end);
+      record(ingredient, text.slice(index, end), index, by);
     }
   }
 
   matches.sort((a, b) => a.index - b.index);
-  const unknown = unknownWords(text, taken);
+  const unknown = [...unknownWords(text, taken), ...unknownLatin(folded, taken)];
   const verdict = verdictFor(matches);
   if (verdict === 'clear' && unknown.length > 0)
     return { matches: dedupe(matches), verdict: 'unverified', unknown, reason: 'unknown' };
@@ -150,6 +213,26 @@ function unknownWords(text: string, taken: boolean[]): string[] {
     const ch = text.charAt(i);
     if (SEPARATOR.test(ch) || covered[i] || skip[i] || !JAPANESE_CHAR.test(ch)) flush();
     else current += ch;
+  }
+  flush();
+  return [...new Set(words)];
+}
+
+/** Latin words that are neither ingredients nor label words ("ingredients", "contains" …). */
+function unknownLatin(folded: string, taken: boolean[]): string[] {
+  const words: string[] = [];
+  let current = '';
+  let touched = false;
+  const flush = () => {
+    if (current.length > 1 && !touched && !LATIN_STOP.has(current)) words.push(current);
+    current = '';
+    touched = false;
+  };
+  for (let i = 0; i < folded.length; i++) {
+    if (isWordChar(folded, i)) {
+      current += folded.charAt(i);
+      if (taken[i]) touched = true;
+    } else flush();
   }
   flush();
   return [...new Set(words)];

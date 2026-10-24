@@ -1,7 +1,43 @@
 {
-  "_note": "SAMPLE SCANS: menu lines and package labels written for the demo, so the scanner works without a camera or OCR. Ingredient lists are typical of common recipes, not of any specific restaurant or product. Always shown with a 'Sample scan' label.",
+  "_note": "SAMPLE SCANS: menu lines and package labels written for the demo, so the scanner works without a camera or OCR. Ingredient lists are typical of common recipes, not of any specific restaurant or product. Always shown with a 'Sample scan' label. The four 'preset' packaging labels follow the team guide's demo list; their text is illustrative, not copied from real products.",
   "status": "sample",
   "scans": [
+    {
+      "id": "pack-miso-soup",
+      "kind": "label",
+      "preset": true,
+      "ja": "即席みそ汁",
+      "en": "Instant miso soup (with fish broth)",
+      "menuText": "即席みそ汁\n原材料名：米みそ、乾燥わかめ、乾燥ねぎ、かつおエキス、昆布エキス、調味料（アミノ酸等）",
+      "looksVeg": true
+    },
+    {
+      "id": "pack-zaru-soba",
+      "kind": "label",
+      "preset": true,
+      "ja": "ざるそば",
+      "en": "Soba with dashi dipping sauce",
+      "menuText": "ざるそば つゆ付き\n原材料名：めん（小麦粉、そば粉、食塩）、つゆ（しょうゆ、砂糖、みりん、かつおぶしエキス、食塩）",
+      "looksVeg": true
+    },
+    {
+      "id": "pack-rice-cracker",
+      "kind": "label",
+      "preset": true,
+      "ja": "米菓",
+      "en": "Rice cracker (with gelatin)",
+      "menuText": "米菓\n原材料名：うるち米、しょうゆ、砂糖、ゼラチン、でん粉",
+      "looksVeg": true
+    },
+    {
+      "id": "pack-matcha-mochi",
+      "kind": "label",
+      "preset": true,
+      "ja": "抹茶もち",
+      "en": "Green tea mochi (plant ingredients)",
+      "menuText": "抹茶もち\n原材料名：もち米、砂糖、抹茶、寒天、片栗粉",
+      "looksVeg": true
+    },
     {
       "id": "yasai-ramen",
       "kind": "menu",

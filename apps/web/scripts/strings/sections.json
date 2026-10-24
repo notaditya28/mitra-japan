@@ -1,0 +1,44 @@
+{
+  "en": {
+    "sections": {
+      "journeyLabel": "Jump to a part of the journey",
+      "plannerLabel": "Jump to a part of the planner",
+      "start": "Start",
+      "flight": "Delhi → Japan",
+      "plan": "Plan my trip",
+      "map": "Map",
+      "planTrip": "Trip options",
+      "itinerary": "Itinerary",
+      "ask": "Ask Mitra",
+      "layers": "Map layers"
+    }
+  },
+  "hi": {
+    "sections": {
+      "journeyLabel": "सफ़र के किसी हिस्से पर जाएँ",
+      "plannerLabel": "प्लानर के किसी हिस्से पर जाएँ",
+      "start": "शुरुआत",
+      "flight": "दिल्ली → जापान",
+      "plan": "मेरी यात्रा बनाएँ",
+      "map": "नक्शा",
+      "planTrip": "यात्रा के विकल्प",
+      "itinerary": "यात्रा कार्यक्रम",
+      "ask": "मित्रा से पूछें",
+      "layers": "नक्शे की परतें"
+    }
+  },
+  "gu": {
+    "sections": {
+      "journeyLabel": "સફરના કોઈ ભાગ પર જાઓ",
+      "plannerLabel": "પ્લાનરના કોઈ ભાગ પર જાઓ",
+      "start": "શરૂઆત",
+      "flight": "દિલ્હી → જાપાન",
+      "plan": "મારો પ્રવાસ બનાવો",
+      "map": "નકશો",
+      "planTrip": "પ્રવાસના વિકલ્પો",
+      "itinerary": "પ્રવાસ કાર્યક્રમ",
+      "ask": "મિત્રાને પૂછો",
+      "layers": "નકશાના સ્તરો"
+    }
+  }
+}

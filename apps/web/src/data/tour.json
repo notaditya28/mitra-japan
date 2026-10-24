@@ -1,0 +1,124 @@
+{
+  "_note": "Stage 1 journey: Delhi -> Tokyo by plane, then each city's spots in order, a Shinkansen ride between cities. Photos come from src/scenes/places/places/<city>/ via scripts/tour_photos.py (manifest: tourPhotos.json). Every spot stays needs-review, and every photo credit stays null, until the owner fills them in. Coordinates are approximate and only place a 'you are here' pin on the city map.",
+  "from": { "id": "delhi", "name": "Delhi", "nameLocal": "दिल्ली", "lat": 28.6139, "lng": 77.209 },
+  "cities": [
+    {
+      "id": "tokyo",
+      "spots": [
+        "tokyo/senso-ji-temple",
+        "tokyo/tsukiji-outer-market",
+        "tokyo/shibuya-scramble-shibuya-sky",
+        "tokyo/meiji-jingu-shrine"
+      ]
+    },
+    {
+      "id": "kyoto",
+      "spots": [
+        "kyoto/fushimi-inari-taisha",
+        "kyoto/sannenzaka-ninenzaka",
+        "kyoto/gion-district-and-pontocho-alley",
+        "kyoto/kiyomizu-dera"
+      ]
+    }
+  ],
+  "trainFear": "language",
+  "spots": {
+    "tokyo/senso-ji-temple": {
+      "name": "Sensō-ji",
+      "nameJa": "浅草寺",
+      "kanji": "浅草寺",
+      "area": "Asakusa",
+      "lat": 35.7148,
+      "lng": 139.7967,
+      "fear": null,
+      "focus": [0.5, 0.55],
+      "status": "needs-review",
+      "photo": { "credit": null, "source": null, "licence": null }
+    },
+    "tokyo/tsukiji-outer-market": {
+      "name": "Tsukiji Outer Market",
+      "nameJa": "築地場外市場",
+      "kanji": "築地",
+      "area": "Tsukiji",
+      "lat": 35.6655,
+      "lng": 139.7707,
+      "fear": "food",
+      "focus": [0.5, 0.6],
+      "status": "needs-review",
+      "photo": { "credit": null, "source": null, "licence": null }
+    },
+    "tokyo/shibuya-scramble-shibuya-sky": {
+      "name": "Shibuya Scramble",
+      "nameJa": "渋谷スクランブル交差点",
+      "kanji": "渋谷",
+      "area": "Shibuya",
+      "lat": 35.6595,
+      "lng": 139.7005,
+      "fear": null,
+      "focus": [0.5, 0.55],
+      "status": "needs-review",
+      "photo": { "credit": null, "source": null, "licence": null }
+    },
+    "tokyo/meiji-jingu-shrine": {
+      "name": "Meiji Jingu",
+      "nameJa": "明治神宮",
+      "kanji": "明治神宮",
+      "area": "Harajuku",
+      "lat": 35.6764,
+      "lng": 139.6993,
+      "fear": null,
+      "focus": [0.5, 0.6],
+      "status": "needs-review",
+      "photo": { "credit": null, "source": null, "licence": null }
+    },
+    "kyoto/fushimi-inari-taisha": {
+      "name": "Fushimi Inari Taisha",
+      "nameJa": "伏見稲荷大社",
+      "kanji": "伏見稲荷",
+      "area": "Fushimi",
+      "lat": 34.9671,
+      "lng": 135.7727,
+      "fear": "visa",
+      "focus": [0.42, 0.55],
+      "status": "needs-review",
+      "photo": { "credit": null, "source": null, "licence": null }
+    },
+    "kyoto/sannenzaka-ninenzaka": {
+      "name": "Sannenzaka & Ninenzaka",
+      "nameJa": "三年坂・二年坂",
+      "kanji": "三年坂",
+      "area": "Higashiyama",
+      "lat": 34.9965,
+      "lng": 135.7811,
+      "fear": null,
+      "focus": [0.5, 0.45],
+      "status": "needs-review",
+      "photo": { "credit": null, "source": null, "licence": null }
+    },
+    "kyoto/gion-district-and-pontocho-alley": {
+      "name": "Gion & Pontochō",
+      "nameJa": "祇園・先斗町",
+      "kanji": "祇園",
+      "area": "Gion",
+      "lat": 35.0037,
+      "lng": 135.775,
+      "fear": null,
+      "focus": [0.5, 0.5],
+      "status": "needs-review",
+      "photoNote": "Owner to confirm the location: the lanterns and signs look like Omoide Yokocho in Shinjuku, Tokyo.",
+      "photo": { "credit": null, "source": null, "licence": null }
+    },
+    "kyoto/kiyomizu-dera": {
+      "name": "Kiyomizu-dera",
+      "nameJa": "清水寺",
+      "kanji": "清水寺",
+      "area": "Higashiyama",
+      "lat": 34.9949,
+      "lng": 135.785,
+      "fear": "foreign",
+      "focus": [0.55, 0.45],
+      "status": "needs-review",
+      "photo": { "credit": null, "source": null, "licence": null }
+    }
+  }
+}

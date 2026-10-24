@@ -33,7 +33,7 @@ interface AppState {
   /** Planner UI state (not persisted). */
   selectedCityId: string | null;
   showSampleRoute: boolean;
-  setPersona: (p: Persona) => void;
+  setPersona: (p: Persona | null) => void;
   setDiet: (d: Diet) => void;
   setLanguage: (l: Language) => void;
   toggleLayer: (l: MapLayer) => void;

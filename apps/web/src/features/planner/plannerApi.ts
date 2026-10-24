@@ -1,6 +1,7 @@
 import sampleItinerary from '../../data/sampleItinerary.json';
 import type { Diet, Language, Persona } from '../../store/useAppStore';
-import { parseDay, parseItinerary, type Day, type Itinerary } from './itinerary';
+import { parseDay, parseItinerary, type Day, type Itinerary, type Pace } from './itinerary';
+import type { Budget, Interest, StartCity } from './tripPrefs';
 
 export const API =
   (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ??
@@ -13,6 +14,13 @@ export interface PlanBody {
   language: Language;
   days?: number;
   previous?: Itinerary;
+  /** Team guide trip inputs (all optional for the API). */
+  startCity?: StartCity;
+  travellers?: number;
+  pace?: Pace | null;
+  budget?: Budget;
+  interests?: Interest[];
+  diets?: Diet[];
 }
 
 export type PlannerErrorCode =
@@ -180,6 +188,7 @@ export interface DayBody {
   persona: Persona | null;
   diet: Diet;
   language: Language;
+  pace?: Pace | null;
 }
 
 export async function regenerateDay(

@@ -9,6 +9,16 @@ import {
   type ServiceMode,
 } from './plannerApi';
 import { cityForDay, dayForCity } from './selection';
+import { useTripPrefs } from './tripPrefs';
+
+/** A stop the map should fly to (only stops with real coordinates). */
+export interface FocusedStop {
+  day: number;
+  index: number;
+  name: string;
+  lat: number;
+  lng: number;
+}
 
 export type Phase = 'idle' | 'planning' | 'ready' | 'error';
 
@@ -32,6 +42,11 @@ interface PlannerState {
   messages: ChatMessage[];
   /** The saved trip this plan was opened from or saved as (see features/trips). */
   activeTripId: string | null;
+  focusedStop: FocusedStop | null;
+  /** Bumped to send the 3D map back to the whole-Japan view. */
+  resetView: number;
+  focusStop: (day: number, index: number) => void;
+  resetCamera: () => void;
   plan: (prompt: string, opts?: { change?: boolean; days?: number }) => Promise<void>;
   regenerate: (day: number, instruction: string) => Promise<void>;
   focusDay: (day: number | null) => void;
@@ -64,6 +79,8 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
   mode: null,
   messages: [],
   activeTripId: null,
+  focusedStop: null,
+  resetView: 0,
 
   async plan(prompt, opts = {}) {
     controller?.abort();
@@ -84,8 +101,23 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
     }));
     useAppStore.getState().setShowSampleRoute(false);
 
+    const prefs = useTripPrefs.getState().prefs;
     await streamPlan(
-      { prompt, persona, diet, language, days: opts.days, previous },
+      {
+        prompt,
+        persona,
+        diet,
+        language,
+        // A change keeps the plan's length unless the traveller asks otherwise.
+        days: opts.days ?? (previous ? undefined : prefs.days),
+        previous,
+        startCity: prefs.startCity,
+        travellers: prefs.travellers,
+        pace: prefs.pace,
+        budget: prefs.budget,
+        interests: prefs.interests,
+        diets: prefs.diets.filter((d) => d !== diet && d !== 'none'),
+      },
       {
         onStatus: (stage, days) =>
           set((s) => ({
@@ -126,6 +158,7 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
       persona,
       diet,
       language,
+      pace: it.days.find((d) => d.day === day)?.pace ?? useTripPrefs.getState().prefs.pace,
     });
     if ('error' in result) {
       set({ regenerating: null, dayError: { day, error: result.error } });
@@ -136,15 +169,38 @@ export const usePlannerStore = create<PlannerState>()((set, get) => ({
     get().focusDay(day);
   },
 
-  focusDay(day) {
+  focusStop(day, index) {
+    const d = visibleDays(get()).find((x) => x.day === day);
+    const s = d?.stops[index];
+    if (!d || !s) return;
     set({ selectedDay: day });
+    useAppStore.getState().selectCity(d.cityId);
+    // Stops without coordinates (free-text suggestions) just focus their city.
+    set({
+      focusedStop:
+        s.lat !== null && s.lng !== null
+          ? { day, index, name: s.name, lat: s.lat, lng: s.lng }
+          : null,
+    });
+  },
+
+  resetCamera() {
+    useAppStore.getState().selectCity(null);
+    set((s) => ({ focusedStop: null, selectedDay: null, resetView: s.resetView + 1 }));
+  },
+
+  focusDay(day) {
+    set({ selectedDay: day, focusedStop: null });
     const city = cityForDay(visibleDays(get()), day);
     if (city) useAppStore.getState().selectCity(city);
   },
 
   focusCity(cityId) {
     useAppStore.getState().selectCity(cityId);
-    set((s) => ({ selectedDay: dayForCity(visibleDays(s), cityId, s.selectedDay) }));
+    set((s) => ({
+      selectedDay: dayForCity(visibleDays(s), cityId, s.selectedDay),
+      focusedStop: null,
+    }));
   },
 
   async checkMode() {

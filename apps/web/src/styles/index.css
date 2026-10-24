@@ -175,6 +175,39 @@
   .print-sub {
     display: block;
   }
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin: 8pt 0;
+  }
+  .print-table th,
+  .print-table td {
+    border: 1px solid #d9b6c3;
+    padding: 5pt 6pt;
+    text-align: left;
+    vertical-align: top;
+  }
+  .print-table th {
+    background: #fbe3ea;
+    color: #4a2238;
+  }
+  .print-table tr {
+    break-inside: avoid;
+  }
+  .print-card {
+    border: 2px solid #c2456e;
+    border-radius: 10pt;
+    padding: 14pt;
+    margin: 10pt 0;
+    font-size: 14pt;
+  }
+  .print-card-ja {
+    font-family: 'Shippori Mincho', serif;
+    font-size: 20pt;
+    color: #4a2238;
+    margin: 8pt 0 2pt;
+  }
   .print-title {
     font-weight: 600;
     margin: 0 0 2pt;

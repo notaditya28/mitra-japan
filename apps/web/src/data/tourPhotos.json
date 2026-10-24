@@ -1,0 +1,68 @@
+{
+  "photos": [
+    {
+      "id": "kyoto/fushimi-inari-taisha",
+      "city": "kyoto",
+      "slug": "fushimi-inari-taisha",
+      "original": "kyoto/Fushimi Inari Taisha.jpg",
+      "width": 7915,
+      "height": 5208
+    },
+    {
+      "id": "kyoto/gion-district-and-pontocho-alley",
+      "city": "kyoto",
+      "slug": "gion-district-and-pontocho-alley",
+      "original": "kyoto/Gion District and Pontocho Alley.jpg",
+      "width": 670,
+      "height": 446
+    },
+    {
+      "id": "kyoto/kiyomizu-dera",
+      "city": "kyoto",
+      "slug": "kiyomizu-dera",
+      "original": "kyoto/Kiyomizu-dera.jpg",
+      "width": 3984,
+      "height": 2656
+    },
+    {
+      "id": "kyoto/sannenzaka-ninenzaka",
+      "city": "kyoto",
+      "slug": "sannenzaka-ninenzaka",
+      "original": "kyoto/Sannenzaka & Ninenzaka.jpg",
+      "width": 4000,
+      "height": 6000
+    },
+    {
+      "id": "tokyo/meiji-jingu-shrine",
+      "city": "tokyo",
+      "slug": "meiji-jingu-shrine",
+      "original": "tokyo/Meiji jingu shrine.jpg",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "id": "tokyo/senso-ji-temple",
+      "city": "tokyo",
+      "slug": "senso-ji-temple",
+      "original": "tokyo/Sensō-ji Temple.jpg",
+      "width": 6000,
+      "height": 4000
+    },
+    {
+      "id": "tokyo/shibuya-scramble-shibuya-sky",
+      "city": "tokyo",
+      "slug": "shibuya-scramble-shibuya-sky",
+      "original": "tokyo/Shibuya Scramble & Shibuya Sky.jpeg",
+      "width": 1200,
+      "height": 1599
+    },
+    {
+      "id": "tokyo/tsukiji-outer-market",
+      "city": "tokyo",
+      "slug": "tsukiji-outer-market",
+      "original": "tokyo/Tsukiji Outer Market.jpg",
+      "width": 3874,
+      "height": 6883
+    }
+  ]
+}

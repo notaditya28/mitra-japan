@@ -1,9 +1,9 @@
 {
-  "_note": "Ingredient dictionary for the Veg-Safe scanner. Terms are matched longest-first so 昆布だし (kombu stock) is not read as fish dashi and 牛乳 (milk) is not read as beef. Per-diet rules: 'avoid' = potential dietary conflict, 'ask' = ambiguous, reported as 'unable to verify'; missing = no listed conflict. 'ambiguity' explains why an ingredient can't be judged from the menu alone.",
+  "_note": "Ingredient dictionary for the Veg-Safe scanner, in five scripts: kanji and kana (`terms`), romaji (`romaji`) and English (`english`), with the reading and English name. Terms are matched longest-first so 昆布だし (kombu stock) is not read as fish dashi and 牛乳 (milk) is not read as beef. Per-diet rules: 'avoid' = potential dietary conflict, 'ask' = ambiguous, reported as 'unable to verify'; missing = no listed conflict. 'ambiguity' explains why an ingredient can't be judged from the text alone. Terms from MITRA_JAPAN_SYSTEM_GUIDE.md were added 2026-10-24; the whole file stays needs-review.",
   "ingredients": [
     {
       "id": "kombu-dashi",
-      "terms": ["昆布だし", "昆布出汁", "こんぶだし", "昆布"],
+      "terms": ["昆布だし", "昆布出汁", "こんぶだし", "昆布", "昆布エキス", "こんぶエキス"],
       "en": "Kombu (kelp) stock",
       "category": "plant",
       "rules": {
@@ -11,11 +11,21 @@
       },
       "note": "Plant-based stock. Usually safe, but some kitchens blend it with bonito.",
       "reading": "kombu dashi",
-      "ambiguity": "Kombu stock is plant-based, but some kitchens blend it with bonito."
+      "ambiguity": "Kombu stock is plant-based, but some kitchens blend it with bonito.",
+      "romaji": ["kombu dashi", "konbu dashi", "kombu"],
+      "english": ["kelp stock", "kelp extract", "kelp"]
     },
     {
       "id": "shiitake-dashi",
-      "terms": ["椎茸だし", "しいたけだし", "椎茸出汁", "椎茸", "しいたけ"],
+      "terms": [
+        "椎茸だし",
+        "しいたけだし",
+        "椎茸出汁",
+        "椎茸",
+        "しいたけ",
+        "しいたけエキス",
+        "椎茸エキス"
+      ],
       "en": "Shiitake mushroom",
       "category": "plant",
       "rules": {
@@ -23,7 +33,9 @@
       },
       "note": "Mushrooms are avoided by many Jains.",
       "reading": "shiitake",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["shiitake dashi", "shiitake"],
+      "english": ["shiitake mushroom"]
     },
     {
       "id": "bonito",
@@ -36,7 +48,12 @@
         "かつおぶし",
         "鰹",
         "かつお",
-        "カツオ"
+        "カツオ",
+        "かつおエキス",
+        "鰹エキス",
+        "かつおぶしエキス",
+        "カツオブシ",
+        "カツオエキス"
       ],
       "en": "Bonito (fish) flakes or stock",
       "category": "fish",
@@ -47,7 +64,9 @@
       },
       "note": "Smoked fish. The most common hidden non-veg ingredient in Japanese food.",
       "reading": "katsuobushi / katsuo dashi",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["katsuobushi", "katsuo dashi", "katsuo"],
+      "english": ["bonito flakes", "bonito extract", "bonito", "skipjack"]
     },
     {
       "id": "dashi",
@@ -61,7 +80,9 @@
       },
       "note": "Unless it says kombu or shiitake, dashi is almost always made with bonito.",
       "reading": "dashi",
-      "ambiguity": "Dashi is usually made with bonito (fish) but can be kombu- or shiitake-only. Ask which stock is used."
+      "ambiguity": "Dashi is usually made with bonito (fish) but can be kombu- or shiitake-only. Ask which stock is used.",
+      "romaji": ["dashi"],
+      "english": ["soup stock", "japanese stock"]
     },
     {
       "id": "niboshi",
@@ -75,7 +96,9 @@
       },
       "note": "Used for ramen and miso soup stock.",
       "reading": "niboshi",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["niboshi", "iriko"],
+      "english": ["dried sardines", "dried sardine", "anchovy"]
     },
     {
       "id": "fish",
@@ -102,7 +125,9 @@
       },
       "note": "",
       "reading": "sakana / gyokai",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["sakana", "gyokai", "maguro", "shirasu"],
+      "english": ["fish", "tuna", "salmon", "seafood"]
     },
     {
       "id": "fish-sauce",
@@ -116,7 +141,9 @@
       },
       "note": "",
       "reading": "oisutā sōsu / gyoshō",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["gyosho"],
+      "english": ["fish sauce", "oyster sauce"]
     },
     {
       "id": "shrimp",
@@ -131,7 +158,9 @@
       },
       "note": "Some halal schools avoid shellfish.",
       "reading": "ebi",
-      "ambiguity": "Some halal schools avoid shellfish."
+      "ambiguity": "Some halal schools avoid shellfish.",
+      "romaji": ["ebi"],
+      "english": ["shrimp", "prawn"]
     },
     {
       "id": "milk",
@@ -143,7 +172,9 @@
       },
       "note": "",
       "reading": "gyūnyū / miruku",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["gyunyu", "miruku"],
+      "english": ["milk", "cream", "butter", "cheese", "whey", "milk powder"]
     },
     {
       "id": "pork",
@@ -156,7 +187,9 @@
         "チャーシュー",
         "ベーコン",
         "ハム",
-        "ソーセージ"
+        "ソーセージ",
+        "ポークエキス",
+        "豚肉エキス"
       ],
       "en": "Pork",
       "category": "meat",
@@ -168,11 +201,13 @@
       },
       "note": "Tonkotsu ramen broth is made from pork bones.",
       "reading": "butaniku / tonkotsu",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["butaniku", "tonkotsu", "chashu"],
+      "english": ["pork", "bacon", "ham", "sausage", "pork extract"]
     },
     {
       "id": "lard",
-      "terms": ["ラード", "背脂"],
+      "terms": ["ラード", "背脂", "豚脂"],
       "en": "Lard (pork fat)",
       "category": "meat",
       "rules": {
@@ -183,11 +218,13 @@
       },
       "note": "Often in ramen, fried rice and gyoza even when the dish looks vegetarian.",
       "reading": "rādo",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["rado", "seabura"],
+      "english": ["lard", "pork fat"]
     },
     {
       "id": "beef",
-      "terms": ["牛肉", "牛", "ビーフ", "和牛"],
+      "terms": ["牛肉", "牛", "ビーフ", "和牛", "牛脂", "牛肉エキス", "ビーフエキス"],
       "en": "Beef",
       "category": "meat",
       "rules": {
@@ -199,11 +236,13 @@
       },
       "note": "Halal only if slaughtered accordingly.",
       "reading": "gyūniku",
-      "ambiguity": "Halal only if slaughtered accordingly; ask."
+      "ambiguity": "Halal only if slaughtered accordingly; ask.",
+      "romaji": ["gyuniku", "wagyu", "gyushi"],
+      "english": ["beef", "beef tallow", "tallow", "beef extract"]
     },
     {
       "id": "chicken",
-      "terms": ["鶏肉", "鶏", "チキン", "鶏ガラ"],
+      "terms": ["鶏肉", "鶏", "チキン", "鶏ガラ", "チキンエキス", "鶏エキス"],
       "en": "Chicken",
       "category": "meat",
       "rules": {
@@ -214,7 +253,9 @@
       },
       "note": "Torigara (chicken bone) stock is common in soups.",
       "reading": "toriniku / chikin",
-      "ambiguity": "Halal only if slaughtered accordingly; ask."
+      "ambiguity": "Halal only if slaughtered accordingly; ask.",
+      "romaji": ["toriniku", "chikin", "torigara"],
+      "english": ["chicken", "chicken extract", "chicken stock"]
     },
     {
       "id": "consomme",
@@ -229,7 +270,9 @@
       },
       "note": "Usually chicken or beef based. Ask for the source.",
       "reading": "konsome / buiyon",
-      "ambiguity": "Extract or stock of unstated origin, usually chicken or beef."
+      "ambiguity": "Extract or stock of unstated origin, usually chicken or beef.",
+      "romaji": ["konsome", "buiyon"],
+      "english": ["consomme", "bouillon", "meat extract"]
     },
     {
       "id": "gelatin",
@@ -244,7 +287,9 @@
       },
       "note": "Usually made from pork or beef.",
       "reading": "zerachin",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["zerachin"],
+      "english": ["gelatin", "gelatine"]
     },
     {
       "id": "egg",
@@ -259,7 +304,9 @@
       },
       "note": "Many Indian vegetarians avoid egg. Mayonnaise contains egg.",
       "reading": "tamago",
-      "ambiguity": "Many Indian vegetarians avoid egg; mayonnaise contains egg."
+      "ambiguity": "Many Indian vegetarians avoid egg; mayonnaise contains egg.",
+      "romaji": ["tamago"],
+      "english": ["egg", "eggs", "egg yolk", "egg white", "mayonnaise"]
     },
     {
       "id": "honey",
@@ -272,7 +319,9 @@
       },
       "note": "",
       "reading": "hachimitsu",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["hachimitsu"],
+      "english": ["honey"]
     },
     {
       "id": "alcohol",
@@ -285,11 +334,28 @@
       },
       "note": "Mirin and sake are common in sauces and glazes.",
       "reading": "mirin / sake",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["mirin", "sake", "ryorishu"],
+      "english": ["cooking wine", "rice wine", "alcohol", "wine"]
     },
     {
       "id": "onion",
-      "terms": ["玉ねぎ", "たまねぎ", "玉葱", "長ねぎ", "ねぎ", "ネギ", "葱", "にら", "ニラ", "韮"],
+      "terms": [
+        "玉ねぎ",
+        "たまねぎ",
+        "玉葱",
+        "長ねぎ",
+        "ねぎ",
+        "ネギ",
+        "葱",
+        "にら",
+        "ニラ",
+        "韮",
+        "長ネギ",
+        "浅葱",
+        "あさつき",
+        "らっきょう"
+      ],
       "en": "Onion / spring onion",
       "category": "root",
       "rules": {
@@ -297,7 +363,9 @@
       },
       "note": "Avoided in Jain food.",
       "reading": "tamanegi / negi",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["tamanegi", "negi", "nira"],
+      "english": ["onion", "leek", "spring onion", "scallion", "green onion", "chives"]
     },
     {
       "id": "garlic",
@@ -309,7 +377,9 @@
       },
       "note": "Avoided in Jain food.",
       "reading": "ninniku",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["ninniku"],
+      "english": ["garlic"]
     },
     {
       "id": "root-veg",
@@ -334,7 +404,9 @@
       },
       "note": "Root vegetables are avoided in Jain food.",
       "reading": "jagaimo, ninjin, daikon, shōga",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["jagaimo", "ninjin", "daikon", "shoga", "satsumaimo"],
+      "english": ["potato", "carrot", "radish", "ginger", "sweet potato"]
     },
     {
       "id": "tsuyu",
@@ -349,7 +421,9 @@
         "halal": "ask"
       },
       "note": "Usually dashi-based and often contains mirin.",
-      "ambiguity": "Broth recipe varies by shop; ask whether it uses bonito or mirin."
+      "ambiguity": "Broth recipe varies by shop; ask whether it uses bonito or mirin.",
+      "romaji": ["tsuyu", "mentsuyu", "tentsuyu"],
+      "english": ["dipping sauce", "noodle sauce"]
     },
     {
       "id": "tare",
@@ -364,7 +438,9 @@
         "halal": "ask"
       },
       "note": "A house sauce; ingredients are rarely listed.",
-      "ambiguity": "Can contain meat stock, fish extract, mirin or sake."
+      "ambiguity": "Can contain meat stock, fish extract, mirin or sake.",
+      "romaji": ["tare"],
+      "english": ["glaze"]
     },
     {
       "id": "soup",
@@ -379,7 +455,9 @@
         "halal": "ask"
       },
       "note": "The base is not stated.",
-      "ambiguity": "Ramen and curry soups are often pork, chicken or seafood based."
+      "ambiguity": "Ramen and curry soups are often pork, chicken or seafood based.",
+      "romaji": ["supu"],
+      "english": ["soup"]
     },
     {
       "id": "tofu",
@@ -389,7 +467,9 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["tofu", "aburaage", "yuba"],
+      "english": ["tofu", "bean curd", "fried tofu"]
     },
     {
       "id": "soy",
@@ -399,27 +479,46 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["daizu", "edamame", "natto"],
+      "english": ["soybean", "soybeans", "soy beans", "soy"]
     },
     {
       "id": "rice",
-      "terms": ["ご飯", "ごはん", "白飯", "ライス", "米", "おにぎり", "餅", "もち"],
+      "terms": [
+        "ご飯",
+        "ごはん",
+        "白飯",
+        "ライス",
+        "米",
+        "おにぎり",
+        "餅",
+        "もち",
+        "もち米",
+        "うるち米",
+        "米菓",
+        "精白米"
+      ],
       "reading": "gohan",
       "en": "Rice",
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["kome", "gohan", "mochi", "mochigome"],
+      "english": ["rice", "glutinous rice", "rice cake"]
     },
     {
       "id": "seaweed",
-      "terms": ["わかめ", "ワカメ", "海藻", "海苔", "のり", "ひじき", "もずく"],
+      "terms": ["わかめ", "ワカメ", "海藻", "海苔", "のり", "ひじき", "もずく", "乾燥わかめ"],
       "reading": "wakame",
       "en": "Seaweed",
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["wakame", "nori", "hijiki"],
+      "english": ["seaweed"]
     },
     {
       "id": "vegetables",
@@ -446,14 +545,19 @@
         "オクラ",
         "春菊",
         "水菜",
-        "青菜"
+        "青菜",
+        "貝割れ",
+        "かいわれ",
+        "カイワレ"
       ],
       "reading": "yasai",
       "en": "Vegetables",
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["yasai"],
+      "english": ["vegetables", "vegetable", "cabbage", "tomato", "cucumber", "spinach", "corn"]
     },
     {
       "id": "mushroom",
@@ -474,7 +578,9 @@
         "jain": "avoid"
       },
       "note": "Many Jains avoid mushrooms and fungi.",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["kinoko", "shimeji", "enoki", "maitake"],
+      "english": ["mushroom", "mushrooms"]
     },
     {
       "id": "konnyaku",
@@ -486,7 +592,9 @@
         "jain": "avoid"
       },
       "note": "Made from a root (konjac corm).",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["konnyaku", "shirataki"],
+      "english": ["konjac"]
     },
     {
       "id": "sesame",
@@ -496,7 +604,9 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["goma"],
+      "english": ["sesame"]
     },
     {
       "id": "bean-paste",
@@ -506,17 +616,21 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["anko", "azuki"],
+      "english": ["red bean paste", "red bean", "adzuki"]
     },
     {
       "id": "matcha",
-      "terms": ["抹茶", "緑茶", "お茶"],
+      "terms": ["抹茶", "緑茶", "お茶", "粉末茶"],
       "reading": "matcha",
       "en": "Green tea",
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["matcha", "ocha", "ryokucha", "cha"],
+      "english": ["green tea", "tea"]
     },
     {
       "id": "fu",
@@ -526,7 +640,9 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["fu"],
+      "english": ["wheat gluten"]
     },
     {
       "id": "agar",
@@ -536,7 +652,9 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["kanten"],
+      "english": ["agar"]
     },
     {
       "id": "umeboshi",
@@ -546,7 +664,9 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["umeboshi", "ume"],
+      "english": ["pickled plum", "plum"]
     },
     {
       "id": "pickles",
@@ -558,7 +678,9 @@
         "jain": "ask"
       },
       "note": "",
-      "ambiguity": "Pickles can include root vegetables, dashi or alcohol lees."
+      "ambiguity": "Pickles can include root vegetables, dashi or alcohol lees.",
+      "romaji": ["tsukemono"],
+      "english": ["pickles"]
     },
     {
       "id": "seasoning",
@@ -573,14 +695,19 @@
         "山椒",
         "柚子",
         "ゆず",
-        "レモン"
+        "レモン",
+        "食塩",
+        "上白糖",
+        "砂糖類"
       ],
       "reading": "chomiryo",
       "en": "Seasoning",
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["shio", "shokuen", "sato", "wasabi", "yuzu"],
+      "english": ["salt", "sugar", "pepper", "chilli", "chili", "lemon"]
     },
     {
       "id": "oil",
@@ -590,7 +717,9 @@
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["abura"],
+      "english": ["vegetable oil", "sesame oil", "olive oil", "salad oil"]
     },
     {
       "id": "vinegar",
@@ -604,7 +733,9 @@
         "vegan": "ask"
       },
       "note": "",
-      "ambiguity": "Ponzu is often made with bonito dashi; plain vinegar is fine."
+      "ambiguity": "Ponzu is often made with bonito dashi; plain vinegar is fine.",
+      "romaji": ["su", "ponzu"],
+      "english": ["vinegar"]
     },
     {
       "id": "soy-sauce",
@@ -616,7 +747,9 @@
         "halal": "ask"
       },
       "note": "",
-      "ambiguity": "Brewed soy sauce can contain a little alcohol."
+      "ambiguity": "Brewed soy sauce can contain a little alcohol.",
+      "romaji": ["shoyu"],
+      "english": ["soy sauce"]
     },
     {
       "id": "miso",
@@ -628,7 +761,9 @@
         "halal": "ask"
       },
       "note": "",
-      "ambiguity": "Some miso contains added alcohol, and 'dashi-iri' miso contains fish stock."
+      "ambiguity": "Some miso contains added alcohol, and 'dashi-iri' miso contains fish stock.",
+      "romaji": ["miso"],
+      "english": ["miso", "soybean paste"]
     },
     {
       "id": "curry",
@@ -643,7 +778,9 @@
         "halal": "ask"
       },
       "note": "",
-      "ambiguity": "Japanese curry roux usually contains meat extract or lard."
+      "ambiguity": "Japanese curry roux usually contains meat extract or lard.",
+      "romaji": ["karee"],
+      "english": ["curry", "curry roux"]
     },
     {
       "id": "tempura",
@@ -659,7 +796,9 @@
         "halal": "ask"
       },
       "note": "",
-      "ambiguity": "Batter often contains egg, and oil is shared with meat and fish."
+      "ambiguity": "Batter often contains egg, and oil is shared with meat and fish.",
+      "romaji": ["tenpura", "karaage", "tenkasu"],
+      "english": ["tempura", "fried"]
     },
     {
       "id": "noodles",
@@ -672,7 +811,9 @@
         "ソーメン",
         "そうめん",
         "パスタ",
-        "麺"
+        "麺",
+        "めん",
+        "メン"
       ],
       "reading": "men",
       "en": "Noodles",
@@ -683,7 +824,9 @@
         "jain": "ask"
       },
       "note": "",
-      "ambiguity": "Some noodles contain egg; the broth is a separate question."
+      "ambiguity": "Some noodles contain egg; the broth is a separate question.",
+      "romaji": ["ramen", "udon", "soba", "somen", "men"],
+      "english": ["noodles", "noodle", "pasta", "buckwheat"]
     },
     {
       "id": "bread",
@@ -699,7 +842,9 @@
         "halal": "ask"
       },
       "note": "",
-      "ambiguity": "Baked goods often contain egg, butter, lard, gelatin or alcohol."
+      "ambiguity": "Baked goods often contain egg, butter, lard, gelatin or alcohol.",
+      "romaji": ["pan", "panko"],
+      "english": ["bread", "breadcrumbs", "cake", "cookie", "biscuit"]
     },
     {
       "id": "ketchup",
@@ -714,7 +859,9 @@
         "halal": "ask"
       },
       "note": "",
-      "ambiguity": "Sauces can contain onion, garlic, anchovy, egg or meat extract."
+      "ambiguity": "Sauces can contain onion, garlic, anchovy, egg or meat extract.",
+      "romaji": ["kechappu", "sosu"],
+      "english": ["ketchup", "sauce", "dressing"]
     },
     {
       "id": "gyoza",
@@ -730,7 +877,9 @@
         "no-beef": "ask"
       },
       "note": "",
-      "ambiguity": "Dumplings are usually filled with pork unless the menu says otherwise."
+      "ambiguity": "Dumplings are usually filled with pork unless the menu says otherwise.",
+      "romaji": ["gyoza", "shumai", "nikuman"],
+      "english": ["dumpling", "dumplings"]
     },
     {
       "id": "squid-octopus",
@@ -744,17 +893,21 @@
         "vegan": "avoid"
       },
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["ika", "tako"],
+      "english": ["squid", "octopus"]
     },
     {
       "id": "flour",
-      "terms": ["小麦粉", "片栗粉", "でんぷん", "澱粉", "米粉"],
+      "terms": ["小麦粉", "片栗粉", "でんぷん", "澱粉", "米粉", "でん粉", "そば粉"],
       "reading": "komugiko",
       "en": "Flour / starch",
       "category": "plant",
       "rules": {},
       "note": "",
-      "ambiguity": ""
+      "ambiguity": "",
+      "romaji": ["komugiko", "katakuriko", "denpun"],
+      "english": ["wheat flour", "flour", "starch", "potato starch", "wheat"]
     },
     {
       "id": "margarine",
@@ -767,7 +920,9 @@
         "jain": "ask"
       },
       "note": "",
-      "ambiguity": "Margarine can contain milk solids."
+      "ambiguity": "Margarine can contain milk solids.",
+      "romaji": ["maagarin"],
+      "english": ["margarine"]
     },
     {
       "id": "shortening",
@@ -782,7 +937,142 @@
         "halal": "ask"
       },
       "note": "",
-      "ambiguity": "Shortening is usually vegetable fat but can contain animal fat."
+      "ambiguity": "Shortening is usually vegetable fat but can contain animal fat.",
+      "romaji": ["shootoningu"],
+      "english": ["shortening"]
+    },
+    {
+      "id": "mutton",
+      "terms": ["羊肉", "マトン", "ラム肉"],
+      "en": "Mutton / lamb",
+      "category": "meat",
+      "rules": {
+        "jain": "avoid",
+        "vegetarian": "avoid",
+        "vegan": "avoid",
+        "halal": "ask"
+      },
+      "reading": "yōniku",
+      "note": "Sheep meat.",
+      "ambiguity": "Halal depends on how the animal was slaughtered.",
+      "romaji": ["yoniku", "maton"],
+      "english": ["mutton", "lamb"]
+    },
+    {
+      "id": "shellfish",
+      "terms": ["貝類", "貝", "あさり", "アサリ", "しじみ", "ホタテ", "帆立", "牡蠣"],
+      "en": "Shellfish",
+      "category": "shellfish",
+      "rules": {
+        "jain": "avoid",
+        "vegetarian": "avoid",
+        "vegan": "avoid",
+        "halal": "ask"
+      },
+      "reading": "kai",
+      "note": "Clams, scallops, oysters and other shellfish.",
+      "ambiguity": "Some halal travellers avoid shellfish; check your own rule.",
+      "romaji": ["kai", "asari", "shijimi", "hotate"],
+      "english": ["shellfish", "clam", "clams", "scallop", "oyster", "oysters"]
+    },
+    {
+      "id": "animal-fat",
+      "terms": ["動物油脂", "動物性油脂", "動物脂"],
+      "en": "Animal fat",
+      "category": "meat",
+      "rules": {
+        "jain": "avoid",
+        "vegetarian": "avoid",
+        "vegan": "avoid",
+        "halal": "avoid"
+      },
+      "reading": "dōbutsu yushi",
+      "note": "Fat from an unnamed animal; often pork or beef.",
+      "ambiguity": "",
+      "romaji": ["dobutsu yushi"],
+      "english": ["animal fat", "animal oil"]
+    },
+    {
+      "id": "emulsifier",
+      "terms": ["乳化剤"],
+      "en": "Emulsifier",
+      "category": "additive",
+      "rules": {
+        "jain": "ask",
+        "vegetarian": "ask",
+        "vegan": "ask",
+        "halal": "ask"
+      },
+      "reading": "nyūkazai",
+      "note": "An additive that can come from plants or animals.",
+      "ambiguity": "Emulsifiers can be plant- or animal-based; the label rarely says which.",
+      "romaji": ["nyukazai"],
+      "english": ["emulsifier", "emulsifiers", "lecithin"]
+    },
+    {
+      "id": "colouring",
+      "terms": ["着色料", "カラメル色素", "コチニール色素", "コチニール"],
+      "en": "Colouring",
+      "category": "additive",
+      "rules": {
+        "jain": "ask",
+        "vegetarian": "ask",
+        "vegan": "ask"
+      },
+      "reading": "chakushokuryō",
+      "note": "Food colouring. Cochineal comes from insects.",
+      "ambiguity": "Some colourings (cochineal, carmine) come from insects.",
+      "romaji": ["chakushokuryo"],
+      "english": [
+        "colouring",
+        "coloring",
+        "colour",
+        "color",
+        "cochineal",
+        "carmine",
+        "caramel color"
+      ]
+    },
+    {
+      "id": "seasoning-generic",
+      "terms": ["調味料（アミノ酸等）", "調味料(アミノ酸等)", "調味料", "アミノ酸"],
+      "en": "Seasoning (amino acids)",
+      "category": "additive",
+      "rules": {
+        "jain": "ask",
+        "vegetarian": "ask",
+        "vegan": "ask",
+        "halal": "ask"
+      },
+      "reading": "chōmiryō",
+      "note": "A generic flavour enhancer.",
+      "ambiguity": "'Seasoning (amino acids)' can hide fish or meat extracts; the label doesn't say.",
+      "romaji": ["chomiryo"],
+      "english": ["seasoning", "amino acids", "flavour enhancer", "flavor enhancer", "msg"]
+    },
+    {
+      "id": "extract",
+      "terms": ["酵母エキス"],
+      "en": "Yeast extract",
+      "category": "plant",
+      "rules": {},
+      "reading": "kōbo ekisu",
+      "note": "Plant-based flavouring from yeast.",
+      "ambiguity": "",
+      "romaji": ["kobo ekisu"],
+      "english": ["yeast extract"]
+    },
+    {
+      "id": "drinks",
+      "terms": ["ラムネ", "かき氷", "カキ氷"],
+      "en": "Ramune soda / shaved ice",
+      "category": "plant",
+      "rules": {},
+      "reading": "ramune / kakigōri",
+      "note": "Soft drink and shaved ice; syrups can contain colouring.",
+      "ambiguity": "",
+      "romaji": ["ramune", "kakigori"],
+      "english": ["shaved ice"]
     }
   ],
   "status": "needs-review",
@@ -837,7 +1127,85 @@
       "冷",
       "ミニ",
       "おろし",
-      "せんべい"
+      "せんべい",
+      "即席",
+      "乾燥",
+      "原材料名",
+      "名称",
+      "内容量",
+      "賞味期限",
+      "保存方法",
+      "ざる"
+    ]
+  },
+  "latinWords": {
+    "_note": "English and romaji words on labels that are not ingredients. They never decide a result.",
+    "terms": [
+      "ingredients",
+      "ingredient",
+      "contains",
+      "contain",
+      "may",
+      "made",
+      "with",
+      "and",
+      "or",
+      "of",
+      "in",
+      "the",
+      "a",
+      "from",
+      "for",
+      "per",
+      "net",
+      "weight",
+      "wt",
+      "g",
+      "mg",
+      "kg",
+      "ml",
+      "l",
+      "kcal",
+      "energy",
+      "nutrition",
+      "facts",
+      "best",
+      "before",
+      "store",
+      "keep",
+      "product",
+      "of",
+      "japan",
+      "including",
+      "includes",
+      "some",
+      "part",
+      "parts",
+      "trace",
+      "traces",
+      "allergen",
+      "allergens",
+      "information",
+      "natural",
+      "flavour",
+      "flavor",
+      "dried",
+      "powder",
+      "powdered",
+      "extract",
+      "paste",
+      "water",
+      "e",
+      "no",
+      "added",
+      "instant",
+      "type",
+      "free",
+      "genmai",
+      "genryo",
+      "genzairyo",
+      "mei",
+      "name"
     ]
   }
 }

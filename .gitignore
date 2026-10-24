@@ -12,3 +12,7 @@ __pycache__
 # Local embedding model download and built RAG index
 apps/api/.cache/
 apps/api/rag/index/
+
+# Full-size journey photos (32 MB). The app uses the WebP copies in apps/web/src/assets/tour,
+# made by apps/web/scripts/tour_photos.py. Keep the originals somewhere backed up.
+apps/web/src/scenes/places/places/

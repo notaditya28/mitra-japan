@@ -3,7 +3,7 @@
 A demo-ready web experience that makes Indian travellers want to choose Japan at full price.
 Pitch: "Indians don't need Japan to be cheaper, they need it to feel safe, familiar and made for them."
 
-- **Stage 1:** cinematic scroll ("Why Japan, why you?"): hero → persona → torii tunnel of fears → Indian roots → numbers → CTA.
+- **Stage 1:** cinematic scroll: traveller picker → plane flies Delhi → Tokyo → real-photo spots per city (fear cards on fitting spots) → Shinkansen between cities → Indian roots → numbers → CTA, with a city map window (food for your diet, sample stays).
 - **Stage 2:** 3D Japan map planner with a Claude trip guide, Food Confidence Score, Veg-Safe scanner.
 
 ## Non-negotiable data rules
@@ -63,21 +63,26 @@ Type: Plus Jakarta Sans (UI/body), Shippori Mincho (`.display`, large headings),
 
 `src/components/motifs/`: `Seigaiha` (generated SVG, `lib/seigaiha.ts`), `Fuji` (mountain keeps aspect, hills stretch), `SunDisc`, `ToriiGate`, `Lantern`, `Petals2D` (canvas fallback), `Petals3D` (instanced, one draw call).
 Utility classes in `styles/index.css`: `.card`, `.card-dark`, `.chip`, `.btn-primary`, `.btn-ghost`, `.eyebrow`, `.display`.
-Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, plum-tinted shadows. No photoreal models, no stock photos. Use `flat` on R3F canvases so palette colours are not tone-mapped.
+Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, plum-tinted shadows. No photoreal models. Real photos only for the Stage 1 spots (owner decision, 2026-10-24), each with a credit line. Use `flat` on R3F canvases so palette colours are not tone-mapped.
 
-## Stage 1 journey architecture
+## Stage 1 journey architecture (owner redesign, 2026-10-24)
 
-- **Places, in order:** 0 Fuji dawn (hero + persona) → 1 Tokyo neon street (food fear) → 2 Shinkansen at golden hour (language) → 3 Kyoto Fushimi Inari + pagoda (visa) → 4 Matsuri night (foreign → leads into Indian roots). Defined in `PLACES` in `src/scenes/journeyState.ts`; each scene lives in `src/scenes/places/*Scene.tsx` and exports its component plus a `CameraPath` (local t 0..1 → camera pos/look).
-- One fixed, lazy-loaded R3F canvas (`src/scenes/JourneyCanvas.tsx`) sits behind `#journey` (Hero, Persona, `PlacesSection`). All five scenes are built up front, but only the active one is visible (`useSceneGroup`), so only one renders per frame. Paused offscreen/hidden. Wrapped in `SceneErrorBoundary` with a static sky fallback.
-- Scroll → `journey` (mutable: intro, hero, persona, places, pointer). `CameraRig` (mounted first) calls `computeStage()` every frame, producing `stage` (scene, t, and the transition values). Never put scroll progress in React state.
-- **Petal Portal transition** (our own, merged from the owner's Awwwards references: austensor particle morph, kelvin stretched type, shape-mask iris): around each boundary, petals swarm into the next place's kanji and the FOV widens; a blush veil closes; the scene switches under it; the veil opens through a torii-shaped window (shader in `journey/PetalPortal.tsx`) while the petals burst away; the Latin place name arrives stretched (`PlacesSection`). Timings live in `computeStage`.
-- Each place has an entry and exit `GlowGate portal` so the fly-through motif is literal. Fear-card flips are timed at local t ≈ 0.42–0.55; camera paths turn toward each scene's key moment (ramen stall, train crossing, fear gate, fireworks) in that window.
-- Per-scene sky, fog and lights: `MOODS` in `journey/Sky.tsx`. Shop signs/noren/lantern textures: `journey/signs.ts` (canvas, cached, redrawn after fonts load).
-- `ChapterRail` (right edge, desktop) shows 00 富士 … 04 祭り and jumps between chapters.
-- `immersive = webgl && tier !== 'low' && !reducedMotion`. Otherwise the static sections render (SVG hero, `FearsSection` grid).
-- Keep three.js out of first paint: anything imported by the 2D/first-paint path must not import `three` (e.g. `petalShape.ts` vs `petalGeometry.ts`). Check `dist/index.html` and the entry chunk size after builds.
-- Dev builds expose `window.__journey` (R3F state) and `window.__stage` for debugging. In the hidden browser pane rAF is throttled and an emulated viewport can stop painting; reset to the desktop preset if screenshots go blank.
-- Hindi/Gujarati: never letter-space Devanagari/Gujarati (`.eyebrow` resets tracking under `:lang(hi|gu)`); split titles with `Intl.Segmenter` graphemes, never by code point.
+- **Flow:** `Welcome` (title + traveller picker over the 3D map of Asia, plane parked at Delhi) → `TourSection`: the plane flies Delhi → first city → that city's spots, one real photo each → Shinkansen to the next city → its spots → … Roots, numbers and the CTA follow.
+- **Data:** `features/tour/tour.ts` (three-free) builds `TOUR_CITIES` and `SEGMENTS` from `data/tour.json` (city order, spot names, Japanese names, short `kanji`, `fear`, `focus`, credits, status) and `data/tourPhotos.json` (the manifest written by `scripts/tour_photos.py`). Photos: originals in `src/scenes/places/places/<city>/` (git-ignored); WebP copies at 2048 and 1280 px in `src/assets/tour/`. A photo with no `tour.json` entry still appears, named from its file, `needs-review`. A new city folder joins after the listed cities and gets a Shinkansen segment.
+- **Segments:** `flight` (weight 2.2), `spot` (1), `train` (1.6); `VH_PER_UNIT` = 120vh. `journey.tour` (0..1) → `computeStage()` → `stage` (`scene` = segment index, `kind`, `t`, transition values). Never put scroll progress in React state; the rail and city window read `useTourStore.segment`, which `TourSection` sets from the ScrollTrigger (not the render loop, so they work if 3D is paused or fails).
+- **Transitions:** arriving in a city, boarding or leaving the train = the **Petal Portal** (petals spell the next `kanji`, blush veil, torii-window iris, `journey/PetalPortal.tsx`); between spots of one city = the same veil and iris with no petals (`stage.plain`). Timings live in `computeStage`.
+- **Scenes** (`src/scenes/journey/`), one lazy canvas (`JourneyCanvas.tsx`), only the active kind visible (`useSceneGroup(kind)`):
+  - `FlightScene`: the map is a canvas texture drawn from `data/asia.geojson`, a Natural Earth 10m admin-0 **India point of view** cut by `scripts/asia_subset.py`. Keep India's official boundary and use the `_ind` source if regenerating. `features/tour/flightMap.ts` holds the shared projection; the great-circle route is a tube revealed by `setDrawRange`, and the camera goes wide over India → chase → dive at Tokyo.
+  - `PhotoScene`: one curved plane, cover-cropped around `focus`, grown with the FOV warp so no edge shows. Textures are cached per URL and the next two preload; photos sit at y = 400, away from the other scenes.
+  - `ShinkansenScene`: the bullet train, unchanged from the old journey.
+- Camera paths: `CAMERAS` keyed by kind in `journey/CameraRig.tsx`; sky, fog and lights: `MOODS` keyed by kind in `journey/Sky.tsx`.
+- Fear cards: on the spot named in `tour.json` (`fear`), plus `trainFear` on every train. Flip at local t ≈ 0.42. The petal kanji spells the city name on arrival and the spot's `kanji` inside a city.
+- **City map window** (`features/tour/CityMapWindow.tsx`, top right): a pill that opens a lazy panel (`CityMapPanel`) with `DietChips` (the profile diet, so it carries over between cities), Leaflet + OpenStreetMap tiles (`CityLeaflet`, lazy; attribution shown; offline note), food from `restaurants.json` matching the diet (`cityMap.foodFor`) and dummy stays from `data/stays.json` (owner decision: all `sample`, names start with "Sample", no prices). On the train it keeps showing the city you left; hidden during the flight.
+- `ChapterRail`: flight, then each city (its spots expanded only when you are there) and the Shinkansen. It appears once the tour is in view and jumps with `features/tour/navigate.ts`.
+- `immersive = webgl && tier !== 'low' && !reducedMotion`. Otherwise `TourStatic` (flat flight map SVG, photo grid with credits) and the `FearsSection` grid.
+- Keep three.js, Leaflet and restaurant data out of first paint. The tour uses `features/tour/cities.ts`, not `planner/data`. Check the entry chunk after builds (about 560 kB today).
+- Dev builds expose `window.__journey` (R3F state) and `window.__stage`. In the hidden browser pane rAF is throttled (ScrollTrigger and the canvas stall until a screenshot forces a frame); reset to the desktop preset if screenshots go blank.
+- Hindi/Gujarati: never letter-space Devanagari/Gujarati (`.eyebrow` resets tracking under `:lang(hi|gu)`); split titles with `Intl.Segmenter` graphemes, never by code point. Spot titles wrap by word.
 
 ## Map, pages and transitions (M3)
 
@@ -93,11 +98,11 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 
 - Data: `cities.json` (15 cities), `restaurants.json` (see M6), `layers.json` (real anime/regional spots), `heritage.json`. Typed access in `features/planner/data.ts`; rules enforced by `data.test.ts` (never certified/verified, valid city refs, coordinates in Japan).
 - 3D map lives in `features/planner/map/` (lazy `MapCanvas`). World space comes from `mapSpace.ts`: the same projection as the 2D maps, 1 unit = 40 px, north = -z. Always place things with `lngLatToWorld`.
-- Prefectures are extruded per prefecture (`JapanLand`), hover lifts/tints, click selects the first city in that prefecture. City labels are drei `<Html>`; minor-city labels hide when zoomed out (`MAJOR`, `NUDGE` in `CityMarkers`).
+- Prefectures are extruded per prefecture (`JapanLand`), hover lifts/tints. Clicking any prefecture selects it: it turns see-through with a sakura outline (`SELECTED_OPACITY`), and its first city, if any, is focused. City labels are drei `<Html>`, hidden until the pointer is over the city's prefecture or the label itself (`map/mapHover.ts`, a mutable object read in `useFrame`; `NUDGE` in `CityMarkers` offsets crowded labels). There are no city names on the map otherwise (owner's choice, 2026-10-24).
 - Layers (`LayerPins`) spring in/out with stagger and scale with zoom; colours in `layerColors.ts` (three-free so the side panel stays light).
 - `RouteLine` takes `RouteStop[]` (`features/planner/route.ts`). M4 shows `SAMPLE_ROUTE` only behind an explicit "Show a sample route" toggle; M5 feeds the AI itinerary into the same component.
 - Selection state (`selectedCityId`, `showSampleRoute`) is in the store, not persisted. Camera fly-to is in `MapCameraRig`; user drag cancels it.
-- Layout: ≥1024 px three panels; below, full-screen map + `BottomSheet`. No WebGL → `JapanMapSvg` + city list.
+- Layout (owner's choice, 2026-10-24): ≥1024 px is the map on the left and one trip panel on the right (profile, guide, day cards, chat, tools, layers), with no city list or city panel. Below 1024 px: a full-screen map + `BottomSheet` with the same trip panel. No WebGL → `JapanMapSvg`. The grid row is `minmax(0,1fr)` and the panel is `relative`, so neither its content nor its `sr-only`/absolute children make the page taller than the viewport.
 - Layer pins scale with each pin's distance to the camera (`LayerPins`), so they stay a similar size on screen.
 
 ## AI trip guide (M5)
@@ -150,6 +155,48 @@ Implementation notes (R2–R5):
 - Web (`features/assistant/`): `useAssistantStore` persists the session id, messages, pins and current day under `mitra-assistant`; location and undo stay in memory only. Patches go through `replaceItinerary`. The emergency dialog uses `offline.ts` when the API fails. Emergency contacts come only from `emergency.json` (pick the mission with `missionsFor`).
 - Nested `<dialog>`s: `Dialog` reacts only to its own close/cancel events, because React propagates them up the component tree.
 - `MITRA_ENV=production` turns off `/api/knowledge/search` and `/api/ingest`. Render's build runs `rag.ingest`, because the index is git-ignored.
+
+## Team system guide merge (owner decision, 2026-10-24)
+
+- **Rule on conflict:** source is `MITRA_JAPAN_SYSTEM_GUIDE.md` (spec only, no code), and on conflict the guide's feature wins, with these limits:
+  - The guide's unsourced figures are shown as written, with `<GuideBadge/>` ("From our team guide · needs review") and the official link, never as verified.
+  - The Schedule of Stay is a plain draft, never the official form.
+  - Our stack stays.
+  - The guide's routes are aliases.
+- **Visa:**
+  - `visa.json` gained `categories`, `types`, `finance`, `jurisdictions` and `pitfalls`, and every item has a `source`.
+  - `visa.test.ts` keeps the official-links and no-prediction rules.
+  - Schedule of Stay: `features/schedule/` (persisted drafts, `SchedulePrint`; never asks for passport or ID numbers).
+- **Scanner:**
+  - Every `ingredients.json` entry now has `romaji` and `english` lists, and `latinWords` holds the stop list.
+  - Latin text is matched as whole words, and unknown Latin words still make a result "unable to verify".
+  - Matches carry `matchedBy` and `severity`.
+  - Look-alikes are guarded (ラムネ, カキ氷, 貝割れ).
+  - `app/ingredients.py` must agree with the TypeScript matcher on `src/data/__fixtures__/scanVerdicts.json`; regenerate it with `UPDATE_PARITY=1` after dictionary edits.
+  - OCR is `jpn+eng`, with a crop guide (`CropGuide`, `cropRect`).
+- **Planner:**
+  - Optional request fields: `startCity`, `travellers`, `pace`, `budget`, `interests`, `diets`.
+  - Stops have `slot`, `durationMinutes` and `lat`/`lng` (only for stops in our data); days have `meals` and `pace`.
+  - `PACE_STOPS` drives both the sample planner and the overpacked flag.
+  - Old saved plans parse with defaults (`slot: 'afternoon'`).
+  - Trip options are in `planner/tripPrefs.ts` (persisted).
+  - `focusStop` / `resetCamera` are in the planner store.
+  - `StreetMap` is lazy Leaflet; `CityInsightCard` sits on the 3D map.
+  - Regenerate `sampleItinerary.json` with `apps/api/export_sample.py`.
+- **Strings:** UI strings live in `apps/web/scripts/strings/*.json` and are merged with `scripts/merge_locales.py` (HI/GU are drafts).
+
+## Section bar (owner request, 2026-10-24)
+
+- The top bar (`Nav`) is one row: brand, `SectionNav` links (scroll sideways when they don't fit), language, CTA. On the journey it stays transparent the whole way down (owner request); the brand, links and language switch sit on frosted plum pills (`bg-plum/65` + blur) and the active link is rose, so they read over photos and paper alike. App pages keep a solid bar. Links:
+  - Journey: Start, Delhi → Japan, one chip per tour city (from `TOUR_CITIES`, so new cities appear automatically), Indian roots, The numbers (the "Build my trip" button covers the CTA).
+  - Planner (lazy `PlannerSectionNav`): Map, Trip options, Itinerary (once there is a plan), Ask Mitra, Map layers, then chips that open the tools (scanner, food places, visa, Schedule of Stay, My trips).
+- The bar's height is published as `--nav-h`; pages that sit under it use `pt-[var(--nav-h,61px)]`.
+- Jumps go through `lib/sectionScroll.ts`:
+  - `jumpTo(id)` leaves room for the bar and moves focus.
+  - Inside `[data-scroll-box]` panels it scrolls the panel itself.
+  - On phones `useSheetRequest` opens or lowers the bottom sheet first.
+  - Tour cities use `goToSegment` in 3D, and `#tour-city-<id>` in the static layout.
+- Active-chip highlight uses an IntersectionObserver on the page sections, plus `useTourStore.segment` inside the tour.
 
 ## Motion and performance
 

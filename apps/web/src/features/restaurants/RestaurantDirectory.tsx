@@ -6,6 +6,7 @@ import { CITIES, RESTAURANTS, cityById, type Restaurant } from '../planner/data'
 import { usePlannerStore } from '../planner/usePlannerStore';
 import { useTools } from '../tools/useTools';
 import { DEFAULT_FILTERS, filterRestaurants, type DirectoryFilters, type Show } from './directory';
+import { ShojinGuide } from './ShojinGuide';
 
 const DIETS: Diet[] = ['jain', 'vegetarian', 'vegan', 'halal', 'no-beef', 'eggless'];
 
@@ -67,6 +68,35 @@ function RestaurantCard({ r, diet }: { r: Restaurant; diet: Diet | 'any' }) {
           </li>
         ))}
       </ul>
+
+      {r.nearestStation ||
+      r.priceRange ||
+      r.englishMenu !== undefined ||
+      r.dedicatedCookware !== undefined ? (
+        <ul className="mt-2 space-y-0.5 text-xs text-ink">
+          {r.nearestStation ? (
+            <li>
+              {t('restaurants.station')}: {r.nearestStation}
+              {r.stationGuidance ? ` (${r.stationGuidance})` : ''}
+            </li>
+          ) : null}
+          {r.priceRange ? (
+            <li>
+              {t('restaurants.price')}: {r.priceRange}
+            </li>
+          ) : null}
+          {r.englishMenu !== undefined && r.englishMenu !== null ? (
+            <li>
+              {t(r.englishMenu ? 'restaurants.englishMenu.yes' : 'restaurants.englishMenu.no')}
+            </li>
+          ) : null}
+          {r.dedicatedCookware !== undefined && r.dedicatedCookware !== null ? (
+            <li>
+              {t(r.dedicatedCookware ? 'restaurants.cookware.yes' : 'restaurants.cookware.no')}
+            </li>
+          ) : null}
+        </ul>
+      ) : null}
 
       {r.risks.length > 0 ? (
         <p className="mt-2 text-xs text-plum">
@@ -141,6 +171,7 @@ export default function RestaurantDirectory() {
       <p className="rounded-2xl bg-blush/60 px-4 py-3 text-sm text-plum">
         {t('restaurants.intro', { listed, samples: RESTAURANTS.length - listed })}
       </p>
+      <ShojinGuide />
 
       <form
         role="search"

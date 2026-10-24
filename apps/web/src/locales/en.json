@@ -69,29 +69,6 @@
       }
     }
   },
-  "places": {
-    "fuji": {
-      "name": "Fuji",
-      "tagline": "Dawn over the sacred mountain"
-    },
-    "tokyo": {
-      "name": "Tokyo",
-      "tagline": "Neon streets and late-night ramen"
-    },
-    "shinkansen": {
-      "name": "Shinkansen",
-      "tagline": "Tokyo to Kyoto in about 2 hours 15 minutes"
-    },
-    "kyoto": {
-      "name": "Kyoto",
-      "tagline": "Thousands of torii and quiet temples"
-    },
-    "matsuri": {
-      "name": "Matsuri",
-      "tagline": "Summer festival nights, lanterns and fireworks"
-    },
-    "rail": "Journey chapters"
-  },
   "diets": {
     "label": "Your diet",
     "jain": "Jain",
@@ -170,7 +147,9 @@
       "openPlain": "Open the staff card without scanning",
       "containsEn": "Does this dish contain: {{items}}?",
       "customEn": "I can't eat: {{items}}.",
-      "aiDrafted": "Question drafted by the AI guide."
+      "aiDrafted": "Question drafted by the AI guide.",
+      "print": "Print the waiter card",
+      "printTitle": "Waiter card: my diet"
     },
     "ai": {
       "button": "Explain with the AI guide",
@@ -186,6 +165,45 @@
         "ai_declined": "The AI guide couldn't help with this one.",
         "unknown": "Something went wrong asking the guide."
       }
+    },
+    "presetsTitle": "Packaging presets",
+    "crop": {
+      "hint": "Move the frame over the ingredient list, then read it. Drag the corner to resize. With a keyboard: arrows move, Shift + arrows resize.",
+      "frame": "Text frame",
+      "value": "Frame at {{x}}% left, {{y}}% top, {{w}}% wide, {{h}}% tall",
+      "scanFrame": "Read the text in the frame",
+      "scanAll": "Read the whole photo"
+    },
+    "severity": {
+      "critical": "Critical",
+      "warning": "Check",
+      "info": "Listed"
+    },
+    "matchedBy": {
+      "kanji": "matched in kanji",
+      "kana": "matched in kana",
+      "romaji": "matched in romaji",
+      "english": "matched in English",
+      "custom": "your restriction"
+    },
+    "notesTitle": "Why we can't be sure",
+    "notes": {
+      "unreadable": "We couldn't read any text. Try a sharper photo, or type the ingredients.",
+      "lowConfidence": "The photo was hard to read. Check the text above before trusting the result.",
+      "ambiguous": "{{term}}: {{why}}",
+      "unknown": "Words we don't know yet: {{words}}.",
+      "unlisted": "The text can't show unlisted cooking oils, shared fryers or shared equipment."
+    },
+    "adviceTitle": "What to do",
+    "advice": {
+      "conflict": "Choose something else, or ask whether the kitchen can make it without the flagged ingredient.",
+      "ask": "Ask the staff before you order; the result depends on how the kitchen makes it.",
+      "dashi": "Ask whether the stock is kombu (kelp) or shiitake dashi instead of bonito or sardine.",
+      "jain": "Ask for no onion, garlic, leeks or root vegetables: the waiter card has the sentence.",
+      "halal": "Ask whether mirin or sake is used; soy sauce and miso can contain alcohol.",
+      "additives": "Additives like 'seasoning (amino acids)', emulsifiers and colouring can be animal-based; ask or choose another product.",
+      "frying": "Fried food may share oil with meat or fish; ask about the fryer.",
+      "staffCard": "Show the waiter card to staff."
     }
   },
   "phrase": {
@@ -290,9 +308,9 @@
     "season": "When to go",
     "food": "Food for you",
     "vegLevel": {
-      "high": "Easy for veg",
-      "medium": "Plan ahead",
-      "low": "Take care"
+      "high": "Veg friendly (high)",
+      "medium": "Moderate",
+      "low": "Ask carefully"
     },
     "kinds": {
       "shojin": "Temple cuisine",
@@ -332,7 +350,8 @@
     "sampleNote": "Sample only: Tokyo, Hakone, Kyoto, Nara, Osaka.",
     "tripPanel": "Your trip",
     "cityPanel": "City details",
-    "sheet": "Trip and city details"
+    "sheet": "Trip and city details",
+    "resetCamera": "Reset camera: all of Japan"
   },
   "status": {
     "needsReview": "Needs review",
@@ -439,7 +458,33 @@
     "tabItinerary": "Itinerary",
     "tabCity": "City",
     "notices": "Notes about this plan",
-    "warnings": "Warnings"
+    "warnings": "Warnings",
+    "slots": {
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening"
+    },
+    "meals": {
+      "title": "Meal plan",
+      "breakfast": "Breakfast",
+      "lunch": "Lunch",
+      "dinner": "Dinner"
+    },
+    "pace": "Pace: {{pace}}",
+    "duration": "about {{min}} min",
+    "flyTo": "Show this stop on the map",
+    "flyToCity": "Show this city on the map (no exact pin for a suggestion)",
+    "redesignTitle": "Redesign this day",
+    "redesignHelp": "Only this day changes; the rest of your trip stays as it is.",
+    "redesignLabel": "What should change?",
+    "redesignExamples": [
+      "Replace the afternoon with anime shopping in Akihabara",
+      "Make it slower for my parents",
+      "Suggest a Jain lunch nearby",
+      "More temples, fewer crowds"
+    ],
+    "dayTabs": "Days",
+    "allDays": "All days"
   },
   "confidence": {
     "title": "Food Confidence",
@@ -510,7 +555,17 @@
     },
     "showOnMap": "Show on map",
     "openSource": "Open source",
-    "newTab": "opens in a new tab"
+    "newTab": "opens in a new tab",
+    "station": "Nearest station",
+    "price": "Price range",
+    "englishMenu": {
+      "yes": "English menu available",
+      "no": "No English menu"
+    },
+    "cookware": {
+      "yes": "Dedicated cookware for your diet",
+      "no": "Shared cookware"
+    }
   },
   "visaTool": {
     "disclaimer": "Preparation help, not immigration advice. We can't tell you whether a visa will be granted. Confirm every item with the official sources.",
@@ -533,7 +588,35 @@
     "progress": "{{done}} of {{total}} ready",
     "confirm": "Confirm with the official source",
     "officialTitle": "Official sources",
-    "storage": "Your ticks are saved only in this browser."
+    "storage": "Your ticks are saved only in this browser.",
+    "guideExplain": "Figures marked like this come from our team guide and have not been checked against official pages yet.",
+    "officialSummary": "Summarised from official pages",
+    "sections": "Visa checker sections",
+    "tabs": {
+      "checklist": "Checklist",
+      "types": "eVISA or sticker?",
+      "where": "Where to apply",
+      "money": "Money tips"
+    },
+    "categories": {
+      "route": "Which visa route",
+      "identity": "Identity and travel documents",
+      "finance": "Money and tax records",
+      "schedule": "Travel schedule and itinerary",
+      "purpose": "Documents for your purpose"
+    },
+    "makeSchedule": "Make a Schedule of Stay draft from my plan",
+    "needPlan": "Plan a trip first.",
+    "typesTitle": "JAPAN eVISA or a sticker visa",
+    "feature": "Feature",
+    "whereTitle": "Where to apply",
+    "stateLabel": "Where do you live?",
+    "statePlaceholder": "Choose your state or union territory",
+    "centres": "Application centres: {{list}}",
+    "unlisted": "Our team guide does not list an office for this state. Check the Embassy of Japan in India website.",
+    "allOffices": "All offices in our guide",
+    "moneyTitle": "Money and tax records",
+    "pitfallsTitle": "Common problems to avoid"
   },
   "tools": {
     "title": "Travel tools",
@@ -551,8 +634,8 @@
     },
     "visa": {
       "eyebrow": "Preparation",
-      "title": "Visa checklist",
-      "hint": "What to prepare, with official links",
+      "title": "Visa readiness checker",
+      "hint": "Checklist, eVISA or sticker, where to apply",
       "open": "Open the visa checklist"
     },
     "trips": {
@@ -564,6 +647,11 @@
       "eyebrow": "Demo",
       "title": "Reserve this trip",
       "hint": "Try the booking flow (nothing is booked)"
+    },
+    "schedule": {
+      "eyebrow": "Visa preparation",
+      "title": "Schedule of Stay draft",
+      "hint": "Day-by-day table for your visa application"
     }
   },
   "trips": {
@@ -628,7 +716,8 @@
         "food": "Food Confidence is worked out from our data and capped at 85 while nothing is verified. Always confirm ingredients with staff.",
         "visa": "Visa notes are preparation help, not immigration advice. Confirm every item with official sources."
       }
-    }
+    },
+    "shareAbout": "about {{h}} h, estimate"
   },
   "booking": {
     "open": "Reserve (demo)",
@@ -862,5 +951,172 @@
       "index_missing": "The knowledge base isn't built on the server yet.",
       "unknown": "Something went wrong. Please try again."
     }
+  },
+  "tour": {
+    "title": "Your journey to Japan",
+    "rail": "Journey: jump to a place",
+    "photoAlt": "{{name}}, {{city}}",
+    "welcome": {
+      "pick": "Who is travelling?",
+      "cta": "Take off from Delhi",
+      "scroll": "Scroll to fly"
+    },
+    "flight": {
+      "title": "{{from}} to {{to}}",
+      "body": "Your trip starts at home.",
+      "hint": "Keep scrolling to take off",
+      "rail": "Flight"
+    },
+    "train": {
+      "title": "Shinkansen to {{city}}",
+      "body": "Leaving {{from}} by bullet train.",
+      "rail": "Shinkansen"
+    },
+    "credit": {
+      "pending": "Photo credit pending",
+      "by": "Photo: {{credit}} {{licence}}"
+    },
+    "map": {
+      "open": "{{city}} map",
+      "title": "{{city}} map",
+      "diet": "Your diet (stays the same in every city)",
+      "loading": "Loading the map…",
+      "food": "Food for: {{diet}}",
+      "noFood": "No listed places for this diet in this city yet.",
+      "stays": "Places to stay",
+      "staysNote": "Sample stays to show the idea: not real listings, no prices or availability.",
+      "sampleStay": "Sample stay: not a real listing",
+      "youAreHere": "You are here",
+      "approximate": "Approximate position",
+      "offline": "Map tiles need an internet connection. The list below still works.",
+      "footnote": "Food places are from our directory: samples are illustrative, real places need checking before you go. Map data © OpenStreetMap contributors.",
+      "kinds": {
+        "capsule": "Capsule hotel",
+        "business-hotel": "Business hotel",
+        "ryokan": "Ryokan (inn)",
+        "apartment": "Apartment hotel"
+      }
+    }
+  },
+  "guideBadge": {
+    "label": "From our team guide · needs review",
+    "note": "Taken as written from the Mitra Japan system guide. Not yet checked against official sources: confirm before you rely on it."
+  },
+  "schedule": {
+    "needPlan": "Plan a trip first, then come back to make the Schedule of Stay draft.",
+    "notOfficial": "Prepared by the traveller with Mitra Japan. This is not an official form: copy it into the format your Embassy or Consulate asks for.",
+    "explain": "Consulates ask for each day's date, activities, accommodation name, address and phone number. Fill in your hotels; we can't know them.",
+    "startDate": "Arrival date in Japan",
+    "startDateNeeded": "Choose your arrival date so each day gets a date.",
+    "applicant": "Your name (optional)",
+    "noIds": "Never type passport or ID numbers here.",
+    "noDate": "date not set",
+    "date": "Date",
+    "activities": "Activities",
+    "hotel": "Accommodation name",
+    "address": "Address",
+    "phone": "Phone number",
+    "missing": "Still empty: {{list}}. Vague entries can cause delays.",
+    "incomplete_one": "{{count}} day still needs accommodation details.",
+    "incomplete_other": "{{count}} days still need accommodation details.",
+    "complete": "Every day has accommodation details.",
+    "print": "Print or save as PDF",
+    "storage": "Your entries are saved only in this browser.",
+    "printTitle": "Schedule of Stay (draft)",
+    "printFooter": "Check that these dates match your flight and hotel bookings. Draft made with Mitra Japan; confirm the required format with the Embassy of Japan in India."
+  },
+  "shojin": {
+    "title": "Shojin ryori: Zen temple food",
+    "sections": {
+      "what": "What it is",
+      "where": "Where to try it",
+      "ask": "What to ask"
+    },
+    "source": "Source:"
+  },
+  "tripOptions": {
+    "title": "Trip options",
+    "summary": "{{days}} days · from {{city}} · {{n}} travelling",
+    "persona": "Who is travelling",
+    "customPersona": "Custom (describe it below)",
+    "days": "Trip length",
+    "daysValue_one": "{{count}} day",
+    "daysValue_other": "{{count}} days",
+    "startCity": "Starting city",
+    "cities": {
+      "tokyo": "Tokyo",
+      "kyoto": "Kyoto",
+      "osaka": "Osaka"
+    },
+    "travellers": "Travellers",
+    "fewer": "One traveller fewer",
+    "more": "One traveller more",
+    "pace": "Pace",
+    "paces": {
+      "auto": "Let the guide choose",
+      "relaxed": "Relaxed (2–3 stops)",
+      "moderate": "Moderate (3–4)",
+      "fast": "Fast (5–6)"
+    },
+    "budget": "Budget",
+    "budgets": {
+      "budget": "Budget",
+      "moderate": "Moderate",
+      "premium": "Premium"
+    },
+    "yourDiet": "Your diet",
+    "groupDiets": "Others in the group also need:",
+    "interests": "Interests",
+    "interestNames": {
+      "heritage": "Heritage",
+      "nature": "Nature",
+      "food": "Food",
+      "anime": "Anime",
+      "shopping": "Shopping",
+      "spiritual": "Spiritual",
+      "culture": "Culture"
+    }
+  },
+  "cityCard": {
+    "label": "{{city}} at a glance",
+    "fromTokyo": "From Tokyo",
+    "culture": "Culture",
+    "veg": "Vegetarian access",
+    "note": "City notes are our own summary; check before you rely on them."
+  },
+  "streetMap": {
+    "toggle": "Map view",
+    "modes": {
+      "3d": "3D map",
+      "street": "Street map"
+    },
+    "label": "Street map of Japan",
+    "basemap": "Map style",
+    "basemaps": {
+      "streets": "Esri streets",
+      "topo": "Esri topographic",
+      "osm": "OpenStreetMap",
+      "carto": "CARTO Voyager"
+    },
+    "layers": "Show on the map",
+    "layerNames": {
+      "food": "Food places",
+      "heritage": "Heritage",
+      "itinerary": "My itinerary"
+    },
+    "cities_one": "{{count}} city",
+    "cities_other": "{{count}} cities"
+  },
+  "sections": {
+    "journeyLabel": "Jump to a part of the journey",
+    "plannerLabel": "Jump to a part of the planner",
+    "start": "Start",
+    "flight": "Delhi → Japan",
+    "plan": "Plan my trip",
+    "map": "Map",
+    "planTrip": "Trip options",
+    "itinerary": "Itinerary",
+    "ask": "Ask Mitra",
+    "layers": "Map layers"
   }
 }

@@ -15,6 +15,7 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from . import planner as planner_mod
 from .config import settings
 from .data import load
+from .guide_api import router as guide_router
 from .planner import UpstreamError, plan_events, regenerate_day
 from .ratelimit import RateLimiter
 from .scan import ScanExplainRequest, explain_scan
@@ -37,6 +38,8 @@ app.add_middleware(
     allow_methods=["GET", "POST", "DELETE"],
     allow_headers=["Content-Type"],
 )
+
+app.include_router(guide_router)
 
 limiter = RateLimiter(settings.plan_rate_per_minute)
 chat_limiter = RateLimiter(settings.chat_rate_per_minute)
@@ -137,6 +140,80 @@ async def plan_day(req: DayRequest, request: Request):
         status = 503 if e.code == "demo_mode" else 502
         return error(status, e.code, e.message)
     return JSONResponse(day.model_dump(mode="json"))
+
+
+# --- Team guide aliases for the planner (MITRA_JAPAN_SYSTEM_GUIDE.md section 5.1) --------
+
+_GUIDE_DIETS = {"no_beef": "no-beef"}
+_GUIDE_BUDGET = {"low": "budget", "budget": "budget", "moderate": "moderate", "mid": "moderate", "high": "premium",
+                 "premium": "premium", "luxury": "premium"}
+_GUIDE_INTERESTS = {"heritage", "nature", "food", "anime", "shopping", "spiritual", "culture"}
+
+
+class GuidePreferences(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    persona: str | None = None
+    durationDays: int = Field(default=5, ge=2, le=12)
+    startingCity: str | None = None
+    numberOfTravellers: int | None = Field(default=None, ge=1, le=12)
+    budgetRange: str | None = None
+    dietaryRestrictions: list[str] = Field(default_factory=lambda: ["vegetarian"], max_length=7)
+    interests: list[str] = Field(default_factory=list, max_length=10)
+    travelPace: str | None = None
+
+
+class GuidePlanRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    preferences: GuidePreferences
+    customPrompt: str = Field(default="", max_length=500)
+    language: str = "en"
+
+
+class GuideDayRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    trip: Itinerary
+    dayNumber: int = Field(ge=1, le=14)
+    instructions: str = Field(default="", max_length=300)
+
+
+def _from_guide(req: GuidePlanRequest) -> PlanRequest:
+    p = req.preferences
+    diets = [_GUIDE_DIETS.get(d, d) for d in p.dietaryRestrictions if d != "custom"] or ["vegetarian"]
+    persona = p.persona if p.persona in {"family", "honeymoon", "student", "foodie", "spiritual"} else None
+    city = (p.startingCity or "").strip().lower()
+    prompt = req.customPrompt.strip() or f"A {p.durationDays}-day trip to Japan."
+    return PlanRequest.model_validate(
+        {
+            "prompt": prompt if len(prompt) >= 2 else "A trip to Japan.",
+            "persona": persona,
+            "diet": diets[0],
+            "diets": diets[1:],
+            "days": p.durationDays,
+            "language": req.language if req.language in {"en", "hi", "gu"} else "en",
+            "startCity": city if city in {"tokyo", "kyoto", "osaka"} else None,
+            "travellers": p.numberOfTravellers,
+            "pace": p.travelPace if p.travelPace in {"relaxed", "moderate", "fast"} else None,
+            "budget": _GUIDE_BUDGET.get((p.budgetRange or "").lower()),
+            "interests": [i for i in p.interests if i in _GUIDE_INTERESTS],
+            "stream": False,
+        }
+    )
+
+
+@app.post("/api/planner/generate")
+async def guide_generate(req: GuidePlanRequest, request: Request):
+    """The guide's planner body, mapped onto POST /api/plan (non-streaming)."""
+    try:
+        plan_req = _from_guide(req)
+    except ValueError as e:
+        return error(400, "bad_request", str(e).splitlines()[0][:300])
+    return await plan(plan_req, request)
+
+
+@app.post("/api/planner/regenerate-day")
+async def guide_regenerate_day(req: GuideDayRequest, request: Request):
+    """The guide's day redesign body, mapped onto POST /api/plan/day."""
+    return await plan_day(DayRequest(itinerary=req.trip, day=req.dayNumber, instruction=req.instructions), request)
 
 
 @app.post("/api/scan-explain")

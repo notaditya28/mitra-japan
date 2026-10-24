@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import samples from '../../data/sampleScans.json';
 import { DietChips } from '../../components/DietChips';
 import { useAppStore } from '../../store/useAppStore';
+import { CropGuide } from './CropGuide';
 import { CustomRestrictions } from './CustomRestrictions';
 import { matchIngredients } from './matchIngredients';
 import { LOW_CONFIDENCE, OcrAbortedError, loadOcrProvider, type OcrProgress } from './ocr';
-import { ACCEPTED_IMAGES, MAX_IMAGE_BYTES, prepareImage } from './ocr/image';
+import { ACCEPTED_IMAGES, MAX_IMAGE_BYTES, prepareImage, type Crop } from './ocr/image';
 import { explainBody, explainWithAi } from './scanApi';
 import { ScanResultCard, type AiState } from './ScanResultCard';
 import { StaffCard } from './StaffCard';
@@ -18,6 +19,12 @@ type OcrState =
   | { status: 'working'; progress: OcrProgress | null }
   | { status: 'done'; confidence: number }
   | { status: 'error'; message: string };
+
+type SampleScan = (typeof samples.scans)[number] & { preset?: boolean };
+const SCANS = samples.scans as SampleScan[];
+/** The team guide's four packaging labels, shown first. */
+const PRESETS = SCANS.filter((s) => s.preset);
+const MENUS = SCANS.filter((s) => !s.preset);
 
 const FIELD =
   'mt-1 w-full rounded-xl border border-petal bg-paper px-3 py-2 text-sm text-ink focus:border-rose focus:outline-none focus-visible:ring-2 focus-visible:ring-rose/40';
@@ -38,6 +45,8 @@ export default function ScannerPanel() {
   const [edited, setEdited] = useState(false);
   const [ocr, setOcr] = useState<OcrState>({ status: 'idle' });
   const [photo, setPhoto] = useState<string | null>(null);
+  /** A chosen photo waiting for the traveller to frame the text. */
+  const [pending, setPending] = useState<File | null>(null);
   const [ai, setAi] = useState<AiState>({ status: 'idle' });
   const [staffOpen, setStaffOpen] = useState(false);
   const abortRef = useRef<AbortController | null>(null);
@@ -74,7 +83,7 @@ export default function ScannerPanel() {
     setEdited(false);
   };
 
-  const onFile = async (e: ChangeEvent<HTMLInputElement>) => {
+  const onFile = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     e.target.value = '';
     if (!file) return;
@@ -87,16 +96,25 @@ export default function ScannerPanel() {
       return;
     }
     abortRef.current?.abort();
-    const controller = new AbortController();
-    abortRef.current = controller;
     setPhoto(URL.createObjectURL(file));
+    setPending(file);
     setSource('photo');
     setSampleId(null);
     setText('');
     setEdited(false);
+    setOcr({ status: 'idle' });
+  };
+
+  /** Read the framed part of the pending photo (or all of it). */
+  const scan = async (crop: Crop | null) => {
+    const file = pending;
+    if (!file) return;
+    setPending(null);
+    const controller = new AbortController();
+    abortRef.current = controller;
     setOcr({ status: 'working', progress: null });
     try {
-      const [provider, image] = await Promise.all([loadOcrProvider(), prepareImage(file)]);
+      const [provider, image] = await Promise.all([loadOcrProvider(), prepareImage(file, crop)]);
       const out = await provider.recognize(image, {
         signal: controller.signal,
         onProgress: (progress) => setOcr({ status: 'working', progress }),
@@ -199,13 +217,54 @@ export default function ScannerPanel() {
               {ocr.message}
             </p>
           ) : null}
-          {photo ? (
+          {photo && pending ? (
+            <CropGuide
+              src={photo}
+              onScan={(crop) => void scan(crop)}
+              onCancel={() => {
+                setPending(null);
+                setPhoto(null);
+                setSource(null);
+              }}
+            />
+          ) : photo ? (
             <img
               src={photo}
               alt={t('scanner.photoAlt')}
               className="max-h-48 w-auto self-start rounded-xl border border-blush object-contain"
             />
           ) : null}
+
+          <div>
+            <p className="text-xs font-semibold text-plum">
+              {t('scanner.presetsTitle')}{' '}
+              <span className="ml-1 rounded-full bg-mist/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-mist">
+                {t('scanner.demoLabel')}
+              </span>
+            </p>
+            <div
+              className="mt-2 grid gap-1.5 sm:grid-cols-2"
+              role="group"
+              aria-label={t('scanner.presetsTitle')}
+            >
+              {PRESETS.map((s) => (
+                <button
+                  key={s.id}
+                  type="button"
+                  aria-pressed={sampleId === s.id}
+                  onClick={() => pickSample(s.id)}
+                  className={`rounded-xl px-3 py-2 text-left text-xs transition-colors ${
+                    sampleId === s.id ? 'bg-plum text-paper' : 'bg-blush text-plum hover:bg-petal'
+                  }`}
+                >
+                  <span lang="ja" className="block font-semibold">
+                    {s.ja}
+                  </span>
+                  <span className="block opacity-80">{s.en}</span>
+                </button>
+              ))}
+            </div>
+          </div>
 
           <div>
             <p className="text-xs font-semibold text-plum">
@@ -219,7 +278,7 @@ export default function ScannerPanel() {
               role="group"
               aria-label={t('scanner.samplesTitle')}
             >
-              {samples.scans.map((s) => (
+              {MENUS.map((s) => (
                 <button
                   key={s.id}
                   type="button"

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export type Tool = 'trips' | 'scan' | 'eat' | 'visa' | 'book';
+export type Tool = 'trips' | 'scan' | 'eat' | 'visa' | 'book' | 'schedule';
 
 interface ToolsState {
   tool: Tool | null;

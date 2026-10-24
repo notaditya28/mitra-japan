@@ -6,6 +6,12 @@ export type StopKind =
 export type TransportMode =
   'walk' | 'local-train' | 'shinkansen' | 'limited-express' | 'bus' | 'ferry' | 'flight' | 'none';
 export type StayType = 'hotel' | 'ryokan' | 'temple-lodging' | 'hostel' | 'none';
+/** Team guide planner inputs (MITRA_JAPAN_SYSTEM_GUIDE.md section 2.2). */
+export type Pace = 'relaxed' | 'moderate' | 'fast';
+export type Slot = 'morning' | 'afternoon' | 'evening';
+export const SLOTS: Slot[] = ['morning', 'afternoon', 'evening'];
+export const PACES: Pace[] = ['relaxed', 'moderate', 'fast'];
+
 export type FlagCode =
   'overpacked' | 'long-transfer' | 'spread-out' | 'unknown-place' | 'dropped-day';
 
@@ -16,6 +22,20 @@ export interface Stop {
   heritageId: string | null;
   note: string;
   inOurData: boolean;
+  /** Morning, afternoon or evening; older plans without it count as afternoon. */
+  slot: Slot;
+  /** Rough time to allow, an estimate. */
+  durationMinutes: number | null;
+  /** Real coordinates, only for stops that point at our data. */
+  lat: number | null;
+  lng: number | null;
+}
+
+export interface Meals {
+  breakfast: string;
+  lunch: string;
+  dinner: string;
+  dietaryNotes: string;
 }
 
 export interface Day {
@@ -35,6 +55,8 @@ export interface Day {
   foodReasons: string[];
   tips: string[];
   flags: { code: FlagCode; message: string }[];
+  meals: Meals;
+  pace: Pace | null;
 }
 
 export interface Itinerary {
@@ -107,6 +129,20 @@ function parseStop(v: unknown): Stop | null {
     heritageId,
     note,
     inOurData: v.inOurData === true,
+    slot: SLOTS.includes(v.slot as Slot) ? (v.slot as Slot) : 'afternoon',
+    durationMinutes: num(v.durationMinutes),
+    lat: num(v.lat),
+    lng: num(v.lng),
+  };
+}
+
+function parseMeals(v: unknown): Meals {
+  const m = isObj(v) ? v : {};
+  return {
+    breakfast: str(m.breakfast) ?? '',
+    lunch: str(m.lunch) ?? '',
+    dinner: str(m.dinner) ?? '',
+    dietaryNotes: str(m.dietaryNotes) ?? '',
   };
 }
 
@@ -155,6 +191,8 @@ export function parseDay(v: unknown): Day | null {
     foodReasons,
     tips,
     flags: parsedFlags,
+    meals: parseMeals(v.meals),
+    pace: PACES.includes(v.pace as Pace) ? (v.pace as Pace) : null,
   };
 }
 

@@ -17,7 +17,9 @@ export function LanguageSwitch({ solid }: { solid: boolean }) {
       role="group"
       aria-label={t('nav.language')}
       className={`flex rounded-full border p-0.5 text-sm ${
-        solid ? 'border-blush bg-white/70' : 'border-white/25 bg-white/10'
+        solid
+          ? 'border-blush bg-white/70'
+          : 'border-white/20 bg-plum/65 shadow-soft backdrop-blur-md'
       }`}
     >
       {LANGS.map((l) => {

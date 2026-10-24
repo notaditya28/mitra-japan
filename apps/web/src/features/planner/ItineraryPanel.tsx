@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { StatusBadge } from '../../components/StatusBadge';
 import { useTools } from '../tools/useTools';
@@ -16,8 +16,21 @@ export function ItineraryPanel({ onShowCity }: { onShowCity: (cityId: string) =>
   const itinerary = usePlannerStore((s) => s.itinerary);
   const previews = usePlannerStore((s) => s.previews);
   const selectedDay = usePlannerStore((s) => s.selectedDay);
+  const focusDay = usePlannerStore((s) => s.focusDay);
   const days = visibleDays({ itinerary, previews });
   const cards = useRef<Record<number, HTMLElement | null>>({});
+  /** Day tabs (team guide 2.4): one day at a time, or all of them. */
+  const [view, setView] = useState<'all' | number>('all');
+  const shown = view === 'all' ? days : days.filter((d) => d.day === view);
+
+  // Following the map: a day picked there becomes the open tab.
+  useEffect(() => {
+    if (selectedDay !== null) setView((v) => (v === 'all' ? v : selectedDay));
+  }, [selectedDay]);
+  // A shorter new plan can't keep a tab that no longer exists.
+  useEffect(() => {
+    if (view !== 'all' && !days.some((d) => d.day === view)) setView('all');
+  }, [days, view]);
 
   // Selecting a marker on the map scrolls its day card into view.
   useEffect(() => {
@@ -35,7 +48,11 @@ export function ItineraryPanel({ onShowCity }: { onShowCity: (cityId: string) =>
   }
 
   return (
-    <section aria-labelledby="trip-title" className="flex flex-col gap-4">
+    <section
+      id="itinerary"
+      aria-labelledby="trip-title"
+      className="flex scroll-mt-2 flex-col gap-4"
+    >
       <header>
         <div className="flex flex-wrap items-center gap-2">
           <h2 id="trip-title" className="display text-3xl text-plum">
@@ -70,8 +87,37 @@ export function ItineraryPanel({ onShowCity }: { onShowCity: (cityId: string) =>
         </div>
       ) : null}
 
+      {days.length > 1 ? (
+        <div
+          role="tablist"
+          aria-label={t('trip.dayTabs')}
+          className="-mx-1 flex gap-1 overflow-x-auto px-1 pb-1"
+        >
+          {(['all', ...days.map((d) => d.day)] as const).map((k) => {
+            const on = view === k;
+            return (
+              <button
+                key={k}
+                type="button"
+                role="tab"
+                aria-selected={on}
+                onClick={() => {
+                  setView(k);
+                  if (k !== 'all') focusDay(k);
+                }}
+                className={`shrink-0 rounded-full px-3 py-1.5 text-xs font-semibold transition-colors ${
+                  on ? 'bg-plum text-paper' : 'bg-blush text-plum hover:bg-petal'
+                }`}
+              >
+                {k === 'all' ? t('trip.allDays') : t('trip.day', { n: k })}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
+
       <div className="flex flex-col gap-3">
-        {days.map((d) => (
+        {shown.map((d) => (
           <DayCard
             key={d.day}
             ref={(el) => {
@@ -133,6 +179,13 @@ export function ItineraryPanel({ onShowCity }: { onShowCity: (cityId: string) =>
                   {t('trip.visaEmbassy')}
                 </a>
               </p>
+              <button
+                type="button"
+                onClick={() => openTool('schedule')}
+                className="mr-2 mt-3 rounded-full bg-blush px-3 py-1.5 text-xs font-semibold text-plum hover:bg-petal"
+              >
+                {t('tools.schedule.title')}
+              </button>
               <button
                 type="button"
                 onClick={() => openTool('visa')}

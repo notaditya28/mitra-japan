@@ -3,50 +3,46 @@ import { useFrame } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import type * as THREE from 'three';
 import { palette } from '../../../styles/tokens';
+import { prefectureAt } from '../../../lib/japanMap';
 import { CITIES } from '../data';
+import { mapHover } from './mapHover';
 import { LAND_HEIGHT, lngLatToWorld } from './mapSpace';
 
 const TOP = LAND_HEIGHT + 0.06;
 
-/** Labelled in the overview; the rest appear when you zoom in or select them. */
-const MAJOR = new Set([
-  'tokyo',
-  'kyoto',
-  'osaka',
-  'sapporo',
-  'fukuoka',
-  'hiroshima',
-  'naha',
-  'kanazawa',
-]);
+/** Which prefecture each city sits in, so hovering a prefecture reveals its city names. */
+const CITY_PREFECTURE: Record<string, string | null> = Object.fromEntries(
+  CITIES.map((c) => [c.id, prefectureAt(c.lng, c.lat) ?? null]),
+);
 /** Labels nudged off neighbours (Osaka sits right under Kyoto). */
 const NUDGE: Record<string, [number, number, number]> = {
   osaka: [-0.7, 0.45, 0.45],
   kanazawa: [-0.35, 0.8, -0.25],
   nara: [0.6, 0.5, 0.35],
 };
-const LABEL_ZOOM_Y = 13;
 
 interface CityMarkersProps {
   selectedId: string | null;
   onSelect: (id: string) => void;
 }
 
-/** A small lantern post per city plus a clickable HTML label. */
+/**
+ * A small lantern post per city plus a clickable HTML label. Labels stay hidden until the
+ * pointer is over the city's prefecture (or the label itself, or it has keyboard focus).
+ */
 export function CityMarkers({ selectedId, onSelect }: CityMarkersProps) {
   const heads = useRef<Record<string, THREE.Mesh | null>>({});
   const labels = useRef<Record<string, HTMLButtonElement | null>>({});
 
-  useFrame(({ clock, camera }, dt) => {
+  useFrame(({ clock }, dt) => {
     const k = 1 - Math.exp(-dt * 8);
-    const close = camera.position.y < LABEL_ZOOM_Y;
+    const hovered = mapHover.prefecture;
     for (const c of CITIES) {
       const label = labels.current[c.id];
       if (label) {
-        const show = close || MAJOR.has(c.id) || c.id === selectedId;
-        label.style.opacity = show ? '1' : '0';
-        label.style.pointerEvents = show ? 'auto' : 'none';
-        label.tabIndex = show ? 0 : -1;
+        const show =
+          (hovered !== null && CITY_PREFECTURE[c.id] === hovered) || mapHover.label === c.id;
+        if (label.dataset.show !== String(show)) label.dataset.show = String(show);
       }
       const m = heads.current[c.id];
       if (!m) continue;
@@ -93,13 +89,23 @@ export function CityMarkers({ selectedId, onSelect }: CityMarkersProps) {
                 // Labels sit in the canvas wrapper; keep their clicks away from R3F's
                 // raycaster, which would otherwise read them as "clicked empty map".
                 onPointerDown={(e) => e.stopPropagation()}
+                // Moving from the prefecture onto its label must not hide the label.
+                onPointerEnter={() => (mapHover.label = c.id)}
+                onPointerLeave={() => {
+                  if (mapHover.label === c.id) mapHover.label = null;
+                }}
+                onFocus={() => (mapHover.label = c.id)}
+                onBlur={() => {
+                  if (mapHover.label === c.id) mapHover.label = null;
+                }}
                 onPointerUp={(e) => e.stopPropagation()}
                 onClick={(e) => {
                   e.stopPropagation();
                   onSelect(c.id);
                 }}
                 aria-pressed={on}
-                className={`whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold shadow-soft transition duration-300 ${
+                data-show="false"
+                className={`pointer-events-none whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] font-semibold opacity-0 shadow-soft transition duration-300 data-[show=true]:pointer-events-auto data-[show=true]:opacity-100 ${
                   on
                     ? 'border-rose bg-rose text-white'
                     : 'border-white/60 bg-paper/90 text-plum hover:border-rose'

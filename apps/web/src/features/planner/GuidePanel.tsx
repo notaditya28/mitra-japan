@@ -1,6 +1,7 @@
-import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
+import { useEffect, useId, useRef, useState, type FormEvent, type ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AssistantChat } from '../assistant/AssistantChat';
+import { TripOptions } from './TripOptions';
 import { usePlannerStore } from './usePlannerStore';
 
 const MODE_STYLE = {
@@ -10,7 +11,8 @@ const MODE_STYLE = {
 } as const;
 
 /** The AI trip guide: ask for a trip, watch it plan, then ask for changes. */
-export function GuidePanel() {
+/** `children` (the day cards) sit between the plan status and the chat. */
+export function GuidePanel({ children }: { children?: ReactNode }) {
   const { t } = useTranslation();
   const phase = usePlannerStore((s) => s.phase);
   const stage = usePlannerStore((s) => s.stage);
@@ -55,7 +57,11 @@ export function GuidePanel() {
           });
 
   return (
-    <section aria-labelledby={`${id}-title`} className="flex flex-col gap-3">
+    <section
+      id="trip-guide"
+      aria-labelledby={`${id}-title`}
+      className="flex flex-col gap-3 scroll-mt-2"
+    >
       <div className="flex items-center justify-between gap-2">
         <h2 id={`${id}-title`} className="font-display text-2xl text-plum">
           {t('guide.title')}
@@ -75,6 +81,7 @@ export function GuidePanel() {
           assistant as small, previewed patches instead of a full re-plan. */}
       {!changing ? (
         <form onSubmit={submit} className="flex flex-col gap-2">
+          <TripOptions />
           <label htmlFor={id} className="text-sm font-semibold text-plum">
             {changing ? t('guide.changeLabel') : t('guide.label')}
           </label>
@@ -132,6 +139,8 @@ export function GuidePanel() {
           </p>
         ) : null}
       </div>
+
+      {children}
 
       <AssistantChat />
 

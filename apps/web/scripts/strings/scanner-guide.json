@@ -1,0 +1,158 @@
+{
+  "en": {
+    "scanner": {
+      "presetsTitle": "Packaging presets",
+      "crop": {
+        "hint": "Move the frame over the ingredient list, then read it. Drag the corner to resize. With a keyboard: arrows move, Shift + arrows resize.",
+        "frame": "Text frame",
+        "value": "Frame at {{x}}% left, {{y}}% top, {{w}}% wide, {{h}}% tall",
+        "scanFrame": "Read the text in the frame",
+        "scanAll": "Read the whole photo"
+      },
+      "severity": { "critical": "Critical", "warning": "Check", "info": "Listed" },
+      "matchedBy": {
+        "kanji": "matched in kanji",
+        "kana": "matched in kana",
+        "romaji": "matched in romaji",
+        "english": "matched in English",
+        "custom": "your restriction"
+      },
+      "notesTitle": "Why we can't be sure",
+      "notes": {
+        "unreadable": "We couldn't read any text. Try a sharper photo, or type the ingredients.",
+        "lowConfidence": "The photo was hard to read. Check the text above before trusting the result.",
+        "ambiguous": "{{term}}: {{why}}",
+        "unknown": "Words we don't know yet: {{words}}.",
+        "unlisted": "The text can't show unlisted cooking oils, shared fryers or shared equipment."
+      },
+      "adviceTitle": "What to do",
+      "advice": {
+        "conflict": "Choose something else, or ask whether the kitchen can make it without the flagged ingredient.",
+        "ask": "Ask the staff before you order; the result depends on how the kitchen makes it.",
+        "dashi": "Ask whether the stock is kombu (kelp) or shiitake dashi instead of bonito or sardine.",
+        "jain": "Ask for no onion, garlic, leeks or root vegetables: the waiter card has the sentence.",
+        "halal": "Ask whether mirin or sake is used; soy sauce and miso can contain alcohol.",
+        "additives": "Additives like 'seasoning (amino acids)', emulsifiers and colouring can be animal-based; ask or choose another product.",
+        "frying": "Fried food may share oil with meat or fish; ask about the fryer.",
+        "staffCard": "Show the waiter card to staff."
+      },
+      "staff": {
+        "print": "Print the waiter card",
+        "printTitle": "Waiter card: my diet"
+      }
+    },
+    "restaurants": {
+      "station": "Nearest station",
+      "price": "Price range",
+      "englishMenu": { "yes": "English menu available", "no": "No English menu" },
+      "cookware": { "yes": "Dedicated cookware for your diet", "no": "Shared cookware" }
+    },
+    "shojin": {
+      "title": "Shojin ryori: Zen temple food",
+      "sections": { "what": "What it is", "where": "Where to try it", "ask": "What to ask" },
+      "source": "Source:"
+    }
+  },
+  "hi": {
+    "scanner": {
+      "presetsTitle": "पैकेजिंग के नमूने",
+      "crop": {
+        "hint": "फ़्रेम को सामग्री की सूची पर ले जाएँ, फिर पढ़ें। आकार बदलने के लिए कोना खींचें। कीबोर्ड से: तीर खिसकाते हैं, Shift + तीर आकार बदलते हैं।",
+        "frame": "टेक्स्ट फ़्रेम",
+        "value": "फ़्रेम: बाएँ से {{x}}%, ऊपर से {{y}}%, {{w}}% चौड़ा, {{h}}% ऊँचा",
+        "scanFrame": "फ़्रेम का टेक्स्ट पढ़ें",
+        "scanAll": "पूरी फ़ोटो पढ़ें"
+      },
+      "severity": { "critical": "गंभीर", "warning": "पूछें", "info": "सूची में" },
+      "matchedBy": {
+        "kanji": "कांजी में मिला",
+        "kana": "काना में मिला",
+        "romaji": "रोमाजी में मिला",
+        "english": "अंग्रेज़ी में मिला",
+        "custom": "आपकी पाबंदी"
+      },
+      "notesTitle": "हम पक्का क्यों नहीं कह सकते",
+      "notes": {
+        "unreadable": "कोई टेक्स्ट नहीं पढ़ पाए। साफ़ फ़ोटो लें या सामग्री टाइप करें।",
+        "lowConfidence": "फ़ोटो पढ़ना मुश्किल था। नतीजे पर भरोसा करने से पहले ऊपर का टेक्स्ट जाँचें।",
+        "ambiguous": "{{term}}: {{why}}",
+        "unknown": "जो शब्द हम अभी नहीं जानते: {{words}}।",
+        "unlisted": "टेक्स्ट में न लिखा तेल, साझा फ़्रायर या साझा बर्तन नहीं दिखते।"
+      },
+      "adviceTitle": "क्या करें",
+      "advice": {
+        "conflict": "कुछ और चुनें, या पूछें कि क्या रसोई इसे चिह्नित सामग्री के बिना बना सकती है।",
+        "ask": "ऑर्डर से पहले स्टाफ़ से पूछें; नतीजा इस पर निर्भर है कि रसोई इसे कैसे बनाती है।",
+        "dashi": "पूछें कि शोरबा कोम्बू (समुद्री घास) या शिइताके दाशी है, बोनिटो या मछली नहीं।",
+        "jain": "प्याज़, लहसुन, हरा प्याज़ और कंदमूल के बिना माँगें: वेटर कार्ड में वाक्य है।",
+        "halal": "पूछें कि मिरिन या साके डाला है या नहीं; सोया सॉस और मिसो में भी शराब हो सकती है।",
+        "additives": "'सीज़निंग (अमीनो एसिड)', इमल्सीफ़ायर और रंग पशु-आधारित हो सकते हैं; पूछें या दूसरा उत्पाद लें।",
+        "frying": "तली चीज़ों का तेल मांस या मछली के साथ साझा हो सकता है; फ़्रायर के बारे में पूछें।",
+        "staffCard": "स्टाफ़ को वेटर कार्ड दिखाएँ।"
+      },
+      "staff": { "print": "वेटर कार्ड प्रिंट करें", "printTitle": "वेटर कार्ड: मेरा भोजन" }
+    },
+    "restaurants": {
+      "station": "नज़दीकी स्टेशन",
+      "price": "क़ीमत",
+      "englishMenu": { "yes": "अंग्रेज़ी मेन्यू है", "no": "अंग्रेज़ी मेन्यू नहीं" },
+      "cookware": { "yes": "आपके भोजन के लिए अलग बर्तन", "no": "साझा बर्तन" }
+    },
+    "shojin": {
+      "title": "शोजिन र्योरी: ज़ेन मंदिर का भोजन",
+      "sections": { "what": "यह क्या है", "where": "कहाँ खाएँ", "ask": "क्या पूछें" },
+      "source": "स्रोत:"
+    }
+  },
+  "gu": {
+    "scanner": {
+      "presetsTitle": "પેકેજિંગના નમૂના",
+      "crop": {
+        "hint": "ફ્રેમને સામગ્રીની યાદી પર ખસેડો, પછી વાંચો. કદ બદલવા ખૂણો ખેંચો. કીબોર્ડથી: તીર ખસેડે છે, Shift + તીર કદ બદલે છે.",
+        "frame": "ટેક્સ્ટ ફ્રેમ",
+        "value": "ફ્રેમ: ડાબેથી {{x}}%, ઉપરથી {{y}}%, {{w}}% પહોળી, {{h}}% ઊંચી",
+        "scanFrame": "ફ્રેમનું લખાણ વાંચો",
+        "scanAll": "આખો ફોટો વાંચો"
+      },
+      "severity": { "critical": "ગંભીર", "warning": "પૂછો", "info": "યાદીમાં" },
+      "matchedBy": {
+        "kanji": "કાંજીમાં મળ્યું",
+        "kana": "કાનામાં મળ્યું",
+        "romaji": "રોમાજીમાં મળ્યું",
+        "english": "અંગ્રેજીમાં મળ્યું",
+        "custom": "તમારો પ્રતિબંધ"
+      },
+      "notesTitle": "અમે ખાતરીથી કેમ કહી શકતા નથી",
+      "notes": {
+        "unreadable": "કોઈ લખાણ વાંચી શક્યા નહીં. સ્પષ્ટ ફોટો લો કે સામગ્રી ટાઇપ કરો.",
+        "lowConfidence": "ફોટો વાંચવો મુશ્કેલ હતો. પરિણામ પર ભરોસો કરતાં પહેલાં ઉપરનું લખાણ ચકાસો.",
+        "ambiguous": "{{term}}: {{why}}",
+        "unknown": "જે શબ્દો અમે હજુ જાણતા નથી: {{words}}.",
+        "unlisted": "લખાણમાં ન લખેલું તેલ, સહિયારો ફ્રાયર કે સહિયારાં વાસણ દેખાતાં નથી."
+      },
+      "adviceTitle": "શું કરવું",
+      "advice": {
+        "conflict": "બીજું કંઈ પસંદ કરો, અથવા પૂછો કે રસોડું ચિહ્નિત સામગ્રી વગર બનાવી શકે કે કેમ.",
+        "ask": "ઓર્ડર કરતાં પહેલાં સ્ટાફને પૂછો; પરિણામ રસોડું કેવી રીતે બનાવે છે તેના પર આધાર રાખે છે.",
+        "dashi": "પૂછો કે સૂપ કોમ્બુ (દરિયાઈ વનસ્પતિ) કે શીતાકે દાશી છે, બોનિટો કે માછલી નહીં.",
+        "jain": "ડુંગળી, લસણ, લીલી ડુંગળી અને કંદમૂળ વગર માગો: વેઇટર કાર્ડમાં વાક્ય છે.",
+        "halal": "પૂછો કે મિરિન કે સાકે વપરાય છે; સોયા સોસ અને મિસોમાં પણ દારૂ હોઈ શકે.",
+        "additives": "'સીઝનિંગ (એમિનો એસિડ)', ઇમલ્સિફાયર અને રંગ પ્રાણીજન્ય હોઈ શકે; પૂછો કે બીજું ઉત્પાદન લો.",
+        "frying": "તળેલી વસ્તુઓનું તેલ માંસ કે માછલી સાથે સહિયારું હોઈ શકે; ફ્રાયર વિશે પૂછો.",
+        "staffCard": "સ્ટાફને વેઇટર કાર્ડ બતાવો."
+      },
+      "staff": { "print": "વેઇટર કાર્ડ પ્રિન્ટ કરો", "printTitle": "વેઇટર કાર્ડ: મારો આહાર" }
+    },
+    "restaurants": {
+      "station": "નજીકનું સ્ટેશન",
+      "price": "કિંમત",
+      "englishMenu": { "yes": "અંગ્રેજી મેનુ છે", "no": "અંગ્રેજી મેનુ નથી" },
+      "cookware": { "yes": "તમારા આહાર માટે અલગ વાસણ", "no": "સહિયારાં વાસણ" }
+    },
+    "shojin": {
+      "title": "શોજિન ર્યોરી: ઝેન મંદિરનું ભોજન",
+      "sections": { "what": "આ શું છે", "where": "ક્યાં ચાખવું", "ask": "શું પૂછવું" },
+      "source": "સ્રોત:"
+    }
+  }
+}
