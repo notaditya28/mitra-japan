@@ -92,6 +92,33 @@ All seed data lives in `apps/web/src/data/`. Each record has `status` (`verified
 - Heritage entries describe historical associations ("developed from", "associated with"), never identity. Each needs real `references`. Keep `needs-review` until checked.
 - The visa checklist is preparation help only. Every item links to an official Japanese government source. After reviewing it, set `lastReviewed` to the date.
 
+### Knowledge assistant (RAG), milestone R1: corpus and ingestion
+
+The assistant answers only from a small, curated corpus in `apps/api/rag/corpus/<topic>/`. Each document is Markdown with front matter, and `SOURCES.md` lists every document and its status.
+
+```bash
+cd apps/api
+.venv/Scripts/python -m rag.ingest            # build/update the local index (only changed docs are re-embedded)
+.venv/Scripts/python -m rag.ingest --check    # stale, invalid and needs-review documents
+.venv/Scripts/python -m rag.ingest --sources  # regenerate rag/corpus/SOURCES.md
+```
+
+- **Embeddings:** `intfloat/multilingual-e5-small`, run locally with fastembed (ONNX, no PyTorch). It handles English, Hindi/Hinglish and Japanese with no API key. The first run downloads about **465 MB** into `apps/api/.cache/models` (git-ignored). Set `RAG_EMBEDDINGS=hash` for a tiny deterministic test embedder. A hosted provider can be added behind `EmbeddingProvider` (`rag/embeddings.py`).
+- **Vector store: FAISS**, written to `apps/api/rag/index/` (git-ignored) as a flat inner-product index plus `chunks.jsonl`, `vectors.npy` and `manifest.json`.
+  - Why FAISS: it is one pip wheel with no server or database files to manage.
+  - Exact search over ~100 chunks takes microseconds, and it installs cleanly on Python 3.14 (Chroma pulls in a much larger dependency tree).
+  - The index is rebuilt from the corpus at any time, so nothing in it is precious.
+- **Adding a document:**
+  1. Create `rag/corpus/<topic>/<name>.md` with the full front matter: `id`, `title`, `topic` (must match the folder), `source_url`, `source_name`, `source_type`, `language`, `fetched_on`, `last_verified`, `volatility`, `status`, `licence_note`.
+  2. Write a short summary in your own words with a "Where to check" link.
+  3. Run `rag.ingest` and `pytest`.
+- **Rules:**
+  - Only facts from pages you actually fetched.
+  - Team-written text is `source_type: team-written` and stays `needs-review`.
+  - Pages you couldn't fetch become stubs, listed in `rag/corpus/_fetch_notes.yaml`.
+  - Only the owner sets `status: verified`.
+- **Staleness:** `last_verified` older than 730 days (static), 365 days (slow-changing) or 90 days (volatile) counts as stale. Override with `RAG_STALE_DAYS` and `RAG_STALE_DAYS_VOLATILE`.
+
 ## Checks
 
 ```bash

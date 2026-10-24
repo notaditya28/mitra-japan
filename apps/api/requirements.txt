@@ -7,3 +7,9 @@ python-dotenv>=1.0
 # tests
 pytest>=8
 httpx>=0.27
+
+# RAG knowledge assistant (local)
+faiss-cpu>=1.9
+fastembed>=0.9
+pyyaml>=6
+numpy>=2

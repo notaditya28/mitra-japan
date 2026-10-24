@@ -1,0 +1,21 @@
+# URLs we could not fetch or did not fully cover in milestone R1. Listed in SOURCES.md.
+- url: https://inari.jp/en/
+  problem: Official Fushimi Inari site refused the connection (reset) on 2026-10-24. The corpus has an empty stub; please supply hours, access and visiting rules.
+- url: https://visa.vfsglobal.com/ind/en/jpn/
+  problem: Not fetched. The list of documents Indian applicants must submit (tourism, business, visiting relatives) is not in the corpus yet; please confirm the current checklist page to use.
+- url: https://www.in.emb-japan.go.jp/itprtop_en/index.html
+  problem: Embassy of Japan in India sub-pages for document checklists per purpose were not found from the visa page; please point us to the current checklist pages.
+- url: https://japanrailpass.net/en/
+  problem: Eligibility, pass durations and prices are on sub-pages we did not summarise. Prices are volatile; tell us whether to add them.
+- url: https://www.kiyomizudera.or.jp/en/visit/
+  problem: Opening hours and admission fees are not in the page text (shown as images); please supply or confirm.
+- url: https://www.todaiji.or.jp/en/
+  problem: The homepage gives Daibutsu-den hours 7:30-17:30 without saying which season; the fee page was not fetched.
+- url: "JR Central (official English site, URL not fetched)"
+  problem: Tokaido Shinkansen (Tokyo-Kyoto-Osaka) is run by JR Central; its missed-train and refund rules were not fetched. The corpus has JR East rules only.
+- url: "Consulate General of India, Fukuoka (official URL not yet identified)"
+  problem: The Consulate General of India in Fukuoka (covers Kyushu, including Fukuoka) was not fetched; please confirm its official URL and emergency contacts.
+- url: https://www.japan.travel/en/plan/emergencies/
+  problem: This JNTO page lists police 110 but not 119; 119 comes from the FDMA pamphlet. Please confirm both numbers for emergency.json (milestone R4).
+- url: https://www.mofa.go.jp/j_info/visit/visa/visaonline.html
+  problem: Fetched (page dated May 15, 2026). India is listed under "apply through an accredited agency"; please confirm this is current before marking verified.

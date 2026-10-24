@@ -13,6 +13,9 @@
 
 ## Needs owner input
 
+- [ ] **Knowledge base (R1)**: review the 37 documents in `apps/api/rag/corpus/` (all `needs-review`), especially emergency contacts and visa pages, and the URLs to supply in `rag/corpus/SOURCES.md` (Fushimi Inari, VFS document checklist, JR Central rules, Consulate of India in Fukuoka, temple hours/fees).
+- [ ] **Git history**: commit `eca14ac` contains the Anthropic key that was in `.env.example`; rewrite it out before any push (not pushed yet).
+
 - [ ] **API key**: add `ANTHROPIC_API_KEY=` to `.env` (repo root) yourself, then restart the API. Live Claude mode has not been tested yet.
 
 - [ ] **City facts**: review `apps/web/src/data/cities.json` (travel times, veg notes) and `layers.json` (anime/regional spots).

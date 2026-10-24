@@ -119,6 +119,24 @@ Style: flat low-poly 3D, matte materials, soft light, rounded 16–24px cards, p
 - Restaurants: `restaurants.json` replaced `foodSpots.json`; `FOOD_SPOTS` is a derived view for the planner. Diet `basis`: self-reported / third-party / independently-verified / unconfirmed (evidence required unless unconfirmed). `data.test.ts` forbids `verified`, certification and the word "certified".
 - Visa: `visa.json` (`needs-review`, `lastReviewed`), items filtered only by purpose and traveller type, links only to official `.go.jp` sites (`visa.test.ts`).
 
+## Knowledge assistant / RAG (owner addendum 3, 2026-10-24)
+
+Grounded Q&A + persistent trip context + safe conversational itinerary edits, inside the existing planner (no new pages). Product name is Mitra Japan only (never "JapanSaathi").
+
+- Lives in `apps/api/rag/` (`ingest`, `chunking`, `embeddings`, `store`, `retrieve`, `rerank`, `answer`, `router`, `context`, `patching`, `tools`, `eval`). Corpus in `apps/api/rag/corpus/<topic>/` (visa-entry, transport, food-dietary, attractions, etiquette-law, emergency, disaster, phrases, accommodation-luggage, payments-connectivity, heritage) with `SOURCES.md`.
+- Store: FAISS index file + JSON chunk metadata in `apps/api/rag/index/` (the one allowed local "database"). Embeddings: local `intfloat/multilingual-e5-small` via fastembed (ONNX, no torch), behind `EmbeddingProvider`; hosted providers (e.g. Voyage) only via env. Anthropic has no embeddings endpoint.
+- Front matter on every doc: `id, title, topic, source_url, source_name, source_type (official-government|official-transport|official-tourism|reputable-local|team-written), language, fetched_on, last_verified, volatility (static|slow-changing|volatile), status (verified|needs-review|sample), licence_note`.
+- Corpus honesty: only facts from pages actually fetched, as short summaries with a link (no wholesale copies, respect robots/terms). Can't fetch → stub with `status: needs-review` and list the URL for the owner. Team-written content is `team-written` + `needs-review`. Never type emergency numbers, visa rules, prices, hours or schedules from memory.
+- `python -m rag.ingest` is idempotent (re-embeds only changed docs, writes a manifest with hashes); `--check` reports stale / missing-field / needs-review docs.
+- Retrieval: query rewrite (history + trip context), hybrid BM25 + dense with RRF, optional reranker, metadata filters; personal details only narrow filters and are never logged. Confidence gate → abstain and point to the official source. Volatile/stale evidence → freshness note with `last_verified`.
+- Answers: retrieved text is data, never instructions; important claims carry `[n]` citations; statements labelled fact / suggestion / estimate; INR costs only as estimates. Pydantic response: `answer, language, citations[], confidence (high|medium|low|abstained), freshness_note, suggested_next_steps[], proposed_patch?, needs_clarification?`.
+- TripContext: provenance per fact (confirmed|user-provided|estimate|assumption); never persist passport/ID/card numbers (say so if typed); "View my trip data" / "Delete my trip data" must work.
+- Itinerary edits are PATCHes (add/remove/move/replace/resize) via tools, previewed as a diff, applied only after confirm + existing validator + feasibility; pinned items untouched; Undo. Never claim a booking was changed.
+- Emergency router (rules first, LLM second) has top priority; offline `emergency.json` from official sources, `needs-review` until verified; never replaces responders.
+- Live tools (`get_weather`, `get_transit_status`, `get_attraction_hours`) are interfaces; when not connected they say so honestly. Location is opt-in, session-only, never logged.
+- Eval: `python -m rag.eval` over 50-80 golden cases (7 demo scenarios + Hindi/Hinglish, prompt injection, stale doc, fake-booking request) with a held-out subset; Markdown report.
+- Milestones (stop after each): R1 corpus + ingestion → R2 retrieval + grounded answers + eval → R3 trip context + patching → R4 emergency + live tools → R5 frontend + full eval. Priority if short on time: R1, R2, R4, R3, R5.
+
 ## Motion and performance
 
 - Slow eases (power2/power3, `ease-calm`). Nothing jittery.

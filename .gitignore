@@ -8,3 +8,7 @@ __pycache__
 .vercel
 .DS_Store
 *.tsbuildinfo
+
+# Local embedding model download and built RAG index
+apps/api/.cache/
+apps/api/rag/index/

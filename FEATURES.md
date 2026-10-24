@@ -63,4 +63,12 @@ _Last updated: 2026-10-24, end of milestone 7._
 
 ## Planned (by milestone)
 
+Knowledge assistant (addendum 3):
+
+- **R1 (done)**: 37 documents (31 summarised from fetched official/operator pages, 4 team-written, 2 eval fixtures) across all 11 topics, 53 chunks in a local FAISS index with multilingual e5 embeddings; idempotent `rag.ingest`, `--check` staleness report, generated `SOURCES.md`. Everything is `needs-review` until the owner checks it.
+- **R2**: hybrid retrieval, query rewrite, confidence gate, citations, abstention, `/api/assistant/chat`, first eval.
+- **R3**: TripContext with provenance, patch tools, diff preview, apply with validation, undo, pinned items.
+- **R4**: emergency router, offline `emergency.json`, weather tool, honest "not connected" transit tool, opt-in location.
+- **R5**: assistant chat panel, Sources drawer, diff cards, quick actions, trip-data panel, demo mode, full eval report.
+
 - Deploy: configs ready (`render.yaml`, `apps/web/vercel.json`); the owner connects Render and Vercel (README).
