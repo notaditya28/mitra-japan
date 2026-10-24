@@ -31,6 +31,14 @@ class Settings:
     plan_rate_per_minute: int = int(os.getenv("PLAN_RATE_PER_MINUTE", "8"))
     max_body_bytes: int = int(os.getenv("MAX_BODY_BYTES", "65536"))
     upstream_timeout_s: float = float(os.getenv("UPSTREAM_TIMEOUT_S", "120"))
+    #: Assistant chat messages per minute per client IP.
+    chat_rate_per_minute: int = int(os.getenv("CHAT_RATE_PER_MINUTE", "30"))
+    #: "production" disables debug endpoints (/api/knowledge/search, /api/ingest).
+    env_name: str = os.getenv("MITRA_ENV", "development").lower()
+
+    @property
+    def debug_endpoints(self) -> bool:
+        return self.env_name != "production"
 
     @property
     def live(self) -> bool:

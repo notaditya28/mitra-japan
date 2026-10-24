@@ -18,7 +18,15 @@ from .data import load
 from .planner import UpstreamError, plan_events, regenerate_day
 from .ratelimit import RateLimiter
 from .scan import ScanExplainRequest, explain_scan
-from .schema import DayRequest, PlanRequest
+from .schema import DayRequest, Itinerary, PlanRequest
+
+from pydantic import BaseModel, ConfigDict, Field
+from rag import assistant
+from rag import ingest as rag_ingest
+from rag.context import SESSIONS
+from rag.models import ChatRequest
+from rag.patching import UNDO, Patch, apply_patch
+from rag.retrieve import Filters, get_retriever
 
 logging.basicConfig(level=logging.INFO)
 
@@ -26,11 +34,12 @@ app = FastAPI(title="Mitra Japan API", version="0.5.0")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_origins,
-    allow_methods=["GET", "POST"],
+    allow_methods=["GET", "POST", "DELETE"],
     allow_headers=["Content-Type"],
 )
 
 limiter = RateLimiter(settings.plan_rate_per_minute)
+chat_limiter = RateLimiter(settings.chat_rate_per_minute)
 #: Tests swap this for a fake Anthropic client.
 client_override: Any = None
 
@@ -58,9 +67,9 @@ async def bad_request(_: Request, exc: RequestValidationError) -> JSONResponse:
     return error(400, "bad_request", "Some fields are missing or invalid.", details=details)
 
 
-def _rate_limited(request: Request) -> JSONResponse | None:
+def _rate_limited(request: Request, which: RateLimiter | None = None) -> JSONResponse | None:
     key = request.client.host if request.client else "anon"
-    wait = limiter.check(key)
+    wait = (which or limiter).check(key)
     if wait is None:
         return None
     return error(429, "rate_limited", "Too many plans in a short time. Please wait a moment.", retryAfter=wait)
@@ -141,6 +150,149 @@ async def scan_explain(req: ScanExplainRequest, request: Request):
         status = 503 if e.code == "demo_mode" else 502
         return error(status, e.code, e.message)
     return JSONResponse(out.model_dump(mode="json"))
+
+
+# --- Knowledge assistant (RAG) -----------------------------------------------------------
+
+
+@app.post("/api/assistant/chat")
+async def assistant_chat(req: ChatRequest, request: Request):
+    limited = _rate_limited(request, chat_limiter)
+    if limited:
+        return limited
+    resp = await assistant.handle(req, client_override)
+    out = resp.model_dump(mode="json")
+    if not settings.debug_endpoints:
+        out.pop("debug", None)
+    return JSONResponse(out)
+
+
+class ApplyPatchRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    session_id: str = Field(min_length=6, max_length=64, pattern=r"^[A-Za-z0-9_-]+$")
+    itinerary: Itinerary
+    patch: Patch
+    pinned: list[str] = Field(default_factory=list, max_length=60)
+    allow_pinned: bool = False
+
+
+class UndoRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    session_id: str = Field(min_length=6, max_length=64, pattern=r"^[A-Za-z0-9_-]+$")
+    undo_token: str = Field(min_length=8, max_length=64)
+
+
+@app.post("/api/assistant/apply-patch")
+def assistant_apply(req: ApplyPatchRequest, request: Request):
+    limited = _rate_limited(request, chat_limiter)
+    if limited:
+        return limited
+    result = apply_patch(req.itinerary, req.patch, set(req.pinned), allow_pinned=req.allow_pinned)
+    if not result.ok or result.itinerary is None:
+        return error(400, "invalid_patch", "This change can't be applied as it is.", details=result.errors)
+    token = UNDO.put(req.session_id, req.itinerary)
+    stored = SESSIONS.get(req.session_id)
+    if stored is not None:
+        SESSIONS.put(stored.model_copy(update={"itinerary": result.itinerary}))
+    return JSONResponse(
+        {
+            "itinerary": result.itinerary.model_dump(mode="json"),
+            "undo_token": token,
+            "diff": result.diff.model_dump(mode="json") if result.diff else None,
+            "warnings": result.warnings,
+        }
+    )
+
+
+@app.post("/api/assistant/undo")
+def assistant_undo(req: UndoRequest):
+    previous = UNDO.pop(req.session_id, req.undo_token)
+    if previous is None:
+        return error(404, "undo_unavailable", "Nothing to undo (the change is too old or was already undone).")
+    stored = SESSIONS.get(req.session_id)
+    if stored is not None:
+        SESSIONS.put(stored.model_copy(update={"itinerary": previous}))
+    return JSONResponse({"itinerary": previous.model_dump(mode="json")})
+
+
+@app.get("/api/knowledge/search")
+def knowledge_search(q: str = "", k: int = 8, include_fixtures: bool = False):
+    if not settings.debug_endpoints:
+        return error(404, "not_found", "Not available in production.")
+    if not (1 <= len(q) <= 500) or not (1 <= k <= 20):
+        return error(400, "bad_request", "q must be 1-500 characters and k 1-20.")
+    try:
+        res = get_retriever().search(q, Filters(include_fixtures=include_fixtures))
+    except FileNotFoundError as e:
+        return error(503, "index_missing", str(e))
+    return JSONResponse(
+        {
+            "query": res.query,
+            "expanded": res.expanded,
+            "confidence": res.confidence,
+            "level": res.level,
+            "signals": res.signals,
+            "candidates": [c.debug() | {"text": c.chunk.text, "source_url": c.chunk.source_url} for c in res.candidates[:k]],
+        }
+    )
+
+
+@app.get("/api/knowledge/sources")
+def knowledge_sources():
+    report = rag_ingest.check()
+    loaded = rag_ingest.load_corpus()
+    stale = {i for i, _ in report.stale} | set(report.unverified)
+    return JSONResponse(
+        {
+            "documents": [
+                {
+                    "id": d.meta.id,
+                    "title": d.meta.title,
+                    "topic": d.meta.topic,
+                    "source_name": d.meta.source_name,
+                    "source_url": d.meta.source_url,
+                    "source_type": d.meta.source_type,
+                    "status": d.meta.status,
+                    "last_verified": d.meta.last_verified.isoformat() if d.meta.last_verified else None,
+                    "volatility": d.meta.volatility,
+                    "stale": d.meta.id in stale,
+                }
+                for d in loaded.docs
+            ],
+            "invalid": report.errors,
+        }
+    )
+
+
+@app.get("/api/trip-data")
+def trip_data(session_id: str = ""):
+    if not (6 <= len(session_id) <= 64):
+        return error(400, "bad_request", "session_id is required.")
+    ctx = SESSIONS.get(session_id)
+    return JSONResponse(
+        {
+            "stored_on_server": ctx is not None,
+            "storage": "server memory only (cleared on restart); your browser keeps its own copy",
+            "trip_context": ctx.model_dump(mode="json") if ctx else None,
+        }
+    )
+
+
+@app.delete("/api/trip-data")
+def trip_data_delete(session_id: str = ""):
+    if not (6 <= len(session_id) <= 64):
+        return error(400, "bad_request", "session_id is required.")
+    deleted = SESSIONS.delete(session_id)
+    return JSONResponse({"deleted": deleted})
+
+
+@app.post("/api/ingest")
+def run_ingest():
+    if not settings.debug_endpoints:
+        return error(404, "not_found", "Not available in production.")
+    report = rag_ingest.ingest()
+    get_retriever.cache_clear()
+    return JSONResponse({"documents": report.docs, "chunks": report.chunks, "embedded": report.embedded, "errors": report.errors})
 
 
 # Re-exported for tests that need the notice texts.

@@ -62,6 +62,10 @@ class FrontMatter(BaseModel):
     volatility: Volatility
     status: Status
     licence_note: str = Field(min_length=10, max_length=600)
+    #: Optional: city ids from cities.json this document applies to (None = everywhere).
+    region: list[str] | None = None
+    #: Optional: who it is for, e.g. ["jain"], ["halal"], ["family"] (None = everyone).
+    audience: list[str] | None = None
 
     @model_validator(mode="after")
     def _rules(self) -> "FrontMatter":
@@ -99,6 +103,8 @@ class Chunk(BaseModel):
     status: str
     volatility: str
     last_verified: str | None
+    region: list[str] | None = None
+    audience: list[str] | None = None
 
     @property
     def heading(self) -> str:

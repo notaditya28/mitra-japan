@@ -11,6 +11,7 @@ last_verified: 2026-10-24
 volatility: slow-changing
 status: needs-review
 licence_note: Summary in our own words; the page has no date.
+audience: [halal]
 ---
 
 # Halal food and prayer for Muslim travellers

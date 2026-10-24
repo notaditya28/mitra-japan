@@ -11,6 +11,7 @@ last_verified: 2026-10-24
 volatility: volatile
 status: needs-review
 licence_note: Contact details copied exactly from the embassy homepage and its Consular Services page (eoityo_pages/MjA, last updated October 20, 2026); other text is summarised.
+region: [tokyo, kamakura, hakone, nikko, kanazawa, takayama, sapporo, naha]
 ---
 
 # Embassy of India, Tokyo

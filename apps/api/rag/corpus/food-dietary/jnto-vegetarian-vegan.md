@@ -11,6 +11,7 @@ last_verified: 2026-10-24
 volatility: slow-changing
 status: needs-review
 licence_note: Summary in our own words; the page has no date and some details may be several years old.
+audience: [vegetarian, vegan, jain, eggless]
 ---
 
 # Vegetarian and vegan food in Japan

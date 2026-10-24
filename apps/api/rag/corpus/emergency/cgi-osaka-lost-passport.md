@@ -11,6 +11,7 @@ last_verified: 2026-10-08
 volatility: volatile
 status: needs-review
 licence_note: Steps summarised; phone numbers, fee and portal URL copied exactly from the consulate page (last updated October 8, 2026).
+region: [kyoto, osaka, nara, koyasan, hiroshima, miyajima]
 ---
 
 # Lost Indian passport in Kansai or western Japan (Osaka-Kobe consulate)

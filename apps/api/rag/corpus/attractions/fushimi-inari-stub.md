@@ -11,6 +11,7 @@ last_verified: null
 volatility: volatile
 status: needs-review
 licence_note: STUB. The official site could not be reached on 2026-10-24 (connection reset). No facts from it are included. Owner to supply or verify.
+region: [kyoto]
 ---
 
 # Fushimi Inari Taisha, Kyoto (stub)

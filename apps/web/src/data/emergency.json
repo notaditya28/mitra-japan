@@ -1,0 +1,287 @@
+{
+  "_note": "Offline emergency fallback used by the API and the web app when retrieval or the AI is unavailable. Every number and step comes from the official sources listed with it (fetched 2026-10-24). NEEDS OWNER VERIFICATION before real use. Hindi text is machine-translated and unreviewed.",
+  "status": "needs-review",
+  "last_verified": null,
+  "researched": "2026-10-24",
+  "disclaimer": "Mitra Japan is not an emergency service and does not replace police, doctors, ambulance crews or immigration authorities. For anything urgent, call the numbers below.",
+  "disclaimer_hi": "मित्र जापान आपातकालीन सेवा नहीं है। किसी भी तत्काल स्थिति में नीचे दिए नंबरों पर कॉल करें। (मशीन अनुवाद, समीक्षा बाकी)",
+  "numbers": [
+    {
+      "id": "ambulance-fire",
+      "label": "Ambulance / fire",
+      "value": "119",
+      "note": "Say \"medical emergency\" or \"fire\" first, then your location.",
+      "source_url": "https://www.fdma.go.jp/publication/portal/items/portal001_pamphiet_english.pdf"
+    },
+    {
+      "id": "police",
+      "label": "Police",
+      "value": "110",
+      "note": "Or go to the nearest koban (police box).",
+      "source_url": "https://www.japan.travel/en/plan/emergencies/"
+    },
+    {
+      "id": "visitor-hotline",
+      "label": "Japan Visitor Hotline (24h, English)",
+      "value": "050-3816-2787",
+      "note": "From overseas: +81-50-3816-2787. Help with illness, accidents and disasters; not a dispatcher.",
+      "source_url": "https://www.japan.travel/en/plan/hotline/"
+    },
+    {
+      "id": "tokyo-police-english",
+      "label": "Tokyo police English helpline (24h)",
+      "value": "03-3501-0110",
+      "note": "Tokyo Metropolitan Police.",
+      "source_url": "https://www.japan.travel/en/plan/emergencies/"
+    }
+  ],
+  "missions": [
+    {
+      "id": "embassy-tokyo",
+      "name": "Embassy of India, Tokyo",
+      "address": "2-2-11 Kudan-Minami, Chiyoda-ku, Tokyo 102-0074",
+      "emergency": "+81-80330-15242",
+      "emergency_note": "24x7 helpline only for Indian nationals in distress (call, WhatsApp or SMS).",
+      "consular": "+81-80710-94857",
+      "consular_note": "Passport, police, hospital matters; 09:00-17:30 JST on working days.",
+      "email": "cons.tokyo@mea.gov.in",
+      "region": [
+        "tokyo",
+        "kamakura",
+        "hakone",
+        "nikko",
+        "kanazawa",
+        "takayama",
+        "sapporo",
+        "naha"
+      ],
+      "source_url": "https://www.indembassy-tokyo.gov.in/"
+    },
+    {
+      "id": "cgi-osaka",
+      "name": "Consulate General of India, Osaka-Kobe",
+      "address": "10th Floor, HF Sakaisuji Honmachi Building, 1-9-26 Kyutaromachi, Chuo Ward, Osaka 541-0056",
+      "emergency": "+81-80-2524-1798 / +81-80-8805-2207",
+      "emergency_note": "Emergency numbers listed for Indian tourists who lost their passport.",
+      "consular": "+81-6-6261-7299 / +81-6-6261-9299",
+      "consular_note": "Office hours Monday-Friday 09:00-17:30.",
+      "email": "cons.osakakobe@mea.gov.in",
+      "region": [
+        "kyoto",
+        "osaka",
+        "nara",
+        "koyasan",
+        "hiroshima",
+        "miyajima"
+      ],
+      "source_url": "https://www.indconosaka.gov.in/pages/MjE,"
+    }
+  ],
+  "situations": {
+    "lost_passport": {
+      "title": "Lost or stolen passport",
+      "urgent_action": "Report the loss at the nearest police station or koban and get a police report.",
+      "urgent_action_hi": "नज़दीकी पुलिस स्टेशन या कोबान में रिपोर्ट करें और पुलिस रिपोर्ट लें।",
+      "steps": [
+        "Get a police report from a police station or koban (a hotel front desk can help you).",
+        "Contact the Indian mission for your area (contacts below) and tell them your passport is lost.",
+        "If you are in Kansai or western Japan, apply online for an Emergency Certificate at https://mportal.passportindia.gov.in/mission and take the printout with your ARN.",
+        "Go to the mission in person with the application, a 3 cm x 3 cm photo, the fee, the police report, a copy of the lost passport or other proof of Indian nationality, and your flight details.",
+        "An Emergency Certificate is a one-way document for returning to India, and it cancels the lost passport. A new passport takes about 4 to 6 weeks."
+      ],
+      "steps_hi": [
+        "पुलिस स्टेशन या कोबान से पुलिस रिपोर्ट लें (होटल रिसेप्शन मदद कर सकता है)।",
+        "अपने क्षेत्र के भारतीय मिशन से संपर्क करें (नीचे संपर्क देखें)।",
+        "कंसाई या पश्चिमी जापान में हैं तो इमरजेंसी सर्टिफ़िकेट के लिए ऑनलाइन आवेदन करें और ARN वाला प्रिंट लें।",
+        "आवेदन, 3x3 सेमी फ़ोटो, फ़ीस, पुलिस रिपोर्ट, खोए पासपोर्ट की कॉपी और फ़्लाइट विवरण लेकर मिशन जाएँ।",
+        "इमरजेंसी सर्टिफ़िकेट केवल भारत लौटने के लिए है और खोया पासपोर्ट रद्द कर देता है।"
+      ],
+      "contacts": [
+        "police",
+        "mission",
+        "visitor-hotline"
+      ],
+      "sources": [
+        "https://www.japan.travel/en/plan/emergencies/",
+        "https://www.indconosaka.gov.in/pages/MjE,",
+        "https://www.indembassy-tokyo.gov.in/eoityo_pages/MjA"
+      ]
+    },
+    "medical": {
+      "title": "Medical emergency",
+      "urgent_action": "Call 119 now and say \"medical emergency\", then give your location.",
+      "urgent_action_hi": "अभी 119 पर कॉल करें, \"मेडिकल इमरजेंसी\" बोलें और अपनी जगह बताएँ।",
+      "steps": [
+        "Call 119 (ambulance). Say \"medical emergency\" first, then the address or a nearby landmark.",
+        "Describe the symptoms, when they started, and the person's age. Give your name and phone number.",
+        "Ask someone nearby who speaks Japanese to help with the call if you can.",
+        "Send someone to guide the ambulance. Have the passport, cash or card, and current medicines ready.",
+        "If you are unsure whether it is an emergency, the Japan Visitor Hotline (050-3816-2787) can help 24 hours a day."
+      ],
+      "steps_hi": [
+        "119 पर कॉल करें। पहले \"मेडिकल इमरजेंसी\" बोलें, फिर पता या पास की कोई पहचान।",
+        "लक्षण, कब शुरू हुए और मरीज़ की उम्र बताएँ। अपना नाम और फ़ोन नंबर दें।",
+        "पास में कोई जापानी बोलने वाला हो तो कॉल में मदद माँगें।",
+        "एम्बुलेंस को रास्ता दिखाने किसी को भेजें। पासपोर्ट, पैसे/कार्ड और दवाइयाँ तैयार रखें।",
+        "पक्का न हो तो जापान विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे मदद करती है।"
+      ],
+      "contacts": [
+        "ambulance-fire",
+        "visitor-hotline",
+        "mission"
+      ],
+      "sources": [
+        "https://www.fdma.go.jp/publication/portal/items/portal001_pamphiet_english.pdf",
+        "https://www.japan.travel/en/plan/hotline/"
+      ]
+    },
+    "police": {
+      "title": "Theft, crime or danger",
+      "urgent_action": "If you are in danger, call 110. Otherwise go to the nearest koban (police box).",
+      "urgent_action_hi": "ख़तरे में हैं तो 110 पर कॉल करें। वरना नज़दीकी कोबान (पुलिस बॉक्स) जाएँ।",
+      "steps": [
+        "Call 110, or go to a koban. In Tokyo the police English helpline is 03-3501-0110 (24 hours).",
+        "Ask for a police report; you need it for insurance and for replacing documents.",
+        "Contact the issuers of stolen cards or tickets to cancel and replace them."
+      ],
+      "steps_hi": [
+        "110 पर कॉल करें या कोबान जाएँ। टोक्यो में पुलिस की अंग्रेज़ी हेल्पलाइन 03-3501-0110 (24 घंटे) है।",
+        "पुलिस रिपोर्ट माँगें; बीमा और दस्तावेज़ों के लिए ज़रूरी है।",
+        "चोरी हुए कार्ड या टिकट जारी करने वालों से संपर्क कर उन्हें रद्द करवाएँ।"
+      ],
+      "contacts": [
+        "police",
+        "tokyo-police-english",
+        "mission"
+      ],
+      "sources": [
+        "https://www.japan.travel/en/plan/emergencies/"
+      ]
+    },
+    "lost_belongings": {
+      "title": "Lost phone, wallet, cards or bag",
+      "urgent_action": "Contact your card issuers to block lost cards, then report the loss at a koban.",
+      "urgent_action_hi": "खोए कार्ड ब्लॉक करवाने के लिए बैंक से संपर्क करें, फिर कोबान में रिपोर्ट करें।",
+      "steps": [
+        "Call your bank or card issuers to block lost cards and arrange replacements.",
+        "Report the loss at the nearest koban or police station and ask for a police report (needed for insurance).",
+        "If your passport was in the bag, follow the lost-passport steps too."
+      ],
+      "steps_hi": [
+        "बैंक/कार्ड जारी करने वालों को कॉल कर खोए कार्ड ब्लॉक करवाएँ।",
+        "नज़दीकी कोबान या पुलिस स्टेशन में रिपोर्ट करें और पुलिस रिपोर्ट लें।",
+        "अगर पासपोर्ट भी उसी बैग में था, तो पासपोर्ट खोने वाले कदम भी अपनाएँ।"
+      ],
+      "contacts": [
+        "police",
+        "visitor-hotline"
+      ],
+      "sources": [
+        "https://www.japan.travel/en/plan/emergencies/"
+      ]
+    },
+    "earthquake": {
+      "title": "Earthquake",
+      "urgent_action": "Stay calm, protect yourself where you are, and follow staff instructions. Near the coast after a big quake, go to higher ground.",
+      "urgent_action_hi": "शांत रहें, जहाँ हैं वहीं ख़ुद को बचाएँ और स्टाफ़ के निर्देश मानें। तट के पास बड़े भूकंप के बाद ऊँची जगह जाएँ।",
+      "steps": [
+        "Protect yourself based on your surroundings and follow instructions from staff.",
+        "Put out any open flames; fire is the most dangerous secondary disaster.",
+        "If you are near the coast after a large earthquake, go to higher ground at once in case of a tsunami.",
+        "Check official information: JMA warnings (https://www.jma.go.jp/bosai/#lang=en), the Safety Tips app or NHK WORLD-JAPAN.",
+        "For help, the Japan Visitor Hotline (050-3816-2787) works 24 hours a day during disasters."
+      ],
+      "steps_hi": [
+        "आसपास के हिसाब से ख़ुद को बचाएँ और स्टाफ़ के निर्देश मानें।",
+        "खुली आग तुरंत बुझाएँ; आग सबसे ख़तरनाक बाद की आपदा है।",
+        "बड़े भूकंप के बाद तट के पास हैं तो सुनामी के डर से तुरंत ऊँची जगह जाएँ।",
+        "आधिकारिक जानकारी देखें: JMA चेतावनियाँ, Safety Tips ऐप या NHK WORLD-JAPAN।",
+        "मदद के लिए जापान विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे उपलब्ध है।"
+      ],
+      "contacts": [
+        "visitor-hotline",
+        "ambulance-fire"
+      ],
+      "sources": [
+        "https://www.japan.travel/en/plan/emergencies/",
+        "https://www.jma.go.jp/jma/en/Emergency_Warning/ew_index.html"
+      ]
+    },
+    "typhoon_tsunami": {
+      "title": "Typhoon, tsunami or evacuation warning",
+      "urgent_action": "For a tsunami warning, go to high ground or a designated evacuation building now. For storms, follow local evacuation advice.",
+      "urgent_action_hi": "सुनामी चेतावनी पर अभी ऊँची जगह या निर्धारित निकासी इमारत में जाएँ। तूफ़ान में स्थानीय निकासी सलाह मानें।",
+      "steps": [
+        "Tsunami: evacuate immediately to high ground or a designated evacuation building.",
+        "Heavy rain, flood or landslide: finish evacuating before Alert Level 4; at Level 4 everyone should leave dangerous areas.",
+        "Act at once when an Emergency Warning is issued, even if the area hasn't had a disaster for decades.",
+        "Follow live warnings on JMA (https://www.jma.go.jp/bosai/#lang=en) and the Safety Tips app.",
+        "The Japan Visitor Hotline (050-3816-2787) helps 24 hours a day during disasters."
+      ],
+      "steps_hi": [
+        "सुनामी: तुरंत ऊँची जगह या निर्धारित निकासी इमारत में जाएँ।",
+        "भारी बारिश/बाढ़/भूस्खलन: अलर्ट लेवल 4 से पहले निकल जाएँ; लेवल 4 पर सभी ख़तरनाक जगह छोड़ें।",
+        "इमरजेंसी वार्निंग जारी होते ही तुरंत कदम उठाएँ।",
+        "JMA और Safety Tips ऐप पर लाइव चेतावनियाँ देखें।",
+        "आपदा में जापान विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे मदद करती है।"
+      ],
+      "contacts": [
+        "visitor-hotline",
+        "ambulance-fire",
+        "police"
+      ],
+      "sources": [
+        "https://www.jma.go.jp/jma/en/Emergency_Warning/ew_index.html",
+        "https://www.japan.travel/en/plan/emergencies/"
+      ]
+    },
+    "stranded": {
+      "title": "Stranded by cancelled or suspended trains",
+      "urgent_action": "Stay at the station and ask staff at the JR ticket office (Midori-no-madoguchi) about refunds and later trains.",
+      "urgent_action_hi": "स्टेशन पर रहें और JR टिकट ऑफ़िस (मिदोरी-नो-मादोगुची) में रिफ़ंड और अगली ट्रेनों के बारे में पूछें।",
+      "steps": [
+        "If your train is cancelled, JR East refunds fares and charges for the cancelled trip; ask at a JR ticket office.",
+        "If a limited express or express arrives two or more hours late, the express charges are refunded.",
+        "JR East does not pay for hotels or other costs caused by delays, so look for a place to stay early.",
+        "If it's caused by a disaster, check JMA warnings and the Safety Tips app; the Japan Visitor Hotline (050-3816-2787) can help 24 hours a day."
+      ],
+      "steps_hi": [
+        "ट्रेन रद्द होने पर JR East किराया और शुल्क लौटाता है; JR टिकट ऑफ़िस में पूछें।",
+        "एक्सप्रेस दो घंटे या ज़्यादा देर से पहुँचे तो एक्सप्रेस शुल्क लौटता है।",
+        "देरी से हुए होटल ख़र्च JR East नहीं देता, इसलिए जल्दी ठहरने की जगह ढूँढें।",
+        "आपदा के कारण हो तो JMA चेतावनियाँ और Safety Tips ऐप देखें; विज़िटर हॉटलाइन (050-3816-2787) 24 घंटे मदद करती है।"
+      ],
+      "contacts": [
+        "visitor-hotline"
+      ],
+      "sources": [
+        "https://www.jreast.co.jp/en/multi/ticket/changes.html",
+        "https://www.japan.travel/en/plan/hotline/"
+      ]
+    },
+    "missing_person": {
+      "title": "A family member is missing",
+      "urgent_action": "Call the police on 110 now, or go to the nearest koban.",
+      "urgent_action_hi": "अभी 110 पर पुलिस को कॉल करें या नज़दीकी कोबान जाएँ।",
+      "steps": [
+        "Call 110 (police) or go to the nearest koban (police box) and ask for help.",
+        "In Tokyo, the police English helpline is 03-3501-0110 (24 hours)."
+      ],
+      "steps_hi": [
+        "110 (पुलिस) पर कॉल करें या नज़दीकी कोबान (पुलिस बॉक्स) जाकर मदद माँगें।",
+        "टोक्यो में पुलिस की अंग्रेज़ी हेल्पलाइन 03-3501-0110 (24 घंटे) है।"
+      ],
+      "contacts": [
+        "police",
+        "tokyo-police-english",
+        "visitor-hotline",
+        "mission"
+      ],
+      "sources": [
+        "https://www.japan.travel/en/plan/emergencies/"
+      ]
+    }
+  },
+  "replan_prompt": "When you're safe, say \"replan\" and I'll adjust your itinerary around what happened.",
+  "replan_prompt_hi": "सुरक्षित होने पर \"replan\" लिखें, मैं आपका कार्यक्रम बदल दूँगा।"
+}

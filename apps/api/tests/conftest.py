@@ -50,10 +50,18 @@ class FakeStream:
 class FakeClient:
     """Scripted stand-in for AsyncAnthropic: each call pops the next FakeStream."""
 
-    def __init__(self, *streams: FakeStream):
+    def __init__(self, *streams: FakeStream, creates: list[list[dict]] | None = None):
         self.streams = list(streams)
+        self.creates = list(creates or [])
         self.calls: list[dict[str, Any]] = []
-        self.beta = SimpleNamespace(messages=SimpleNamespace(stream=self._stream))
+        self.beta = SimpleNamespace(messages=SimpleNamespace(stream=self._stream, create=self._create))
+
+    async def _create(self, **kwargs: Any):
+        """Non-streamed calls (tool use): each scripted turn is a list of content blocks."""
+        self.calls.append(kwargs)
+        blocks = [SimpleNamespace(**b) for b in self.creates.pop(0)]
+        stop = "tool_use" if any(b.type == "tool_use" for b in blocks) else "end_turn"
+        return SimpleNamespace(content=blocks, stop_reason=stop)
 
     def _stream(self, **kwargs: Any) -> FakeStream:
         self.calls.append(kwargs)

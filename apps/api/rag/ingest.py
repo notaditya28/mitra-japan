@@ -102,7 +102,7 @@ def chunk_doc(doc: Doc) -> list[Chunk]:
             title=m.title,
             section_path=rc.path,
             text=rc.text,
-            hash=text_hash(f"{m.title}|{'/'.join(rc.path)}|{rc.text}|{m.status}|{m.last_verified}"),
+            hash=text_hash(f"{m.title}|{'/'.join(rc.path)}|{rc.text}|{m.status}|{m.last_verified}|{m.region}|{m.audience}"),
             topic=m.topic,
             language=m.language,
             source_type=m.source_type,
@@ -111,6 +111,8 @@ def chunk_doc(doc: Doc) -> list[Chunk]:
             status=m.status,
             volatility=m.volatility,
             last_verified=m.last_verified.isoformat() if m.last_verified else None,
+            region=m.region,
+            audience=m.audience,
         )
         for i, rc in enumerate(raw)
     ]

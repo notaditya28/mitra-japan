@@ -11,6 +11,7 @@ last_verified: 2026-10-24
 volatility: volatile
 status: needs-review
 licence_note: Summary in our own words. The fetched pages did not include general opening hours or admission fees; those are not stated here.
+region: [kyoto]
 ---
 
 # Kiyomizu-dera Temple, Kyoto

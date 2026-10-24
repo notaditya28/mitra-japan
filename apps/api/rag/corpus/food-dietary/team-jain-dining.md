@@ -11,6 +11,7 @@ last_verified: null
 volatility: slow-changing
 status: needs-review
 licence_note: Written by the Mitra Japan team from our own ingredient dictionary and scanner rules. Not official guidance; pending owner review.
+audience: [jain]
 ---
 
 # Eating Jain in Japan (team-written tips)

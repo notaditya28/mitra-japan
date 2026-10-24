@@ -11,6 +11,7 @@ last_verified: 2026-10-24
 volatility: volatile
 status: needs-review
 licence_note: Summary in our own words. The homepage lists Daibutsu-den hours but not the date they apply to, nor fees.
+region: [nara]
 ---
 
 # Todai-ji Temple, Nara
