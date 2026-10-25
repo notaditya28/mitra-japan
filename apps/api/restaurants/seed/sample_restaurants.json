@@ -1,0 +1,1474 @@
+{
+  "_note": "Illustrative demo restaurants (dataOrigin sample): kinds of places, not real restaurants, at area-level coordinates. Their verifications are seeded DEMO verifications that show the pipeline; production mode never shows them as verified. Japanese names are machine drafts.",
+  "restaurants": [
+    {
+      "id": "sample-kyoto-station-shojin",
+      "nameEn": "Sample · Shojin kitchen (Kyoto Station)",
+      "nameJa": "サンプル・精進料理（京都駅）",
+      "cityId": "kyoto",
+      "address": "Kyoto Station area (illustrative area, not a real address)",
+      "lat": 34.9858,
+      "lng": 135.7588,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Shojin ryori",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "jain",
+        "vegetarian",
+        "vegan",
+        "eggless"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "kst-1",
+          "nameEn": "Seasonal shojin set",
+          "nameJa": "季節の精進膳",
+          "answers": {
+            "dish.broth": "kombu",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "yes"
+          }
+        },
+        {
+          "id": "kst-2",
+          "nameEn": "Kombu yuba soup",
+          "nameJa": "昆布湯葉吸い物",
+          "answers": {
+            "dish.broth": "kombu",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "jain",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "kst-1",
+            "kst-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "vegetarian",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "kst-1",
+            "kst-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "vegan",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "kst-1"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-arashiyama-tofu",
+      "nameEn": "Sample · Tofu house (Arashiyama)",
+      "nameJa": "サンプル・湯豆腐（嵐山）",
+      "cityId": "kyoto",
+      "address": "Arashiyama (illustrative area, not a real address)",
+      "lat": 35.0153,
+      "lng": 135.6731,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Yudofu",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "vegan"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "yes",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "yes",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "ara-1",
+          "nameEn": "Yudofu set",
+          "nameJa": "湯豆腐膳",
+          "answers": {
+            "dish.broth": "kombu",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "yes",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        },
+        {
+          "id": "ara-2",
+          "nameEn": "Sesame tofu",
+          "nameJa": "胡麻豆腐",
+          "answers": {
+            "dish.broth": "kombu",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "sample-gion-indian",
+      "nameEn": "Sample · Indian vegetarian kitchen (Gion)",
+      "nameJa": "サンプル・インド料理（祇園）",
+      "cityId": "kyoto",
+      "address": "Gion (illustrative area, not a real address)",
+      "lat": 35.0037,
+      "lng": 135.7788,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "North Indian",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "jain",
+        "eggless"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "gio-1",
+          "nameEn": "Dal and rice",
+          "nameJa": "ダルとライス",
+          "answers": {
+            "dish.broth": "vegetable",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "ghee",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "yes",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "yes",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "yes"
+          }
+        },
+        {
+          "id": "gio-2",
+          "nameEn": "Paneer curry",
+          "nameJa": "パニールカレー",
+          "answers": {
+            "dish.broth": "vegetable",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "ghee",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "yes",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "yes"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "vegetarian",
+          "method": "phone",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "gio-1",
+            "gio-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "eggless",
+          "method": "phone",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "gio-1",
+            "gio-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-nishiki-noodles",
+      "nameEn": "Sample · Noodle stall (Nishiki Market)",
+      "nameJa": "サンプル・麺屋台（錦市場）",
+      "cityId": "kyoto",
+      "address": "Nishiki Market (illustrative area, not a real address)",
+      "lat": 35.005,
+      "lng": 135.7649,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Udon",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "no_beef"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "yes",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "yes",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "nis-1",
+          "nameEn": "Kake udon",
+          "nameJa": "かけうどん",
+          "answers": {
+            "dish.broth": "unknown",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce",
+              "mirin"
+            ],
+            "dish.alcohol": [
+              "mirin"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "sample-kawaramachi-halal",
+      "nameEn": "Sample · Halal ramen (Kawaramachi)",
+      "nameJa": "サンプル・ハラールラーメン（河原町）",
+      "cityId": "kyoto",
+      "address": "Kawaramachi (illustrative area, not a real address)",
+      "lat": 35.0039,
+      "lng": 135.769,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Ramen",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "halal",
+        "no_beef"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "kaw-1",
+          "nameEn": "Chicken shio ramen",
+          "nameJa": "鶏塩ラーメン",
+          "answers": {
+            "dish.broth": "chicken",
+            "dish.meat_fish": [
+              "chicken"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "yes",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "halal_certified",
+            "dish.modifiable": "no"
+          }
+        },
+        {
+          "id": "kaw-2",
+          "nameEn": "Vegetable gyoza",
+          "nameJa": "野菜餃子",
+          "answers": {
+            "dish.broth": "none",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "halal",
+          "method": "third_party_certificate",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "kaw-1",
+            "kaw-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "no_beef",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "kaw-1",
+            "kaw-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-fushimi-curry",
+      "nameEn": "Sample · Curry counter (Fushimi)",
+      "nameJa": "サンプル・カレー（伏見）",
+      "cityId": "kyoto",
+      "address": "Fushimi (illustrative area, not a real address)",
+      "lat": 34.9671,
+      "lng": 135.7727,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Japanese curry",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "no_beef"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "yes",
+        "kitchen.shared_grill": "yes",
+        "kitchen.shared_pan_oil": "yes",
+        "kitchen.separate_utensils": "no"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "fus-1",
+          "nameEn": "Vegetable curry",
+          "nameJa": "野菜カレー",
+          "answers": {
+            "dish.broth": "vegetable",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "curry_roux"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "yes",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "sample-asakusa-shojin",
+      "nameEn": "Sample · Temple-style kitchen (Asakusa)",
+      "nameJa": "サンプル・精進料理（浅草）",
+      "cityId": "tokyo",
+      "address": "Asakusa (illustrative area, not a real address)",
+      "lat": 35.7148,
+      "lng": 139.7967,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Shojin ryori",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "jain",
+        "vegetarian",
+        "vegan",
+        "eggless"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "asa-1",
+          "nameEn": "Shojin bento",
+          "nameJa": "精進弁当",
+          "answers": {
+            "dish.broth": "kombu",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        },
+        {
+          "id": "asa-2",
+          "nameEn": "Goma-dofu",
+          "nameJa": "胡麻豆腐",
+          "answers": {
+            "dish.broth": "kombu",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "jain",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "asa-1",
+            "asa-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "vegetarian",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "asa-1",
+            "asa-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "vegan",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "asa-1",
+            "asa-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "eggless",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "asa-1"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-shinjuku-vegan-ramen",
+      "nameEn": "Sample · Vegan ramen (Shinjuku)",
+      "nameJa": "サンプル・ヴィーガンラーメン（新宿）",
+      "cityId": "tokyo",
+      "address": "Shinjuku (illustrative area, not a real address)",
+      "lat": 35.6909,
+      "lng": 139.7003,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Vegan ramen",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegan",
+        "vegetarian",
+        "jain"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "yes",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "yes",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "shi-1",
+          "nameEn": "Miso vegan ramen",
+          "nameJa": "味噌ヴィーガンラーメン",
+          "answers": {
+            "dish.broth": "shiitake",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "miso",
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "yes",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "vegan",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "shi-1"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "vegetarian",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "shi-1"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-ueno-thali",
+      "nameEn": "Sample · Thali house (Ueno)",
+      "nameJa": "サンプル・ターリー（上野）",
+      "cityId": "tokyo",
+      "address": "Ueno (illustrative area, not a real address)",
+      "lat": 35.7138,
+      "lng": 139.7773,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Indian thali",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "jain",
+        "eggless"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "uen-1",
+          "nameEn": "Jain thali",
+          "nameJa": "ジャイナ・ターリー",
+          "answers": {
+            "dish.broth": "vegetable",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "ghee",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "yes",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        },
+        {
+          "id": "uen-2",
+          "nameEn": "Vegetable thali",
+          "nameJa": "野菜ターリー",
+          "answers": {
+            "dish.broth": "vegetable",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "ghee",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "yes",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "yes",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "vegetarian",
+          "method": "phone",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "uen-1",
+            "uen-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "eggless",
+          "method": "phone",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "uen-1",
+            "uen-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-shibuya-halal",
+      "nameEn": "Sample · Halal grill (Shibuya)",
+      "nameJa": "サンプル・ハラールグリル（渋谷）",
+      "cityId": "tokyo",
+      "address": "Shibuya (illustrative area, not a real address)",
+      "lat": 35.6595,
+      "lng": 139.7005,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Halal grill",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "halal",
+        "no_beef"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "shb-1",
+          "nameEn": "Grilled chicken plate",
+          "nameJa": "グリルチキン",
+          "answers": {
+            "dish.broth": "none",
+            "dish.meat_fish": [
+              "chicken"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "halal_certified",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "halal",
+          "method": "third_party_certificate",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "shb-1"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "no_beef",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "shb-1"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-tsukiji-ramen",
+      "nameEn": "Sample · Pork ramen (Tsukiji)",
+      "nameJa": "サンプル・豚骨ラーメン（築地）",
+      "cityId": "tokyo",
+      "address": "Tsukiji (illustrative area, not a real address)",
+      "lat": 35.6655,
+      "lng": 139.7707,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Ramen",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "halal",
+        "no_beef"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "yes",
+        "kitchen.shared_grill": "yes",
+        "kitchen.shared_pan_oil": "yes",
+        "kitchen.separate_utensils": "no"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "tsu-1",
+          "nameEn": "Tonkotsu ramen",
+          "nameJa": "豚骨ラーメン",
+          "answers": {
+            "dish.broth": "pork",
+            "dish.meat_fish": [
+              "pork"
+            ],
+            "dish.animal_fat": "lard",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "yes",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "sample-namba-veg",
+      "nameEn": "Sample · Vegetarian kitchen (Namba)",
+      "nameJa": "サンプル・ベジタリアン（なんば）",
+      "cityId": "osaka",
+      "address": "Namba (illustrative area, not a real address)",
+      "lat": 34.6662,
+      "lng": 135.5011,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Vegetarian",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "vegan",
+        "jain"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "nam-1",
+          "nameEn": "Vegetable donburi",
+          "nameJa": "野菜丼",
+          "answers": {
+            "dish.broth": "shiitake",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "yes"
+          }
+        },
+        {
+          "id": "nam-2",
+          "nameEn": "Kombu soba",
+          "nameJa": "昆布そば",
+          "answers": {
+            "dish.broth": "kombu",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "vegetarian",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "nam-1",
+            "nam-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "vegan",
+          "method": "visit",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "nam-1",
+            "nam-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    },
+    {
+      "id": "sample-umeda-halal-curry",
+      "nameEn": "Sample · Halal curry (Umeda)",
+      "nameJa": "サンプル・ハラールカレー（梅田）",
+      "cityId": "osaka",
+      "address": "Umeda (illustrative area, not a real address)",
+      "lat": 34.7025,
+      "lng": 135.4959,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Curry",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "halal"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "yes",
+        "kitchen.shared_grill": "yes",
+        "kitchen.shared_pan_oil": "yes",
+        "kitchen.separate_utensils": "no"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "ume-1",
+          "nameEn": "Chicken curry",
+          "nameJa": "チキンカレー",
+          "answers": {
+            "dish.broth": "chicken",
+            "dish.meat_fish": [
+              "chicken"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "halal_certified",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "sample-dotonbori-okonomiyaki",
+      "nameEn": "Sample · Okonomiyaki (Dotonbori)",
+      "nameJa": "サンプル・お好み焼き（道頓堀）",
+      "cityId": "osaka",
+      "address": "Dotonbori (illustrative area, not a real address)",
+      "lat": 34.6687,
+      "lng": 135.5013,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "Okonomiyaki",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "vegetarian",
+        "eggless"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "yes",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "yes",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "dot-1",
+          "nameEn": "Vegetable okonomiyaki",
+          "nameJa": "野菜お好み焼き",
+          "answers": {
+            "dish.broth": "bonito",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce",
+              "bonito_dashi"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "yes",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "yes",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "sample-shinsekai-indian",
+      "nameEn": "Sample · Indian kitchen (Shinsekai)",
+      "nameJa": "サンプル・インド料理（新世界）",
+      "cityId": "osaka",
+      "address": "Shinsekai (illustrative area, not a real address)",
+      "lat": 34.6525,
+      "lng": 135.5063,
+      "locationSource": "sample-area",
+      "phone": null,
+      "website": null,
+      "openingInfo": "Illustrative: no real opening hours.",
+      "cuisine": "South Indian",
+      "dataOrigin": "sample",
+      "source": "Illustrative demo entry: a kind of place, not a specific restaurant.",
+      "link": null,
+      "dietsRequested": [
+        "jain",
+        "vegetarian",
+        "eggless"
+      ],
+      "kitchen": {
+        "kitchen.shared_fryer": "no",
+        "kitchen.shared_grill": "no",
+        "kitchen.shared_pan_oil": "no",
+        "kitchen.separate_utensils": "yes"
+      },
+      "declaration": {
+        "accepted": true,
+        "declaredAt": "@now"
+      },
+      "dishes": [
+        {
+          "id": "sse-1",
+          "nameEn": "Jain dosa",
+          "nameJa": "ジャイナ・ドーサ",
+          "answers": {
+            "dish.broth": "none",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        },
+        {
+          "id": "sse-2",
+          "nameEn": "Idli sambar",
+          "nameJa": "イドリ・サンバル",
+          "answers": {
+            "dish.broth": "vegetable",
+            "dish.meat_fish": [
+              "none"
+            ],
+            "dish.animal_fat": "none",
+            "dish.sauce_bases": [
+              "soy_sauce"
+            ],
+            "dish.alcohol": [
+              "none"
+            ],
+            "dish.gelatin": "no",
+            "dish.egg": "no",
+            "dish.dairy": "no",
+            "dish.honey": "no",
+            "dish.onion_garlic": "no",
+            "dish.root_vegetables": "no",
+            "dish.ginger": "no",
+            "dish.meat_slaughter": "not_applicable",
+            "dish.modifiable": "no"
+          }
+        }
+      ],
+      "certificates": [],
+      "verifications": [
+        {
+          "diet": "jain",
+          "method": "phone",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "sse-1",
+            "sse-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "vegetarian",
+          "method": "phone",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "sse-1",
+            "sse-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        },
+        {
+          "diet": "eggless",
+          "method": "phone",
+          "verifiedAt": "@now",
+          "verifierInitials": "DM",
+          "evidence": [
+            "Sample verification note (illustrative, demo only)"
+          ],
+          "dishIds": [
+            "sse-1",
+            "sse-2"
+          ],
+          "notes": "Seeded demo verification: shows the pipeline, not a real check."
+        }
+      ]
+    }
+  ]
+}

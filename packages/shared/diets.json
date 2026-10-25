@@ -1,0 +1,36 @@
+{
+  "_note": "Diets assessed per restaurant (addendum 5 v3, plus eggless by owner decision 2026-10-25). Distinct: none implies another. Statuses and their traveller labels. Read by the API (Python) and both frontends.",
+  "diets": [
+    { "id": "jain", "label": "Jain", "labelJa": "ジャイナ教食" },
+    { "id": "vegetarian", "label": "Vegetarian", "labelJa": "ベジタリアン" },
+    { "id": "vegan", "label": "Vegan", "labelJa": "ヴィーガン" },
+    { "id": "halal", "label": "Halal", "labelJa": "ハラール" },
+    { "id": "no_beef", "label": "No beef", "labelJa": "牛肉なし" },
+    { "id": "eggless", "label": "Eggless", "labelJa": "卵なし" }
+  ],
+  "statuses": [
+    {
+      "id": "fully_verified",
+      "label": "Fully verified",
+      "demoLabel": "Fully verified (DEMO)",
+      "meaning": "Independently confirmed for this diet by a recorded method, not expired, no open reports, confirmed dishes listed."
+    },
+    {
+      "id": "partially_verified",
+      "label": "Partially verified (restaurant-reported)",
+      "meaning": "The restaurant answered this diet's required questions and automated checks found no conflict or contradiction, but nobody has independently confirmed it."
+    },
+    {
+      "id": "not_verified",
+      "label": "Not verified",
+      "meaning": "Required answers are missing, a contradiction is unresolved, or the record is stale."
+    },
+    {
+      "id": "not_suitable",
+      "label": "Not suitable",
+      "meaning": "A declared or detected conflict that cannot be modified."
+    }
+  ],
+  "methods": ["phone", "visit", "third_party_certificate", "corroborated_traveler_reports"],
+  "pausedLabel": "Under review"
+}

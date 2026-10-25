@@ -4,6 +4,10 @@ pydantic>=2.9
 anthropic>=2.2
 python-dotenv>=1.0
 
+# Restaurant partners and verification (addendum 5 v3): SQLite locally, Postgres when deployed
+sqlalchemy>=2.0
+alembic>=1.13
+
 # tests
 pytest>=8
 httpx>=0.27

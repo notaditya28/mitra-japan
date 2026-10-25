@@ -1,5 +1,6 @@
 packages:
   - apps/web
+  - packages/*
 allowBuilds:
   esbuild: true
   tesseract.js: false

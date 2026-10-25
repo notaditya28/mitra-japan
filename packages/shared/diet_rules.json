@@ -1,0 +1,146 @@
+{
+  "_note": "Deterministic diet rules applied by apps/api/verification/checks.py. They decide what each diet needs to know and which answers conflict. needs-review: a Jain practitioner and a Muslim practitioner must check them (DATA_TODO.md). The app shows which rules it applied and never claims religious authority. Answers of 'unknown' or 'other' always count as missing (fail safe).",
+  "status": "needs-review",
+  "version": 1,
+  "lastReviewed": null,
+  "defaults": {
+    "verificationExpiryMonths": 6,
+    "declarationStaleMonths": 6,
+    "jainStrictness": "strict"
+  },
+  "fields": {
+    "dish.broth": {
+      "kind": "one",
+      "values": ["none", "kombu", "shiitake", "vegetable", "bonito", "niboshi", "chicken", "pork", "beef", "other", "unknown"],
+      "question": "What is the broth or stock base?"
+    },
+    "dish.meat_fish": {
+      "kind": "many",
+      "values": ["none", "chicken", "pork", "beef", "fish", "seafood", "other", "unknown"],
+      "question": "Does the dish contain meat, fish or seafood?"
+    },
+    "dish.animal_fat": {
+      "kind": "one",
+      "values": ["none", "lard", "tallow", "chicken_fat", "butter", "ghee", "other", "unknown"],
+      "question": "Is any animal fat used (lard, tallow, chicken fat, butter)?"
+    },
+    "dish.sauce_bases": {
+      "kind": "many",
+      "values": ["none", "soy_sauce", "miso", "mirin", "sake", "fish_sauce", "oyster_sauce", "bonito_dashi", "meat_extract", "curry_roux", "mayonnaise", "other", "unknown"],
+      "question": "Which sauce or seasoning bases are used?"
+    },
+    "dish.alcohol": {
+      "kind": "many",
+      "values": ["none", "mirin", "sake", "cooking_wine", "beer", "other", "unknown"],
+      "question": "Is any alcohol used in cooking (mirin, sake, cooking wine)?"
+    },
+    "dish.gelatin": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Does it contain gelatin?" },
+    "dish.egg": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Does it contain egg (including noodles, batter, mayonnaise)?" },
+    "dish.dairy": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Does it contain milk, butter, cream or cheese?" },
+    "dish.honey": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Does it contain honey?" },
+    "dish.onion_garlic": {
+      "kind": "one",
+      "values": ["yes", "no", "unknown"],
+      "question": "Does it contain onion, garlic, leek, spring onion or chives?"
+    },
+    "dish.root_vegetables": {
+      "kind": "one",
+      "values": ["yes", "no", "unknown"],
+      "question": "Does it contain root vegetables (potato, carrot, daikon, burdock, lotus root)?"
+    },
+    "dish.ginger": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Does it contain ginger?" },
+    "dish.meat_slaughter": {
+      "kind": "one",
+      "values": ["halal_certified", "not_halal", "unknown", "not_applicable"],
+      "question": "Is the meat from halal slaughter (with a certificate)?"
+    },
+    "dish.modifiable": { "kind": "one", "values": ["yes", "no"], "question": "Can the dish be changed on request?" },
+    "kitchen.shared_fryer": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Is the fryer oil shared with meat or fish?" },
+    "kitchen.shared_grill": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Is the grill shared with meat or fish?" },
+    "kitchen.shared_pan_oil": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Are pans or cooking oil shared with meat or fish?" },
+    "kitchen.separate_utensils": { "kind": "one", "values": ["yes", "no", "unknown"], "question": "Can separate pans and utensils be used on request?" }
+  },
+  "unknownValues": ["unknown", "other"],
+  "diets": {
+    "vegetarian": {
+      "summary": "No meat or fish, including hidden in broth, fats, extracts and gelatin.",
+      "rules": [
+        { "id": "veg-broth", "field": "dish.broth", "conflict": ["bonito", "niboshi", "chicken", "pork", "beef"], "modifiable": false, "reason": "Broth made from fish or meat" },
+        { "id": "veg-meat", "field": "dish.meat_fish", "conflict": ["chicken", "pork", "beef", "fish", "seafood"], "modifiable": true, "reason": "Contains meat, fish or seafood" },
+        { "id": "veg-fat", "field": "dish.animal_fat", "conflict": ["lard", "tallow", "chicken_fat"], "modifiable": false, "reason": "Cooked with meat fat" },
+        { "id": "veg-sauce", "field": "dish.sauce_bases", "conflict": ["fish_sauce", "oyster_sauce", "bonito_dashi", "meat_extract"], "unknown": ["curry_roux"], "modifiable": false, "reason": "Sauce made with fish or meat extract (curry roux needs its label checked)" },
+        { "id": "veg-gelatin", "field": "dish.gelatin", "conflict": ["yes"], "modifiable": false, "reason": "Contains gelatin" },
+        { "id": "veg-fryer", "field": "kitchen.shared_fryer", "caution": ["yes"], "reason": "Fryer oil shared with meat or fish" },
+        { "id": "veg-grill", "field": "kitchen.shared_grill", "caution": ["yes"], "reason": "Grill shared with meat or fish" },
+        { "id": "veg-pan", "field": "kitchen.shared_pan_oil", "caution": ["yes"], "reason": "Pans or oil shared with meat or fish" }
+      ]
+    },
+    "vegan": {
+      "extends": "vegetarian",
+      "summary": "Vegetarian rules plus no egg, dairy or honey.",
+      "rules": [
+        { "id": "vegan-egg", "field": "dish.egg", "conflict": ["yes"], "modifiable": true, "reason": "Contains egg" },
+        { "id": "vegan-dairy", "field": "dish.dairy", "conflict": ["yes"], "modifiable": true, "reason": "Contains dairy" },
+        { "id": "vegan-honey", "field": "dish.honey", "conflict": ["yes"], "modifiable": true, "reason": "Contains honey" },
+        { "id": "vegan-fat", "field": "dish.animal_fat", "conflict": ["lard", "tallow", "chicken_fat", "butter", "ghee"], "modifiable": false, "reason": "Cooked with animal fat or butter" },
+        { "id": "vegan-mayo", "field": "dish.sauce_bases", "conflict": ["mayonnaise"], "modifiable": true, "reason": "Mayonnaise contains egg" }
+      ]
+    },
+    "jain": {
+      "extends": "vegetarian",
+      "summary": "Vegetarian rules plus no egg, honey, onion, garlic, other alliums or root vegetables; ginger depends on the strictness profile.",
+      "rules": [
+        { "id": "jain-egg", "field": "dish.egg", "conflict": ["yes"], "modifiable": true, "reason": "Contains egg" },
+        { "id": "jain-honey", "field": "dish.honey", "conflict": ["yes"], "modifiable": true, "reason": "Contains honey" },
+        { "id": "jain-allium", "field": "dish.onion_garlic", "conflict": ["yes"], "modifiable": true, "reason": "Contains onion, garlic or other alliums" },
+        { "id": "jain-root", "field": "dish.root_vegetables", "conflict": ["yes"], "modifiable": true, "reason": "Contains root vegetables" },
+        { "id": "jain-mayo", "field": "dish.sauce_bases", "conflict": ["mayonnaise"], "modifiable": true, "reason": "Mayonnaise contains egg" },
+        { "id": "jain-ginger", "field": "dish.ginger", "conflict": ["yes"], "modifiable": true, "profile": "strict", "reason": "Contains ginger (a root; avoided under the strict profile)" }
+      ],
+      "profiles": {
+        "strict": "Ginger counts as a root vegetable and is avoided.",
+        "flexible": "Ginger is accepted; all other Jain rules apply."
+      }
+    },
+    "halal": {
+      "summary": "No pork or its derivatives, no alcohol in cooking (including mirin, sake and cooking wine), meat only from halal slaughter, and care with shared equipment.",
+      "rules": [
+        { "id": "halal-pork", "field": "dish.meat_fish", "conflict": ["pork"], "modifiable": true, "reason": "Contains pork" },
+        { "id": "halal-broth", "field": "dish.broth", "conflict": ["pork"], "modifiable": false, "reason": "Pork broth" },
+        { "id": "halal-fat", "field": "dish.animal_fat", "conflict": ["lard"], "unknown": ["tallow", "chicken_fat"], "modifiable": false, "reason": "Lard, or animal fat of unknown slaughter" },
+        { "id": "halal-alcohol", "field": "dish.alcohol", "conflict": ["mirin", "sake", "cooking_wine", "beer"], "modifiable": false, "reason": "Alcohol used in cooking" },
+        { "id": "halal-sauce", "field": "dish.sauce_bases", "conflict": ["mirin", "sake"], "unknown": ["meat_extract", "curry_roux"], "modifiable": false, "reason": "Sauce with mirin or sake, or a meat extract of unknown origin" },
+        { "id": "halal-gelatin", "field": "dish.gelatin", "conflict": ["yes"], "modifiable": false, "reason": "Gelatin of unknown origin" },
+        {
+          "id": "halal-slaughter",
+          "field": "dish.meat_slaughter",
+          "when": { "anyOf": [{ "field": "dish.meat_fish", "in": ["chicken", "beef", "other"] }, { "field": "dish.broth", "in": ["chicken", "beef"] }] },
+          "conflict": ["not_halal"],
+          "unknown": ["not_applicable"],
+          "modifiable": false,
+          "reason": "Meat not from halal slaughter"
+        },
+        { "id": "halal-fryer", "field": "kitchen.shared_fryer", "conflict": ["yes"], "unless": { "field": "kitchen.separate_utensils", "in": ["yes"] }, "modifiable": false, "reason": "Fryer shared with pork or non-halal meat" },
+        { "id": "halal-grill", "field": "kitchen.shared_grill", "conflict": ["yes"], "unless": { "field": "kitchen.separate_utensils", "in": ["yes"] }, "modifiable": false, "reason": "Grill shared with pork or non-halal meat" },
+        { "id": "halal-pan", "field": "kitchen.shared_pan_oil", "conflict": ["yes"], "unless": { "field": "kitchen.separate_utensils", "in": ["yes"] }, "modifiable": false, "reason": "Pans or oil shared with pork or non-halal meat" }
+      ]
+    },
+    "no_beef": {
+      "summary": "No beef, beef tallow or beef extracts (including curry roux and sauces). Not the same as halal.",
+      "rules": [
+        { "id": "nobeef-meat", "field": "dish.meat_fish", "conflict": ["beef"], "modifiable": true, "reason": "Contains beef" },
+        { "id": "nobeef-broth", "field": "dish.broth", "conflict": ["beef"], "modifiable": false, "reason": "Beef broth" },
+        { "id": "nobeef-fat", "field": "dish.animal_fat", "conflict": ["tallow"], "modifiable": false, "reason": "Beef tallow" },
+        { "id": "nobeef-sauce", "field": "dish.sauce_bases", "unknown": ["meat_extract", "curry_roux"], "modifiable": false, "reason": "Meat extract or curry roux may contain beef" },
+        { "id": "nobeef-grill", "field": "kitchen.shared_grill", "caution": ["yes"], "reason": "Grill shared with beef" }
+      ]
+    },
+    "eggless": {
+      "summary": "No egg in the dish, including noodles, batter and mayonnaise.",
+      "rules": [
+        { "id": "egg-egg", "field": "dish.egg", "conflict": ["yes"], "modifiable": true, "reason": "Contains egg" },
+        { "id": "egg-mayo", "field": "dish.sauce_bases", "conflict": ["mayonnaise"], "modifiable": true, "reason": "Mayonnaise contains egg" }
+      ]
+    }
+  }
+}

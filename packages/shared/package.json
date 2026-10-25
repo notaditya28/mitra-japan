@@ -1,0 +1,15 @@
+{
+  "name": "@mitra/shared",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Shared diet ids, verification statuses, diet rules and types for the traveller app, the partner site and the API.",
+  "exports": {
+    ".": "./src/index.ts",
+    "./diet_rules.json": "./diet_rules.json",
+    "./diets.json": "./diets.json"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ."
+  }
+}

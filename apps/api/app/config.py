@@ -35,10 +35,26 @@ class Settings:
     chat_rate_per_minute: int = int(os.getenv("CHAT_RATE_PER_MINUTE", "30"))
     #: "production" disables debug endpoints (/api/knowledge/search, /api/ingest).
     env_name: str = os.getenv("MITRA_ENV", "development").lower()
+    # --- Restaurant partners and verification (addendum 5 v3) ---------------------
+    #: demo tags every submission as sample data and labels verifications "(DEMO)";
+    #: production never lets sample records pass the planner filter.
+    app_mode: str = (os.getenv("APP_MODE") or "demo").strip().lower()
+    #: SQLite locally; any SQLAlchemy URL (e.g. postgresql+psycopg://...) when deployed.
+    database_url: str = os.getenv("DATABASE_URL") or f"sqlite:///{(REPO_ROOT / 'apps' / 'api' / 'data' / 'mitra.db').as_posix()}"
+    #: Passcode for the partner site's /admin verifier area (header X-Admin-Passcode).
+    admin_passcode: str = os.getenv("ADMIN_PASSCODE", "")
+    verification_expiry_months: int = int(os.getenv("VERIFICATION_EXPIRY_MONTHS") or "6")
+    #: Diet ids, statuses and diet_rules.json shared with both frontends.
+    shared_dir: Path = Path(os.getenv("MITRA_SHARED_DIR", str(REPO_ROOT / "packages" / "shared")))
 
     @property
     def debug_endpoints(self) -> bool:
         return self.env_name != "production"
+
+    @property
+    def demo_data(self) -> bool:
+        """Restaurant demo mode (APP_MODE); anything but "production" counts as demo."""
+        return self.app_mode != "production"
 
     @property
     def live(self) -> bool:

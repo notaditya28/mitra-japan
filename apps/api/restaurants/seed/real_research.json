@@ -1,0 +1,257 @@
+{
+  "_note": "Real places researched from public guides (moved from apps/web/src/data/restaurants.json). dataOrigin real, but they have never answered our questions, so every diet stays not_verified until the restaurant declares through the partner site or a verifier records a check. Coordinates are approximate.",
+  "restaurants": [
+    {
+      "id": "real-tokyo-ts-tantan",
+      "nameJa": "T'sたんたん グランスタ東京",
+      "nameEn": "T's TanTan (Gransta Tokyo)",
+      "cityId": "tokyo",
+      "address": "Keiyo Street 1F, Tokyo Station, 1-9-1 Marunouchi, Chiyoda-ku, Tokyo (inside the JR ticket gates)",
+      "lat": 35.6801,
+      "lng": 139.7672,
+      "locationSource": "research-approximate",
+      "cuisine": "Vegan ramen",
+      "dataOrigin": "real",
+      "source": "Time Out Tokyo; Visit Chiyoda (visit-chiyoda.tokyo). Official site foods.jr-cross.co.jp/ts-tantan/ was under maintenance when checked. Diet note from public guides: Listed as a vegan ramen shop by Time Out Tokyo and Visit Chiyoda.",
+      "link": "https://www.timeout.com/tokyo/restaurants/ts-tantan",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-tokyo-ain-soph-journey",
+      "nameJa": null,
+      "nameEn": "Ain Soph. Journey",
+      "cityId": "tokyo",
+      "address": "Shinjuku Q Building, 3-8-9 Shinjuku, Shinjuku-ku, Tokyo 160-0022",
+      "lat": 35.6907,
+      "lng": 139.7051,
+      "locationSource": "research-approximate",
+      "cuisine": "Vegan restaurant",
+      "dataOrigin": "real",
+      "source": "Time Out Tokyo; Truly Tokyo; byFood listing. Diet note from public guides: Described as a vegan restaurant by Time Out Tokyo and Tokyo Weekender.",
+      "link": "https://www.timeout.com/tokyo/restaurants/ain-soph-journey",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-tokyo-komaki-shokudo",
+      "nameJa": null,
+      "nameEn": "Komaki Shokudo",
+      "cityId": "tokyo",
+      "address": "CHABARA (under the JR tracks), Akihabara, Chiyoda-ku, Tokyo",
+      "lat": 35.6994,
+      "lng": 139.7736,
+      "locationSource": "research-approximate",
+      "cuisine": "Japanese temple-style vegan set meals",
+      "dataOrigin": "real",
+      "source": "HappyCow listing. Diet note from public guides: Listed on HappyCow as a vegan shojin ryori restaurant.",
+      "link": "https://www.happycow.net/reviews/komaki-shokudo-tokyo-40326",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-kyoto-shigetsu",
+      "nameJa": "篩月",
+      "nameEn": "Shigetsu (Tenryu-ji)",
+      "cityId": "kyoto",
+      "address": "68 Susukinobaba-cho, Saga-Tenryuji, Ukyo-ku, Kyoto",
+      "lat": 35.0157,
+      "lng": 135.6738,
+      "locationSource": "research-approximate",
+      "cuisine": "Shojin ryori run by the temple",
+      "dataOrigin": "real",
+      "source": "gltjp.com directory; Inside Kyoto. Diet note from public guides: Described as entirely plant-based temple cuisine by the gltjp.com travel directory and Inside Kyoto.",
+      "link": "https://www.gltjp.com/en/directory/item/14848/",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-kyoto-uzu",
+      "nameJa": null,
+      "nameEn": "Vegan Ramen UZU Kyoto",
+      "cityId": "kyoto",
+      "address": "146 Umenokicho, Nakagyo-ku, Kyoto 604-0905",
+      "lat": 35.0113,
+      "lng": 135.7712,
+      "locationSource": "research-approximate",
+      "cuisine": "Vegan ramen course",
+      "dataOrigin": "real",
+      "source": "Official site vegan-uzu.com; TableCheck. Diet note from public guides: The restaurant's own site describes its food as vegan; broth of kelp, shiitake and vegetables.",
+      "link": "https://vegan-uzu.com/pages/uzu-kyoto-en",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-kyoto-mumokuteki",
+      "nameJa": null,
+      "nameEn": "mumokuteki cafe",
+      "cityId": "kyoto",
+      "address": "2F Human Forum Bldg, 351 Iseya-cho, Nakagyo-ku, Kyoto",
+      "lat": 35.0063,
+      "lng": 135.7672,
+      "locationSource": "research-approximate",
+      "cuisine": "Vegan café",
+      "dataOrigin": "real",
+      "source": "Official FAQ (mumokuteki.com); Inside Kyoto. An older HappyCow listing mentions fish stock: confirm. Diet note from public guides: The café's FAQ says food, sweets and drinks are prepared without animal-derived ingredients.",
+      "link": "https://mumokuteki.com/cafe/en/faq/",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-osaka-paprika-shokudo",
+      "nameJa": "パプリカ食堂ヴィーガン",
+      "nameEn": "Paprika Shokudo Vegan",
+      "cityId": "osaka",
+      "address": "Alivio Shinmachi 1F, 1-9-9 Shinmachi, Nishi-ku, Osaka 550-0013",
+      "lat": 34.6772,
+      "lng": 135.4951,
+      "locationSource": "research-approximate",
+      "cuisine": "Vegan Osaka comfort food",
+      "dataOrigin": "real",
+      "source": "Inside Osaka; Time Out Osaka; Table Journey. Diet note from public guides: Listed as a vegan restaurant by Time Out Osaka and Inside Osaka.",
+      "link": "https://insideosaka.com/paprika-shokudo-vegan-minami/",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-koyasan-ekoin",
+      "nameJa": "恵光院",
+      "nameEn": "Ekoin (temple lodging)",
+      "cityId": "koyasan",
+      "address": "497 Koyasan, Koya-cho, Ito-gun, Wakayama 648-0211",
+      "lat": 34.2133,
+      "lng": 135.5937,
+      "locationSource": "research-approximate",
+      "cuisine": "Temple lodging with shojin ryori",
+      "dataOrigin": "real",
+      "source": "Official site ekoin.jp; Japan Royal Service; gltjp.com. Diet note from public guides: The temple's site lists shojin ryori (vegetables, seaweed, beans); travel listings say it suits vegetarians and vegans.",
+      "link": "https://ekoin.jp",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    },
+    {
+      "id": "real-hiroshima-jogesayu",
+      "nameJa": null,
+      "nameEn": "JoGeSaYu",
+      "cityId": "hiroshima",
+      "address": "2-7-1 Otemachi 1F, Naka-ku, Hiroshima (one listing gives 1-7-19 Otemachi: confirm)",
+      "lat": 34.3912,
+      "lng": 132.4555,
+      "locationSource": "research-approximate",
+      "cuisine": "Plant-based restaurant",
+      "dataOrigin": "real",
+      "source": "TableCheck; Vegewel; HappyCow city list. Diet note from public guides: Listed by Vegewel and TableCheck as a fully plant-based restaurant.",
+      "link": "https://www.tablecheck.com/jogesayu-hiroshima",
+      "dietsRequested": [
+        "eggless",
+        "no_beef",
+        "vegan",
+        "vegetarian"
+      ],
+      "kitchen": {},
+      "declaration": {
+        "accepted": false,
+        "declaredAt": null
+      },
+      "dishes": [],
+      "certificates": [],
+      "verifications": []
+    }
+  ]
+}
