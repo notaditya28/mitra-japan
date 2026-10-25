@@ -1,7 +1,7 @@
 # Mitra Japan
 
 Japan, made for you. A scroll-driven 3D story that answers Indian travellers' real worries about Japan (veg food, language, visa, "will it feel foreign?"), followed by a 3D map planner with an AI trip guide.
-
+(https://mitra-japan.vercel.app/ )this is our prototype , you can check by clicking this link .
 ## Structure
 
 ```
