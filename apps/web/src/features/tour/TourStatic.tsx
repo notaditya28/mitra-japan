@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SectionHeader } from '../../components/sections/SectionHeader';
 import { StatusBadge } from '../../components/StatusBadge';
+import { FlightFacts } from './FlightFacts';
 import { FROM, SEGMENTS, TOUR_CITIES } from './tour';
 import { useTourStore } from './useTourStore';
 
@@ -54,6 +55,7 @@ export function TourStatic() {
             />
           </Suspense>
         </div>
+        <FlightFacts className="card-dark mt-6 max-w-xl p-5" />
 
         {TOUR_CITIES.map((city, ci) => (
           <div key={city.id} id={`tour-city-${city.id}`} data-city={city.id} className="mt-20">

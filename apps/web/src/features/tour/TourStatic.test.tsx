@@ -24,6 +24,7 @@ describe('static journey (reduced motion / no WebGL)', () => {
 
   it('labels every spot as needing review', () => {
     const spots = TOUR_CITIES.flatMap((c) => c.spots).length;
-    expect(html.match(/Needs review/g)?.length).toBe(spots);
+    // One badge per spot, plus the non-stop flights card under the flight map.
+    expect(html.match(/Needs review/g)?.length).toBe(spots + 1);
   });
 });

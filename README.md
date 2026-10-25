@@ -162,7 +162,27 @@ Maintenance:
 
 All seed data lives in `apps/web/src/data/`. Each record has `status` (`verified` / `sample` / `needs-review`), `source` and `lastChecked`. Only a human sets `verified`. `data.test.ts`, `visa.test.ts` and `sampleScans.test.ts` enforce the rules. The API reads the same files.
 
-#### Adding or correcting a restaurant (`restaurants.json`)
+#### Restaurant database and per-diet verification (addendum 5)
+
+Restaurants are moving from `restaurants.json` into the API database, the single source of truth for the traveller app and the new partner site. Until milestone 3 switches the traveller app over, it still reads `restaurants.json` (below).
+
+- **Database:** SQLite at `apps/api/data/mitra.db` locally (git-ignored); set `DATABASE_URL` to a Postgres URL when deployed. Migrations are in `apps/api/alembic/`.
+- **Diet rules:** `packages/shared/diet_rules.json` decides what each diet (Jain, vegetarian, vegan, halal, no-beef, eggless) needs to know and what conflicts. It is `needs-review` until practitioners check it (`DATA_TODO.md`).
+- **Statuses:** automated checks give at most *Partially verified (restaurant-reported)*. Only a verifier action records *Fully verified*, with a method, date, initials, evidence and confirmed dishes. It expires after `VERIFICATION_EXPIRY_MONTHS`. Expiry, a traveller report or a changed answer takes it away again. Every change is in the append-only `audit_log`.
+- **Demo mode** (`APP_MODE=demo`, the default) labels seeded and new verifications "Fully verified (DEMO)". Production never treats sample data as verified.
+
+```bash
+cd apps/api
+.venv/Scripts/python -m restaurants.cli migrate        # create or upgrade the database
+.venv/Scripts/python -m restaurants.cli reset-demo     # back to the 15 sample + 9 researched restaurants
+.venv/Scripts/python -m restaurants.cli status         # every listing's status per diet
+.venv/Scripts/python -m restaurants.cli import FILE    # import records; unproven verifications are refused
+.venv/Scripts/python -m restaurants.cli expire         # downgrade verifications past their expiry
+```
+
+Importing a verification needs `method`, `verifiedAt`, `verifierInitials` and at least one `evidence` reference, or it is refused (see `restaurants/importer.py`). Seed files: `apps/api/restaurants/seed/`.
+
+#### Adding or correcting a restaurant (`restaurants.json`, until milestone 3)
 
 1. Copy an existing `needs-review` entry. Give it a unique `id` and a `cityId` from `cities.json`.
 2. Fill `name`, `nameJa` (or `null`), `cuisine`, `kind` (one of the keys under `planner.kinds` in the locale files), `address`, `area`, `lat`/`lng` and `coordinatePrecision` (`exact` only if you took the pin from the venue's own map).

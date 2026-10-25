@@ -1,0 +1,44 @@
+{
+  "en": {
+    "tour": {
+      "flights": {
+        "eyebrow": "Fly non-stop from India",
+        "title": "{{count}} direct routes, no layover",
+        "from": "Return fares from {{price}} ({{route}})*",
+        "return": "return, economy",
+        "checkFare": "Check fare with the airline",
+        "upcoming": "Coming: {{route}} with {{airline}}. {{note}}.",
+        "footnote": "*Lowest economy return fare shown on the airline's own site when we checked on {{date}}. Fares change daily; these are not live prices. Routes and schedules from airline announcements; check with the airline before booking.",
+        "fareSource": "Fare source"
+      }
+    }
+  },
+  "hi": {
+    "tour": {
+      "flights": {
+        "eyebrow": "भारत से सीधी उड़ान",
+        "title": "{{count}} सीधे रूट, कोई ठहराव नहीं",
+        "from": "रिटर्न किराया {{price}} से ({{route}})*",
+        "return": "रिटर्न, इकॉनमी",
+        "checkFare": "किराया एयरलाइन से जाँचें",
+        "upcoming": "जल्द: {{airline}} के साथ {{route}}। {{note}}।",
+        "footnote": "*{{date}} को हमारी जाँच के समय एयरलाइन की अपनी साइट पर दिखा सबसे कम इकॉनमी रिटर्न किराया। किराए रोज़ बदलते हैं; ये लाइव दाम नहीं हैं। रूट और समय एयरलाइन की घोषणाओं से; बुकिंग से पहले एयरलाइन से पुष्टि करें।",
+        "fareSource": "किराए का स्रोत"
+      }
+    }
+  },
+  "gu": {
+    "tour": {
+      "flights": {
+        "eyebrow": "ભારતથી સીધી ફ્લાઇટ",
+        "title": "{{count}} સીધા રૂટ, કોઈ રોકાણ નહીં",
+        "from": "રિટર્ન ભાડું {{price}} થી ({{route}})*",
+        "return": "રિટર્ન, ઇકોનોમી",
+        "checkFare": "ભાડું એરલાઇન પાસે તપાસો",
+        "upcoming": "ટૂંક સમયમાં: {{airline}} સાથે {{route}}. {{note}}.",
+        "footnote": "*{{date}} એ અમે તપાસ્યું ત્યારે એરલાઇનની પોતાની સાઇટ પર દેખાયેલું સૌથી ઓછું ઇકોનોમી રિટર્ન ભાડું. ભાડાં રોજ બદલાય છે; આ લાઇવ ભાવ નથી. રૂટ અને સમય એરલાઇનની જાહેરાતોમાંથી; બુકિંગ પહેલાં એરલાઇન પાસે પુષ્ટિ કરો.",
+        "fareSource": "ભાડાનો સ્રોત"
+      }
+    }
+  }
+}

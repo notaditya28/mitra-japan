@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { StatusBadge } from '../StatusBadge';
+import { FlightFacts } from '../../features/tour/FlightFacts';
 import { FROM, LAYOUT, SEGMENTS, TOUR_CITIES, TOUR_VH } from '../../features/tour/tour';
 import { cityName, spotAbout, spotArea, spotName } from '../../features/tour/labels';
 import { useTourStore } from '../../features/tour/useTourStore';
@@ -142,6 +143,19 @@ export function TourSection() {
           tl.to(credit, { autoAlpha: 0, duration: 0.04 }, at + 0.9 * w);
         }
 
+        // Non-stop routes and fares come in once the flight title has gone.
+        const flightInfo = seg.kind === 'flight' ? el.querySelector<HTMLElement>('[data-flightinfo]') : null;
+        if (flightInfo) {
+          gsap.set(flightInfo, { autoAlpha: 0 });
+          tl.fromTo(
+            flightInfo,
+            { autoAlpha: 0, y: 24 },
+            { autoAlpha: 1, y: 0, duration: 0.1, ease: 'power2.out' },
+            at + 0.42 * w,
+          );
+          tl.to(flightInfo, { autoAlpha: 0, y: -24, duration: 0.08, ease: 'power2.in' }, at + 0.9 * w);
+        }
+
         if (!about) return;
         gsap.set(about, { autoAlpha: 0 });
         tl.fromTo(
@@ -255,6 +269,18 @@ export function TourSection() {
             </div>
           );
         })}
+
+        {/* Left side, away from the chapter rail on the right (owner request, 2026-10-25). The
+            wrapper positions; only the inner card is animated, so GSAP never bakes the centring
+            transform into its own. */}
+        <div className="pointer-events-none absolute inset-x-3 bottom-4 sm:inset-x-auto sm:bottom-auto sm:left-[5%] sm:top-1/2 sm:w-[400px] sm:-translate-y-1/2">
+          <div
+            data-flightinfo
+            className="pointer-events-auto invisible rounded-2xl border border-white/15 bg-plum/75 p-4 text-paper shadow-lift backdrop-blur-md"
+          >
+            <FlightFacts />
+          </div>
+        </div>
       </div>
     </section>
   );

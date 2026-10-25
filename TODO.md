@@ -18,6 +18,8 @@
 
 ## Needs owner input
 
+- [ ] **The numbers** (`apps/web/src/data/stats.json`): open each `sourceUrl`, confirm the figure, then set `verified: true`. Add the team survey result to `surveyFoodWorry` (value and source) when it is ready.
+- [ ] **Flights** (`apps/web/src/data/flights.json`): fares are snapshots from 25 Oct 2026; re-check before a demo, and add Air India and JAL fares from their own sites if you want them shown. Confirm JL754's frequency.
 - [ ] **Gallery** (`apps/web/src/data/gallery.json`): look through the photos and clips in `apps/web/public/gallery/`, check each caption and credit on its Commons page, swap any you don't like by pinning a `file` in `scripts/gallery_media.py`, then set `status: verified`. Gallery strings in HI/GU are drafts.
 - [ ] **Knowledge base (R1)**: review the 37 documents in `apps/api/rag/corpus/` (all `needs-review`), especially emergency contacts and visa pages, and the URLs to supply in `rag/corpus/SOURCES.md` (Fushimi Inari, VFS document checklist, JR Central rules, Consulate of India in Fukuoka, temple hours/fees).
 - [ ] **Git history**: commit `eca14ac` contains the Anthropic key that was in `.env.example`; rewrite it out before any push (not pushed yet).

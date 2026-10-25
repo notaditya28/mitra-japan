@@ -1,0 +1,105 @@
+{
+  "_note": "Non-stop flights from India to Japan, shown during the Delhi -> Japan flight scroll. Routes, flight numbers and frequencies are from the airlines' own pages and announcements (or travel-trade reports where marked); schedules change, so the UI says to check with the airline. Fares are the lowest economy round-trip fares the airline's own site displayed on the date shown (collected within its last 48 hours), never live prices, and only where we could read them ourselves. Status needs-review until the owner re-checks.",
+  "status": "needs-review",
+  "lastChecked": "2026-10-25",
+  "routes": [
+    {
+      "id": "del-hnd-nh",
+      "from": "Delhi",
+      "fromCode": "DEL",
+      "to": "Tokyo Haneda",
+      "toCode": "HND",
+      "airline": "ANA",
+      "flight": "NH838",
+      "frequency": "Daily",
+      "sourceUrl": "https://www.ana.co.jp/zh/hk/plan-book/routes-timetables/international-route-information/",
+      "fare": {
+        "amount": 86688,
+        "currency": "INR",
+        "trip": "round trip",
+        "cabin": "economy",
+        "travelDates": "2–8 Dec 2026",
+        "seenOn": "2026-10-25",
+        "sourceUrl": "https://flights.ana.co.jp/en-in/flights-from-india-to-japan"
+      }
+    },
+    {
+      "id": "del-hnd-ai",
+      "from": "Delhi",
+      "fromCode": "DEL",
+      "to": "Tokyo Haneda",
+      "toCode": "HND",
+      "airline": "Air India",
+      "flight": null,
+      "frequency": "7 a week",
+      "sourceUrl": "https://www.airindia.com/in/en/newsroom/press-release/Air-India-expands-Asia-footprint-with-new-routes-to-Vietnam-and-Japan.html",
+      "fare": null
+    },
+    {
+      "id": "del-nrt-jl",
+      "from": "Delhi",
+      "fromCode": "DEL",
+      "to": "Tokyo Narita",
+      "toCode": "NRT",
+      "airline": "Japan Airlines",
+      "flight": "JL740",
+      "frequency": "Daily (since 17 Jan 2026)",
+      "sourceUrl": "https://press.jal.co.jp/en/items/uploads/4ab9d7ba652020f0145a995d98caed0c86d3b6b7.pdf",
+      "fare": null
+    },
+    {
+      "id": "bom-nrt-nh",
+      "from": "Mumbai",
+      "fromCode": "BOM",
+      "to": "Tokyo Narita",
+      "toCode": "NRT",
+      "airline": "ANA",
+      "flight": "NH830",
+      "frequency": "Daily (fewer flights in peak summer)",
+      "sourceUrl": "https://www.ana.co.jp/zh/hk/plan-book/routes-timetables/international-route-information/",
+      "fare": {
+        "amount": 74785,
+        "currency": "INR",
+        "trip": "round trip",
+        "cabin": "economy",
+        "travelDates": "2–7 Nov 2026",
+        "seenOn": "2026-10-25",
+        "sourceUrl": "https://flights.ana.co.jp/en-in/flights-from-india-to-japan"
+      }
+    },
+    {
+      "id": "bom-hnd-ai",
+      "from": "Mumbai",
+      "fromCode": "BOM",
+      "to": "Tokyo Haneda",
+      "toCode": "HND",
+      "airline": "Air India",
+      "flight": "AI356",
+      "frequency": "4 a week (since 15 Jun 2026)",
+      "sourceUrl": "https://www.airindia.com/content/dam/air-india/newsroom/press-releases/pdf/Press-Release-DELHAN-and-BOMHND-05Mar26.pdf",
+      "fare": null
+    },
+    {
+      "id": "blr-nrt-jl",
+      "from": "Bengaluru",
+      "fromCode": "BLR",
+      "to": "Tokyo Narita",
+      "toCode": "NRT",
+      "airline": "Japan Airlines",
+      "flight": "JL754",
+      "frequency": "Check with the airline",
+      "sourceUrl": "https://www.jal.co.jp/in/en/",
+      "fare": null
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "del-kix-ai",
+      "from": "Delhi",
+      "to": "Osaka",
+      "airline": "Air India",
+      "note": "Announced to start on 2 Feb 2027 (travel-trade report; check with Air India)",
+      "sourceUrl": "https://www.alojapan.com/1554358/delhi-gets-direct-flights-to-osaka-as-air-india-expands-japan-network-check-schedule/"
+    }
+  ]
+}

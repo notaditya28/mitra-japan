@@ -20,8 +20,9 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 - Reduced-motion / low-end path: static sections instead of scroll-driven 3D.
 - Language switch EN / हिं / ગુ (Stage 1, sign-in and planner UI; data notes are English only).
 - Indian-roots mosaic → map reveal and story cards.
+- Non-stop flights from India during the flight scroll: 6 routes (Delhi and Mumbai to Haneda and Narita, Bengaluru to Narita) with airline, flight number and frequency, ANA's lowest economy return fares as seen on 25 Oct 2026, and the announced Delhi–Osaka route. Fares are snapshots, not live.
 - Japan in pictures (before the numbers): 35 photos and 4 short muted clips of famous sites, museums, festivals and food, sliding right to left in two rows as you scroll, with a revolving tilt; a sideways-scrolling strip with reduced motion. Each card credits its author and licence (Wikimedia Commons).
-- Count-up counters (only animate real values; all are currently empty).
+- Count-up counters for the numbers: 3,15,100 Indian visitors to Japan in 2025 (JNTO), 10.79% growth in Indian departures in 2024 (Ministry of Tourism), 39% of Indian adults vegetarian (Pew). The team survey figure is still empty.
 - Page transitions (torii portal), hash routes, demo sign-in (name + Indian mobile, browser only).
 - 3D Japan planner map: extruded prefectures, hover/click, orbit limits, camera fly-to, four animated layers, city cards, flat SVG fallback without WebGL, mobile bottom sheet.
 - Veg-Safe scanner (planner top bar → Menu scanner):
@@ -120,5 +121,15 @@ _Last updated: 2026-10-24, end of milestone R5 (knowledge assistant)._
 ## Planned (by milestone)
 
 Knowledge assistant (addendum 3): R1–R5 all done (see above).
+
+Restaurant partners and per-diet verification (addendum 5 v3), one milestone at a time:
+
+1. Foundation: database and migrations, shared diet rules (six diets, `needs-review`), status engine, append-only audit log, importer, sample seed, `APP_MODE` demo flag. **Done** (API side only; nothing visible in the apps yet). 15 sample restaurants (Tokyo, Kyoto, Osaka) with seeded DEMO verifications, plus the 9 researched real places as not verified.
+2. Partner site (`apps/partners`): Japanese/English onboarding, uploads, status page by private link, automated checks, minimal verify action in `/admin`.
+3. Traveller display and live sync: per-diet chips, "Verified for your diet" and "Ask first" groups, map pins and legend, reports and feedback, 10-second polling, toasts, offline snapshot banner.
+4. Planner integration: hard filter, "No verified meal near this stop", coverage-based Food Confidence, assistant `search_restaurants`, seeded Kyoto Jain lunch gap.
+5. Hardening and evaluation: verifier queue, sampling and metrics, Playwright E2E, deployment, `EVALUATION.md`.
+
+Family Mode and the Live Recovery engine (addendum 4) are cancelled and not built.
 
 - Deploy: configs ready (`render.yaml`, `apps/web/vercel.json`); the owner connects Render and Vercel (README).

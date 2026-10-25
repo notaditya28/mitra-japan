@@ -1028,6 +1028,16 @@
         "area": "Gion",
         "about": "Gion is Kyoto's old entertainment district, with wooden machiya houses and lantern-lit lanes. In July the Gion Matsuri of Yasaka Shrine fills its streets with food stalls, paper lanterns and tall decorated floats."
       }
+    },
+    "flights": {
+      "eyebrow": "Fly non-stop from India",
+      "title": "{{count}} direct routes, no layover",
+      "from": "Return fares from {{price}} ({{route}})*",
+      "return": "return, economy",
+      "checkFare": "Check fare with the airline",
+      "upcoming": "Coming: {{route}} with {{airline}}. {{note}}.",
+      "footnote": "*Lowest economy return fare shown on the airline's own site when we checked on {{date}}. Fares change daily; these are not live prices. Routes and schedules from airline announcements; check with the airline before booking.",
+      "fareSource": "Fare source"
     }
   },
   "guideBadge": {
