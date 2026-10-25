@@ -118,6 +118,15 @@ async def handle(req: ChatRequest, client: Any = None) -> AssistantResponse:
             ctx.requested_changes = (ctx.requested_changes + [ChangeRecord(at=dt.datetime.now(dt.timezone.utc), request=message[:300], summary=resp.proposed_patch["patch"]["summary"][:300])])[-20:]
     else:
         resp = await _info(message, history, ctx, language, r, live, client)
+        if resp.confidence == "abstained" and "plan_change without itinerary" in r.reasons:
+            # "It's raining, change my plan" before there is a plan: say so, don't just abstain.
+            resp = AssistantResponse(
+                answer=planchange.NO_PLAN,
+                statements=[Statement(text=planchange.NO_PLAN, kind="suggestion")],
+                needs_clarification=planchange.NO_PLAN,
+                intent="clarify",
+                confidence="low",
+            )
 
     if ctx.assumptions() and resp.intent in ("info", "plan_change"):
         notices.append("I'm assuming these trip details, tell me if they're wrong: " + ", ".join(ctx.assumptions()) + ".")

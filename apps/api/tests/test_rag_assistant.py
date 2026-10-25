@@ -397,3 +397,11 @@ def test_live_plan_change_with_a_pinned_violation_falls_back_to_rules(monkeypatc
     assert r.mode_label == assistant.FALLBACK_LABEL
     if r.proposed_patch:
         assert all(not (o.get("day") == 3 and o.get("index") == 1) for o in r.proposed_patch["patch"]["ops"])
+
+
+def test_a_change_request_without_a_plan_explains_instead_of_abstaining():
+    from rag import planchange
+
+    r = chat("It's raining today, change my plan", TripContext(session_id="test-session"))
+    assert r.intent == "clarify" and r.confidence != "abstained"
+    assert r.answer == planchange.NO_PLAN

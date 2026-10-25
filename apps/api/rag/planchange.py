@@ -288,10 +288,18 @@ def booking_notes(message: str, ctx: TripContext, patch: Patch) -> list[str]:
     return list(dict.fromkeys(notes))
 
 
+#: Shown when someone asks to change a plan that doesn't exist yet.
+NO_PLAN = (
+    "You don't have a trip plan yet, so there's nothing for me to change. Plan a trip first "
+    "(Trip options in the planner), then tell me what changed, for example \"it's raining today\" "
+    "or \"make day 2 lighter\", and I'll suggest edits you can apply."
+)
+
+
 def rule_based(message: str, ctx: TripContext, *, post_emergency: bool = False) -> PlanChange:
     it = ctx.itinerary
     if it is None:
-        return PlanChange(None, None, clarification="You don't have an itinerary yet. Ask the guide to plan one first.")
+        return PlanChange(None, None, clarification=NO_PLAN)
     if post_emergency or re.search(r"\breplan\b", message, re.I):
         out = _lighter(message, ctx, it, post_emergency=True)
     else:
